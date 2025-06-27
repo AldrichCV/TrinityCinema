@@ -15,11 +15,11 @@ namespace TrinityCinema.Views.Admin
     public partial class PersonnelControl : DevExpress.XtraEditors.XtraUserControl
     {
         AllMethods a = new AllMethods();
-        private AdminMainForm form;
-        public PersonnelControl(AdminMainForm form)
+        private AdminMainForm adminMainForm;
+        public PersonnelControl(AdminMainForm adminMainForm)
         {
             InitializeComponent();
-            this.form = form;
+            this.adminMainForm = adminMainForm;
             AllMethods.GridCustomization(gcPersonnel, tvPersonnelView, GetEmployee());
         }
 
@@ -32,6 +32,53 @@ namespace TrinityCinema.Views.Admin
         private void newAccountTile_ItemClick_1(object sender, TileItemEventArgs e)
         {
             AllMethods.ShowModal(home => new AccountCreation(home));
+        }
+
+        private void tvPersonnelView_ItemClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
+        {
+            AllMethods allMethods = new AllMethods();
+
+            // Get selected staffID from the grid
+            string accountID = tvPersonnelView.GetFocusedRowCellValue("AccountID")?.ToString();
+            if (string.IsNullOrEmpty(accountID))
+            {
+                MessageBox.Show("No staff selected.");
+                return;
+            }
+
+            // Set up the form
+            EditAccount editAccount = new EditAccount(adminMainForm, accountID);
+
+            // Prepare query and parameters
+            string query = @"SELECT * FROM [dbo].[Accounts] WHERE AccountID = @AccountID";
+            var parameters = new { accountID };
+            List<string> columns = new List<string>
+                    {  "FirstName"
+                       ,"MiddleName"
+                       ,"LastName"
+                       ,"Suffix"
+                       ,"Role"
+                       ,"PersonnelImage"
+                    };
+
+            Dictionary<string, string> record = allMethods.GetRecordById(query, parameters, columns);
+
+            if (record != null)
+            {
+                // Populate fields
+                editAccount.teFirstName.Text = record["FirstName"];
+                editAccount.teMiddleName.Text = record["MiddleName"];
+                editAccount.teLastName.Text = record["LastName"];
+                editAccount.teSuffix.Text = record["Suffix"];
+                editAccount.cbRole.Text = record["Role"];
+         
+                // Show the form after populating
+                editAccount.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No employee found.");
+            }
         }
     }
 }

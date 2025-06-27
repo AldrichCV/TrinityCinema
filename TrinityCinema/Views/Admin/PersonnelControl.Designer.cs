@@ -30,14 +30,21 @@
         {
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
-            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition3 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
             DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition2 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
             DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition3 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableSpan tableSpan1 = new DevExpress.XtraEditors.TableLayout.TableSpan();
+            DevExpress.XtraEditors.TableLayout.TableSpan tableSpan2 = new DevExpress.XtraEditors.TableLayout.TableSpan();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement1 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement2 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PersonnelControl));
+            this.AccountID = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.PersonnelImage = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.FullName = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.Role = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gcPersonnel = new DevExpress.XtraGrid.GridControl();
             this.tvPersonnelView = new DevExpress.XtraGrid.Views.Tile.TileView();
@@ -50,13 +57,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvPersonnelView)).BeginInit();
             this.SuspendLayout();
             // 
+            // AccountID
+            // 
+            this.AccountID.FieldName = "AccountID";
+            this.AccountID.Name = "AccountID";
+            this.AccountID.OptionsColumn.AllowFocus = false;
+            this.AccountID.Visible = true;
+            this.AccountID.VisibleIndex = 0;
+            // 
+            // PersonnelImage
+            // 
+            this.PersonnelImage.FieldName = "PersonnelImage";
+            this.PersonnelImage.Name = "PersonnelImage";
+            this.PersonnelImage.OptionsColumn.AllowFocus = false;
+            this.PersonnelImage.Visible = true;
+            this.PersonnelImage.VisibleIndex = 1;
+            // 
             // FullName
             // 
-            this.FullName.Caption = "Full Name";
             this.FullName.FieldName = "FullName";
             this.FullName.Name = "FullName";
             this.FullName.Visible = true;
-            this.FullName.VisibleIndex = 0;
+            this.FullName.VisibleIndex = 2;
+            // 
+            // Role
+            // 
+            this.Role.FieldName = "Role";
+            this.Role.Name = "Role";
+            this.Role.Visible = true;
+            this.Role.VisibleIndex = 3;
             // 
             // groupControl1
             // 
@@ -87,24 +116,61 @@
             // tvPersonnelView
             // 
             this.tvPersonnelView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.FullName});
+            this.AccountID,
+            this.PersonnelImage,
+            this.FullName,
+            this.Role});
             this.tvPersonnelView.GridControl = this.gcPersonnel;
             this.tvPersonnelView.Name = "tvPersonnelView";
+            this.tvPersonnelView.OptionsTiles.ItemSize = new System.Drawing.Size(306, 147);
             this.tvPersonnelView.OptionsTiles.RowCount = 0;
+            tableColumnDefinition1.Length.Value = 125D;
+            tableColumnDefinition2.Length.Value = 131D;
             this.tvPersonnelView.TileColumns.Add(tableColumnDefinition1);
             this.tvPersonnelView.TileColumns.Add(tableColumnDefinition2);
-            this.tvPersonnelView.TileColumns.Add(tableColumnDefinition3);
+            tableRowDefinition1.Length.Value = 32D;
+            tableRowDefinition2.Length.Value = 68D;
+            tableRowDefinition3.Length.Value = 31D;
             this.tvPersonnelView.TileRows.Add(tableRowDefinition1);
             this.tvPersonnelView.TileRows.Add(tableRowDefinition2);
             this.tvPersonnelView.TileRows.Add(tableRowDefinition3);
-            tileViewItemElement1.Column = this.FullName;
-            tileViewItemElement1.ColumnIndex = 2;
+            tableSpan1.RowSpan = 3;
+            tableSpan2.ColumnIndex = 1;
+            tableSpan2.RowSpan = 3;
+            this.tvPersonnelView.TileSpans.Add(tableSpan1);
+            this.tvPersonnelView.TileSpans.Add(tableSpan2);
+            tileViewItemElement1.Column = this.AccountID;
+            tileViewItemElement1.ColumnIndex = 1;
             tileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement1.RowIndex = 1;
-            tileViewItemElement1.Text = "FullName";
-            tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement1.Text = "AccountID";
+            tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
+            tileViewItemElement2.Column = this.PersonnelImage;
+            tileViewItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
+            tileViewItemElement2.Text = "PersonnelImage";
+            tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement3.Column = this.FullName;
+            tileViewItemElement3.ColumnIndex = 1;
+            tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement3.RowIndex = 1;
+            tileViewItemElement3.Text = "FullName";
+            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement4.Column = this.Role;
+            tileViewItemElement4.ColumnIndex = 1;
+            tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement4.RowIndex = 2;
+            tileViewItemElement4.Text = "Role";
+            tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileViewItemElement4.TextLocation = new System.Drawing.Point(0, -35);
             this.tvPersonnelView.TileTemplate.Add(tileViewItemElement1);
+            this.tvPersonnelView.TileTemplate.Add(tileViewItemElement2);
+            this.tvPersonnelView.TileTemplate.Add(tileViewItemElement3);
+            this.tvPersonnelView.TileTemplate.Add(tileViewItemElement4);
+            this.tvPersonnelView.ItemClick += new DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventHandler(this.tvPersonnelView_ItemClick);
             // 
             // actionTile
             // 
@@ -181,8 +247,11 @@
         private DevExpress.XtraBars.Navigation.TileBar actionTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem newAccountTile;
-        private DevExpress.XtraGrid.Views.Tile.TileView tvPersonnelView;
         public DevExpress.XtraGrid.GridControl gcPersonnel;
+        private DevExpress.XtraGrid.Columns.TileViewColumn AccountID;
+        private DevExpress.XtraGrid.Columns.TileViewColumn PersonnelImage;
         private DevExpress.XtraGrid.Columns.TileViewColumn FullName;
+        public DevExpress.XtraGrid.Views.Tile.TileView tvPersonnelView;
+        private DevExpress.XtraGrid.Columns.TileViewColumn Role;
     }
 }

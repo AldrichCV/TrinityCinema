@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -21,6 +22,7 @@ namespace TrinityCinema.Views.Admin
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {
+            gcHome.Controls.Clear();
             PersonnelControl personnelControl = new PersonnelControl(this);
             gcHome.Controls.Add(personnelControl);
             personnelControl.Dock = DockStyle.Fill;
@@ -30,6 +32,7 @@ namespace TrinityCinema.Views.Admin
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
+            gcHome.Controls.Clear();
             MovieControl movieControl = new MovieControl();
             gcHome.Controls.Add(movieControl);
             movieControl.Dock = DockStyle.Fill;

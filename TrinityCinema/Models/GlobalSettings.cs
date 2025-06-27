@@ -58,7 +58,8 @@ namespace TrinityCinema.Models
                                     ,[Suffix]
                                     ,[Role]
                                     ,[UserName]
-                                    ,[PasswordHash])
+                                    ,[PasswordHash]
+                                    ,[PersonnelImage])
                                    
                             VALUES
                                     (@AccountID
@@ -69,6 +70,7 @@ namespace TrinityCinema.Models
                                     ,@Role
                                     ,@UserName
                                     ,@PasswordHash
+                                    ,@PersonnelImage
                                     );";
         #endregion
 

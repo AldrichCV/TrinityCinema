@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -19,6 +20,7 @@ namespace TrinityCinema.Views
     public partial class AccountCreation : DevExpress.XtraEditors.XtraForm
     {
         private AdminMainForm adminMainForm;
+        private byte[] imageData;
         public AccountCreation(AdminMainForm adminMainForm)
         {
             InitializeComponent();
@@ -60,7 +62,8 @@ namespace TrinityCinema.Views
                     Suffix = teSuffix.Text,
                     Role = cbRole.Text,
                     UserName = teUserName.Text,
-                    PasswordHash = hashedPassword
+                    PasswordHash = hashedPassword,
+                    PersonnelImage = imageData
                 };
                 allMethods.InsertMethod(createAccounts, GlobalSettings.insertQuery);
                 XtraMessageBox.Show("Account details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,5 +91,31 @@ namespace TrinityCinema.Views
             }
 
         }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png;";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        peImage.Image = Image.FromFile(openFileDialog.FileName);
+                        peImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            peImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // You can use other image formats
+                            imageData = ms.ToArray();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("Error: " + ex.Message, "Error Loading Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
-}
+    }
