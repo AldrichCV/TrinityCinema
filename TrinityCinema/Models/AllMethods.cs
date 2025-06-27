@@ -1,0 +1,191 @@
+﻿using DevExpress.XtraEditors;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Dapper;
+using TrinityCinema.Views.Admin;
+using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Tile;
+
+namespace TrinityCinema.Models
+{
+    public class AllMethods
+    {
+        string connectionString = GlobalSettings.connectionString;
+        //Retrieval of records
+        public List<T> GetRecords<T>(string query, object parameters = null)
+        {
+            IEnumerable<T> records;
+            using (var sql = new SqlConnection(connectionString))
+            {
+                sql.Open();
+                records = sql.Query<T>(query, parameters, commandType: CommandType.Text);
+            }
+            return records.ToList();
+        }
+
+        //Reusable method for inserting data
+        public void InsertMethod(object classAdd, string query)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                connection.Execute(query, classAdd);
+            }
+            // XtraMessageBox.Show("Account details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters dynamically
+                    foreach (var prop in parameters.GetType().GetProperties())
+                    {
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters) ?? DBNull.Value);
+                    }
+
+                    connection.Open();
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        if (dt.Rows.Count == 0)
+                            return null;
+
+                        DataRow row = dt.Rows[0];
+                        Dictionary<string, string> result = new Dictionary<string, string>();
+
+                        foreach (string col in columns)
+                        {
+                            result[col] = row[col]?.ToString() ?? "";
+                        }
+
+                        return result;
+                    }
+                }
+            }
+        }
+
+        public bool UpdateRecord(string tableName, object parameters, List<string> columns, string keyColumn)
+        {
+            if (parameters == null) return false;
+
+            string setClause = string.Join(", ", columns.Select(c => $"{c} = @{c}"));
+            string query = $"UPDATE [{tableName}] SET {setClause} WHERE {keyColumn} = @{keyColumn}";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                int rows = connection.Execute(query, parameters);
+                return rows > 0;  // Return true if rows were updated
+            }
+        }
+
+        public static void RemoveRecordByKey(string primaryKeyColumn, string primaryKeyValue, List<string> tablesToDeleteFrom, string connectionString)
+        {
+            if (string.IsNullOrWhiteSpace(primaryKeyValue) || tablesToDeleteFrom == null || tablesToDeleteFrom.Count == 0)
+            {
+                MessageBox.Show("Invalid input.");
+                return;
+            }
+
+            var parameters = new Dictionary<string, object> { { primaryKeyColumn, primaryKeyValue } };
+
+            string deleteQuery = string.Join(Environment.NewLine,
+                tablesToDeleteFrom.Select(t => $"DELETE FROM [{t}] WHERE [{primaryKeyColumn}] = @{primaryKeyColumn};"));
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                int rowsAffected = connection.Execute(deleteQuery, parameters);
+                MessageBox.Show(rowsAffected > 0 ? "Record removed successfully." : "No matching record found.");
+            }
+        }
+
+        public static void ShowModal<T>(Func<AdminMainForm, T> formFactory) where T : Form
+        {
+            // Get open ManagerHome instance
+            var managerHome = Application.OpenForms.OfType<AdminMainForm>().FirstOrDefault();
+
+            if (managerHome == null)
+            {
+                MessageBox.Show("ManagerHome not found.");
+                return;
+            }
+
+            // Prevent multiple dialogs of the same type
+            if (Application.OpenForms.OfType<T>().Any())
+                return;
+
+            // Create form instance using factory method
+            var form = formFactory(managerHome);
+
+            // Optional: standard modal dialog settings
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.MaximizeBox = false;
+            form.MinimizeBox = false;
+            form.ShowInTaskbar = false;
+
+            // Show as modal
+            form.ShowDialog(managerHome);
+        }
+
+        public static void GridCustomization(GridControl grid, TileView view, object data)
+        {
+            view.BeginUpdate();
+            try
+            {
+                grid.DataSource = null;
+                grid.DataSource = data;
+                grid.RefreshDataSource();
+            }
+            finally
+            {
+                view.EndUpdate();
+            }
+        }
+
+
+        public static void RefreshManagerHome<T>(Func<AdminMainForm, T> createNewControl) where T : Control
+        {
+            // Locate the ManagerHome form
+            AdminMainForm adminForm = Application.OpenForms.OfType<AdminMainForm>().FirstOrDefault();
+            if (adminForm == null)
+            {
+                MessageBox.Show("ManagerHome not found.");
+                return;
+            }
+
+            // Find and remove existing control of type T
+            T oldControl = adminForm.gcHome.Controls.OfType<T>().FirstOrDefault();
+            if (oldControl != null)
+            {
+                adminForm.gcHome.Controls.Remove(oldControl);
+                oldControl.Dispose();
+            }
+
+            // Create and add the new control
+            T newControl = createNewControl(adminForm);
+            newControl.Dock = DockStyle.Fill;
+            adminForm.gcHome.Controls.Add(newControl);
+            newControl.BringToFront();
+        }
+
+    }
+}
+
+
+ 

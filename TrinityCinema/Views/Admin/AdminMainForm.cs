@@ -18,5 +18,22 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
         }
+
+        private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            PersonnelControl personnelControl = new PersonnelControl(this);
+            gcHome.Controls.Add(personnelControl);
+            personnelControl.Dock = DockStyle.Fill;
+            personnelControl.Show();
+
+        }
+
+        private void movieTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            MovieControl movieControl = new MovieControl();
+            gcHome.Controls.Add(movieControl);
+            movieControl.Dock = DockStyle.Fill;
+            movieControl.Show();
+        }
     }
 }
