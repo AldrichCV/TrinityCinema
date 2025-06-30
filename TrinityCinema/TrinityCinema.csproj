@@ -107,23 +107,17 @@
     <Compile Include="Views\Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Admin\MainControls.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Views\Admin\UsersControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Admin\MainControls.Designer.cs">
-      <DependentUpon>MainControls.cs</DependentUpon>
+    <Compile Include="Views\Admin\UsersControl.Designer.cs">
+      <DependentUpon>UsersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\MovieControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Admin\MovieControl.Designer.cs">
       <DependentUpon>MovieControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Admin\PersonnelControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\Admin\PersonnelControl.Designer.cs">
-      <DependentUpon>PersonnelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\PricingForm.cs">
       <SubType>Form</SubType>
@@ -171,14 +165,11 @@
     <EmbeddedResource Include="Views\Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\MainControls.resx">
-      <DependentUpon>MainControls.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Admin\UsersControl.resx">
+      <DependentUpon>UsersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\MovieControl.resx">
       <DependentUpon>MovieControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\PersonnelControl.resx">
-      <DependentUpon>PersonnelControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\PricingForm.resx">
       <DependentUpon>PricingForm.cs</DependentUpon>

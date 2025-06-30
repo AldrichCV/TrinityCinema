@@ -23,7 +23,7 @@ namespace TrinityCinema.Views.Admin
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            PersonnelControl personnelControl = new PersonnelControl(this);
+            UsersControl personnelControl = new UsersControl(this);
             gcHome.Controls.Add(personnelControl);
             personnelControl.Dock = DockStyle.Fill;
             personnelControl.Show();

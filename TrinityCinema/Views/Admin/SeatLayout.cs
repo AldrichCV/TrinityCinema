@@ -165,7 +165,6 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
-
         //private void SeatButton_Click(object sender, EventArgs e)
         //{
         //    Button btn = (Button)sender; // the button that was clicked

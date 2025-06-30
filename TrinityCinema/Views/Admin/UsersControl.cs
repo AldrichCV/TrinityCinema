@@ -13,15 +13,15 @@ using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Admin
 {
-    public partial class PersonnelControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class UsersControl : UserControl 
     {
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
-        public PersonnelControl(AdminMainForm adminMainForm)
+        public UsersControl(AdminMainForm adminMainForm)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
-            AllMethods.GridCustomization(gcPersonnel, tvPersonnelView, GetEmployee());
+            AllMethods.GridCustomization(gcUser, tvUserView, GetEmployee());
         }
 
         public List<User> GetEmployee()
@@ -30,16 +30,11 @@ namespace TrinityCinema.Views.Admin
             return a.GetRecords<User>(query);
         }
 
-        private void newAccountTile_ItemClick_1(object sender, TileItemEventArgs e)
-        {
-            AllMethods.ShowModal(home => new AccountCreation(home));
-        }
-
-        private void tvPersonnelView_ItemClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
+        private void tvUserView_ItemClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
         {
             AllMethods allMethods = new AllMethods();
 
-            string userID = tvPersonnelView.GetFocusedRowCellValue("UserID")?.ToString();
+            string userID = tvUserView.GetFocusedRowCellValue("UserID")?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
                 MessageBox.Show("No staff selected.");
@@ -80,7 +75,11 @@ namespace TrinityCinema.Views.Admin
             {
                 MessageBox.Show("No employee found.");
             }
+        }
 
+        private void userTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            AllMethods.ShowModal(home => new AccountCreation(home));
         }
     }
 }

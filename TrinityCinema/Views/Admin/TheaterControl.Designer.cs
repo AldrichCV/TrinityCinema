@@ -38,31 +38,17 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement1 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement2 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
-            this.TheaterName = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            this.SeatCapacity = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
-            this.gcTheater = new DevExpress.XtraGrid.GridControl();
             this.tvTheaterView = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.SeatCapacity = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.TheaterName = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.TheaterID = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.gcTheater)).BeginInit();
+            this.gcTheater = new DevExpress.XtraGrid.GridControl();
             ((System.ComponentModel.ISupportInitialize)(this.tvTheaterView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTheater)).BeginInit();
             this.SuspendLayout();
-            // 
-            // TheaterName
-            // 
-            this.TheaterName.FieldName = "TheaterName";
-            this.TheaterName.Name = "TheaterName";
-            this.TheaterName.Visible = true;
-            this.TheaterName.VisibleIndex = 1;
-            // 
-            // SeatCapacity
-            // 
-            this.SeatCapacity.FieldName = "SeatCapacity";
-            this.SeatCapacity.Name = "SeatCapacity";
-            this.SeatCapacity.Visible = true;
-            this.SeatCapacity.VisibleIndex = 0;
             // 
             // actionTile
             // 
@@ -115,17 +101,6 @@
             this.theaterTile.Name = "theaterTile";
             this.theaterTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.theaterTile_ItemClick);
             // 
-            // gcTheater
-            // 
-            this.gcTheater.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcTheater.Location = new System.Drawing.Point(0, 0);
-            this.gcTheater.MainView = this.tvTheaterView;
-            this.gcTheater.Name = "gcTheater";
-            this.gcTheater.Size = new System.Drawing.Size(831, 439);
-            this.gcTheater.TabIndex = 3;
-            this.gcTheater.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.tvTheaterView});
-            // 
             // tvTheaterView
             // 
             this.tvTheaterView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -168,12 +143,37 @@
             this.tvTheaterView.TileTemplate.Add(tileViewItemElement3);
             this.tvTheaterView.ItemClick += new DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventHandler(this.tvTheaterView_ItemClick);
             // 
+            // SeatCapacity
+            // 
+            this.SeatCapacity.FieldName = "SeatCapacity";
+            this.SeatCapacity.Name = "SeatCapacity";
+            this.SeatCapacity.Visible = true;
+            this.SeatCapacity.VisibleIndex = 0;
+            // 
+            // TheaterName
+            // 
+            this.TheaterName.FieldName = "TheaterName";
+            this.TheaterName.Name = "TheaterName";
+            this.TheaterName.Visible = true;
+            this.TheaterName.VisibleIndex = 1;
+            // 
             // TheaterID
             // 
             this.TheaterID.FieldName = "TheaterID";
             this.TheaterID.Name = "TheaterID";
             this.TheaterID.Visible = true;
             this.TheaterID.VisibleIndex = 2;
+            // 
+            // gcTheater
+            // 
+            this.gcTheater.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcTheater.Location = new System.Drawing.Point(0, 0);
+            this.gcTheater.MainView = this.tvTheaterView;
+            this.gcTheater.Name = "gcTheater";
+            this.gcTheater.Size = new System.Drawing.Size(831, 439);
+            this.gcTheater.TabIndex = 3;
+            this.gcTheater.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.tvTheaterView});
             // 
             // TheaterControl
             // 
@@ -183,8 +183,8 @@
             this.Controls.Add(this.actionTile);
             this.Name = "TheaterControl";
             this.Size = new System.Drawing.Size(831, 551);
-            ((System.ComponentModel.ISupportInitialize)(this.gcTheater)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvTheaterView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTheater)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,10 +194,10 @@
         private DevExpress.XtraBars.Navigation.TileBar actionTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
-        public DevExpress.XtraGrid.GridControl gcTheater;
         public DevExpress.XtraGrid.Views.Tile.TileView tvTheaterView;
         private DevExpress.XtraGrid.Columns.TileViewColumn SeatCapacity;
         private DevExpress.XtraGrid.Columns.TileViewColumn TheaterName;
         private DevExpress.XtraGrid.Columns.TileViewColumn TheaterID;
+        public DevExpress.XtraGrid.GridControl gcTheater;
     }
 }
