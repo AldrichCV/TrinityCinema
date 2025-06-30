@@ -30,7 +30,34 @@ namespace TrinityCinema.Views
                     : (char)('0' + rand.Next(10))).ToArray());
         }
 
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void btnBrowse_Click_1(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png;";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        pePoster.Image = Image.FromFile(openFileDialog.FileName);
+                        pePoster.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            pePoster.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            imageData = ms.ToArray();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("Error: " + ex.Message, "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+        }
+
+        private void btnSubmit_Click_1(object sender, EventArgs e)
         {
             DialogResult result = XtraMessageBox.Show("Are you sure you want to add this movie?", "Verify",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -72,32 +99,6 @@ namespace TrinityCinema.Views
             else
             {
                 this.Close();
-            }
-        }
-
-        private void btnBrowse_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png;";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        pePoster.Image = Image.FromFile(openFileDialog.FileName);
-                        pePoster.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            pePoster.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            imageData = ms.ToArray();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        XtraMessageBox.Show("Error: " + ex.Message, "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
             }
         }
     }

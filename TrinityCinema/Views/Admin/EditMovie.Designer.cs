@@ -1,13 +1,13 @@
-﻿namespace TrinityCinema.Views
+﻿namespace TrinityCinema.Views.Admin
 {
-    partial class MovieControl
+    partial class EditMovie
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,18 +20,14 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.teTitle = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.deDateCreated = new DevExpress.XtraEditors.DateEdit();
@@ -47,12 +43,11 @@
             this.teDuration = new DevExpress.XtraEditors.TextEdit();
             this.lbTitle = new DevExpress.XtraEditors.LabelControl();
             this.pePoster = new DevExpress.XtraEditors.PictureEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tileView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            this.tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDateCreated.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDateCreated.Properties.CalendarTimeProperties)).BeginInit();
@@ -61,62 +56,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.meDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.gridControl1);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.ShowCaption = false;
-            this.groupControl1.Size = new System.Drawing.Size(870, 772);
-            this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "groupControl1";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl1.Location = new System.Drawing.Point(2, 2);
-            this.gridControl1.MainView = this.tileView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(860, 768);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.tileView1});
-            // 
-            // tileView1
-            // 
-            this.tileView1.DetailHeight = 431;
-            this.tileView1.GridControl = this.gridControl1;
-            this.tileView1.Name = "tileView1";
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Controls.Add(this.teTitle);
-            this.groupControl2.Controls.Add(this.labelControl5);
-            this.groupControl2.Controls.Add(this.deDateCreated);
-            this.groupControl2.Controls.Add(this.btnSubmit);
-            this.groupControl2.Controls.Add(this.labelControl4);
-            this.groupControl2.Controls.Add(this.cbStatus);
-            this.groupControl2.Controls.Add(this.labelControl3);
-            this.groupControl2.Controls.Add(this.btnBrowse);
-            this.groupControl2.Controls.Add(this.labelControl2);
-            this.groupControl2.Controls.Add(this.cbGenre);
-            this.groupControl2.Controls.Add(this.meDescription);
-            this.groupControl2.Controls.Add(this.labelControl1);
-            this.groupControl2.Controls.Add(this.teDuration);
-            this.groupControl2.Controls.Add(this.lbTitle);
-            this.groupControl2.Controls.Add(this.pePoster);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl2.Location = new System.Drawing.Point(870, 0);
-            this.groupControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(578, 772);
-            this.groupControl2.TabIndex = 1;
-            this.groupControl2.Text = "groupControl2";
             // 
             // teTitle
             // 
@@ -157,7 +103,7 @@
             this.btnSubmit.Size = new System.Drawing.Size(211, 50);
             this.btnSubmit.TabIndex = 22;
             this.btnSubmit.Text = "Submit";
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click_1);
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // labelControl4
             // 
@@ -199,7 +145,7 @@
             this.btnBrowse.Size = new System.Drawing.Size(174, 30);
             this.btnBrowse.TabIndex = 18;
             this.btnBrowse.Text = "Browse";
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // labelControl2
             // 
@@ -266,22 +212,81 @@
             this.pePoster.Size = new System.Drawing.Size(174, 212);
             this.pePoster.TabIndex = 0;
             // 
-            // MovieControl
+            // tileView1
+            // 
+            this.tileView1.DetailHeight = 431;
+            this.tileView1.GridControl = this.gridControl1;
+            this.tileView1.Name = "tileView1";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl1.Location = new System.Drawing.Point(2, 2);
+            this.gridControl1.MainView = this.tileView1;
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(860, 768);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.tileView1});
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.gridControl1);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.ShowCaption = false;
+            this.groupControl1.Size = new System.Drawing.Size(870, 772);
+            this.groupControl1.TabIndex = 2;
+            this.groupControl1.Text = "groupControl1";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.btnRemove);
+            this.groupControl2.Controls.Add(this.teTitle);
+            this.groupControl2.Controls.Add(this.labelControl5);
+            this.groupControl2.Controls.Add(this.deDateCreated);
+            this.groupControl2.Controls.Add(this.btnSubmit);
+            this.groupControl2.Controls.Add(this.labelControl4);
+            this.groupControl2.Controls.Add(this.cbStatus);
+            this.groupControl2.Controls.Add(this.labelControl3);
+            this.groupControl2.Controls.Add(this.btnBrowse);
+            this.groupControl2.Controls.Add(this.labelControl2);
+            this.groupControl2.Controls.Add(this.cbGenre);
+            this.groupControl2.Controls.Add(this.meDescription);
+            this.groupControl2.Controls.Add(this.labelControl1);
+            this.groupControl2.Controls.Add(this.teDuration);
+            this.groupControl2.Controls.Add(this.lbTitle);
+            this.groupControl2.Controls.Add(this.pePoster);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupControl2.Location = new System.Drawing.Point(870, 0);
+            this.groupControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(578, 772);
+            this.groupControl2.TabIndex = 3;
+            this.groupControl2.Text = "groupControl2";
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(35, 709);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(211, 50);
+            this.btnRemove.TabIndex = 26;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // EditMovie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1448, 772);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupControl2);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "MovieControl";
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tileView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            this.groupControl2.PerformLayout();
+            this.Name = "EditMovie";
+            this.Text = "EditMovie";
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDateCreated.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDateCreated.Properties)).EndInit();
@@ -290,30 +295,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.meDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.PictureEdit pePoster;
-        private DevExpress.XtraEditors.LabelControl lbTitle;
+        private DevExpress.XtraEditors.TextEdit teTitle;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.DateEdit deDateCreated;
+        private DevExpress.XtraEditors.SimpleButton btnSubmit;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.ComboBoxEdit cbStatus;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SimpleButton btnBrowse;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.ComboBoxEdit cbGenre;
         private DevExpress.XtraEditors.MemoEdit meDescription;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit teDuration;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ComboBoxEdit cbGenre;
-        private DevExpress.XtraEditors.SimpleButton btnBrowse;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.ComboBoxEdit cbStatus;
-        private DevExpress.XtraEditors.DateEdit deDateCreated;
-        private DevExpress.XtraEditors.SimpleButton btnSubmit;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.TextEdit teTitle;
+        private DevExpress.XtraEditors.LabelControl lbTitle;
+        private DevExpress.XtraEditors.PictureEdit pePoster;
+        private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        public DevExpress.XtraEditors.SimpleButton btnRemove;
     }
 }

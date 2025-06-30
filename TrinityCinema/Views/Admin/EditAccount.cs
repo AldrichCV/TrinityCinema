@@ -22,6 +22,7 @@ namespace TrinityCinema.Views.Admin
         private AdminMainForm adminMainForm;
         private string accountID;
         private byte[] imageData;
+
         public EditAccount(AdminMainForm adminMainForm, string accountID)
         {
             InitializeComponent();
