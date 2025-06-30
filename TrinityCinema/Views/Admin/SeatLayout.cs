@@ -1,4 +1,5 @@
 ﻿using DevExpress.DXTemplateGallery.Extensions;
+using DevExpress.Utils.About;
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
@@ -87,81 +88,118 @@ namespace TrinityCinema.Views.Admin
 
         private void LoadSeats()
         {
-                panelSeats.Controls.Clear();
-
-                using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(
-                        "SELECT SeatID, RowNumber, SeatNumber, Status FROM Seats WHERE TheaterID = @TheaterID",
-                        conn);
-                    cmd.Parameters.AddWithValue("@TheaterID", theaterID);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        string seatID = reader.GetString(0);
-                        int rowNumber = reader.GetInt32(1);
-                        int seatNumber = reader.GetInt32(2);
-                        string status = reader.GetString(3);
-
-                        Button seatButton = new Button();
-                        seatButton.Width = 40;
-                        seatButton.Height = 40;
-
-                        int seatIndexInRow = (seatNumber - 1) % 10; // seats per row
-                        int rowIndex = rowNumber - 1;
-
-                        seatButton.Left = seatIndexInRow * (seatButton.Width + 5);
-                        seatButton.Top = rowIndex * (seatButton.Height + 5);
-
-                        seatButton.Text = seatNumber.ToString();
-                        seatButton.BackColor = status == "Reserved" ? Color.Red : Color.Green;
-                    seatButton.Tag = new SeatInfo { SeatID = seatID, Status = status };
-                    seatButton.Click += SeatButton_Click;
-                       
-
-                        panelSeats.Controls.Add(seatButton);
-                    }
-                    reader.Close();
-                }
-            }
-
-        private void SeatButton_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender; // the button that was clicked
-            if (btn.Tag == null || !(btn.Tag is SeatInfo info))
-            {
-                MessageBox.Show("This seat button is missing SeatInfo.");
-                return;
-            }
-
-            string newStatus = info.Status == "Available" ? "Reserved" : "Available";
+            panelSeats.Controls.Clear();
 
             using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
             {
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(
-                    "UPDATE Seats SET Status = @Status WHERE SeatID = @SeatID", conn);
-                cmd.Parameters.AddWithValue("@Status", newStatus);
-                cmd.Parameters.AddWithValue("@SeatID", info.SeatID);
+                    "SELECT SeatID, RowNumber, SeatNumber, Status FROM Seats WHERE TheaterID = @TheaterID",
+                    conn);
+                cmd.Parameters.AddWithValue("@TheaterID", theaterID);
 
-                cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string seatID = reader.GetString(0);
+                    int rowNumber = reader.GetInt32(1);
+                    int seatNumber = reader.GetInt32(2);
+                    string status = reader.GetString(3);
+
+                    Button seatButton = new Button();
+                    seatButton.Width = 40;
+                    seatButton.Height = 40;
+
+                    int seatIndexInRow = (seatNumber - 1) % 10; // seats per row
+                    int rowIndex = rowNumber - 1;
+
+                    seatButton.Left = seatIndexInRow * (seatButton.Width + 5);
+                    seatButton.Top = rowIndex * (seatButton.Height + 5);
+
+                    seatButton.Text = seatNumber.ToString();
+                    seatButton.BackColor = status == "Reserved" ? Color.Red : Color.Green;
+                    seatButton.Tag = new SeatInfo { SeatID = seatID, Status = status };
+                    seatButton.Click += SeatButton_Click;
+
+
+                    panelSeats.Controls.Add(seatButton);
+                }
+                reader.Close();
+            }
+        }
+
+        private void SeatButton_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.Tag == null || !(btn.Tag is SeatInfo info))
+            {
+                XtraMessageBox.Show("This seat button is missing SeatInfo.");
+                return;
             }
 
-            // Update button color and Tag to match new status
-            btn.BackColor = newStatus == "Reserved" ? Color.Red : Color.Green;
-            info.Status = newStatus;
-            btn.Tag = info;
+            using (PricingForm form = new PricingForm(info.Pricing))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    decimal newPrice = form.NewPrice;
+
+                    using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
+                    {
+                        conn.Open();
+
+                        SqlCommand cmd = new SqlCommand(
+                            "UPDATE Seats SET Pricing = @Pricing WHERE SeatID = @SeatID", conn);
+                        cmd.Parameters.AddWithValue("@Pricing", newPrice);
+                        cmd.Parameters.AddWithValue("@SeatID", info.SeatID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    info.Pricing = newPrice;
+                    btn.Tag = info;
+
+                    XtraMessageBox.Show($"Seat {info.SeatID} price updated to ₱{newPrice}");
+                }
+            }
         }
+
+
+        //private void SeatButton_Click(object sender, EventArgs e)
+        //{
+        //    Button btn = (Button)sender; // the button that was clicked
+        //    if (btn.Tag == null || !(btn.Tag is SeatInfo info))
+        //    {
+        //        MessageBox.Show("This seat button is missing SeatInfo.");
+        //        return;
+        //    }
+
+        //    string newStatus = info.Status == "Available" ? "Reserved" : "Available";
+
+        //    using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
+        //    {
+        //        conn.Open();
+
+        //        SqlCommand cmd = new SqlCommand(
+        //            "UPDATE Seats SET Status = @Status WHERE SeatID = @SeatID", conn);
+        //        cmd.Parameters.AddWithValue("@Status", newStatus);
+        //        cmd.Parameters.AddWithValue("@SeatID", info.SeatID);
+
+        //        cmd.ExecuteNonQuery();
+        //    }
+
+        //    // Update button color and Tag to match new status
+        //    btn.BackColor = newStatus == "Reserved" ? Color.Red : Color.Green;
+        //    info.Status = newStatus;
+        //    btn.Tag = info;
+        //}
 
         public class SeatInfo
         {
             public string SeatID { get; set; }
             public string Status { get; set; }
+            public decimal Pricing { get; set; }
         }
     }
 }
