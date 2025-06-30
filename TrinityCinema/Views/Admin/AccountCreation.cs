@@ -27,11 +27,6 @@ namespace TrinityCinema.Views
             this.adminMainForm = adminMainForm; 
         }
 
-        private void AccountCreation_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private static string GenerateID()
         {
             Random rand = new Random();

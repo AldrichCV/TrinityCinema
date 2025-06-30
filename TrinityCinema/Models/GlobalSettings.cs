@@ -8,7 +8,9 @@ namespace TrinityCinema.Models
 {
     public class GlobalSettings
     {
-        public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
+        //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
+
+        public static string connectionString = @"Data Source=AAA\\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
 
         #region AccountsSQL
 
@@ -72,6 +74,27 @@ namespace TrinityCinema.Models
                                     ,@PasswordHash
                                     ,@PersonnelImage
                                     );";
+
+        public static string insertMovieQuery = @"INSERT INTO [dbo].[Movies]
+                                   ([MovieID]
+                                    ,[Title]
+                                    ,[Description]
+                                    ,[Genre]
+                                    ,[Duration]
+                                    ,[Status]
+                                    ,[DateCreated]
+                                    ,[MoviePoster])
+                           VALUES
+                                    (@MovieID
+                                    ,@Title
+                                    ,@Description
+                                    ,@Genre
+                                    ,@Duration
+                                    ,@Status
+                                    ,@DateCreated
+                                    ,@MoviePoster);";
+
+
         #endregion
 
         #region Update Queries
