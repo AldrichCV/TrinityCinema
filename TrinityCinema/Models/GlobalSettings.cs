@@ -21,25 +21,10 @@ namespace TrinityCinema.Models
 
 
         public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
+        public static string getMovie = @"SELECT  * FROM [dbo].[Movies]";
+        public static string getTheater = @"SELECT  Name AS TheaterName, * FROM [dbo].[Theaters]";
 
-        public string sortByPosition = @"SELECT CONCAT(s.firstName, ' ',
-                                    CASE WHEN s.middleName IS NULL THEN ' ' 
-                                         ELSE LEFT(s.middleName, 1) + '. ' 
-                                    END,
-                                    s.lastName, ' ', s.nameExtension) AS fullName, *
-                                    FROM [dbo].[Staff] s";
 
-        public static string displayAccounts = @"SELECT a.accountID, s.staffID, a.userName, a.userPassword,
-                                    CONCAT(s.firstName,' ',
-                                    CASE 
-                                    WHEN s.middleName IS NULL
-                                    THEN ' '
-                                    ELSE LEFT(s.middleName,1)+'. '
-                                    END
-                                     ,s.lastName,' ',s.nameExtension) AS fullName, s.position
-                                    FROM [dbo].Account a
-                                    LEFT JOIN Staff s
-                                    ON s.staffID = a.staffID";
         #endregion
 
         #region Insert Queries
@@ -64,6 +49,17 @@ namespace TrinityCinema.Models
                                            ,@PersonnelImage
                                            ,@Status
                                            ,@DateCreated)";
+
+        public static string createTheater = @"INSERT INTO [dbo].[Theaters]
+                                           ([Name]
+                                           ,[SeatCapacity])
+                                     VALUES
+                                           (@TheaterName
+                                           ,@SeatCapacity)";
+
+
+
+
         #endregion
 
         #region Update Queries

@@ -38,5 +38,14 @@ namespace TrinityCinema.Views.Admin
             movieControl.Dock = DockStyle.Fill;
             movieControl.Show();
         }
+
+        private void theaterTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            TheaterControl theaterControl = new TheaterControl(this);
+            gcHome.Controls.Add(theaterControl);
+            theaterControl.Dock = DockStyle.Fill;
+            theaterControl.Show();
+        }
     }
 }

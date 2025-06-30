@@ -125,6 +125,24 @@
     <Compile Include="Views\Admin\PersonnelControl.Designer.cs">
       <DependentUpon>PersonnelControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\SeatLayout.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\SeatLayout.Designer.cs">
+      <DependentUpon>SeatLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TheaterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TheaterControl.Designer.cs">
+      <DependentUpon>TheaterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TheaterInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TheaterInfo.Designer.cs">
+      <DependentUpon>TheaterInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -155,6 +173,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\PersonnelControl.resx">
       <DependentUpon>PersonnelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\SeatLayout.resx">
+      <DependentUpon>SeatLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\TheaterControl.resx">
+      <DependentUpon>TheaterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\TheaterInfo.resx">
+      <DependentUpon>TheaterInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
