@@ -17,5 +17,12 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
         }
+
+        private void labelControl7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

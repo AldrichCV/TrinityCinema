@@ -60,65 +60,77 @@
             // 
             // teFirstName
             // 
-            this.teFirstName.Location = new System.Drawing.Point(226, 33);
+            this.teFirstName.Location = new System.Drawing.Point(264, 41);
+            this.teFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.teFirstName.Name = "teFirstName";
             this.teFirstName.Properties.AutoHeight = false;
-            this.teFirstName.Size = new System.Drawing.Size(181, 41);
+            this.teFirstName.Size = new System.Drawing.Size(211, 50);
             this.teFirstName.TabIndex = 0;
             // 
             // teUserName
             // 
-            this.teUserName.Location = new System.Drawing.Point(20, 306);
+            this.teUserName.Location = new System.Drawing.Point(23, 377);
+            this.teUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.teUserName.Name = "teUserName";
             this.teUserName.Properties.AutoHeight = false;
-            this.teUserName.Size = new System.Drawing.Size(181, 37);
+            this.teUserName.Size = new System.Drawing.Size(211, 46);
             this.teUserName.TabIndex = 2;
             // 
             // tePassword
             // 
-            this.tePassword.Location = new System.Drawing.Point(20, 368);
+            this.tePassword.Location = new System.Drawing.Point(23, 453);
+            this.tePassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tePassword.Name = "tePassword";
             this.tePassword.Properties.AutoHeight = false;
             this.tePassword.Properties.UseSystemPasswordChar = true;
-            this.tePassword.Size = new System.Drawing.Size(181, 37);
+            this.tePassword.Size = new System.Drawing.Size(211, 46);
             this.tePassword.TabIndex = 3;
             // 
             // teSuffix
             // 
-            this.teSuffix.Location = new System.Drawing.Point(226, 229);
+            this.teSuffix.Location = new System.Drawing.Point(264, 282);
+            this.teSuffix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.teSuffix.Name = "teSuffix";
             this.teSuffix.Properties.AutoHeight = false;
-            this.teSuffix.Size = new System.Drawing.Size(181, 41);
+            this.teSuffix.Size = new System.Drawing.Size(211, 50);
             this.teSuffix.TabIndex = 5;
             // 
             // teLastName
             // 
-            this.teLastName.Location = new System.Drawing.Point(226, 163);
+            this.teLastName.Location = new System.Drawing.Point(264, 201);
+            this.teLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.teLastName.Name = "teLastName";
             this.teLastName.Properties.AutoHeight = false;
-            this.teLastName.Size = new System.Drawing.Size(181, 41);
+            this.teLastName.Size = new System.Drawing.Size(211, 50);
             this.teLastName.TabIndex = 6;
             // 
             // teMiddleName
             // 
-            this.teMiddleName.Location = new System.Drawing.Point(226, 97);
+            this.teMiddleName.Location = new System.Drawing.Point(264, 119);
+            this.teMiddleName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.teMiddleName.Name = "teMiddleName";
             this.teMiddleName.Properties.AutoHeight = false;
-            this.teMiddleName.Size = new System.Drawing.Size(181, 41);
+            this.teMiddleName.Size = new System.Drawing.Size(211, 50);
             this.teMiddleName.TabIndex = 7;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(226, 368);
+            this.btnSubmit.Appearance.BackColor = System.Drawing.Color.Bisque;
+            this.btnSubmit.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnSubmit.Appearance.Options.UseBackColor = true;
+            this.btnSubmit.Appearance.Options.UseForeColor = true;
+            this.btnSubmit.Location = new System.Drawing.Point(264, 453);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(181, 41);
+            this.btnSubmit.Size = new System.Drawing.Size(211, 50);
             this.btnSubmit.TabIndex = 8;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // cbRole
             // 
-            this.cbRole.Location = new System.Drawing.Point(21, 229);
+            this.cbRole.Location = new System.Drawing.Point(24, 282);
+            this.cbRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbRole.Name = "cbRole";
             this.cbRole.Properties.AutoHeight = false;
             this.cbRole.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -126,84 +138,112 @@
             this.cbRole.Properties.Items.AddRange(new object[] {
             "Staff",
             "Manager"});
-            this.cbRole.Size = new System.Drawing.Size(149, 41);
+            this.cbRole.Size = new System.Drawing.Size(174, 50);
             this.cbRole.TabIndex = 4;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(226, 14);
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.Location = new System.Drawing.Point(262, 15);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(51, 13);
+            this.labelControl1.Size = new System.Drawing.Size(62, 16);
             this.labelControl1.TabIndex = 9;
             this.labelControl1.Text = "First Name";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(226, 80);
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl2.Appearance.Options.UseForeColor = true;
+            this.labelControl2.Location = new System.Drawing.Point(262, 96);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 13);
+            this.labelControl2.Size = new System.Drawing.Size(74, 16);
             this.labelControl2.TabIndex = 10;
             this.labelControl2.Text = "Middle Name";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(226, 144);
+            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl3.Appearance.Options.UseForeColor = true;
+            this.labelControl3.Location = new System.Drawing.Point(262, 175);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(50, 13);
+            this.labelControl3.Size = new System.Drawing.Size(60, 16);
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "Last Name";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(21, 210);
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl4.Appearance.Options.UseForeColor = true;
+            this.labelControl4.Location = new System.Drawing.Point(22, 256);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(21, 13);
+            this.labelControl4.Size = new System.Drawing.Size(25, 16);
             this.labelControl4.TabIndex = 12;
             this.labelControl4.Text = "Role";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(226, 210);
+            this.labelControl5.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl5.Appearance.Options.UseForeColor = true;
+            this.labelControl5.Location = new System.Drawing.Point(262, 256);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(28, 13);
+            this.labelControl5.Size = new System.Drawing.Size(33, 16);
             this.labelControl5.TabIndex = 13;
             this.labelControl5.Text = "Suffix";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(20, 349);
+            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl6.Appearance.Options.UseForeColor = true;
+            this.labelControl6.Location = new System.Drawing.Point(21, 428);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(46, 13);
+            this.labelControl6.Size = new System.Drawing.Size(55, 16);
             this.labelControl6.TabIndex = 14;
             this.labelControl6.Text = "Password";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(20, 287);
+            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.White;
+            this.labelControl7.Appearance.Options.UseForeColor = true;
+            this.labelControl7.Location = new System.Drawing.Point(21, 351);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(48, 13);
+            this.labelControl7.Size = new System.Drawing.Size(58, 16);
             this.labelControl7.TabIndex = 15;
             this.labelControl7.Text = "Username";
             // 
             // peImage
             // 
-            this.peImage.Location = new System.Drawing.Point(20, 14);
+            this.peImage.Location = new System.Drawing.Point(23, 17);
+            this.peImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.peImage.Name = "peImage";
             this.peImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.peImage.Size = new System.Drawing.Size(150, 150);
+            this.peImage.Size = new System.Drawing.Size(175, 185);
             this.peImage.TabIndex = 16;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(21, 176);
+            this.btnBrowse.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnBrowse.Appearance.Options.UseBackColor = true;
+            this.btnBrowse.Location = new System.Drawing.Point(33, 210);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(149, 24);
+            this.btnBrowse.Size = new System.Drawing.Size(152, 26);
             this.btnBrowse.TabIndex = 17;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // groupControl1
             // 
+            this.groupControl1.Appearance.BackColor = System.Drawing.Color.DarkRed;
+            this.groupControl1.Appearance.Options.UseBackColor = true;
+            this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl1.Controls.Add(this.btnBrowse);
             this.groupControl1.Controls.Add(this.btnSubmit);
             this.groupControl1.Controls.Add(this.peImage);
@@ -223,18 +263,20 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.ShowCaption = false;
-            this.groupControl1.Size = new System.Drawing.Size(432, 454);
+            this.groupControl1.Size = new System.Drawing.Size(506, 568);
             this.groupControl1.TabIndex = 18;
             this.groupControl1.Text = "groupControl1";
             // 
             // AccountCreation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 454);
+            this.ClientSize = new System.Drawing.Size(506, 568);
             this.Controls.Add(this.groupControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AccountCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AccountCreation";
