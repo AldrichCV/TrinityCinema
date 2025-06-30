@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,10 @@ namespace TrinityCinema.Views.Admin
             AllMethods.GridCustomization(gcPersonnel, tvPersonnelView, GetEmployee());
         }
 
-        public List<Personnel> GetEmployee()
+        public List<User> GetEmployee()
         {
             string query = GlobalSettings.getPersonnel;
-            return a.GetRecords<Personnel>(query);
+            return a.GetRecords<User>(query);
         }
 
         private void newAccountTile_ItemClick_1(object sender, TileItemEventArgs e)
@@ -38,47 +39,48 @@ namespace TrinityCinema.Views.Admin
         {
             AllMethods allMethods = new AllMethods();
 
-            // Get selected staffID from the grid
-            string accountID = tvPersonnelView.GetFocusedRowCellValue("AccountID")?.ToString();
-            if (string.IsNullOrEmpty(accountID))
+            string userID = tvPersonnelView.GetFocusedRowCellValue("UserID")?.ToString();
+            if (string.IsNullOrEmpty(userID))
             {
                 MessageBox.Show("No staff selected.");
                 return;
             }
 
-            // Set up the form
-            EditAccount editAccount = new EditAccount(adminMainForm, accountID);
+            EditAccount editAccount = new EditAccount(adminMainForm, userID);
 
-            // Prepare query and parameters
-            string query = @"SELECT * FROM [dbo].[Accounts] WHERE AccountID = @AccountID";
-            var parameters = new { accountID };
+            string query = @"SELECT * FROM [dbo].[Users] WHERE UserID = @UserID";
+            var parameters = new { userID };
             List<string> columns = new List<string>
-                    {  "FirstName"
-                       ,"MiddleName"
-                       ,"LastName"
-                       ,"Suffix"
-                       ,"Role"
-                       ,"PersonnelImage"
-                    };
+                {
+                    "Fullname", "Username", "Phone", "Role", "PersonnelImage"
+                };
 
             Dictionary<string, string> record = allMethods.GetRecordById(query, parameters, columns);
 
             if (record != null)
             {
-                // Populate fields
-                editAccount.teFirstName.Text = record["FirstName"];
-                editAccount.teMiddleName.Text = record["MiddleName"];
-                editAccount.teLastName.Text = record["LastName"];
-                editAccount.teSuffix.Text = record["Suffix"];
+                editAccount.teFullName.Text = record["Fullname"];
+                editAccount.tePhone.Text = record["Phone"];
+                editAccount.teUserName.Text = record["Username"];
                 editAccount.cbRole.Text = record["Role"];
-         
-                // Show the form after populating
+
+                if (!string.IsNullOrEmpty(record["PersonnelImage"]))
+                {
+                    byte[] imageBytes = Convert.FromBase64String(record["PersonnelImage"]);
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        editAccount.peImage.Image = Image.FromStream(ms);
+                    }
+                    editAccount.existingImageData = imageBytes;
+                }
+
                 editAccount.ShowDialog();
             }
             else
             {
                 MessageBox.Show("No employee found.");
             }
+
         }
     }
 }

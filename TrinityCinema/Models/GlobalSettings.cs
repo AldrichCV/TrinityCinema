@@ -20,14 +20,7 @@ namespace TrinityCinema.Models
                                         AND a.userPassword = @Password";
 
 
-        public static string getPersonnel = @"SELECT CONCAT(s.FirstName,' ',
-                                    CASE 
-                                    WHEN s.MiddleName IS NULL
-                                    THEN ' '
-                                    ELSE LEFT(s.MiddleName,1)+'. '
-                                    END
-                                    ,s.LastName,' ',s.Suffix) AS FullName, *
-                                    FROM [dbo].[Accounts] s";
+        public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
 
         public string sortByPosition = @"SELECT CONCAT(s.firstName, ' ',
                                     CASE WHEN s.middleName IS NULL THEN ' ' 
@@ -50,28 +43,27 @@ namespace TrinityCinema.Models
         #endregion
 
         #region Insert Queries
-        public static string insertQuery = @"INSERT INTO [dbo].[Accounts]
-                                   ([AccountID]
-                                    ,[FirstName]
-                                    ,[MiddleName]
-                                    ,[LastName]
-                                    ,[Suffix]
-                                    ,[Role]
-                                    ,[UserName]
-                                    ,[PasswordHash]
-                                    ,[PersonnelImage])
-                                   
-                            VALUES
-                                    (@AccountID
-                                    ,@FirstName
-                                    ,@MiddleName
-                                    ,@LastName
-                                    ,@Suffix
-                                    ,@Role
-                                    ,@UserName
-                                    ,@PasswordHash
-                                    ,@PersonnelImage
-                                    );";
+        public static string insertQuery = @"INSERT INTO [dbo].[Users]
+                                           ([UserID]
+                                           ,[Username]
+                                           ,[PasswordHash]
+                                           ,[Fullname]
+                                           ,[Role]
+                                           ,[Phone]
+                                           ,[PersonnelImage]
+                                           ,[Status]
+                                           ,[DateCreated])
+
+                                     VALUES
+                                           (@UserID
+                                           ,@Username
+                                           ,@PasswordHash
+                                           ,@Fullname
+                                           ,@Role
+                                           ,@Phone
+                                           ,@PersonnelImage
+                                           ,@Status
+                                           ,@DateCreated)";
         #endregion
 
         #region Update Queries

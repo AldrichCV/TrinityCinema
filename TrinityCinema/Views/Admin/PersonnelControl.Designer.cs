@@ -41,10 +41,10 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PersonnelControl));
-            this.AccountID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.PersonnelImage = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.FullName = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Role = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.UserID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gcPersonnel = new DevExpress.XtraGrid.GridControl();
             this.tvPersonnelView = new DevExpress.XtraGrid.Views.Tile.TileView();
@@ -57,35 +57,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvPersonnelView)).BeginInit();
             this.SuspendLayout();
             // 
-            // AccountID
-            // 
-            this.AccountID.FieldName = "AccountID";
-            this.AccountID.Name = "AccountID";
-            this.AccountID.OptionsColumn.AllowFocus = false;
-            this.AccountID.Visible = true;
-            this.AccountID.VisibleIndex = 0;
-            // 
             // PersonnelImage
             // 
             this.PersonnelImage.FieldName = "PersonnelImage";
             this.PersonnelImage.Name = "PersonnelImage";
             this.PersonnelImage.OptionsColumn.AllowFocus = false;
             this.PersonnelImage.Visible = true;
-            this.PersonnelImage.VisibleIndex = 1;
+            this.PersonnelImage.VisibleIndex = 0;
             // 
             // FullName
             // 
-            this.FullName.FieldName = "FullName";
+            this.FullName.FieldName = "Fullname";
             this.FullName.Name = "FullName";
             this.FullName.Visible = true;
-            this.FullName.VisibleIndex = 2;
+            this.FullName.VisibleIndex = 1;
             // 
             // Role
             // 
             this.Role.FieldName = "Role";
             this.Role.Name = "Role";
             this.Role.Visible = true;
-            this.Role.VisibleIndex = 3;
+            this.Role.VisibleIndex = 2;
+            // 
+            // UserID
+            // 
+            this.UserID.FieldName = "UserID";
+            this.UserID.Name = "UserID";
+            this.UserID.Visible = true;
+            this.UserID.VisibleIndex = 3;
             // 
             // groupControl1
             // 
@@ -116,10 +115,10 @@
             // tvPersonnelView
             // 
             this.tvPersonnelView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.AccountID,
             this.PersonnelImage,
             this.FullName,
-            this.Role});
+            this.Role,
+            this.UserID});
             this.tvPersonnelView.GridControl = this.gcPersonnel;
             this.tvPersonnelView.Name = "tvPersonnelView";
             this.tvPersonnelView.OptionsTiles.ItemSize = new System.Drawing.Size(306, 147);
@@ -139,33 +138,34 @@
             tableSpan2.RowSpan = 3;
             this.tvPersonnelView.TileSpans.Add(tableSpan1);
             this.tvPersonnelView.TileSpans.Add(tableSpan2);
-            tileViewItemElement1.Column = this.AccountID;
-            tileViewItemElement1.ColumnIndex = 1;
+            tileViewItemElement1.Column = this.PersonnelImage;
             tileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement1.RowIndex = 1;
-            tileViewItemElement1.Text = "AccountID";
-            tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
-            tileViewItemElement2.Column = this.PersonnelImage;
+            tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
+            tileViewItemElement1.Text = "PersonnelImage";
+            tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileViewItemElement2.Appearance.Normal.Options.UseFont = true;
+            tileViewItemElement2.Column = this.FullName;
+            tileViewItemElement2.ColumnIndex = 1;
             tileViewItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
-            tileViewItemElement2.Text = "PersonnelImage";
+            tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement2.RowIndex = 1;
+            tileViewItemElement2.Text = "FullName";
             tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement3.Column = this.FullName;
+            tileViewItemElement3.Column = this.Role;
             tileViewItemElement3.ColumnIndex = 1;
             tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement3.RowIndex = 1;
-            tileViewItemElement3.Text = "FullName";
-            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement4.Column = this.Role;
+            tileViewItemElement3.RowIndex = 2;
+            tileViewItemElement3.Text = "Role";
+            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileViewItemElement3.TextLocation = new System.Drawing.Point(0, -35);
+            tileViewItemElement4.Column = this.UserID;
             tileViewItemElement4.ColumnIndex = 1;
             tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement4.RowIndex = 2;
-            tileViewItemElement4.Text = "Role";
-            tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            tileViewItemElement4.TextLocation = new System.Drawing.Point(0, -35);
+            tileViewItemElement4.Text = "UserID";
+            tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
             this.tvPersonnelView.TileTemplate.Add(tileViewItemElement1);
             this.tvPersonnelView.TileTemplate.Add(tileViewItemElement2);
             this.tvPersonnelView.TileTemplate.Add(tileViewItemElement3);
@@ -248,10 +248,10 @@
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem newAccountTile;
         public DevExpress.XtraGrid.GridControl gcPersonnel;
-        private DevExpress.XtraGrid.Columns.TileViewColumn AccountID;
         private DevExpress.XtraGrid.Columns.TileViewColumn PersonnelImage;
         private DevExpress.XtraGrid.Columns.TileViewColumn FullName;
         public DevExpress.XtraGrid.Views.Tile.TileView tvPersonnelView;
         private DevExpress.XtraGrid.Columns.TileViewColumn Role;
+        private DevExpress.XtraGrid.Columns.TileViewColumn UserID;
     }
 }

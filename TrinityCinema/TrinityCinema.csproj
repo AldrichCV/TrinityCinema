@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AllMethods.cs" />
+    <Compile Include="Models\Cinema.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\Personnel.cs" />
     <Compile Include="Program.cs" />
