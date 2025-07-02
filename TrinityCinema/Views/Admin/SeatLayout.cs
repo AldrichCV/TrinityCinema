@@ -16,7 +16,8 @@ using TrinityCinema.Models;
 namespace TrinityCinema.Views.Admin
 {
     public partial class SeatLayout : DevExpress.XtraEditors.XtraUserControl
-    {
+    {      
+        AllMethods a = new AllMethods();  
         private AdminMainForm adminMainForm;
         private int theaterID;
         int seatWidth = 40;
@@ -30,7 +31,23 @@ namespace TrinityCinema.Views.Admin
 
             GenerateSeatsIfNotExist(theaterID);
             LoadSeats();
+            AllMethods.GridCustomization(gcSeats, gvSeatView, GetSeats(GlobalSettings.getSeatPrice, theaterID));
         }
+
+        public List<SeatInfo> GetSeats(string query, int theaterID)
+        {
+            var param = new { TheaterID = theaterID };
+            return a.GetRecords<SeatInfo>(query, param).ToList();
+
+        }
+        public void RefreshGrid()
+        {
+            var seats = GetSeats(GlobalSettings.getSeatPrice, theaterID);
+            AllMethods.GridCustomization(gcSeats, gvSeatView, seats);
+            gvSeatView.RefreshData();
+            gcSeats.Refresh();
+        }
+
 
         private void GenerateSeatsIfNotExist(int theaterID)
         {
@@ -68,7 +85,7 @@ namespace TrinityCinema.Views.Admin
                         if (seatNumber > capacity)
                             break;
 
-                        string seatID = Guid.NewGuid().ToString();
+                        string seatID = $"Theater{theaterID}-{row:D2}{seatNumber:D2}";
 
                         SqlCommand insertCmd = new SqlCommand(
                             "INSERT INTO Seats (SeatID, TheaterID, RowNumber, SeatNumber, Status) " +
@@ -101,6 +118,9 @@ namespace TrinityCinema.Views.Admin
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
+                // Group seats by row
+                var seatsByRow = new Dictionary<int, List<(string SeatID, int SeatNumber, string Status)>>();
+
                 while (reader.Read())
                 {
                     string seatID = reader.GetString(0);
@@ -108,60 +128,80 @@ namespace TrinityCinema.Views.Admin
                     int seatNumber = reader.GetInt32(2);
                     string status = reader.GetString(3);
 
-                    Button seatButton = new Button();
-                    seatButton.Width = 40;
-                    seatButton.Height = 40;
+                    if (!seatsByRow.ContainsKey(rowNumber))
+                        seatsByRow[rowNumber] = new List<(string, int, string)>();
 
-                    int seatIndexInRow = (seatNumber - 1) % 10; // seats per row
-                    int rowIndex = rowNumber - 1;
-
-                    seatButton.Left = seatIndexInRow * (seatButton.Width + 5);
-                    seatButton.Top = rowIndex * (seatButton.Height + 5);
-
-                    seatButton.Text = seatNumber.ToString();
-                    seatButton.BackColor = status == "Reserved" ? Color.Red : Color.Green;
-                    seatButton.Tag = new SeatInfo { SeatID = seatID, Status = status };
-                    seatButton.Click += SeatButton_Click;
-
-
-                    panelSeats.Controls.Add(seatButton);
+                    seatsByRow[rowNumber].Add((seatID, seatNumber, status));
                 }
                 reader.Close();
+
+                int buttonWidth = 80;
+                int buttonHeight = 80;
+                int spacing = 5;
+
+                foreach (var row in seatsByRow)
+                {
+                    int rowNumber = row.Key;
+                    var seats = row.Value.OrderBy(s => s.SeatNumber).ToList();
+
+                    int seatsInRow = seats.Count;
+                    int rowWidth = seatsInRow * (buttonWidth + spacing) - spacing;
+                    int startX = (panelSeats.Width - rowWidth)/3;
+                    int topY = (rowNumber - 1) * (buttonHeight + spacing);
+
+                    for (int i = 0; i < seats.Count; i++)
+                    {
+                        var seat = seats[i];
+
+                        Button seatButton = new Button();
+                        seatButton.Width = buttonWidth;
+                        seatButton.Height = buttonHeight;
+
+                        seatButton.Left = startX + i * (buttonWidth + spacing);
+                        seatButton.Top = topY;
+
+                        seatButton.Text = seat.SeatNumber.ToString();
+                        seatButton.BackColor = seat.Status == "Reserved" ? Color.Red : Color.Green;
+                        seatButton.Tag = new SeatInfo { SeatID = seat.SeatID, Status = seat.Status };
+                        seatButton.Click += SeatButton_Click;
+
+                        panelSeats.Controls.Add(seatButton);
+                    }
+                }
             }
         }
 
         private void SeatButton_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            if (btn.Tag == null || !(btn.Tag is SeatInfo info))
+            Button btn = sender as Button;
+            if (btn == null || btn.Tag == null || !(btn.Tag is SeatInfo))
             {
                 XtraMessageBox.Show("This seat button is missing SeatInfo.");
                 return;
             }
 
-            using (PricingForm form = new PricingForm(info.Pricing))
+            SeatInfo info = (SeatInfo)btn.Tag;
+
+            PricingForm form = new PricingForm(info.Pricing, info.SeatID);
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    decimal newPrice = form.NewPrice;
+                decimal newPrice = form.NewPrice;
 
-                    using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
-                    {
-                        conn.Open();
+                SqlConnection conn = new SqlConnection(GlobalSettings.connectionString);
+                conn.Open();
 
-                        SqlCommand cmd = new SqlCommand(
-                            "UPDATE Seats SET Pricing = @Pricing WHERE SeatID = @SeatID", conn);
-                        cmd.Parameters.AddWithValue("@Pricing", newPrice);
-                        cmd.Parameters.AddWithValue("@SeatID", info.SeatID);
+                SqlCommand cmd = new SqlCommand("UPDATE Seats SET Pricing = @Pricing WHERE SeatID = @SeatID", conn);
+                cmd.Parameters.AddWithValue("@Pricing", newPrice);
+                cmd.Parameters.AddWithValue("@SeatID", info.SeatID);
+                cmd.ExecuteNonQuery();
 
-                        cmd.ExecuteNonQuery();
-                    }
+                conn.Close();
+                AllMethods.RefreshManagerHome(mh => new SeatLayout(mh, theaterID));
 
-                    info.Pricing = newPrice;
-                    btn.Tag = info;
+                info.Pricing = newPrice;
+                btn.Tag = info;
 
-                    XtraMessageBox.Show($"Seat {info.SeatID} price updated to ₱{newPrice}");
-                }
+                XtraMessageBox.Show("Seat " + info.SeatID + " price updated to ₱" + newPrice);
             }
         }
 
@@ -198,6 +238,7 @@ namespace TrinityCinema.Views.Admin
         {
             public string SeatID { get; set; }
             public string Status { get; set; }
+            public int TheaterID { get; set; }
             public decimal Pricing { get; set; }
         }
     }

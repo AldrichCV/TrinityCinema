@@ -1,6 +1,5 @@
 ﻿using DevExpress.Utils.Html.Internal;
 using DevExpress.XtraEditors;
-using Org.BouncyCastle.Crypto.Generators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,14 +68,14 @@ namespace TrinityCinema.Views
 
                 this.Close();
 
-                var employeeList = adminMainForm.gcHome.Controls.OfType<PersonnelControl>().FirstOrDefault();
+                var employeeList = adminMainForm.gcHome.Controls.OfType<UsersControl>().FirstOrDefault();
 
                 if (employeeList != null)
                 {
                     adminMainForm.gcHome.Controls.Remove(employeeList); // Remove old instance
                 }
 
-                PersonnelControl newEmployeeList = new PersonnelControl(adminMainForm)
+                UsersControl newEmployeeList = new UsersControl(adminMainForm)
                 {
                     Dock = DockStyle.Fill
                 };

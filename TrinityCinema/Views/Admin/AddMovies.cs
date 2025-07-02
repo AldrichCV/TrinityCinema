@@ -8,20 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Admin
 {
-    public partial class MovieControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class AddMovies : DevExpress.XtraEditors.XtraForm
     {
-        public MovieControl()
+        private AdminMainForm adminMainForm;
+        private byte[] imageData;
+        public AddMovies(AdminMainForm adminMainForm)
         {
             InitializeComponent();
-        }
-
-        private void movieTile_ItemClick(object sender, TileItemEventArgs e)
-        {
-            AllMethods.ShowModal(home => new AddMovies(home));
+            this.adminMainForm = adminMainForm;
         }
     }
 }

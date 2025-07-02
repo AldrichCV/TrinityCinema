@@ -54,7 +54,7 @@ namespace TrinityCinema.Views.Admin
 
             // Get ManagerHome and EmployeeList
             var managerHome = Application.OpenForms.OfType<AdminMainForm>().FirstOrDefault();
-            var employeeList = managerHome?.gcHome.Controls.OfType<PersonnelControl>().FirstOrDefault();
+            var employeeList = managerHome?.gcHome.Controls.OfType<UsersControl>().FirstOrDefault();
 
             if (managerHome == null || employeeList == null)
             {
@@ -63,8 +63,8 @@ namespace TrinityCinema.Views.Admin
             }
 
             // Get selected staffID
-            int rowHandle = employeeList.tvPersonnelView.FocusedRowHandle;
-            string accountID = employeeList.tvPersonnelView.GetRowCellValue(rowHandle, "AccountID")?.ToString();
+            int rowHandle = employeeList.tvUserView.FocusedRowHandle;
+            string accountID = employeeList.tvUserView.GetRowCellValue(rowHandle, "AccountID")?.ToString();
 
             if (rowHandle < 0 || string.IsNullOrWhiteSpace(accountID))
             {
@@ -82,7 +82,7 @@ namespace TrinityCinema.Views.Admin
 
             // Close current form and reload EmployeeList
             Close();
-            AllMethods.RefreshManagerHome(mh => new PersonnelControl(mh));
+            AllMethods.RefreshManagerHome(mh => new UsersControl(mh));
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace TrinityCinema.Views.Admin
 
             this.Close(); // Close the current form
 
-            AllMethods.RefreshManagerHome(mh => new PersonnelControl(mh));
+            AllMethods.RefreshManagerHome(mh => new UsersControl(mh));
         }
 
         private void btnBrowse_Click_1(object sender, EventArgs e)

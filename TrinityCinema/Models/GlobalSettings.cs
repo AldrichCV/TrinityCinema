@@ -8,7 +8,8 @@ namespace TrinityCinema.Models
 {
     public class GlobalSettings
     {
-        public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
+        //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
+        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
 
         #region AccountsSQL
 
@@ -22,7 +23,8 @@ namespace TrinityCinema.Models
 
         public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
         public static string getMovie = @"SELECT  * FROM [dbo].[Movies]";
-        public static string getTheater = @"SELECT  Name AS TheaterName, * FROM [dbo].[Theaters]";
+        public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
+        public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
 
 
         #endregion
@@ -51,7 +53,7 @@ namespace TrinityCinema.Models
                                            ,@DateCreated)";
 
         public static string createTheater = @"INSERT INTO [dbo].[Theaters]
-                                           ([Name]
+                                           ([TheaterName]
                                            ,[SeatCapacity])
                                      VALUES
                                            (@TheaterName

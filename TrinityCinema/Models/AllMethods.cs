@@ -1,18 +1,19 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Tile;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
 using TrinityCinema.Views.Admin;
-using DevExpress.Utils;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Tile;
 
 namespace TrinityCinema.Models
 {
@@ -205,6 +206,20 @@ namespace TrinityCinema.Models
             }
         }
 
+        public static void GridCustomization(GridControl gridControl, GridView gridView, object dataSource)
+        {
+            gridControl.DataSource = null; // Clear existing data
+            gridControl.DataSource = dataSource; // Reload data
+            gridControl.RefreshDataSource(); // Ensure grid refresh
+
+            gridView.OptionsView.ShowGroupPanel = false;
+            gridView.OptionsView.ShowIndicator = false;
+            gridView.OptionsView.ShowHorizontalLines = DefaultBoolean.True;
+            gridView.OptionsView.ShowVerticalLines = DefaultBoolean.False;
+            gridView.OptionsView.RowAutoHeight = true;
+            gridView.ColumnPanelRowHeight = 30;
+            gridView.OptionsCustomization.AllowColumnResizing = false;
+        }
 
         public static void RefreshManagerHome<T>(Func<AdminMainForm, T> createNewControl) where T : Control
         {

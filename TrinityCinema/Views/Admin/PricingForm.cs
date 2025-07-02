@@ -8,16 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Admin
 {
     public partial class PricingForm : DevExpress.XtraEditors.XtraForm
     {
+        private string seatID;
+        private int theaterID;
         public decimal NewPrice { get; private set; }
-        public PricingForm(decimal currentPrice)
+        public PricingForm(decimal currentPrice, string seatID)
         {
             InitializeComponent();
             tePrice.EditValue = currentPrice;
+            this.seatID = seatID;
+            lcSeatID.Text = seatID;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -27,6 +32,7 @@ namespace TrinityCinema.Views.Admin
                 NewPrice = price;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+
             }
             else
             {
