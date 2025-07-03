@@ -120,7 +120,7 @@
       <DependentUpon>MainControls.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\MovieControl.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Admin\MovieControl.Designer.cs">
       <DependentUpon>MovieControl.cs</DependentUpon>

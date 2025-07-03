@@ -41,7 +41,7 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PersonnelControl));
-            this.AccountID = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.UserID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.PersonnelImage = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.FullName = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Role = new DevExpress.XtraGrid.Columns.TileViewColumn();
@@ -57,35 +57,43 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvPersonnelView)).BeginInit();
             this.SuspendLayout();
             // 
-            // AccountID
+            // UserID
             // 
-            this.AccountID.FieldName = "AccountID";
-            this.AccountID.Name = "AccountID";
-            this.AccountID.OptionsColumn.AllowFocus = false;
-            this.AccountID.Visible = true;
-            this.AccountID.VisibleIndex = 0;
+            this.UserID.FieldName = "UserID";
+            this.UserID.MinWidth = 23;
+            this.UserID.Name = "UserID";
+            this.UserID.OptionsColumn.AllowFocus = false;
+            this.UserID.Visible = true;
+            this.UserID.VisibleIndex = 0;
+            this.UserID.Width = 87;
             // 
             // PersonnelImage
             // 
             this.PersonnelImage.FieldName = "PersonnelImage";
+            this.PersonnelImage.MinWidth = 23;
             this.PersonnelImage.Name = "PersonnelImage";
             this.PersonnelImage.OptionsColumn.AllowFocus = false;
             this.PersonnelImage.Visible = true;
             this.PersonnelImage.VisibleIndex = 1;
+            this.PersonnelImage.Width = 87;
             // 
             // FullName
             // 
             this.FullName.FieldName = "FullName";
+            this.FullName.MinWidth = 23;
             this.FullName.Name = "FullName";
             this.FullName.Visible = true;
             this.FullName.VisibleIndex = 2;
+            this.FullName.Width = 87;
             // 
             // Role
             // 
             this.Role.FieldName = "Role";
+            this.Role.MinWidth = 23;
             this.Role.Name = "Role";
             this.Role.Visible = true;
             this.Role.VisibleIndex = 3;
+            this.Role.Width = 87;
             // 
             // groupControl1
             // 
@@ -98,17 +106,19 @@
             this.groupControl1.Margin = new System.Windows.Forms.Padding(0);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.ShowCaption = false;
-            this.groupControl1.Size = new System.Drawing.Size(834, 551);
+            this.groupControl1.Size = new System.Drawing.Size(973, 678);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "groupControl1";
             // 
             // gcPersonnel
             // 
             this.gcPersonnel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcPersonnel.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcPersonnel.Location = new System.Drawing.Point(2, 2);
             this.gcPersonnel.MainView = this.tvPersonnelView;
+            this.gcPersonnel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcPersonnel.Name = "gcPersonnel";
-            this.gcPersonnel.Size = new System.Drawing.Size(830, 435);
+            this.gcPersonnel.Size = new System.Drawing.Size(969, 536);
             this.gcPersonnel.TabIndex = 2;
             this.gcPersonnel.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tvPersonnelView});
@@ -116,10 +126,11 @@
             // tvPersonnelView
             // 
             this.tvPersonnelView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.AccountID,
+            this.UserID,
             this.PersonnelImage,
             this.FullName,
             this.Role});
+            this.tvPersonnelView.DetailHeight = 431;
             this.tvPersonnelView.GridControl = this.gcPersonnel;
             this.tvPersonnelView.Name = "tvPersonnelView";
             this.tvPersonnelView.OptionsTiles.ItemSize = new System.Drawing.Size(306, 147);
@@ -139,7 +150,7 @@
             tableSpan2.RowSpan = 3;
             this.tvPersonnelView.TileSpans.Add(tableSpan1);
             this.tvPersonnelView.TileSpans.Add(tableSpan2);
-            tileViewItemElement1.Column = this.AccountID;
+            tileViewItemElement1.Column = this.UserID;
             tileViewItemElement1.ColumnIndex = 1;
             tileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
@@ -185,7 +196,7 @@
             this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
             this.actionTile.ItemSize = 80;
-            this.actionTile.Location = new System.Drawing.Point(2, 437);
+            this.actionTile.Location = new System.Drawing.Point(2, 538);
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
@@ -195,7 +206,7 @@
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.SelectionBorderWidth = 0;
             this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(830, 112);
+            this.actionTile.Size = new System.Drawing.Size(969, 138);
             this.actionTile.TabIndex = 1;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -225,14 +236,14 @@
             // 
             // PersonnelControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupControl1);
             this.LookAndFeel.SkinName = "WXI";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PersonnelControl";
-            this.Size = new System.Drawing.Size(834, 551);
+            this.Size = new System.Drawing.Size(973, 678);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcPersonnel)).EndInit();
@@ -248,7 +259,7 @@
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem newAccountTile;
         public DevExpress.XtraGrid.GridControl gcPersonnel;
-        private DevExpress.XtraGrid.Columns.TileViewColumn AccountID;
+        private DevExpress.XtraGrid.Columns.TileViewColumn UserID;
         private DevExpress.XtraGrid.Columns.TileViewColumn PersonnelImage;
         private DevExpress.XtraGrid.Columns.TileViewColumn FullName;
         public DevExpress.XtraGrid.Views.Tile.TileView tvPersonnelView;

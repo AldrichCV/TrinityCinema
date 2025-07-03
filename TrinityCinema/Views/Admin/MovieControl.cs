@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -9,16 +10,28 @@ using TrinityCinema.Views.Admin;
 
 namespace TrinityCinema.Views
 {
-    public partial class MovieControl : DevExpress.XtraEditors.XtraForm
+    public partial class MovieControl : DevExpress.XtraEditors.XtraUserControl
     {
         private AdminMainForm adminMainForm;
         private byte[] imageData;
+        private AllMethods allMethods;
+        private string insertMovieQuery = GlobalSettings.insertMovieQuery; // Use the insert query from GlobalSettings
+        private string selectMoviesQuery = "SELECT * FROM [dbo].[Movies]"; // Adjust as necessary
 
         public MovieControl(AdminMainForm adminMainForm)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
+            allMethods = new AllMethods();
+            LoadMovies();
         }
+
+        private void LoadMovies()
+        {
+            var movies = allMethods.GetRecords<Movie>(selectMoviesQuery);
+            AllMethods.GridCustomization(gcMovieList, tvMovies, movies);
+        }
+
 
         private static string GenerateMovieID()
         {
@@ -30,7 +43,7 @@ namespace TrinityCinema.Views
                     : (char)('0' + rand.Next(10))).ToArray());
         }
 
-        private void btnBrowse_Click_1(object sender, EventArgs e)
+        private void btnBrowse_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -54,52 +67,45 @@ namespace TrinityCinema.Views
                     }
                 }
             }
-
         }
 
-        private void btnSubmit_Click_1(object sender, EventArgs e)
+
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
-            DialogResult result = XtraMessageBox.Show("Are you sure you want to add this movie?", "Verify",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes)
+            if (string.IsNullOrWhiteSpace(teTitle.Text) || string.IsNullOrWhiteSpace(teDuration.Text) || imageData == null)
             {
-                AllMethods allMethods = new AllMethods();
-                Movie newMovie = new Movie
-                {
-                    MovieID = GenerateMovieID(),
-                    Title = teTitle.Text,
-                    Description = meDescription.Text,
-                    Genre = cbGenre.Text,
-                    Duration = teDuration.Text,
-                    Status = cbStatus.Text,
-                    DateCreated = deDateCreated.DateTime, // Use selected date from DateEdit
-                    MoviePoster = imageData
-                };
-
-                
-                allMethods.InsertMethod(newMovie, GlobalSettings.insertMovieQuery);
-
-                XtraMessageBox.Show("Movie added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-
-                var movieList = adminMainForm.gcHome.Controls.OfType<MovieControl>().FirstOrDefault();
-                if (movieList != null)
-                {
-                    adminMainForm.gcHome.Controls.Remove(movieList);
-                }
-
-                MovieControl newMovieControl = new MovieControl(adminMainForm)
-                {
-                    Dock = DockStyle.Fill
-                };
-                adminMainForm.gcHome.Controls.Add(newMovieControl);
-                newMovieControl.BringToFront();
+                XtraMessageBox.Show("Please fill in all fields and select a poster image.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+            var movie = new Movie
             {
-                this.Close();
-            }
+                //MovieID = Guid.NewGuid().ToString(), // Generate a new MovieID
+                MovieID = GenerateMovieID(),
+                Title = teTitle.Text,
+                Description = meDescription.Text,
+                Genre = cbGenre.Text,
+                Duration = teDuration.Text,
+                Status = cbStatus.Text,
+                DateCreated = deDateCreated.DateTime,
+                MoviePoster = imageData
+            };
+
+            allMethods.InsertMethod(movie, insertMovieQuery);
+            XtraMessageBox.Show("Movie details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadMovies();
+            ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            teTitle.Text = string.Empty;
+            teDuration.Text = string.Empty;
+            cbGenre.SelectedIndex = -1;
+            cbStatus.SelectedIndex = -1;
+            meDescription.Text = string.Empty;
+            deDateCreated.EditValue = null;
+            pePoster.Image = null;
+            imageData = null;
         }
     }
 }

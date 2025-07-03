@@ -28,9 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
+            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition2 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition3 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableSpan tableSpan1 = new DevExpress.XtraEditors.TableLayout.TableSpan();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement1 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement2 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.gcMovieList = new DevExpress.XtraGrid.GridControl();
+            this.tvMovies = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.tvTitle = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.tvDescription = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.tvGenre = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.tvDuration = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.tvStatus = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.tvDateCreated = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.tvPoster = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.teTitle = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -49,8 +65,8 @@
             this.pePoster = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tileView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMovieList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tvMovies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).BeginInit();
@@ -65,7 +81,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.gridControl1);
+            this.groupControl1.Controls.Add(this.gcMovieList);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -75,23 +91,133 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "groupControl1";
             // 
-            // gridControl1
+            // gcMovieList
             // 
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl1.Location = new System.Drawing.Point(2, 2);
-            this.gridControl1.MainView = this.tileView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(860, 768);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.tileView1});
+            this.gcMovieList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gcMovieList.Location = new System.Drawing.Point(2, 2);
+            this.gcMovieList.MainView = this.tvMovies;
+            this.gcMovieList.Margin = new System.Windows.Forms.Padding(4);
+            this.gcMovieList.Name = "gcMovieList";
+            this.gcMovieList.Size = new System.Drawing.Size(860, 768);
+            this.gcMovieList.TabIndex = 0;
+            this.gcMovieList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.tvMovies});
             // 
-            // tileView1
+            // tvMovies
             // 
-            this.tileView1.DetailHeight = 431;
-            this.tileView1.GridControl = this.gridControl1;
-            this.tileView1.Name = "tileView1";
+            this.tvMovies.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.tvTitle,
+            this.tvDescription,
+            this.tvGenre,
+            this.tvDuration,
+            this.tvStatus,
+            this.tvDateCreated,
+            this.tvPoster});
+            this.tvMovies.DetailHeight = 431;
+            this.tvMovies.GridControl = this.gcMovieList;
+            this.tvMovies.Name = "tvMovies";
+            this.tvMovies.OptionsTiles.ItemSize = new System.Drawing.Size(340, 218);
+            this.tvMovies.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.tvMovies.OptionsTiles.RowCount = 0;
+            this.tvMovies.TileColumns.Add(tableColumnDefinition1);
+            this.tvMovies.TileColumns.Add(tableColumnDefinition2);
+            this.tvMovies.TileRows.Add(tableRowDefinition1);
+            this.tvMovies.TileRows.Add(tableRowDefinition2);
+            this.tvMovies.TileRows.Add(tableRowDefinition3);
+            tableSpan1.RowSpan = 3;
+            this.tvMovies.TileSpans.Add(tableSpan1);
+            tileViewItemElement1.Column = this.tvPoster;
+            tileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement1.Text = "tvPoster";
+            tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.Column = this.tvTitle;
+            tileViewItemElement2.ColumnIndex = 1;
+            tileViewItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement2.RowIndex = 1;
+            tileViewItemElement2.Text = "tvTitle";
+            tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement3.Column = this.tvGenre;
+            tileViewItemElement3.ColumnIndex = 1;
+            tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement3.RowIndex = 2;
+            tileViewItemElement3.Text = "tvGenre";
+            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tvMovies.TileTemplate.Add(tileViewItemElement1);
+            this.tvMovies.TileTemplate.Add(tileViewItemElement2);
+            this.tvMovies.TileTemplate.Add(tileViewItemElement3);
+            // 
+            // tvTitle
+            // 
+            this.tvTitle.Caption = "Title: ";
+            this.tvTitle.FieldName = "Title";
+            this.tvTitle.MinWidth = 25;
+            this.tvTitle.Name = "tvTitle";
+            this.tvTitle.Visible = true;
+            this.tvTitle.VisibleIndex = 0;
+            this.tvTitle.Width = 94;
+            // 
+            // tvDescription
+            // 
+            this.tvDescription.Caption = "Description:";
+            this.tvDescription.FieldName = "Description";
+            this.tvDescription.MinWidth = 25;
+            this.tvDescription.Name = "tvDescription";
+            this.tvDescription.Visible = true;
+            this.tvDescription.VisibleIndex = 1;
+            this.tvDescription.Width = 94;
+            // 
+            // tvGenre
+            // 
+            this.tvGenre.Caption = "Genre:";
+            this.tvGenre.FieldName = "Genre";
+            this.tvGenre.MinWidth = 25;
+            this.tvGenre.Name = "tvGenre";
+            this.tvGenre.Visible = true;
+            this.tvGenre.VisibleIndex = 2;
+            this.tvGenre.Width = 94;
+            // 
+            // tvDuration
+            // 
+            this.tvDuration.Caption = "Duration:";
+            this.tvDuration.FieldName = "Duration";
+            this.tvDuration.MinWidth = 25;
+            this.tvDuration.Name = "tvDuration";
+            this.tvDuration.Visible = true;
+            this.tvDuration.VisibleIndex = 3;
+            this.tvDuration.Width = 94;
+            // 
+            // tvStatus
+            // 
+            this.tvStatus.Caption = "Status:";
+            this.tvStatus.FieldName = "Status";
+            this.tvStatus.MinWidth = 25;
+            this.tvStatus.Name = "tvStatus";
+            this.tvStatus.Visible = true;
+            this.tvStatus.VisibleIndex = 4;
+            this.tvStatus.Width = 94;
+            // 
+            // tvDateCreated
+            // 
+            this.tvDateCreated.Caption = "Date Created:";
+            this.tvDateCreated.FieldName = "DateCreated";
+            this.tvDateCreated.MinWidth = 25;
+            this.tvDateCreated.Name = "tvDateCreated";
+            this.tvDateCreated.Visible = true;
+            this.tvDateCreated.VisibleIndex = 5;
+            this.tvDateCreated.Width = 94;
+            // 
+            // tvPoster
+            // 
+            this.tvPoster.Caption = "Poster";
+            this.tvPoster.FieldName = "MoviePoster";
+            this.tvPoster.MinWidth = 25;
+            this.tvPoster.Name = "tvPoster";
+            this.tvPoster.Visible = true;
+            this.tvPoster.VisibleIndex = 6;
+            this.tvPoster.Width = 94;
             // 
             // groupControl2
             // 
@@ -157,7 +283,7 @@
             this.btnSubmit.Size = new System.Drawing.Size(211, 50);
             this.btnSubmit.TabIndex = 22;
             this.btnSubmit.Text = "Submit";
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click_1);
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // labelControl4
             // 
@@ -176,9 +302,11 @@
             this.cbStatus.Properties.AutoHeight = false;
             this.cbStatus.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbStatus.Properties.DropDownRows = 3;
             this.cbStatus.Properties.Items.AddRange(new object[] {
-            "Staff",
-            "Manager"});
+            "Now Showing",
+            "Coming Soon",
+            "Ended"});
             this.cbStatus.Size = new System.Drawing.Size(240, 50);
             this.cbStatus.TabIndex = 20;
             // 
@@ -199,7 +327,7 @@
             this.btnBrowse.Size = new System.Drawing.Size(174, 30);
             this.btnBrowse.TabIndex = 18;
             this.btnBrowse.Text = "Browse";
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // labelControl2
             // 
@@ -218,9 +346,29 @@
             this.cbGenre.Properties.AutoHeight = false;
             this.cbGenre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbGenre.Properties.DropDownRows = 20;
             this.cbGenre.Properties.Items.AddRange(new object[] {
-            "Staff",
-            "Manager"});
+            "Action",
+            "Adventure",
+            "Animation",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "History",
+            "Horror",
+            "Musical",
+            "Mystery",
+            "Romance",
+            "Science Fiction",
+            "Sport",
+            "Thriller",
+            "War",
+            "Western"});
+            this.cbGenre.Properties.Sorted = true;
             this.cbGenre.Size = new System.Drawing.Size(318, 50);
             this.cbGenre.TabIndex = 14;
             // 
@@ -270,15 +418,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1448, 772);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupControl2);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MovieControl";
+            this.Size = new System.Drawing.Size(1448, 772);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tileView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcMovieList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tvMovies)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
@@ -297,8 +445,7 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
+        private DevExpress.XtraGrid.GridControl gcMovieList;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.PictureEdit pePoster;
         private DevExpress.XtraEditors.LabelControl lbTitle;
@@ -315,5 +462,13 @@
         private DevExpress.XtraEditors.SimpleButton btnSubmit;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit teTitle;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvTitle;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvDescription;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvGenre;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvDuration;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvStatus;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvDateCreated;
+        private DevExpress.XtraGrid.Columns.TileViewColumn tvPoster;
+        public DevExpress.XtraGrid.Views.Tile.TileView tvMovies;
     }
 }

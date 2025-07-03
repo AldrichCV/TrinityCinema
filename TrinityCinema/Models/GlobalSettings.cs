@@ -10,7 +10,7 @@ namespace TrinityCinema.Models
     {
         //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
 
-        public static string connectionString = @"Data Source=AAA\\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
+        public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
 
         #region AccountsSQL
 
@@ -22,14 +22,7 @@ namespace TrinityCinema.Models
                                         AND a.userPassword = @Password";
 
 
-        public static string getPersonnel = @"SELECT CONCAT(s.FirstName,' ',
-                                    CASE 
-                                    WHEN s.MiddleName IS NULL
-                                    THEN ' '
-                                    ELSE LEFT(s.MiddleName,1)+'. '
-                                    END
-                                    ,s.LastName,' ',s.Suffix) AS FullName, *
-                                    FROM [dbo].[Accounts] s";
+        public static string getPersonnel = @"SELECT * FROM Users";
 
         public string sortByPosition = @"SELECT CONCAT(s.firstName, ' ',
                                     CASE WHEN s.middleName IS NULL THEN ' ' 
