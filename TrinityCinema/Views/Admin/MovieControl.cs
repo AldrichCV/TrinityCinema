@@ -37,8 +37,8 @@ namespace TrinityCinema.Views
         {
             Random rand = new Random();
             const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            return "MID-" + new string(Enumerable.Range(0, 6)
-                .Select(i => i % 2 == 0
+
+            return "MID-" + new string(Enumerable.Range(0, 6).Select(i => i % 2 == 0
                     ? letters[rand.Next(letters.Length)]
                     : (char)('0' + rand.Next(10))).ToArray());
         }
