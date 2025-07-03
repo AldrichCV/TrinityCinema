@@ -115,23 +115,29 @@
     <Compile Include="Views\Admin\EditAccount.Designer.cs">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\EditMovie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\EditMovie.Designer.cs">
+      <DependentUpon>EditMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\UsersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Admin\UsersControl.Designer.cs">
       <DependentUpon>UsersControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Admin\MovieControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\Admin\MovieControl.Designer.cs">
-      <DependentUpon>MovieControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\PricingForm.cs">
       <SubType>Form</SubType>
@@ -179,14 +185,17 @@
     <EmbeddedResource Include="Views\Admin\EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\EditMovie.resx">
+      <DependentUpon>EditMovie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\UsersControl.resx">
       <DependentUpon>UsersControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\MovieControl.resx">
-      <DependentUpon>MovieControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\PricingForm.resx">
       <DependentUpon>PricingForm.cs</DependentUpon>

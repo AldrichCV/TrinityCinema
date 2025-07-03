@@ -197,7 +197,6 @@
             this.Name = "AccountCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AccountCreation";
-            this.Load += new System.EventHandler(this.AccountCreation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.teFullName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).EndInit();

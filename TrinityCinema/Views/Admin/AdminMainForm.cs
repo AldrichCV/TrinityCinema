@@ -33,7 +33,7 @@ namespace TrinityCinema.Views.Admin
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            MovieControl movieControl = new MovieControl();
+            MoviesControl movieControl = new MoviesControl(this);
             gcHome.Controls.Add(movieControl);
             movieControl.Dock = DockStyle.Fill;
             movieControl.Show();

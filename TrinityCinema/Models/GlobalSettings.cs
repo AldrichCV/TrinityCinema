@@ -22,7 +22,22 @@ namespace TrinityCinema.Models
 
 
         public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
-        public static string getMovie = @"SELECT  * FROM [dbo].[Movies]";
+        public static string getMovie = @"SELECT [MovieID]
+                                          ,[Title]
+                                          ,g.[GenreName]
+                                          ,[Duration]
+                                          ,[Description]
+                                          ,[DateAdded]
+                                          ,[MoviePoster]
+                                          ,CASE
+                                          WHEN [Status] = 1
+                                          THEN 'Active'
+                                          ELSE 'Inactive'
+                                          END AS StatusDisplay
+                                      FROM [CinemaDB].[dbo].[Movies] m
+                                      LEFT JOIN Genre g
+                                      ON g.GenreID = m.Genre
+                                    ";
         public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
         public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
 
@@ -51,6 +66,25 @@ namespace TrinityCinema.Models
                                            ,@PersonnelImage
                                            ,@Status
                                            ,@DateCreated)";
+
+        public static string insertMovieQuery = @"INSERT INTO [dbo].[Movies]
+                                   ([MovieID]
+                                    ,[Title]
+                                    ,[Description]
+                                    ,[Genre]
+                                    ,[Duration]
+                                    ,[Status]
+                                    ,[DateAdded]
+                                    ,[MoviePoster])
+                           VALUES
+                                    (@MovieID
+                                    ,@Title
+                                    ,@Description
+                                    ,@Genre
+                                    ,@Duration
+                                    ,@Status
+                                    ,@DateAdded
+                                    ,@MoviePoster);";
 
         public static string createTheater = @"INSERT INTO [dbo].[Theaters]
                                            ([TheaterName]

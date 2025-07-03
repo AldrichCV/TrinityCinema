@@ -32,6 +32,18 @@ namespace TrinityCinema.Models
             return records.ToList();
         }
 
+
+        //Populate LookUpEdits
+        public static void LoadLookupData<T>(LookUpEdit control, string query, string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var data = connection.Query<T>(query).ToList();
+                control.Properties.DataSource = data;
+            }
+        }
+
         //Reusable method for inserting data
         public void InsertMethod(object classAdd, string query)
         {

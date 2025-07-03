@@ -28,12 +28,20 @@ namespace TrinityCinema.Models
         public string MovieID { get; set; }       
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Genre { get; set; }
-        public int Duration { get; set; }        
-        public int Status { get; set; }
-        public DateTime DateCreated { get; set; }
+        public int Genre { get; set; }
+        public string GenreName { get; set; }
+        public TimeSpan Duration { get; set; }        
+        public bool Status { get; set; }
+        public DateTime DateAdded { get; set; }
         public byte[] MoviePoster { get; set; }
-        
+        public string StatusDisplay { get; set; }
+
+    }
+
+    public class Genre
+    {
+        public int GenreID { get; set; }
+        public string GenreName { get; set; }
     }
 
     public class Theater
