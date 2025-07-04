@@ -1,18 +1,19 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Tile;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
 using TrinityCinema.Views.Admin;
-using DevExpress.Utils;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Tile;
 
 namespace TrinityCinema.Models
 {
@@ -31,6 +32,18 @@ namespace TrinityCinema.Models
             return records.ToList();
         }
 
+
+        //Populate LookUpEdits
+        public static void LoadLookupData<T>(LookUpEdit control, string query, string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var data = connection.Query<T>(query).ToList();
+                control.Properties.DataSource = data;
+            }
+        }
+
         //Reusable method for inserting data
         public void InsertMethod(object classAdd, string query)
         {
@@ -42,41 +55,88 @@ namespace TrinityCinema.Models
             // XtraMessageBox.Show("Account details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        //public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            // Add parameters dynamically
+        //            foreach (var prop in parameters.GetType().GetProperties())
+        //            {
+        //                command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters) ?? DBNull.Value);
+        //            }
+
+        //            connection.Open();
+
+        //            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+        //            {
+        //                DataTable dt = new DataTable();
+        //                adapter.Fill(dt);
+
+        //                if (dt.Rows.Count == 0)
+        //                    return null;
+
+        //                DataRow row = dt.Rows[0];
+        //                Dictionary<string, string> result = new Dictionary<string, string>();
+
+        //                foreach (string col in columns)
+        //                {
+        //                    result[col] = row[col]?.ToString() ?? "";
+        //                }
+
+        //                return result;
+        //            }
+        //        }
+        //    }
+        //}
+
         public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            var record = new Dictionary<string, string>();
+
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                connection.Open();
+                using (var command = new SqlCommand(query, connection))
                 {
-                    // Add parameters dynamically
                     foreach (var prop in parameters.GetType().GetProperties())
                     {
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters) ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters));
                     }
 
-                    connection.Open();
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    using (var reader = command.ExecuteReader())
                     {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-
-                        if (dt.Rows.Count == 0)
-                            return null;
-
-                        DataRow row = dt.Rows[0];
-                        Dictionary<string, string> result = new Dictionary<string, string>();
-
-                        foreach (string col in columns)
+                        if (reader.Read())
                         {
-                            result[col] = row[col]?.ToString() ?? "";
+                            foreach (var column in columns)
+                            {
+                                object value = reader[column];
+                                if (value == DBNull.Value)
+                                {
+                                    record[column] = null;
+                                }
+                                else if (value is byte[]) // for image/VARBINARY
+                                {
+                                    record[column] = Convert.ToBase64String((byte[])value);
+                                }
+                                else
+                                {
+                                    record[column] = value.ToString();
+                                }
+                            }
                         }
-
-                        return result;
+                        else
+                        {
+                            return null; // not found
+                        }
                     }
                 }
             }
+
+            return record;
         }
+
 
         public bool UpdateRecord(string tableName, object parameters, List<string> columns, string keyColumn)
         {
@@ -158,6 +218,20 @@ namespace TrinityCinema.Models
             }
         }
 
+        public static void GridCustomization(GridControl gridControl, GridView gridView, object dataSource)
+        {
+            gridControl.DataSource = null; // Clear existing data
+            gridControl.DataSource = dataSource; // Reload data
+            gridControl.RefreshDataSource(); // Ensure grid refresh
+
+            gridView.OptionsView.ShowGroupPanel = false;
+            gridView.OptionsView.ShowIndicator = false;
+            gridView.OptionsView.ShowHorizontalLines = DefaultBoolean.True;
+            gridView.OptionsView.ShowVerticalLines = DefaultBoolean.False;
+            gridView.OptionsView.RowAutoHeight = true;
+            gridView.ColumnPanelRowHeight = 30;
+            gridView.OptionsCustomization.AllowColumnResizing = false;
+        }
 
         public static void RefreshManagerHome<T>(Func<AdminMainForm, T> createNewControl) where T : Control
         {

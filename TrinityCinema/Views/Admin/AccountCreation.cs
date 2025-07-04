@@ -1,6 +1,5 @@
 ﻿using DevExpress.Utils.Html.Internal;
 using DevExpress.XtraEditors;
-using Org.BouncyCastle.Crypto.Generators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,38 +40,37 @@ namespace TrinityCinema.Views
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
             DialogResult result = XtraMessageBox.Show("Are You Sure You Want to Add This Employee?", "Verify",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (result == DialogResult.Yes)
             {
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(tePassword.Text);
                 AllMethods allMethods = new AllMethods();
-                Personnel createAccounts = new Personnel
+                User createUser = new User
                 {
-                    AccountID = GenerateID(),
-                    FirstName = teFirstName.Text,
-                    MiddleName = teMiddleName.Text,
-                    LastName = teLastName.Text,
-                    Suffix = teSuffix.Text,
-                    Role = cbRole.Text,
-                    UserName = teUserName.Text,
+                    UserID = GenerateID(),
+                    Username = teUserName.Text,
                     PasswordHash = hashedPassword,
-                    PersonnelImage = imageData
+                    Fullname = teFullName.Text,
+                    Phone = tePhone.Text,
+                    Role = cbRole.Text,
+                    PersonnelImage = imageData,
+                    DateCreated = DateTime.Now
                 };
-                allMethods.InsertMethod(createAccounts, GlobalSettings.insertQuery);
+
+                allMethods.InsertMethod(createUser, GlobalSettings.insertQuery);
                 XtraMessageBox.Show("Account details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
 
-                var employeeList = adminMainForm.gcHome.Controls.OfType<PersonnelControl>().FirstOrDefault();
+                var employeeList = adminMainForm.gcHome.Controls.OfType<UsersControl>().FirstOrDefault();
 
                 if (employeeList != null)
                 {
                     adminMainForm.gcHome.Controls.Remove(employeeList); // Remove old instance
                 }
 
-                PersonnelControl newEmployeeList = new PersonnelControl(adminMainForm)
+                UsersControl newEmployeeList = new UsersControl(adminMainForm)
                 {
                     Dock = DockStyle.Fill
                 };

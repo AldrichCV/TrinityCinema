@@ -147,7 +147,7 @@ namespace TrinityCinema.Views.Admin
             {
                 XtraMessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                AllMethods.RefreshManagerHome(mh => new MovieControl(mh));
+                AllMethods.RefreshManagerHome(mh => new MoviesControl(mh));
             }
             else
             {
@@ -172,7 +172,7 @@ namespace TrinityCinema.Views.Admin
             );
 
             this.Close();
-            AllMethods.RefreshManagerHome(mh => new MovieControl(mh));
+            AllMethods.RefreshManagerHome(mh => new MoviesControl(mh));
         }
     }
 }

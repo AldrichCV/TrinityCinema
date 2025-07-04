@@ -9,8 +9,7 @@ namespace TrinityCinema.Models
     public class GlobalSettings
     {
         //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
-
-        public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
+        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
 
         #region AccountsSQL
 
@@ -22,51 +21,51 @@ namespace TrinityCinema.Models
                                         AND a.userPassword = @Password";
 
 
-        public static string getPersonnel = @"SELECT * FROM Users";
+        public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
+        public static string getMovie = @"SELECT [MovieID]
+                                          ,[Title]
+                                          ,g.[GenreName]
+                                          ,[Duration]
+                                          ,[Description]
+                                          ,[DateAdded]
+                                          ,[MoviePoster]
+                                          ,CASE
+                                          WHEN [Status] = 1
+                                          THEN 'Active'
+                                          ELSE 'Inactive'
+                                          END AS StatusDisplay
+                                      FROM [CinemaDB].[dbo].[Movies] m
+                                      LEFT JOIN Genre g
+                                      ON g.GenreID = m.Genre
+                                    ";
+        public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
+        public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
 
-        public string sortByPosition = @"SELECT CONCAT(s.firstName, ' ',
-                                    CASE WHEN s.middleName IS NULL THEN ' ' 
-                                         ELSE LEFT(s.middleName, 1) + '. ' 
-                                    END,
-                                    s.lastName, ' ', s.nameExtension) AS fullName, *
-                                    FROM [dbo].[Staff] s";
 
-        public static string displayAccounts = @"SELECT a.accountID, s.staffID, a.userName, a.userPassword,
-                                    CONCAT(s.firstName,' ',
-                                    CASE 
-                                    WHEN s.middleName IS NULL
-                                    THEN ' '
-                                    ELSE LEFT(s.middleName,1)+'. '
-                                    END
-                                     ,s.lastName,' ',s.nameExtension) AS fullName, s.position
-                                    FROM [dbo].Account a
-                                    LEFT JOIN Staff s
-                                    ON s.staffID = a.staffID";
         #endregion
 
         #region Insert Queries
-        public static string insertQuery = @"INSERT INTO [dbo].[Accounts]
-                                   ([AccountID]
-                                    ,[FirstName]
-                                    ,[MiddleName]
-                                    ,[LastName]
-                                    ,[Suffix]
-                                    ,[Role]
-                                    ,[UserName]
-                                    ,[PasswordHash]
-                                    ,[PersonnelImage])
-                                   
-                            VALUES
-                                    (@AccountID
-                                    ,@FirstName
-                                    ,@MiddleName
-                                    ,@LastName
-                                    ,@Suffix
-                                    ,@Role
-                                    ,@UserName
-                                    ,@PasswordHash
-                                    ,@PersonnelImage
-                                    );";
+        public static string insertQuery = @"INSERT INTO [dbo].[Users]
+                                           ([UserID]
+                                           ,[Username]
+                                           ,[PasswordHash]
+                                           ,[Fullname]
+                                           ,[Role]
+                                           ,[Phone]
+                                           ,[PersonnelImage]
+                                           ,[Status]
+                                           ,[DateCreated])
+
+                                     VALUES
+                                           (@UserID
+                                           ,@Username
+                                           ,@PasswordHash
+                                           ,@Fullname
+                                           ,@Role
+                                           ,@Phone
+                                           ,@PersonnelImage
+                                           ,@Status
+                                           ,@DateCreated)";
 
         public static string insertMovieQuery = @"INSERT INTO [dbo].[Movies]
                                    ([MovieID]
@@ -75,7 +74,7 @@ namespace TrinityCinema.Models
                                     ,[Genre]
                                     ,[Duration]
                                     ,[Status]
-                                    ,[DateCreated]
+                                    ,[DateAdded]
                                     ,[MoviePoster])
                            VALUES
                                     (@MovieID
@@ -84,8 +83,17 @@ namespace TrinityCinema.Models
                                     ,@Genre
                                     ,@Duration
                                     ,@Status
-                                    ,@DateCreated
+                                    ,@DateAdded
                                     ,@MoviePoster);";
+
+        public static string createTheater = @"INSERT INTO [dbo].[Theaters]
+                                           ([TheaterName]
+                                           ,[SeatCapacity])
+                                     VALUES
+                                           (@TheaterName
+                                           ,@SeatCapacity)";
+
+
 
 
         #endregion

@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.TileItemElement tileItemElement25 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement26 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement27 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement28 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
-            this.tileBarItem3 = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.tileBarItem4 = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
@@ -71,7 +71,7 @@
             // 
             this.tileBarGroup2.Items.Add(this.personnelTile);
             this.tileBarGroup2.Items.Add(this.movieTile);
-            this.tileBarGroup2.Items.Add(this.tileBarItem3);
+            this.tileBarGroup2.Items.Add(this.theaterTile);
             this.tileBarGroup2.Items.Add(this.tileBarItem4);
             this.tileBarGroup2.Name = "tileBarGroup2";
             // 
@@ -80,8 +80,8 @@
             this.personnelTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.personnelTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.personnelTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement25.Text = "tileBarItem1";
-            this.personnelTile.Elements.Add(tileItemElement25);
+            tileItemElement1.Text = "tileBarItem1";
+            this.personnelTile.Elements.Add(tileItemElement1);
             this.personnelTile.Id = 6;
             this.personnelTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.personnelTile.Name = "personnelTile";
@@ -92,31 +92,32 @@
             this.movieTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.movieTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.movieTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement26.Text = "tileBarItem2";
-            this.movieTile.Elements.Add(tileItemElement26);
+            tileItemElement2.Text = "tileBarItem2";
+            this.movieTile.Elements.Add(tileItemElement2);
             this.movieTile.Id = 7;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.movieTile.Name = "movieTile";
             this.movieTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.movieTile_ItemClick);
             // 
-            // tileBarItem3
+            // theaterTile
             // 
-            this.tileBarItem3.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
-            this.tileBarItem3.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileBarItem3.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement27.Text = "tileBarItem3";
-            this.tileBarItem3.Elements.Add(tileItemElement27);
-            this.tileBarItem3.Id = 8;
-            this.tileBarItem3.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.tileBarItem3.Name = "tileBarItem3";
+            this.theaterTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
+            this.theaterTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.theaterTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement3.Text = "tileBarItem3";
+            this.theaterTile.Elements.Add(tileItemElement3);
+            this.theaterTile.Id = 8;
+            this.theaterTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.theaterTile.Name = "theaterTile";
+            this.theaterTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.theaterTile_ItemClick);
             // 
             // tileBarItem4
             // 
             this.tileBarItem4.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.tileBarItem4.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem4.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement28.Text = "tileBarItem4";
-            this.tileBarItem4.Elements.Add(tileItemElement28);
+            tileItemElement4.Text = "tileBarItem4";
+            this.tileBarItem4.Elements.Add(tileItemElement4);
             this.tileBarItem4.Id = 9;
             this.tileBarItem4.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem4.Name = "tileBarItem4";
@@ -161,7 +162,7 @@
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem personnelTile;
         private DevExpress.XtraBars.Navigation.TileBarItem movieTile;
-        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem3;
+        private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
         private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem4;
         public DevExpress.XtraEditors.GroupControl gcHome;
     }

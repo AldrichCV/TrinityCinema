@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="BCrypt.Net-Core, Version=1.6.0.0, Culture=neutral, PublicKeyToken=4d63bfbfdfd3c6e4, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Core.1.6.0\lib\net452\BCrypt.Net-Core.dll</HintPath>
     </Reference>
@@ -60,13 +61,20 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,8 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AllMethods.cs" />
+    <Compile Include="Models\Cinema.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
-    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Personnel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,6 +96,12 @@
     </Compile>
     <Compile Include="Views\Admin\AccountCreation.Designer.cs">
       <DependentUpon>AccountCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AddMovies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\AddMovies.Designer.cs">
+      <DependentUpon>AddMovies.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\AdminMainForm.cs">
       <SubType>Form</SubType>
@@ -113,23 +127,41 @@
     <Compile Include="Views\Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Admin\MainControls.cs">
+    <Compile Include="Views\Admin\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\UsersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\UsersControl.Designer.cs">
+      <DependentUpon>UsersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\PricingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Admin\MainControls.Designer.cs">
-      <DependentUpon>MainControls.cs</DependentUpon>
+    <Compile Include="Views\Admin\PricingForm.Designer.cs">
+      <DependentUpon>PricingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Admin\MovieControl.cs">
+    <Compile Include="Views\Admin\SeatLayout.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Admin\MovieControl.Designer.cs">
-      <DependentUpon>MovieControl.cs</DependentUpon>
+    <Compile Include="Views\Admin\SeatLayout.Designer.cs">
+      <DependentUpon>SeatLayout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Admin\PersonnelControl.cs">
+    <Compile Include="Views\Admin\TheaterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Admin\PersonnelControl.Designer.cs">
-      <DependentUpon>PersonnelControl.cs</DependentUpon>
+    <Compile Include="Views\Admin\TheaterControl.Designer.cs">
+      <DependentUpon>TheaterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TheaterInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TheaterInfo.Designer.cs">
+      <DependentUpon>TheaterInfo.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -144,6 +176,9 @@
     <EmbeddedResource Include="Views\Admin\AccountCreation.resx">
       <DependentUpon>AccountCreation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\AddMovies.resx">
+      <DependentUpon>AddMovies.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\AdminMainForm.resx">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,14 +191,23 @@
     <EmbeddedResource Include="Views\Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\MainControls.resx">
-      <DependentUpon>MainControls.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Admin\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\MovieControl.resx">
-      <DependentUpon>MovieControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Admin\UsersControl.resx">
+      <DependentUpon>UsersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Admin\PersonnelControl.resx">
-      <DependentUpon>PersonnelControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Admin\PricingForm.resx">
+      <DependentUpon>PricingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\SeatLayout.resx">
+      <DependentUpon>SeatLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\TheaterControl.resx">
+      <DependentUpon>TheaterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\TheaterInfo.resx">
+      <DependentUpon>TheaterInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
