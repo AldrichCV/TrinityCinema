@@ -49,5 +49,7 @@ namespace TrinityCinema.Views.Admin
             theaterControl.Dock = DockStyle.Fill;
             theaterControl.Show();
         }
+
+        
     }
 }
