@@ -1,9 +1,11 @@
 ﻿using DevExpress.Utils.Html.Internal;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.DXErrorProvider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
 using TrinityCinema.Views.Admin;
+using Dapper;
 
 namespace TrinityCinema.Views
 {
@@ -110,5 +113,35 @@ namespace TrinityCinema.Views
                 }
             }
         }
+
+        private void teUserName_EditValueChanged(object sender, EventArgs e)
+        {
+            string username = teUserName.Text.Trim();
+
+            if (string.IsNullOrEmpty(username))
+            {
+                errorProvider.SetError(teUserName, "Username is required.");
+                return;
+            }
+
+            if (UsernameExists(username))
+            {
+                errorProvider.SetError(teUserName, "Username already exists.");
+            }
+            else
+            {
+                errorProvider.SetError(teUserName, string.Empty);
+            }
+        }
+        private bool UsernameExists(string username)
+        {
+            using (var connection = new SqlConnection(GlobalSettings.connectionString))
+            {
+                string query = "SELECT COUNT(1) FROM Users WHERE Username = @Username";
+                int count = connection.ExecuteScalar<int>(query, new { Username = username });
+                return count > 0;
+            }
+        }
+
     }
-    }
+}

@@ -223,6 +223,7 @@
             this.tvMovieView.TileTemplate.Add(tileViewItemElement3);
             this.tvMovieView.TileTemplate.Add(tileViewItemElement4);
             this.tvMovieView.TileTemplate.Add(tileViewItemElement5);
+            this.tvMovieView.ItemDoubleClick += new DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventHandler(this.tvMovieView_ItemDoubleClick);
             // 
             // actionTile
             // 

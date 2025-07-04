@@ -20,6 +20,39 @@ namespace TrinityCinema.Models
     public class AllMethods
     {
         string connectionString = GlobalSettings.connectionString;
+
+        public (string Role, string UserID) ValidateLogin(string userName, string password)
+        {
+            using (var sql = new SqlConnection(connectionString))
+            {
+                // Adjusted query to only fetch by username
+                string query = "SELECT PasswordHash, Role, UserID FROM Users WHERE Username = @User";
+
+                sql.Open();
+                using (var cmd = new SqlCommand(query, sql))
+                {
+                    cmd.Parameters.AddWithValue("@User", userName);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string storedHash = reader["PasswordHash"]?.ToString();
+
+                            if (storedHash != null && BCrypt.Net.BCrypt.Verify(password, storedHash))
+                            {
+                                string role = reader["Role"]?.ToString();
+                                string staffID = reader["UserID"]?.ToString();
+                                return (role, staffID);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return (null, null); // Login failed
+        }
+
         //Retrieval of records
         public List<T> GetRecords<T>(string query, object parameters = null)
         {

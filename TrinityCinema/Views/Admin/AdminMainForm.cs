@@ -15,9 +15,11 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
-        public AdminMainForm()
+        private string _userID;
+        public AdminMainForm(string userID)
         {
             InitializeComponent();
+            _userID = userID;
         }
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)

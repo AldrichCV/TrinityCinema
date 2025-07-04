@@ -127,11 +127,23 @@
     <Compile Include="Views\Admin\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\MovieDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\MovieDetails.Designer.cs">
+      <DependentUpon>MovieDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\MoviesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Admin\MoviesControl.Designer.cs">
       <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ShowtimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ShowtimeControl.Designer.cs">
+      <DependentUpon>ShowtimeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\UsersControl.cs">
       <SubType>UserControl</SubType>
@@ -163,6 +175,12 @@
     <Compile Include="Views\Admin\TheaterInfo.Designer.cs">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Staff\StaffMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffMainForm.Designer.cs">
+      <DependentUpon>StaffMainForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -191,8 +209,14 @@
     <EmbeddedResource Include="Views\Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\MovieDetails.resx">
+      <DependentUpon>MovieDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\MoviesControl.resx">
       <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\ShowtimeControl.resx">
+      <DependentUpon>ShowtimeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\UsersControl.resx">
       <DependentUpon>UsersControl.cs</DependentUpon>
@@ -209,6 +233,9 @@
     <EmbeddedResource Include="Views\Admin\TheaterInfo.resx">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\StaffMainForm.resx">
+      <DependentUpon>StaffMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -221,9 +248,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Staff\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

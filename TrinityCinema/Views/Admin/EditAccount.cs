@@ -150,7 +150,7 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            XtraMessageBox.Show("Employee updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            XtraMessageBox.Show("User updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.Close(); // Close the current form
 

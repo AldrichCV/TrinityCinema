@@ -50,4 +50,16 @@ namespace TrinityCinema.Models
         public string TheaterName { get; set; }
         public int SeatCapacity { get; set; }
     }
+    public class Showtime
+    {
+        public string ShowtimeID { get; set; }
+        public string MovieID { get; set; }
+        public string TheaterID { get; set; }
+        public DateTime ShowDate { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public decimal Price { get; set; }
+        public bool Status { get; set; }
+    }
+
 }
