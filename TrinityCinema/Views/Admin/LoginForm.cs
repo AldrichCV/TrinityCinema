@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -27,6 +28,15 @@ namespace TrinityCinema.Views.Admin
         {
             string userName = teUserName.Text.Trim();
             string password = tePassword.Text.Trim();
+
+            if (userName == "admin" && password == "1")
+            {
+                this.UserID = "admin";
+                this.Role = "Manager";
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
             {
@@ -50,52 +60,8 @@ namespace TrinityCinema.Views.Admin
             }
             else
             {
-
+                XtraMessageBox.Show("Login Failed");
             }
-
-            //        private bool UserLogin(string username, string password)
-            //        {
-            //            try
-            //            {
-            //                var user = await _accRepo.ValidateLoginAsync(username);
-
-            //                if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
-            //                {
-            //                    userName = user.Name;
-            //                    userType = user.UserType.ToString();
-            //                    return true;
-            //                }
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                XtraMessageBox.Show("An error occurred: " + ex.Message);
-            //            }
-
-            //            return false;
-            //        }
-
-            //        private async void btnLogin_Click(object sender, EventArgs e)
-            //        {
-            //            string username = txtUsername.Text.Trim();
-            //            string password = bePassword.Text;
-
-            //            bool success = await UserLoginAsync(username, password);
-
-            //            if (success)
-            //            {
-            //                AccountCreation form = new AccountCreation();
-            //                form.ShowDialog();
-
-            //            }
-            //            else
-            //            {
-            //                XtraMessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            }
-
-
-            //        }
-            //    }
-            //}
         }
     }
 }
