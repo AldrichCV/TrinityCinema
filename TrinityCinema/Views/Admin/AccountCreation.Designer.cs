@@ -266,7 +266,7 @@
             this.groupControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.ShowCaption = false;
-            this.groupControl1.Size = new System.Drawing.Size(506, 568);
+            this.groupControl1.Size = new System.Drawing.Size(836, 533);
             this.groupControl1.TabIndex = 18;
             this.groupControl1.Text = "groupControl1";
             // 
@@ -274,7 +274,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 568);
+            this.ClientSize = new System.Drawing.Size(836, 533);
             this.Controls.Add(this.groupControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AccountCreation";

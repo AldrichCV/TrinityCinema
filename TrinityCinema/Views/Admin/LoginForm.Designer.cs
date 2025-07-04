@@ -68,7 +68,7 @@
             this.btnLogin.Appearance.Options.UseBackColor = true;
             this.btnLogin.Appearance.Options.UseFont = true;
             this.btnLogin.Appearance.Options.UseForeColor = true;
-            this.btnLogin.Location = new System.Drawing.Point(101, 420);
+            this.btnLogin.Location = new System.Drawing.Point(95, 429);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;

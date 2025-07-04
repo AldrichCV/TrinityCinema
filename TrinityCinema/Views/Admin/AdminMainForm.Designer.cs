@@ -32,6 +32,8 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
@@ -45,7 +47,9 @@
             // actionTile
             // 
             this.actionTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Brown;
+            this.actionTile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.actionTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.actionTile.AppearanceItem.Normal.Options.UseFont = true;
             this.actionTile.BackColor = System.Drawing.Color.Brown;
             this.actionTile.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.OutAnimation;
             this.actionTile.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -60,9 +64,9 @@
             this.actionTile.MaxId = 10;
             this.actionTile.Name = "actionTile";
             this.actionTile.Padding = new System.Windows.Forms.Padding(0);
-            this.actionTile.Position = 120;
+            this.actionTile.Position = 60;
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
-            this.actionTile.Size = new System.Drawing.Size(1213, 164);
+            this.actionTile.Size = new System.Drawing.Size(1213, 179);
             this.actionTile.TabIndex = 0;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -81,7 +85,12 @@
             this.personnelTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.personnelTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.personnelTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.Text = "tileBarItem1";
+            tileItemElement1.Appearance.Disabled.BackColor = System.Drawing.Color.Transparent;
+            tileItemElement1.Appearance.Disabled.ForeColor = System.Drawing.Color.Transparent;
+            tileItemElement1.Appearance.Disabled.Options.UseBackColor = true;
+            tileItemElement1.Appearance.Disabled.Options.UseForeColor = true;
+            tileItemElement1.Text = "Users";
+            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             this.personnelTile.Elements.Add(tileItemElement1);
             this.personnelTile.Id = 6;
             this.personnelTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -93,7 +102,8 @@
             this.movieTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.movieTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.movieTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement2.Text = "tileBarItem2";
+            tileItemElement2.Text = "Movies";
+            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             this.movieTile.Elements.Add(tileItemElement2);
             this.movieTile.Id = 7;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -105,8 +115,17 @@
             this.tileBarItem3.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.tileBarItem3.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem3.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement3.Text = "tileBarItem3";
+            tileItemElement3.Text = "Seats";
+            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement4.AnchorAlignment = DevExpress.Utils.AnchorAlignment.Top;
+            tileItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual;
+            tileItemElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
+            tileItemElement4.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
+            tileItemElement4.ImageOptions.SvgImageSize = new System.Drawing.Size(50, 50);
+            tileItemElement4.Text = "";
+            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft;
             this.tileBarItem3.Elements.Add(tileItemElement3);
+            this.tileBarItem3.Elements.Add(tileItemElement4);
             this.tileBarItem3.Id = 8;
             this.tileBarItem3.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem3.Name = "tileBarItem3";
@@ -116,8 +135,9 @@
             this.tileBarItem4.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.tileBarItem4.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileBarItem4.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement4.Text = "tileBarItem4";
-            this.tileBarItem4.Elements.Add(tileItemElement4);
+            tileItemElement5.Text = "Tickets";
+            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.tileBarItem4.Elements.Add(tileItemElement5);
             this.tileBarItem4.Id = 9;
             this.tileBarItem4.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.tileBarItem4.Name = "tileBarItem4";
@@ -128,11 +148,11 @@
             this.gcHome.Appearance.Options.UseBackColor = true;
             this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcHome.Location = new System.Drawing.Point(0, 164);
+            this.gcHome.Location = new System.Drawing.Point(0, 179);
             this.gcHome.Margin = new System.Windows.Forms.Padding(0);
             this.gcHome.Name = "gcHome";
             this.gcHome.ShowCaption = false;
-            this.gcHome.Size = new System.Drawing.Size(1213, 606);
+            this.gcHome.Size = new System.Drawing.Size(1213, 591);
             this.gcHome.TabIndex = 1;
             this.gcHome.Text = "groupControl1";
             // 
