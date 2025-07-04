@@ -21,36 +21,37 @@ namespace TrinityCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //var userID = string.Empty;  
-            //Application.Run(new AdminMainForm(userID));
-            using (var loginForm = new LoginForm())
-            {
-                var result = loginForm.ShowDialog();
+            var userID = string.Empty;
+            Application.Run(new AdminMainForm(userID));
+            //    using (var loginForm = new LoginForm())
+            //    {
+            //        var result = loginForm.ShowDialog();
 
-                if (result == DialogResult.OK) // You have to set this on successful login
-                {
-                    // After loginAdmin closes, retrieve staffID and role from it
-                    string userID = loginForm.UserID;
-                    string role = loginForm.Role;
+            //        if (result == DialogResult.OK) // You have to set this on successful login
+            //        {
+            //            // After loginAdmin closes, retrieve staffID and role from it
+            //            string userID = loginForm.UserID;
+            //            string role = loginForm.Role;
 
-                    Form nextForm;
+            //            Form nextForm;
 
-                    if (role == "Manager")
-                        nextForm = new AdminMainForm(userID);
-                    else if (role == "Staff")
-                        nextForm = new StaffMainForm(userID);
-                    else
-                        return; // Unknown role, exit app
+            //            if (role == "Manager")
+            //                nextForm = new AdminMainForm(userID);
+            //            else if (role == "Staff")
+            //                nextForm = new StaffMainForm(userID);
+            //            else
+            //                return; // Unknown role, exit app
 
-                    Application.Run(nextForm);
-                }
-                else
-                {
-                    // Login cancelled or failed, exit app
-                    return;
-                }
-            }
+            //            Application.Run(nextForm);
+            //        }
+            //        else
+            //        {
+            //            // Login cancelled or failed, exit app
+            //            return;
+            //        }
+            //    }
+            //}
+
         }
-
     }
-    }
+}

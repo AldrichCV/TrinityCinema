@@ -9,17 +9,16 @@ namespace TrinityCinema.Models
     public class GlobalSettings
     {
         //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
-        //public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
-        public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
+        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
+        //public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
 
         #region AccountsSQL
 
         #region Select Queries
-        public static string loginQuery = @"SELECT s.position, a.staffID
-                                        FROM [InventoryDB].[dbo].[Account] a
-                                        LEFT JOIN [InventoryDB].[dbo].[Staff] s ON a.staffID = s.staffID
-                                        WHERE a.userName = @User 
-                                        AND a.userPassword = @Password";
+        public static string loginQuery = @"SELECT s.Role, a.UserID
+                                        FROM [Users] 
+                                        WHERE UserName = @User 
+                                        AND PasswordHash = @Password";
 
 
         public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";

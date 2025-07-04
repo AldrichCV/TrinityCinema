@@ -26,12 +26,12 @@ namespace TrinityCinema.Models
             using (var sql = new SqlConnection(connectionString))
             {
                 // Adjusted query to only fetch by username
-                string query = "SELECT PasswordHash, Role, UserID FROM Users WHERE Username = @User";
+                string query = "SELECT PasswordHash, Role, UserID FROM Users WHERE Username = @Username";
 
                 sql.Open();
                 using (var cmd = new SqlCommand(query, sql))
                 {
-                    cmd.Parameters.AddWithValue("@User", userName);
+                    cmd.Parameters.AddWithValue("@Username", userName);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -42,8 +42,8 @@ namespace TrinityCinema.Models
                             if (storedHash != null && BCrypt.Net.BCrypt.Verify(password, storedHash))
                             {
                                 string role = reader["Role"]?.ToString();
-                                string staffID = reader["UserID"]?.ToString();
-                                return (role, staffID);
+                                string userID = reader["UserID"]?.ToString();
+                                return (role, userID);
                             }
                         }
                     }
