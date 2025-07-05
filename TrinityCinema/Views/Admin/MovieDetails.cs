@@ -32,11 +32,11 @@ namespace TrinityCinema.Views.Admin
 
         private void LoadGenre()
         {
-            AllMethods.LoadLookupData<Genre>(
-            leGenre,
-            "SELECT * FROM Genre",
-            GlobalSettings.connectionString
-        );
+            AllMethods.LoadCheckedComboBoxData<Genre>(
+                leGenre,
+                "SELECT GenreID, GenreName FROM Genre",
+                GlobalSettings.connectionString
+            );
         }
 
         private void MovieDetails_Load(object sender, EventArgs e)
@@ -47,6 +47,8 @@ namespace TrinityCinema.Views.Admin
             teDuration.Properties.ReadOnly = true;
             btnBrowse.Enabled = false;
             isInitializing = false;
+
+
 
         }
 
@@ -74,12 +76,12 @@ namespace TrinityCinema.Views.Admin
 
         private void SaveMovieChanges()
         {
+
             if (XtraMessageBox.Show("Update movie?", "Confirm",
-                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
             if (string.IsNullOrWhiteSpace(teTitle.Text))
-
             {
                 XtraMessageBox.Show("Please fill up all required fields!", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -89,32 +91,89 @@ namespace TrinityCinema.Views.Admin
             {
                 imageData = existingImageData;
             }
-            // Safely get duration as TimeSpan
+
             TimeSpan duration = TimeSpan.Zero;
             if (teDuration.EditValue is DateTime dt)
                 duration = dt.TimeOfDay;
             else if (teDuration.EditValue != null)
                 TimeSpan.TryParse(teDuration.EditValue.ToString(), out duration);
 
+            string checkedValues = leGenre.EditValue as string;
+
+            if (string.IsNullOrWhiteSpace(checkedValues))
+            {
+                MessageBox.Show("Please select at least one genre.");
+                return;
+            }
+
+            List<int> genreIDs = new List<int>();
+            foreach (var genreIdStr in checkedValues.Split(','))
+            {
+                if (int.TryParse(genreIdStr.Trim(), out int genreID))
+                {
+                    genreIDs.Add(genreID);
+                }
+                else
+                {
+                    MessageBox.Show($"Invalid genre selected: {genreIdStr}");
+                    return;
+                }
+            }
+
             var parameters = new
             {
                 movieID,
                 Title = teTitle.Text,
                 Description = meDescription.Text,
-                Genre = Convert.ToInt32(leGenre.EditValue),
                 Duration = duration,
                 Status = beStatus.IsOn,
                 MoviePoster = imageData
             };
-            var columns = new List<string>
-                {
-                    "Title", "Description", "Genre", "Duration", "Status","MoviePoster"
-                };
 
-            if (!new AllMethods().UpdateRecord("Movies", parameters, columns, "movieID"))
+            var columns = new List<string>
+            {
+                "Title",
+                "Description",
+                "Duration",
+                "Status",
+                "MoviePoster"
+            };
+
+            var db = new AllMethods();
+
+            // Update main movie record
+            if (!db.UpdateRecord("Movies", parameters, columns, "movieID"))
             {
                 XtraMessageBox.Show("Update failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            // --- Junction table update without ExecuteNonQuery ---
+            // Step 1: Delete all existing genre links for the movie
+
+            bool deleteSuccess = db.RemoveRecordByKey("MovieID", movieID.ToString(), new List<string> { "MovieGenres" }, GlobalSettings.connectionString);
+
+            if (!deleteSuccess)
+            {
+                XtraMessageBox.Show("Failed to clear existing genres!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 2: Insert new genre links one by one
+            foreach (int genreID in genreIDs)
+            {
+                var genreLinkParams = new
+                {
+                    MovieID = movieID,
+                    GenreID = genreID
+                };
+
+                bool insertSuccess = db.InsertMovieGenre(movieID, genreID);
+                if (!insertSuccess)
+                {
+                    XtraMessageBox.Show($"Failed to insert genre ID {genreID}!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             XtraMessageBox.Show("Movie updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -122,32 +181,6 @@ namespace TrinityCinema.Views.Admin
             this.Close();
 
             AllMethods.RefreshManagerHome(mh => new MoviesControl(mh));
-        }
-
-        private void btnBrowse_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png;";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        pePosterImage.Image = Image.FromFile(openFileDialog.FileName);
-                        pePosterImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            pePosterImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // You can use other image formats
-                            imageData = ms.ToArray();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        XtraMessageBox.Show("Error: " + ex.Message, "Error Loading Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
         }
 
         private void beStatus_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
@@ -186,6 +219,33 @@ namespace TrinityCinema.Views.Admin
             }
 
             AllMethods.RefreshManagerHome(mh => new MoviesControl(mh));
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png;";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        pePosterImage.Image = Image.FromFile(openFileDialog.FileName);
+                        pePosterImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            pePosterImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // You can use other image formats
+                            imageData = ms.ToArray();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("Error: " + ex.Message, "Error Loading Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
         }
     }
 }

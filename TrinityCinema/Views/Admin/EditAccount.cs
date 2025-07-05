@@ -73,7 +73,7 @@ namespace TrinityCinema.Views.Admin
             }
 
             // Perform deletion
-            AllMethods.RemoveRecordByKey(
+            a.RemoveRecordByKey(
                 primaryKeyColumn: "UserID",
                 primaryKeyValue: accountID,
                 tablesToDeleteFrom: new List<string> { "Users" },

@@ -164,7 +164,7 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            AllMethods.RemoveRecordByKey(
+           a.RemoveRecordByKey(
                 primaryKeyColumn: "MovieID",
                 primaryKeyValue: movieID,
                 tablesToDeleteFrom: new List<string> { "Movies" },

@@ -48,7 +48,6 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             this.Title = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.MovieID = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            this.Genre = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.MoviePoster = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Status = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Action = new DevExpress.XtraGrid.Columns.TileViewColumn();
@@ -58,6 +57,7 @@
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.Genre = new DevExpress.XtraGrid.Columns.TileViewColumn();
             ((System.ComponentModel.ISupportInitialize)(this.viewDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcMovies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvMovieView)).BeginInit();
@@ -81,22 +81,13 @@
             this.MovieID.VisibleIndex = 0;
             this.MovieID.Width = 94;
             // 
-            // Genre
-            // 
-            this.Genre.FieldName = "GenreName";
-            this.Genre.MinWidth = 25;
-            this.Genre.Name = "Genre";
-            this.Genre.Visible = true;
-            this.Genre.VisibleIndex = 2;
-            this.Genre.Width = 94;
-            // 
             // MoviePoster
             // 
             this.MoviePoster.FieldName = "MoviePoster";
             this.MoviePoster.MinWidth = 25;
             this.MoviePoster.Name = "MoviePoster";
             this.MoviePoster.Visible = true;
-            this.MoviePoster.VisibleIndex = 5;
+            this.MoviePoster.VisibleIndex = 4;
             this.MoviePoster.Width = 94;
             // 
             // Status
@@ -105,7 +96,7 @@
             this.Status.MinWidth = 25;
             this.Status.Name = "Status";
             this.Status.Visible = true;
-            this.Status.VisibleIndex = 4;
+            this.Status.VisibleIndex = 3;
             this.Status.Width = 94;
             // 
             // Action
@@ -117,7 +108,7 @@
             this.Action.Name = "Action";
             this.Action.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.Action.Visible = true;
-            this.Action.VisibleIndex = 3;
+            this.Action.VisibleIndex = 2;
             this.Action.Width = 94;
             // 
             // viewDetails
@@ -154,15 +145,17 @@
             this.tvMovieView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.MovieID,
             this.Title,
-            this.Genre,
             this.Action,
             this.Status,
-            this.MoviePoster});
+            this.MoviePoster,
+            this.Genre});
             this.tvMovieView.DetailHeight = 431;
             this.tvMovieView.GridControl = this.gcMovies;
             this.tvMovieView.Name = "tvMovieView";
-            this.tvMovieView.OptionsTiles.ItemSize = new System.Drawing.Size(564, 430);
-            this.tvMovieView.OptionsTiles.LayoutMode = DevExpress.XtraGrid.Views.Tile.TileViewLayoutMode.Kanban;
+            this.tvMovieView.OptionsTiles.IndentBetweenGroups = 28;
+            this.tvMovieView.OptionsTiles.IndentBetweenItems = 12;
+            this.tvMovieView.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(23);
+            this.tvMovieView.OptionsTiles.ItemSize = new System.Drawing.Size(430, 372);
             this.tvMovieView.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tvMovieView.OptionsTiles.RowCount = 0;
             this.tvMovieView.OptionsTiles.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Top;
@@ -178,7 +171,7 @@
             this.tvMovieView.TileRows.Add(tableRowDefinition3);
             tableSpan1.RowSpan = 3;
             this.tvMovieView.TileSpans.Add(tableSpan1);
-            tileViewItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            tileViewItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             tileViewItemElement1.Appearance.Normal.Options.UseFont = true;
             tileViewItemElement1.Column = this.Title;
             tileViewItemElement1.ColumnIndex = 1;
@@ -195,29 +188,27 @@
             tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement2.Text = "MovieID";
             tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
-            tileViewItemElement3.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
-            tileViewItemElement3.Appearance.Normal.Options.UseFont = true;
-            tileViewItemElement3.Column = this.Genre;
-            tileViewItemElement3.ColumnIndex = 1;
+            tileViewItemElement3.Column = this.MoviePoster;
             tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement3.RowIndex = 1;
-            tileViewItemElement3.Text = "Genre";
-            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            tileViewItemElement4.Column = this.MoviePoster;
+            tileViewItemElement3.Text = "MoviePoster";
+            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
+            tileViewItemElement4.Appearance.Normal.Options.UseFont = true;
+            tileViewItemElement4.Column = this.Status;
+            tileViewItemElement4.ColumnIndex = 1;
             tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement4.Text = "MoviePoster";
+            tileViewItemElement4.RowIndex = 2;
+            tileViewItemElement4.Text = "Status";
             tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement5.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
-            tileViewItemElement5.Appearance.Normal.Options.UseFont = true;
-            tileViewItemElement5.Column = this.Status;
+            tileViewItemElement5.Column = this.Genre;
             tileViewItemElement5.ColumnIndex = 1;
             tileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement5.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement5.RowIndex = 2;
-            tileViewItemElement5.Text = "Status";
-            tileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
+            tileViewItemElement5.RowIndex = 1;
+            tileViewItemElement5.Text = "Genre";
+            tileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
             this.tvMovieView.TileTemplate.Add(tileViewItemElement1);
             this.tvMovieView.TileTemplate.Add(tileViewItemElement2);
             this.tvMovieView.TileTemplate.Add(tileViewItemElement3);
@@ -276,6 +267,15 @@
             this.movieTile.Name = "movieTile";
             this.movieTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.movieTile_ItemClick);
             // 
+            // Genre
+            // 
+            this.Genre.FieldName = "GenreName";
+            this.Genre.MinWidth = 25;
+            this.Genre.Name = "Genre";
+            this.Genre.Visible = true;
+            this.Genre.VisibleIndex = 5;
+            this.Genre.Width = 94;
+            // 
             // MoviesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -297,7 +297,6 @@
         public DevExpress.XtraGrid.Views.Tile.TileView tvMovieView;
         private DevExpress.XtraGrid.Columns.TileViewColumn MovieID;
         private DevExpress.XtraGrid.Columns.TileViewColumn Title;
-        private DevExpress.XtraGrid.Columns.TileViewColumn Genre;
         private DevExpress.XtraGrid.Columns.TileViewColumn Action;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit viewDetails;
         private DevExpress.XtraGrid.Columns.TileViewColumn Status;
@@ -305,5 +304,6 @@
         private DevExpress.XtraBars.Navigation.TileBar actionTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem movieTile;
+        private DevExpress.XtraGrid.Columns.TileViewColumn Genre;
     }
 }

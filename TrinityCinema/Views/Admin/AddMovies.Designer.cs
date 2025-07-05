@@ -32,43 +32,43 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.teTitle = new DevExpress.XtraEditors.TextEdit();
             this.meDescription = new DevExpress.XtraEditors.MemoEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.Title = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Genre = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Description = new DevExpress.XtraLayout.LayoutControlItem();
             this.pePosterImage = new DevExpress.XtraEditors.PictureEdit();
-            this.peImage = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Duration = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Status = new DevExpress.XtraLayout.LayoutControlItem();
             this.beStatus = new DevExpress.XtraEditors.ToggleSwitch();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.teDuration = new DevExpress.XtraEditors.TimeEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.Title = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Description = new DevExpress.XtraLayout.LayoutControlItem();
+            this.peImage = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Genre = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Duration = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Status = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
-            this.leGenre = new DevExpress.XtraEditors.LookUpEdit();
-            this.teDuration = new DevExpress.XtraEditors.TimeEdit();
+            this.leGenre = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meDescription.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Title)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Genre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Description)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePosterImage.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.peImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Duration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Status)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.beStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Title)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Description)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Genre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Duration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Status)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -93,8 +93,8 @@
             this.layoutControl1.Controls.Add(this.btnBrowse);
             this.layoutControl1.Controls.Add(this.beStatus);
             this.layoutControl1.Controls.Add(this.groupControl2);
-            this.layoutControl1.Controls.Add(this.leGenre);
             this.layoutControl1.Controls.Add(this.teDuration);
+            this.layoutControl1.Controls.Add(this.leGenre);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(30, 30);
             this.layoutControl1.Name = "layoutControl1";
@@ -120,6 +120,61 @@
             this.meDescription.Size = new System.Drawing.Size(515, 328);
             this.meDescription.StyleController = this.layoutControl1;
             this.meDescription.TabIndex = 4;
+            // 
+            // pePosterImage
+            // 
+            this.pePosterImage.Location = new System.Drawing.Point(603, 3);
+            this.pePosterImage.Name = "pePosterImage";
+            this.pePosterImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pePosterImage.Size = new System.Drawing.Size(483, 536);
+            this.pePosterImage.StyleController = this.layoutControl1;
+            this.pePosterImage.TabIndex = 7;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(610, 552);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(469, 39);
+            this.btnBrowse.StyleController = this.layoutControl1;
+            this.btnBrowse.TabIndex = 8;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
+            // 
+            // beStatus
+            // 
+            this.beStatus.EditValue = null;
+            this.beStatus.Location = new System.Drawing.Point(290, 518);
+            this.beStatus.Name = "beStatus";
+            this.beStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+            this.beStatus.Properties.ContentAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.beStatus.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.beStatus.Properties.OffText = "Off";
+            this.beStatus.Properties.OnText = "On";
+            this.beStatus.Size = new System.Drawing.Size(300, 29);
+            this.beStatus.StyleController = this.layoutControl1;
+            this.beStatus.TabIndex = 9;
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Location = new System.Drawing.Point(3, 669);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(1110, 46);
+            this.groupControl2.TabIndex = 2;
+            this.groupControl2.Text = "groupControl2";
+            // 
+            // teDuration
+            // 
+            this.teDuration.EditValue = null;
+            this.teDuration.Location = new System.Drawing.Point(10, 518);
+            this.teDuration.Name = "teDuration";
+            this.teDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.teDuration.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.teDuration.Properties.MaskSettings.Set("mask", "HH:mm:s");
+            this.teDuration.Properties.UseMaskAsDisplayFormat = true;
+            this.teDuration.Size = new System.Drawing.Size(260, 34);
+            this.teDuration.StyleController = this.layoutControl1;
+            this.teDuration.TabIndex = 9;
             // 
             // Root
             // 
@@ -149,18 +204,6 @@
             this.Title.TextLocation = DevExpress.Utils.Locations.Top;
             this.Title.TextSize = new System.Drawing.Size(48, 16);
             // 
-            // Genre
-            // 
-            this.Genre.Control = this.leGenre;
-            this.Genre.Location = new System.Drawing.Point(0, 76);
-            this.Genre.MinSize = new System.Drawing.Size(50, 25);
-            this.Genre.Name = "Genre";
-            this.Genre.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Genre.Size = new System.Drawing.Size(600, 76);
-            this.Genre.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.Genre.TextLocation = DevExpress.Utils.Locations.Top;
-            this.Genre.TextSize = new System.Drawing.Size(48, 16);
-            // 
             // Description
             // 
             this.Description.AppearanceItemCaption.Options.UseTextOptions = true;
@@ -180,15 +223,6 @@
             this.Description.TextSize = new System.Drawing.Size(63, 16);
             this.Description.TextToControlDistance = 16;
             // 
-            // pePosterImage
-            // 
-            this.pePosterImage.Location = new System.Drawing.Point(603, 3);
-            this.pePosterImage.Name = "pePosterImage";
-            this.pePosterImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pePosterImage.Size = new System.Drawing.Size(483, 536);
-            this.pePosterImage.StyleController = this.layoutControl1;
-            this.pePosterImage.TabIndex = 7;
-            // 
             // peImage
             // 
             this.peImage.Control = this.pePosterImage;
@@ -197,16 +231,6 @@
             this.peImage.Size = new System.Drawing.Size(489, 542);
             this.peImage.TextSize = new System.Drawing.Size(0, 0);
             this.peImage.TextVisible = false;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Location = new System.Drawing.Point(610, 552);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(469, 39);
-            this.btnBrowse.StyleController = this.layoutControl1;
-            this.btnBrowse.TabIndex = 8;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
             // 
             // layoutControlItem1
             // 
@@ -220,6 +244,18 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
+            // Genre
+            // 
+            this.Genre.Control = this.leGenre;
+            this.Genre.Location = new System.Drawing.Point(0, 76);
+            this.Genre.MinSize = new System.Drawing.Size(50, 25);
+            this.Genre.Name = "Genre";
+            this.Genre.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.Genre.Size = new System.Drawing.Size(600, 76);
+            this.Genre.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.Genre.TextLocation = DevExpress.Utils.Locations.Top;
+            this.Genre.TextSize = new System.Drawing.Size(48, 16);
+            // 
             // Duration
             // 
             this.Duration.Control = this.teDuration;
@@ -229,7 +265,6 @@
             this.Duration.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.Duration.Size = new System.Drawing.Size(280, 115);
             this.Duration.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.Duration.Text = "Duration";
             this.Duration.TextLocation = DevExpress.Utils.Locations.Top;
             this.Duration.TextSize = new System.Drawing.Size(48, 16);
             // 
@@ -244,31 +279,8 @@
             this.Status.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
             this.Status.Size = new System.Drawing.Size(320, 115);
             this.Status.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.Status.Text = "Status";
             this.Status.TextLocation = DevExpress.Utils.Locations.Top;
             this.Status.TextSize = new System.Drawing.Size(48, 16);
-            // 
-            // beStatus
-            // 
-            this.beStatus.EditValue = null;
-            this.beStatus.Location = new System.Drawing.Point(290, 518);
-            this.beStatus.Name = "beStatus";
-            this.beStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
-            this.beStatus.Properties.ContentAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.beStatus.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.beStatus.Properties.OffText = "Off";
-            this.beStatus.Properties.OnText = "On";
-            this.beStatus.Size = new System.Drawing.Size(300, 29);
-            this.beStatus.StyleController = this.layoutControl1;
-            this.beStatus.TabIndex = 9;
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Location = new System.Drawing.Point(3, 669);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1110, 46);
-            this.groupControl2.TabIndex = 2;
-            this.groupControl2.Text = "groupControl2";
             // 
             // groupControl3
             // 
@@ -292,34 +304,14 @@
             // 
             // leGenre
             // 
+            this.leGenre.EditValue = "";
             this.leGenre.Location = new System.Drawing.Point(10, 108);
             this.leGenre.Name = "leGenre";
             this.leGenre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.leGenre.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GenreName", "Name2"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GenreID", "Name3", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.leGenre.Properties.DisplayMember = "GenreName";
-            this.leGenre.Properties.NullText = "";
-            this.leGenre.Properties.PopupSizeable = false;
-            this.leGenre.Properties.ValueMember = "GenreID";
             this.leGenre.Size = new System.Drawing.Size(580, 34);
             this.leGenre.StyleController = this.layoutControl1;
             this.leGenre.TabIndex = 5;
-            // 
-            // teDuration
-            // 
-            this.teDuration.EditValue = null;
-            this.teDuration.Location = new System.Drawing.Point(10, 518);
-            this.teDuration.Name = "teDuration";
-            this.teDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.teDuration.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.teDuration.Properties.MaskSettings.Set("mask", "HH:mm:s");
-            this.teDuration.Properties.UseMaskAsDisplayFormat = true;
-            this.teDuration.Size = new System.Drawing.Size(260, 34);
-            this.teDuration.StyleController = this.layoutControl1;
-            this.teDuration.TabIndex = 9;
             // 
             // AddMovies
             // 
@@ -335,21 +327,21 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meDescription.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Title)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Genre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Description)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePosterImage.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.peImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Duration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Status)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.beStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Title)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Description)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Genre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Duration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Status)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -374,7 +366,7 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.SimpleButton btnSubmit;
-        private DevExpress.XtraEditors.LookUpEdit leGenre;
         private DevExpress.XtraEditors.TimeEdit teDuration;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit leGenre;
     }
 }

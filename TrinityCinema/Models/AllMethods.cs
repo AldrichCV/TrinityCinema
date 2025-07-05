@@ -65,6 +65,26 @@ namespace TrinityCinema.Models
             return records.ToList();
         }
 
+        public static void LoadCheckedComboBoxData<T>(CheckedComboBoxEdit control, string query, string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var data = connection.Query<T>(query).ToList();
+
+                control.Properties.Items.Clear();
+
+                foreach (var item in data)
+                {
+                    // Assuming T has GenreID and GenreName properties
+                    var genreID = (int)item.GetType().GetProperty("GenreID").GetValue(item);
+                    var genreName = (string)item.GetType().GetProperty("GenreName").GetValue(item);
+
+                    control.Properties.Items.Add(new CheckedListBoxItem(genreID, genreName, CheckState.Unchecked, true));
+                }
+            }
+        }
+
 
         //Populate LookUpEdits
         public static void LoadLookupData<T>(LookUpEdit control, string query, string connectionString)
@@ -86,6 +106,32 @@ namespace TrinityCinema.Models
                 connection.Execute(query, classAdd);
             }
             // XtraMessageBox.Show("Account details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public bool InsertMovieGenre(string movieID, int genreID)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
+                {
+                    string query = "INSERT INTO MovieGenres (MovieID, GenreID) VALUES (@MovieID, @GenreID)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MovieID", movieID);
+                        cmd.Parameters.AddWithValue("@GenreID", genreID);
+
+                        conn.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Optional: log the error or show a message
+                MessageBox.Show($"Error inserting genre: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         //public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
@@ -186,12 +232,12 @@ namespace TrinityCinema.Models
             }
         }
 
-        public static void RemoveRecordByKey(string primaryKeyColumn, string primaryKeyValue, List<string> tablesToDeleteFrom, string connectionString)
+        public bool RemoveRecordByKey(string primaryKeyColumn, string primaryKeyValue, List<string> tablesToDeleteFrom, string connectionString)
         {
             if (string.IsNullOrWhiteSpace(primaryKeyValue) || tablesToDeleteFrom == null || tablesToDeleteFrom.Count == 0)
             {
                 MessageBox.Show("Invalid input.");
-                return;
+                return false;
             }
 
             var parameters = new Dictionary<string, object> { { primaryKeyColumn, primaryKeyValue } };
@@ -203,9 +249,18 @@ namespace TrinityCinema.Models
             {
                 connection.Open();
                 int rowsAffected = connection.Execute(deleteQuery, parameters);
-                MessageBox.Show(rowsAffected > 0 ? "Record removed successfully." : "No matching record found.");
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("No matching record found.");
+                    return false;
+                }
             }
         }
+
 
         public static void ShowModal<T>(Func<AdminMainForm, T> formFactory) where T : Form
         {

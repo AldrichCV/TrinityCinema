@@ -1,8 +1,11 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -41,23 +44,39 @@ namespace TrinityCinema.Views.Admin
             AllMethods.ShowModal(home => new AddMovies(home));
         }
 
+        public List<Genre> GetAllGenres()
+        {
+            using (var connection = new SqlConnection(GlobalSettings.connectionString))
+            {
+                string sql = "SELECT GenreID, GenreName FROM Genre";
+                return connection.Query<Genre>(sql).ToList();
+            }
+        }
+
         private void tvMovieView_ItemDoubleClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
         {
 
             var movieID = tvMovieView.GetRowCellValue(e.Item.RowHandle, "MovieID")?.ToString();
 
+            if (string.IsNullOrWhiteSpace(movieID))
+            {
+                MessageBox.Show("Invalid movie selection.");
+                return;
+            }
+
             AllMethods.ShowModal(home =>
             {
                 MovieDetails details = new MovieDetails(home, movieID);
 
-                // Prepare query and parameters
-                string query = @"SELECT * FROM [dbo].[Movies] WHERE MovieID = @MovieID";
-                var parameters = new { movieID };
+                string where = " WHERE m.MovieID = @MovieID";
+                string query = GlobalSettings.getMovie + where;
+                var parameters = new { MovieID = movieID };
+
                 List<string> columns = new List<string>
         {
             "MovieID",
             "Title",
-            "Genre",
+            "GenreName",     // aggregated genre names like "Action, Comedy"
             "Description",
             "Duration",
             "Status",
@@ -68,23 +87,41 @@ namespace TrinityCinema.Views.Admin
 
                 if (record != null)
                 {
-                    // Populate fields
+                    // ✅ Set base text fields
                     details.teTitle.Text = record["Title"];
-                    details.leGenre.EditValue = record["Genre"];
                     details.meDescription.Text = record["Description"];
                     details.teDuration.EditValue = record["Duration"];
                     details.beStatus.IsOn = record["Status"] == "1";
 
-                    if (!string.IsNullOrEmpty(record["MoviePoster"]))
+                    string[] genres = record["GenreName"].Split(',');
+
+                    foreach (CheckedListBoxItem item in details.leGenre.Properties.Items)
                     {
-                        byte[] imageBytes = Convert.FromBase64String(record["MoviePoster"]);
-                        using (MemoryStream ms = new MemoryStream(imageBytes))
-                        {
-                            details.pePosterImage.Image = Image.FromStream(ms);
-                        }
-                        details.existingImageData = imageBytes;
+                        item.CheckState = genres.Any(g => g.Trim() == item.Description)
+                            ? CheckState.Checked
+                            : CheckState.Unchecked;
                     }
 
+
+
+
+                    // ✅ Handle poster
+                    if (!string.IsNullOrEmpty(record["MoviePoster"]))
+                    {
+                        try
+                        {
+                            byte[] imageBytes = Convert.FromBase64String(record["MoviePoster"]);
+                            using (MemoryStream ms = new MemoryStream(imageBytes))
+                            {
+                                details.pePosterImage.Image = Image.FromStream(ms);
+                            }
+                            details.existingImageData = imageBytes;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Failed to load movie poster image.");
+                        }
+                    }
                 }
                 else
                 {
