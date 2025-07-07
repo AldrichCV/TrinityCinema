@@ -175,6 +175,18 @@
     <Compile Include="Views\Admin\TheaterInfo.Designer.cs">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Staff\ChooseSeatLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\ChooseSeatLayout.Designer.cs">
+      <DependentUpon>ChooseSeatLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\ShowtimeMovies.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\ShowtimeMovies.Designer.cs">
+      <DependentUpon>ShowtimeMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Staff\StaffMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +244,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\TheaterInfo.resx">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\ChooseSeatLayout.resx">
+      <DependentUpon>ChooseSeatLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\ShowtimeMovies.resx">
+      <DependentUpon>ShowtimeMovies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\StaffMainForm.resx">
       <DependentUpon>StaffMainForm.cs</DependentUpon>

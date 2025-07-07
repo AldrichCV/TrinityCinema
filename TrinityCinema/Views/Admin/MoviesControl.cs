@@ -44,15 +44,6 @@ namespace TrinityCinema.Views.Admin
             AllMethods.ShowModal(home => new AddMovies(home));
         }
 
-        public List<Genre> GetAllGenres()
-        {
-            using (var connection = new SqlConnection(GlobalSettings.connectionString))
-            {
-                string sql = "SELECT GenreID, GenreName FROM Genre";
-                return connection.Query<Genre>(sql).ToList();
-            }
-        }
-
         private void tvMovieView_ItemDoubleClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
         {
 
@@ -73,15 +64,15 @@ namespace TrinityCinema.Views.Admin
                 var parameters = new { MovieID = movieID };
 
                 List<string> columns = new List<string>
-        {
-            "MovieID",
-            "Title",
-            "GenreName",     // aggregated genre names like "Action, Comedy"
-            "Description",
-            "Duration",
-            "Status",
-            "MoviePoster"
-        };
+                {
+                    "MovieID",
+                    "Title",
+                    "GenreName",     // aggregated genre names like "Action, Comedy"
+                    "Description",
+                    "Duration",
+                    "Status",
+                    "MoviePoster"
+                };
 
                 Dictionary<string, string> record = a.GetRecordById(query, parameters, columns);
 
@@ -101,9 +92,6 @@ namespace TrinityCinema.Views.Admin
                             ? CheckState.Checked
                             : CheckState.Unchecked;
                     }
-
-
-
 
                     // ✅ Handle poster
                     if (!string.IsNullOrEmpty(record["MoviePoster"]))
