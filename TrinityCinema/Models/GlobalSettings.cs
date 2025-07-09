@@ -40,7 +40,25 @@ namespace TrinityCinema.Models
                                       ON g.GenreID = m.Genre
                                     ";
         public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
+
         public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
+
+        public static string getShowtime = @"SELECT s.[ShowtimeID]
+                                          ,s.[MovieID]
+                                          ,m.[Title]
+                                          ,s.[Theater]
+                                          ,t.[TheaterName]
+                                          ,s.[Price]
+                                          ,s.[ShowDate]
+                                          ,s.[StartTime]
+                                          ,CASE
+                                          WHEN s.Status = 1
+                                          THEN 'Active'
+                                          ELSE 'Inactive'
+                                          END AS StatusDisplay
+                                      FROM [CinemaDB].[dbo].[Showtimes] s
+                                      LEFT JOIN Movies m ON m.MovieID = s.MovieID
+                                      LEFT JOIN Theaters t ON t.TheaterID = s.Theater";
 
 
         #endregion
@@ -94,7 +112,24 @@ namespace TrinityCinema.Models
                                            (@TheaterName
                                            ,@SeatCapacity)";
 
-
+        public static string insertShowtimeQuery = @"INSERT INTO [dbo].[Showtimes]
+                                           ([MovieID]
+                                           
+                                          
+                                           ,[Price]
+                                           ,[ShowDate]
+                                           ,[StartTime]
+                                           ,[Theater]
+                                           ,[Status])
+                                     VALUES
+                                           (@MovieID
+                                                             
+                                           
+                                           ,@Price
+                                           ,@ShowDate
+                                           ,@StartTime
+                                           ,@Theater
+                                           ,@Status)";
 
 
         #endregion

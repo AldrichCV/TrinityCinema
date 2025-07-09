@@ -17,6 +17,7 @@ namespace TrinityCinema.Views.Admin
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
         private byte[] imageData;
+
         public MoviesControl(AdminMainForm adminMainForm)
         {
             InitializeComponent();

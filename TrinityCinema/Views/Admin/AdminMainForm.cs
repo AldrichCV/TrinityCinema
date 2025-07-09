@@ -48,6 +48,14 @@ namespace TrinityCinema.Views.Admin
             theaterControl.Show();
         }
 
-        
+        private void showtimeTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            ShowtimeControl showtimeControl = new ShowtimeControl(this);
+            gcHome.Controls.Add(showtimeControl);
+            showtimeControl.Dock = DockStyle.Fill;
+            showtimeControl.Show();
+
+        }
     }
 }
