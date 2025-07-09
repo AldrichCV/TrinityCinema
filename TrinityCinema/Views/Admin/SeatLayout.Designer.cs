@@ -117,6 +117,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Appearance.BackColor = System.Drawing.Color.DarkRed;
+            this.groupControl2.Appearance.Options.UseBackColor = true;
             this.groupControl2.Controls.Add(this.panelSeats);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(0, 0);

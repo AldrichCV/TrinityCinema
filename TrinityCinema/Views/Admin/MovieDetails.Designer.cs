@@ -73,6 +73,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Appearance.BackColor = System.Drawing.Color.DarkRed;
+            this.groupControl1.Appearance.Options.UseBackColor = true;
             this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl1.Controls.Add(this.layoutControl1);
             this.groupControl1.Controls.Add(this.groupControl3);
@@ -115,9 +117,9 @@
             // 
             // meDescription
             // 
-            this.meDescription.Location = new System.Drawing.Point(82, 155);
+            this.meDescription.Location = new System.Drawing.Point(82, 150);
             this.meDescription.Name = "meDescription";
-            this.meDescription.Size = new System.Drawing.Size(515, 328);
+            this.meDescription.Size = new System.Drawing.Size(515, 333);
             this.meDescription.StyleController = this.layoutControl1;
             this.meDescription.TabIndex = 4;
             // 
@@ -127,15 +129,15 @@
             this.pePosterImage.Name = "pePosterImage";
             this.pePosterImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pePosterImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-            this.pePosterImage.Size = new System.Drawing.Size(483, 536);
+            this.pePosterImage.Size = new System.Drawing.Size(483, 504);
             this.pePosterImage.StyleController = this.layoutControl1;
             this.pePosterImage.TabIndex = 7;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(610, 552);
+            this.btnBrowse.Location = new System.Drawing.Point(610, 520);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(469, 39);
+            this.btnBrowse.Size = new System.Drawing.Size(469, 71);
             this.btnBrowse.StyleController = this.layoutControl1;
             this.btnBrowse.TabIndex = 8;
             this.btnBrowse.Text = "Browse";
@@ -146,6 +148,8 @@
             this.beStatus.EditValue = null;
             this.beStatus.Location = new System.Drawing.Point(290, 518);
             this.beStatus.Name = "beStatus";
+            this.beStatus.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.beStatus.Properties.Appearance.Options.UseForeColor = true;
             this.beStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.beStatus.Properties.ContentAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.beStatus.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -213,6 +217,8 @@
             // 
             // Title
             // 
+            this.Title.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Title.AppearanceItemCaption.Options.UseForeColor = true;
             this.Title.Control = this.teTitle;
             this.Title.Location = new System.Drawing.Point(0, 0);
             this.Title.MinSize = new System.Drawing.Size(128, 76);
@@ -225,18 +231,20 @@
             // 
             // Description
             // 
+            this.Description.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Description.AppearanceItemCaption.Options.UseForeColor = true;
             this.Description.AppearanceItemCaption.Options.UseTextOptions = true;
             this.Description.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Description.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.Description.Control = this.meDescription;
             this.Description.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.Description.CustomizationFormText = "Description";
-            this.Description.Location = new System.Drawing.Point(0, 152);
+            this.Description.Location = new System.Drawing.Point(0, 147);
             this.Description.MinSize = new System.Drawing.Size(97, 40);
             this.Description.Name = "Description";
             this.Description.OptionsCustomization.AllowDrag = DevExpress.XtraLayout.ItemDragDropMode.Allow;
             this.Description.OptionsCustomization.AllowDrop = DevExpress.XtraLayout.ItemDragDropMode.Allow;
-            this.Description.Size = new System.Drawing.Size(600, 334);
+            this.Description.Size = new System.Drawing.Size(600, 339);
             this.Description.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Description.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.Description.TextSize = new System.Drawing.Size(63, 16);
@@ -247,36 +255,40 @@
             this.peImage.Control = this.pePosterImage;
             this.peImage.Location = new System.Drawing.Point(600, 0);
             this.peImage.Name = "peImage";
-            this.peImage.Size = new System.Drawing.Size(489, 542);
+            this.peImage.Size = new System.Drawing.Size(489, 510);
             this.peImage.TextSize = new System.Drawing.Size(0, 0);
             this.peImage.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnBrowse;
-            this.layoutControlItem1.Location = new System.Drawing.Point(600, 542);
+            this.layoutControlItem1.Location = new System.Drawing.Point(600, 510);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(57, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(489, 59);
+            this.layoutControlItem1.Size = new System.Drawing.Size(489, 91);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // Genre
             // 
+            this.Genre.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Genre.AppearanceItemCaption.Options.UseForeColor = true;
             this.Genre.Control = this.leGenre;
             this.Genre.Location = new System.Drawing.Point(0, 76);
             this.Genre.MinSize = new System.Drawing.Size(50, 25);
             this.Genre.Name = "Genre";
             this.Genre.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Genre.Size = new System.Drawing.Size(600, 76);
+            this.Genre.Size = new System.Drawing.Size(600, 71);
             this.Genre.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Genre.TextLocation = DevExpress.Utils.Locations.Top;
             this.Genre.TextSize = new System.Drawing.Size(48, 16);
             // 
             // Duration
             // 
+            this.Duration.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Duration.AppearanceItemCaption.Options.UseForeColor = true;
             this.Duration.Control = this.teDuration;
             this.Duration.Location = new System.Drawing.Point(0, 486);
             this.Duration.MinSize = new System.Drawing.Size(50, 25);
@@ -289,6 +301,8 @@
             // 
             // Status
             // 
+            this.Status.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Status.AppearanceItemCaption.Options.UseForeColor = true;
             this.Status.Control = this.beStatus;
             this.Status.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.Status.CustomizationFormText = "layoutControlItem2";
@@ -314,10 +328,10 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(1009, 6);
+            this.btnEdit.Location = new System.Drawing.Point(914, 6);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(10);
-            this.btnEdit.Size = new System.Drawing.Size(75, 56);
+            this.btnEdit.Size = new System.Drawing.Size(170, 56);
             this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -328,6 +342,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 728);
             this.Controls.Add(this.groupControl1);
+            this.IconOptions.SvgImage = global::TrinityCinema.Properties.Resources.bo_role;
             this.Name = "MovieDetails";
             this.Text = "MovieDetails";
             this.Load += new System.EventHandler(this.MovieDetails_Load);

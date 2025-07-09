@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditMovie));
             this.teTitle = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.deDateCreated = new DevExpress.XtraEditors.DateEdit();
@@ -41,13 +42,14 @@
             this.meDescription = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.teDuration = new DevExpress.XtraEditors.TextEdit();
-            this.lbTitle = new DevExpress.XtraEditors.LabelControl();
             this.pePoster = new DevExpress.XtraEditors.PictureEdit();
             this.tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDateCreated.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDateCreated.Properties.CalendarTimeProperties)).BeginInit();
@@ -62,6 +64,7 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // teTitle
@@ -70,12 +73,12 @@
             this.teTitle.Margin = new System.Windows.Forms.Padding(4);
             this.teTitle.Name = "teTitle";
             this.teTitle.Properties.AutoHeight = false;
-            this.teTitle.Size = new System.Drawing.Size(318, 50);
+            this.teTitle.Size = new System.Drawing.Size(249, 44);
             this.teTitle.TabIndex = 25;
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(33, 602);
+            this.labelControl5.Location = new System.Drawing.Point(33, 582);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(75, 16);
@@ -85,22 +88,22 @@
             // deDateCreated
             // 
             this.deDateCreated.EditValue = null;
-            this.deDateCreated.Location = new System.Drawing.Point(33, 625);
+            this.deDateCreated.Location = new System.Drawing.Point(33, 605);
             this.deDateCreated.Name = "deDateCreated";
             this.deDateCreated.Properties.AutoHeight = false;
             this.deDateCreated.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deDateCreated.Size = new System.Drawing.Size(240, 50);
+            this.deDateCreated.Size = new System.Drawing.Size(240, 37);
             this.deDateCreated.TabIndex = 23;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(346, 709);
+            this.btnSubmit.Location = new System.Drawing.Point(334, 719);
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(211, 50);
+            this.btnSubmit.Size = new System.Drawing.Size(211, 40);
             this.btnSubmit.TabIndex = 22;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -125,7 +128,7 @@
             this.cbStatus.Properties.Items.AddRange(new object[] {
             "Staff",
             "Manager"});
-            this.cbStatus.Size = new System.Drawing.Size(240, 50);
+            this.cbStatus.Size = new System.Drawing.Size(240, 37);
             this.cbStatus.TabIndex = 20;
             // 
             // labelControl3
@@ -139,10 +142,10 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(384, 294);
+            this.btnBrowse.Location = new System.Drawing.Point(332, 306);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(174, 30);
+            this.btnBrowse.Size = new System.Drawing.Size(200, 34);
             this.btnBrowse.TabIndex = 18;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
@@ -167,7 +170,7 @@
             this.cbGenre.Properties.Items.AddRange(new object[] {
             "Staff",
             "Manager"});
-            this.cbGenre.Size = new System.Drawing.Size(318, 50);
+            this.cbGenre.Size = new System.Drawing.Size(249, 42);
             this.cbGenre.TabIndex = 14;
             // 
             // meDescription
@@ -192,24 +195,15 @@
             this.teDuration.Margin = new System.Windows.Forms.Padding(4);
             this.teDuration.Name = "teDuration";
             this.teDuration.Properties.AutoHeight = false;
-            this.teDuration.Size = new System.Drawing.Size(240, 50);
+            this.teDuration.Size = new System.Drawing.Size(240, 37);
             this.teDuration.TabIndex = 11;
-            // 
-            // lbTitle
-            // 
-            this.lbTitle.Location = new System.Drawing.Point(35, 62);
-            this.lbTitle.Margin = new System.Windows.Forms.Padding(4);
-            this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(25, 16);
-            this.lbTitle.TabIndex = 10;
-            this.lbTitle.Text = "Title";
             // 
             // pePoster
             // 
-            this.pePoster.Location = new System.Drawing.Point(383, 62);
+            this.pePoster.Location = new System.Drawing.Point(307, 39);
             this.pePoster.Name = "pePoster";
             this.pePoster.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pePoster.Size = new System.Drawing.Size(174, 212);
+            this.pePoster.Size = new System.Drawing.Size(251, 260);
             this.pePoster.TabIndex = 0;
             // 
             // tileView1
@@ -244,6 +238,7 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.labelControl6);
             this.groupControl2.Controls.Add(this.btnRemove);
             this.groupControl2.Controls.Add(this.teTitle);
             this.groupControl2.Controls.Add(this.labelControl5);
@@ -258,8 +253,8 @@
             this.groupControl2.Controls.Add(this.meDescription);
             this.groupControl2.Controls.Add(this.labelControl1);
             this.groupControl2.Controls.Add(this.teDuration);
-            this.groupControl2.Controls.Add(this.lbTitle);
             this.groupControl2.Controls.Add(this.pePoster);
+            this.groupControl2.Controls.Add(this.pictureEdit1);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupControl2.Location = new System.Drawing.Point(870, 0);
             this.groupControl2.Margin = new System.Windows.Forms.Padding(4);
@@ -270,13 +265,31 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(35, 709);
+            this.btnRemove.Location = new System.Drawing.Point(51, 719);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(211, 50);
+            this.btnRemove.Size = new System.Drawing.Size(211, 40);
             this.btnRemove.TabIndex = 26;
             this.btnRemove.Text = "Remove";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
+            this.pictureEdit1.Location = new System.Drawing.Point(-46, 12);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Size = new System.Drawing.Size(647, 775);
+            this.pictureEdit1.TabIndex = 1;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(33, 63);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(25, 16);
+            this.labelControl6.TabIndex = 27;
+            this.labelControl6.Text = "Title";
             // 
             // EditMovie
             // 
@@ -302,6 +315,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,12 +335,13 @@
         private DevExpress.XtraEditors.MemoEdit meDescription;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit teDuration;
-        private DevExpress.XtraEditors.LabelControl lbTitle;
         private DevExpress.XtraEditors.PictureEdit pePoster;
         private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         public DevExpress.XtraEditors.SimpleButton btnRemove;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }

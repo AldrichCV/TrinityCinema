@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
@@ -40,7 +41,9 @@
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.tileBarItem4 = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // actionTile
@@ -61,6 +64,7 @@
             this.actionTile.MaxId = 10;
             this.actionTile.Name = "actionTile";
             this.actionTile.Padding = new System.Windows.Forms.Padding(0);
+            this.actionTile.Position = 26;
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.Size = new System.Drawing.Size(1213, 164);
             this.actionTile.TabIndex = 0;
@@ -138,7 +142,7 @@
             // 
             // gcHome
             // 
-            this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
+            this.gcHome.Appearance.BackColor = System.Drawing.Color.Maroon;
             this.gcHome.Appearance.Options.UseBackColor = true;
             this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -167,6 +171,7 @@
             this.Name = "AdminMainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -180,5 +185,6 @@
         private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
         private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem4;
         public DevExpress.XtraEditors.GroupControl gcHome;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }

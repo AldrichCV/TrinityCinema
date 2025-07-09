@@ -136,6 +136,7 @@
             // 
             // gcMovies
             // 
+            this.gcMovies.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gcMovies.BackgroundImage")));
             this.gcMovies.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcMovies.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcMovies.Location = new System.Drawing.Point(0, 0);
