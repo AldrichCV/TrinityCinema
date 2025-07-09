@@ -43,22 +43,27 @@ namespace TrinityCinema.Models
 
         public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
 
-        public static string getShowtime = @"SELECT s.[ShowtimeID]
-                                          ,s.[MovieID]
-                                          ,m.[Title]
-                                          ,s.[Theater]
-                                          ,t.[TheaterName]
-                                          ,s.[Price]
-                                          ,s.[ShowDate]
-                                          ,s.[StartTime]
-                                          ,CASE
-                                          WHEN s.Status = 1
-                                          THEN 'Active'
-                                          ELSE 'Inactive'
-                                          END AS StatusDisplay
-                                      FROM [CinemaDB].[dbo].[Showtimes] s
-                                      LEFT JOIN Movies m ON m.MovieID = s.MovieID
-                                      LEFT JOIN Theaters t ON t.TheaterID = s.Theater";
+        public static string getShowtime = @"SELECT 
+                                            s.[ShowtimeID],
+                                            s.[MovieID],
+                                            m.[Title],
+                                            s.[Theater] AS TheaterID,
+                                            t.[TheaterName],
+                                            s.[Price],
+                                            s.[ShowDate],
+                                            s.[StartTime],
+                                            s.[Status],
+                                          CASE
+                                                WHEN s.Status = 0 THEN 'Upcoming'
+                                                WHEN s.Status = 1 THEN 'Now Showing'
+                                                WHEN s.Status = 2 THEN 'Cancelled'
+                                                WHEN s.Status = 3 THEN 'Ended'
+                                                    ELSE 'Unknown'
+                                                END AS StatusDisplay
+                                          FROM [CinemaDB].[dbo].[Showtimes] s
+                                            LEFT JOIN Movies m ON m.MovieID = s.MovieID
+                                            LEFT JOIN Theaters t ON CAST(t.TheaterID AS VARCHAR) = s.Theater";
+
 
 
         #endregion
@@ -113,22 +118,20 @@ namespace TrinityCinema.Models
                                            ,@SeatCapacity)";
 
         public static string insertShowtimeQuery = @"INSERT INTO [dbo].[Showtimes]
-                                           ([MovieID]
-                                           
-                                          
+                                           (
+                                           [MovieID]
                                            ,[Price]
                                            ,[ShowDate]
                                            ,[StartTime]
-                                           ,[Theater]
+                                           ,[TheaterID]
                                            ,[Status])
                                      VALUES
-                                           (@MovieID
-                                                             
-                                           
+                                           (
+                                           @MovieID
                                            ,@Price
                                            ,@ShowDate
                                            ,@StartTime
-                                           ,@Theater
+                                           ,@TheaterID
                                            ,@Status)";
 
 

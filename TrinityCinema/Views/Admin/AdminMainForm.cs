@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -55,6 +56,7 @@ namespace TrinityCinema.Views.Admin
             gcHome.Controls.Add(showtimeControl);
             showtimeControl.Dock = DockStyle.Fill;
             showtimeControl.Show();
+            showtimeControl.RefreshShowtimeGrid();
 
         }
     }

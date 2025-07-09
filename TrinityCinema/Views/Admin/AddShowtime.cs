@@ -7,12 +7,14 @@ using System.Windows.Forms;
 using Dapper;
 using DevExpress.XtraEditors;
 using TrinityCinema.Models;
+using System.Data.SqlClient;
 
 namespace TrinityCinema.Views.Admin
 {
     public partial class AddShowtime : XtraForm
     {
         private AdminMainForm adminMainForm;
+        private Showtime editingRow;
 
         public AddShowtime(AdminMainForm adminMainForm)
         {
@@ -21,6 +23,23 @@ namespace TrinityCinema.Views.Admin
             LoadMovies();
             LoadMoviePoster(null); // Initially empty poster
         }
+
+        //public AddShowtime(AdminMainForm adminMainForm, Showtime row)
+        //{
+        //    InitializeComponent();
+        //    this.adminMainForm = adminMainForm;
+        //    this.editingRow = row;
+        //    LoadMovies();
+        //    LoadMoviePoster(null);
+
+        //    // Pre-fill data for editing
+        //    leMovie.EditValue = row.MovieID;
+        //    cbTheater.Text = row.TheaterID;
+        //    deShowDate.DateTime = row.ShowDate;
+        //    teStartTime.EditValue = DateTime.Today.Add(row.StartTime);
+        //    tePrice.Text = row.Price.ToString();
+        //    cbStatusDisplay.Text = row.StatusDisplay;
+        //}
 
         private void LoadMovies()
         {
@@ -68,7 +87,6 @@ namespace TrinityCinema.Views.Admin
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Validate required fields
             if (leMovie.EditValue == null ||
                 string.IsNullOrWhiteSpace(tePrice.Text) ||
                 string.IsNullOrWhiteSpace(cbTheater.Text) ||
@@ -80,14 +98,12 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            // Parse price
             if (!decimal.TryParse(tePrice.Text.Trim(), out decimal parsedPrice))
             {
                 XtraMessageBox.Show("Invalid price format.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Map status text to int value
             string statusText = cbStatusDisplay.Text.Trim();
             int status;
             if (statusText == "Upcoming") status = 0;
@@ -100,8 +116,7 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            // Confirm action
-            DialogResult confirm = XtraMessageBox.Show("Are you sure you want to add this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult confirm = XtraMessageBox.Show("Are you sure you want to save this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes)
                 return;
 
@@ -109,19 +124,41 @@ namespace TrinityCinema.Views.Admin
             {
                 var showtime = new Showtime
                 {
-                    MovieID = Convert.ToInt32(leMovie.EditValue),
+                    MovieID = leMovie.EditValue.ToString(),
                     Price = parsedPrice,
                     ShowDate = deShowDate.DateTime.Date,
                     StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
-                    TheaterName = cbTheater.Text,
+                    TheaterID = cbTheater.Text,
                     Status = status,
                     StatusDisplay = statusText
                 };
 
-                AllMethods allMethods = new AllMethods();
-                allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
+                using (var con = new SqlConnection(GlobalSettings.connectionString))
+                {
+                    if (editingRow != null)
+                    {
+                        showtime.ShowtimeID = editingRow.ShowtimeID;
+                        string updateQuery = @"UPDATE Showtimes SET 
+                            MovieID = @MovieID,
+                            TheaterID = @TheaterID,
+                            ShowDate = @ShowDate,
+                            StartTime = @StartTime,
+                            Price = @Price,
+                            Status = @Status,
+                            StatusDisplay = @StatusDisplay
+                            WHERE ShowtimeID = @ShowtimeID";
 
-                XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        con.Execute(updateQuery, showtime);
+                        XtraMessageBox.Show("Showtime successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        AllMethods allMethods = new AllMethods();
+                        allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
+                        XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
                 RefreshShowtimeGrid();
                 this.Close();
             }
@@ -138,6 +175,10 @@ namespace TrinityCinema.Views.Admin
             {
                 showtimeControl.RefreshShowtimeGrid();
                 showtimeControl.BringToFront();
+            }
+            else
+            {
+                XtraMessageBox.Show("ShowtimeControl not found. Grid was not refreshed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
