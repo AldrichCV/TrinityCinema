@@ -65,6 +65,7 @@
             this.gcStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcStatusDisplay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcAction = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemActionButtons = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribtnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -120,6 +121,7 @@
             this.gcStartTime,
             this.gcPrice,
             this.gcStatus,
+            this.gcStatusDisplay,
             this.gcAction});
             this.gvShowtime.GridControl = this.gcShowtime;
             this.gvShowtime.Name = "gvShowtime";
@@ -190,9 +192,17 @@
             this.gcStatus.FieldName = "Status";
             this.gcStatus.MinWidth = 25;
             this.gcStatus.Name = "gcStatus";
-            this.gcStatus.Visible = true;
-            this.gcStatus.VisibleIndex = 6;
             this.gcStatus.Width = 94;
+            // 
+            // gcStatusDisplay
+            // 
+            this.gcStatusDisplay.Caption = "Status";
+            this.gcStatusDisplay.FieldName = "StatusDisplay";
+            this.gcStatusDisplay.MinWidth = 25;
+            this.gcStatusDisplay.Name = "gcStatusDisplay";
+            this.gcStatusDisplay.Visible = true;
+            this.gcStatusDisplay.VisibleIndex = 6;
+            this.gcStatusDisplay.Width = 94;
             // 
             // gcAction
             // 
@@ -219,6 +229,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", "Delete", null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemActionButtons.ContextImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.repositoryItemActionButtons.Name = "repositoryItemActionButtons";
+            this.repositoryItemActionButtons.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemActionButtons.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemActionButtons_ButtonClick);
             // 
             // ribtnEdit
@@ -271,7 +282,6 @@
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
             this.actionTile.WideTileWidth = 200;
-        
             // 
             // tileBarGroup2
             // 
@@ -331,5 +341,6 @@
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemActionButtons;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ribtnEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ribtnDelete;
+        private DevExpress.XtraGrid.Columns.GridColumn gcStatusDisplay;
     }
 }

@@ -34,7 +34,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.cbStatusDisplay = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbTheater = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teStartTime = new DevExpress.XtraEditors.TimeEdit();
@@ -104,15 +104,16 @@
             this.labelControl1.TabIndex = 22;
             this.labelControl1.Text = "Movie";
             // 
-            // btnSubmit
+            // btnUpdate
             // 
-            this.btnSubmit.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnSubmit.Appearance.Options.UseBackColor = true;
-            this.btnSubmit.Location = new System.Drawing.Point(457, 397);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(171, 56);
-            this.btnSubmit.TabIndex = 21;
-            this.btnSubmit.Text = "Submit";
+            this.btnUpdate.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnUpdate.Appearance.Options.UseBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(457, 397);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(171, 56);
+            this.btnUpdate.TabIndex = 21;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // cbStatusDisplay
             // 
@@ -203,7 +204,7 @@
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.cbStatusDisplay);
             this.Controls.Add(this.cbTheater);
             this.Controls.Add(this.teStartTime);
@@ -232,7 +233,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.SimpleButton btnSubmit;
+        private DevExpress.XtraEditors.SimpleButton btnUpdate;
         private DevExpress.XtraEditors.ComboBoxEdit cbStatusDisplay;
         private DevExpress.XtraEditors.ComboBoxEdit cbTheater;
         private DevExpress.XtraEditors.TimeEdit teStartTime;

@@ -46,9 +46,7 @@ namespace TrinityCinema.Models
         public static string getShowtime = @"SELECT 
                                             s.[ShowtimeID],
                                             s.[MovieID],
-                                            m.[Title],
-                                            s.[Theater] AS TheaterID,
-                                            t.[TheaterName],
+                                            s.[TheaterID],
                                             s.[Price],
                                             s.[ShowDate],
                                             s.[StartTime],
@@ -61,8 +59,10 @@ namespace TrinityCinema.Models
                                                     ELSE 'Unknown'
                                                 END AS StatusDisplay
                                           FROM [CinemaDB].[dbo].[Showtimes] s
-                                            LEFT JOIN Movies m ON m.MovieID = s.MovieID
-                                            LEFT JOIN Theaters t ON CAST(t.TheaterID AS VARCHAR) = s.Theater";
+                                            LEFT JOIN Movies m 
+                                                ON m.MovieID = s.MovieID
+                                            LEFT JOIN Theaters t 
+                                                ON CAST(t.TheaterID AS VARCHAR) = s.TheaterID";
 
 
 
