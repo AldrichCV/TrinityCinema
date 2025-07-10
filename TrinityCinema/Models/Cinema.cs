@@ -25,12 +25,12 @@ namespace TrinityCinema.Models
 
     public class Movie
     {
-        public string MovieID { get; set; }       
+        public string MovieID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int Genre { get; set; }
         public string GenreName { get; set; }
-        public TimeSpan Duration { get; set; }        
+        public TimeSpan Duration { get; set; }
         public bool Status { get; set; }
         public DateTime DateAdded { get; set; }
         public byte[] MoviePoster { get; set; }
@@ -53,15 +53,15 @@ namespace TrinityCinema.Models
 
     public class Showtime
     {
-            public int ShowtimeID { get; set; }
-            public string MovieID { get; set; }
-            public string TheaterID { get; set; }
-          
-            public decimal Price { get; set; }
-            public DateTime ShowDate { get; set; }
-            public TimeSpan StartTime { get; set; }
-            public int Status { get; set; }
-            public string StatusDisplay { get; set; }
-        }
-
+        public int ShowtimeID { get; set; }
+        public string MovieID { get; set; }
+        public string Title { get; set; }
+        public string TheaterID { get; set; }
+        public decimal Price { get; set; }
+        public DateTime ShowDate { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public int Status { get; set; }
+        public string StatusDisplay { get; set; }
     }
+
+}

@@ -39,15 +39,15 @@
             this.cbTheater = new DevExpress.XtraEditors.ComboBoxEdit();
             this.teStartTime = new DevExpress.XtraEditors.TimeEdit();
             this.deShowDate = new DevExpress.XtraEditors.DateEdit();
-            this.leMovie = new DevExpress.XtraEditors.LookUpEdit();
             this.tePrice = new DevExpress.XtraEditors.TextEdit();
+            this.teMovie = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.cbStatusDisplay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teMovie.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl6
@@ -167,21 +167,6 @@
             this.deShowDate.Size = new System.Drawing.Size(154, 34);
             this.deShowDate.TabIndex = 17;
             // 
-            // leMovie
-            // 
-            this.leMovie.Location = new System.Drawing.Point(42, 74);
-            this.leMovie.Name = "leMovie";
-            this.leMovie.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.leMovie.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MovieID", "Movie ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Title", "Title")});
-            this.leMovie.Properties.DisplayMember = "Title";
-            this.leMovie.Properties.NullText = "--Select Movie--";
-            this.leMovie.Properties.ValueMember = "MovieID";
-            this.leMovie.Size = new System.Drawing.Size(589, 34);
-            this.leMovie.TabIndex = 15;
-            // 
             // tePrice
             // 
             this.tePrice.Location = new System.Drawing.Point(42, 158);
@@ -193,11 +178,24 @@
             this.tePrice.Size = new System.Drawing.Size(157, 34);
             this.tePrice.TabIndex = 16;
             // 
+            // teMovie
+            // 
+            this.teMovie.Location = new System.Drawing.Point(42, 74);
+            this.teMovie.Name = "teMovie";
+            this.teMovie.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.teMovie.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.teMovie.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.teMovie.Properties.MaskSettings.Set("mask", "c");
+            this.teMovie.Properties.NullText = "-- Select Movie --";
+            this.teMovie.Size = new System.Drawing.Size(586, 34);
+            this.teMovie.TabIndex = 28;
+            // 
             // EditShowtime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 474);
+            this.Controls.Add(this.teMovie);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl4);
@@ -209,7 +207,6 @@
             this.Controls.Add(this.cbTheater);
             this.Controls.Add(this.teStartTime);
             this.Controls.Add(this.deShowDate);
-            this.Controls.Add(this.leMovie);
             this.Controls.Add(this.tePrice);
             this.Name = "EditShowtime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -219,8 +216,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teMovie.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,7 +235,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbTheater;
         private DevExpress.XtraEditors.TimeEdit teStartTime;
         private DevExpress.XtraEditors.DateEdit deShowDate;
-        private DevExpress.XtraEditors.LookUpEdit leMovie;
         private DevExpress.XtraEditors.TextEdit tePrice;
+        private DevExpress.XtraEditors.TextEdit teMovie;
     }
 }

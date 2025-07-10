@@ -46,6 +46,7 @@ namespace TrinityCinema.Models
         public static string getShowtime = @"SELECT 
                                             s.[ShowtimeID],
                                             s.[MovieID],
+                                            m.[Title],
                                             s.[TheaterID],
                                             s.[Price],
                                             s.[ShowDate],
