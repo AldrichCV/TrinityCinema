@@ -31,7 +31,6 @@
             this.tePrice = new DevExpress.XtraEditors.TextEdit();
             this.leMovie = new DevExpress.XtraEditors.LookUpEdit();
             this.deShowDate = new DevExpress.XtraEditors.DateEdit();
-            this.cbTheater = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbStatusDisplay = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -42,14 +41,15 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.pePoster = new DevExpress.XtraEditors.PictureEdit();
             this.teStartTime = new DevExpress.XtraEditors.TimeEdit();
+            this.cbTheater = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbStatusDisplay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tePrice
@@ -92,20 +92,6 @@
             this.deShowDate.Size = new System.Drawing.Size(154, 34);
             this.deShowDate.TabIndex = 2;
             // 
-            // cbTheater
-            // 
-            this.cbTheater.Location = new System.Drawing.Point(46, 243);
-            this.cbTheater.Name = "cbTheater";
-            this.cbTheater.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbTheater.Properties.Items.AddRange(new object[] {
-            "Cinema 1",
-            "Cinema 2",
-            "Cinema 3",
-            "Cinema 4"});
-            this.cbTheater.Size = new System.Drawing.Size(154, 34);
-            this.cbTheater.TabIndex = 4;
-            // 
             // cbStatusDisplay
             // 
             this.cbStatusDisplay.Location = new System.Drawing.Point(260, 243);
@@ -124,7 +110,7 @@
             // 
             this.btnSubmit.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnSubmit.Appearance.Options.UseBackColor = true;
-            this.btnSubmit.Location = new System.Drawing.Point(458, 388);
+            this.btnSubmit.Location = new System.Drawing.Point(46, 373);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(171, 56);
             this.btnSubmit.TabIndex = 6;
@@ -204,6 +190,20 @@
             this.teStartTime.Properties.MaskSettings.Set("mask", "t");
             this.teStartTime.Size = new System.Drawing.Size(154, 34);
             this.teStartTime.TabIndex = 3;
+            this.teStartTime.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.teStartTime_EditValueChanging);
+            // 
+            // cbTheater
+            // 
+            this.cbTheater.Location = new System.Drawing.Point(46, 243);
+            this.cbTheater.Name = "cbTheater";
+            this.cbTheater.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbTheater.Properties.DisplayMember = "TheaterName";
+            this.cbTheater.Properties.NullText = "";
+            this.cbTheater.Properties.PopupSizeable = false;
+            this.cbTheater.Properties.ValueMember = "TheaterID";
+            this.cbTheater.Size = new System.Drawing.Size(154, 34);
+            this.cbTheater.TabIndex = 4;
             // 
             // AddShowtime
             // 
@@ -219,21 +219,21 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cbStatusDisplay);
-            this.Controls.Add(this.cbTheater);
             this.Controls.Add(this.teStartTime);
             this.Controls.Add(this.deShowDate);
             this.Controls.Add(this.leMovie);
             this.Controls.Add(this.tePrice);
+            this.Controls.Add(this.cbTheater);
             this.Name = "AddShowtime";
             this.Text = "Add Showtime";
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbStatusDisplay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,7 +243,6 @@
         private DevExpress.XtraEditors.TextEdit tePrice;
         private DevExpress.XtraEditors.LookUpEdit leMovie;
         private DevExpress.XtraEditors.DateEdit deShowDate;
-        private DevExpress.XtraEditors.ComboBoxEdit cbTheater;
         private DevExpress.XtraEditors.ComboBoxEdit cbStatusDisplay;
         private DevExpress.XtraEditors.SimpleButton btnSubmit;
         private DevExpress.XtraEditors.LabelControl labelControl1;
@@ -254,5 +253,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.PictureEdit pePoster;
         private DevExpress.XtraEditors.TimeEdit teStartTime;
+        private DevExpress.XtraEditors.LookUpEdit cbTheater;
     }
 }
