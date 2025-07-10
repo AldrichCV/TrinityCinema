@@ -169,5 +169,6 @@ namespace TrinityCinema.Views.Admin
                 this.Close();
             }
         }
+
     }
     }

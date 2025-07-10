@@ -49,7 +49,32 @@ namespace TrinityCinema.Models
                                     ";
 
         public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
+
         public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
+
+        public static string getShowtime = @"SELECT 
+                                            s.[ShowtimeID],
+                                            m.[Title],
+                                            m.[MoviePoster],        
+                                            s.[TheaterID],
+                                            t.[TheaterName],    
+                                            s.[Price],
+                                            s.[ShowDate],
+                                            s.[StartTime],
+                                            s.[Status],
+                                          CASE
+                                                WHEN s.Status = 0 THEN 'Upcoming'
+                                                WHEN s.Status = 1 THEN 'Now Showing'
+                                                WHEN s.Status = 2 THEN 'Cancelled'
+                                                WHEN s.Status = 3 THEN 'Ended'
+                                                    ELSE 'Unknown'
+                                                END AS StatusDisplay
+                                          FROM [CinemaDB].[dbo].[Showtimes] s
+                                            LEFT JOIN Movies m 
+                                                ON m.MovieID = s.MovieID
+                                            LEFT JOIN Theaters t 
+                                                ON CAST(t.TheaterID AS VARCHAR) = s.TheaterID";
+
 
 
         #endregion
@@ -102,7 +127,20 @@ namespace TrinityCinema.Models
                                            (@TheaterName
                                            ,@SeatCapacity)";
 
-
+        public static string insertShowtimeQuery = @"INSERT INTO [dbo].[Showtimes]
+                                           ([MovieID]
+                                           ,[Price]
+                                           ,[ShowDate]
+                                           ,[StartTime]
+                                           ,[TheaterID]
+                                           ,[Status])
+                                     VALUES
+                                           (@MovieID
+                                           ,@Price
+                                           ,@ShowDate
+                                           ,@StartTime
+                                           ,@TheaterID
+                                           ,@Status)";
 
 
         #endregion

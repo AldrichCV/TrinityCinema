@@ -47,9 +47,6 @@ namespace TrinityCinema.Views.Admin
             teDuration.Properties.ReadOnly = true;
             btnBrowse.Enabled = false;
             isInitializing = false;
-
-
-
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
