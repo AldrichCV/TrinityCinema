@@ -31,7 +31,7 @@ namespace TrinityCinema.Views.Admin
 
             // Pre-fill data for editing
             leMovie.EditValue = row.MovieID;
-            cbTheater.Text = row.TheaterID;
+            cbTheater.SelectedIndex = row.TheaterID;
             deShowDate.DateTime = row.ShowDate;
             teStartTime.EditValue = DateTime.Today.Add(row.StartTime);
             tePrice.Text = row.Price.ToString();
@@ -92,7 +92,7 @@ namespace TrinityCinema.Views.Admin
                     Price = parsedPrice,
                     ShowDate = deShowDate.DateTime.Date,
                     StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
-                    TheaterID = cbTheater.Text,
+                    TheaterID = cbTheater.SelectedIndex,
                     Status = status,
                     StatusDisplay = statusText
                 };

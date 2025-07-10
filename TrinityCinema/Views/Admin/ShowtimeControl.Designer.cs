@@ -59,7 +59,7 @@
             this.gcShowtime = new DevExpress.XtraGrid.GridControl();
             this.gvShowtime = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcShowtimeID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcMovieID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTitle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcTheaterID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcShowDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -102,7 +102,7 @@
             this.repositoryItemActionButtons,
             this.ribtnEdit,
             this.ribtnDelete});
-            this.gcShowtime.Size = new System.Drawing.Size(1151, 654);
+            this.gcShowtime.Size = new System.Drawing.Size(1151, 516);
             this.gcShowtime.TabIndex = 0;
             this.gcShowtime.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvShowtime});
@@ -115,7 +115,7 @@
             this.gvShowtime.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gvShowtime.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcShowtimeID,
-            this.gcMovieID,
+            this.gcTitle,
             this.gcTheaterID,
             this.gcShowDate,
             this.gcStartTime,
@@ -136,15 +136,15 @@
             this.gcShowtimeID.VisibleIndex = 0;
             this.gcShowtimeID.Width = 94;
             // 
-            // gcMovieID
+            // gcTitle
             // 
-            this.gcMovieID.Caption = "Movie ID";
-            this.gcMovieID.FieldName = "MovieID";
-            this.gcMovieID.MinWidth = 25;
-            this.gcMovieID.Name = "gcMovieID";
-            this.gcMovieID.Visible = true;
-            this.gcMovieID.VisibleIndex = 1;
-            this.gcMovieID.Width = 94;
+            this.gcTitle.Caption = "Movie";
+            this.gcTitle.FieldName = "Title";
+            this.gcTitle.MinWidth = 25;
+            this.gcTitle.Name = "gcTitle";
+            this.gcTitle.Visible = true;
+            this.gcTitle.VisibleIndex = 1;
+            this.gcTitle.Width = 94;
             // 
             // gcTheaterID
             // 
@@ -309,8 +309,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.actionTile);
             this.Controls.Add(this.gcShowtime);
+            this.Controls.Add(this.actionTile);
             this.Name = "ShowtimeControl";
             this.Size = new System.Drawing.Size(1151, 654);
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
@@ -332,7 +332,7 @@
         public DevExpress.XtraGrid.GridControl gcShowtime;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
         public DevExpress.XtraGrid.Columns.GridColumn gcShowtimeID;
-        public DevExpress.XtraGrid.Columns.GridColumn gcMovieID;
+        public DevExpress.XtraGrid.Columns.GridColumn gcTitle;
         public DevExpress.XtraGrid.Columns.GridColumn gcTheaterID;
         public DevExpress.XtraGrid.Columns.GridColumn gcShowDate;
         public DevExpress.XtraGrid.Columns.GridColumn gcStartTime;

@@ -9,8 +9,8 @@ namespace TrinityCinema.Models
     public class GlobalSettings
     {
         //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
-        //public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
-        public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
+        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
+        //public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
 
         #region AccountsSQL
 
@@ -45,7 +45,7 @@ namespace TrinityCinema.Models
 
         public static string getShowtime = @"SELECT 
                                             s.[ShowtimeID],
-                                            s.[MovieID],
+                                            m.[Title],
                                             s.[TheaterID],
                                             s.[Price],
                                             s.[ShowDate],
@@ -118,16 +118,14 @@ namespace TrinityCinema.Models
                                            ,@SeatCapacity)";
 
         public static string insertShowtimeQuery = @"INSERT INTO [dbo].[Showtimes]
-                                           (
-                                           [MovieID]
+                                           ([MovieID]
                                            ,[Price]
                                            ,[ShowDate]
                                            ,[StartTime]
                                            ,[TheaterID]
                                            ,[Status])
                                      VALUES
-                                           (
-                                           @MovieID
+                                           (@MovieID
                                            ,@Price
                                            ,@ShowDate
                                            ,@StartTime

@@ -21,7 +21,9 @@ namespace TrinityCinema.Views.Admin
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             LoadMovies();
-            LoadMoviePoster(null); // Initially empty poster
+            LoadTheaters();
+            LoadMoviePoster(null);
+            deShowDate.Properties.MinValue = DateTime.Today;
         }
 
         //public AddShowtime(AdminMainForm adminMainForm, Showtime row)
@@ -46,6 +48,16 @@ namespace TrinityCinema.Views.Admin
             AllMethods.LoadLookupData<Movie>(
                 leMovie,
                 "SELECT MovieID, Title, MoviePoster FROM Movies",
+                GlobalSettings.connectionString
+            );
+        }
+
+        private void LoadTheaters()
+        {
+            // Assuming you have a method to load theaters into the ComboBox
+            AllMethods.LoadLookupData<Theater>(
+                cbTheater,
+                "SELECT TheaterID, TheaterName FROM Theaters",
                 GlobalSettings.connectionString
             );
         }
@@ -128,7 +140,7 @@ namespace TrinityCinema.Views.Admin
                     Price = parsedPrice,
                     ShowDate = deShowDate.DateTime.Date,
                     StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
-                    TheaterID = cbTheater.Text,
+                    TheaterID = Convert.ToInt32(cbTheater.EditValue),
                     Status = status,
                     StatusDisplay = statusText
                 };
@@ -139,14 +151,13 @@ namespace TrinityCinema.Views.Admin
                     {
                         showtime.ShowtimeID = editingRow.ShowtimeID;
                         string updateQuery = @"UPDATE Showtimes SET 
-                            MovieID = @MovieID,
-                            TheaterID = @TheaterID,
-                            ShowDate = @ShowDate,
-                            StartTime = @StartTime,
-                            Price = @Price,
-                            Status = @Status,
-                            StatusDisplay = @StatusDisplay
-                            WHERE ShowtimeID = @ShowtimeID";
+                                                MovieID = @MovieID,
+                                                TheaterID = @TheaterID,
+                                                ShowDate = @ShowDate,
+                                                StartTime = @StartTime,
+                                                Price = @Price,
+                                                Status = @Status
+                                                WHERE ShowtimeID = @ShowtimeID";
 
                         con.Execute(updateQuery, showtime);
                         XtraMessageBox.Show("Showtime successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -179,6 +190,21 @@ namespace TrinityCinema.Views.Admin
             else
             {
                 XtraMessageBox.Show("ShowtimeControl not found. Grid was not refreshed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void teStartTime_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            if (e.NewValue is DateTime newTime)
+            {
+                var minTime = DateTime.Today.AddHours(9);   // 9:00 AM
+                var maxTime = DateTime.Today.AddHours(20);  // 8:00 PM
+
+                if (newTime.TimeOfDay < minTime.TimeOfDay || newTime.TimeOfDay > maxTime.TimeOfDay)
+                {
+                    MessageBox.Show("Please select a time between 9:00 AM and 8:00 PM.", "Invalid Time", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
             }
         }
     }
