@@ -37,6 +37,7 @@
             this.beStatus = new DevExpress.XtraEditors.ToggleSwitch();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.teDuration = new DevExpress.XtraEditors.TimeEdit();
+            this.leGenre = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.Title = new DevExpress.XtraLayout.LayoutControlItem();
             this.Description = new DevExpress.XtraLayout.LayoutControlItem();
@@ -47,7 +48,6 @@
             this.Status = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
-            this.leGenre = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -58,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.beStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Title)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Description)).BeginInit();
@@ -68,7 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Status)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -175,6 +175,17 @@
             this.teDuration.Size = new System.Drawing.Size(260, 34);
             this.teDuration.StyleController = this.layoutControl1;
             this.teDuration.TabIndex = 9;
+            // 
+            // leGenre
+            // 
+            this.leGenre.EditValue = "";
+            this.leGenre.Location = new System.Drawing.Point(10, 108);
+            this.leGenre.Name = "leGenre";
+            this.leGenre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leGenre.Size = new System.Drawing.Size(580, 34);
+            this.leGenre.StyleController = this.layoutControl1;
+            this.leGenre.TabIndex = 5;
             // 
             // Root
             // 
@@ -302,17 +313,6 @@
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // leGenre
-            // 
-            this.leGenre.EditValue = "";
-            this.leGenre.Location = new System.Drawing.Point(10, 108);
-            this.leGenre.Name = "leGenre";
-            this.leGenre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.leGenre.Size = new System.Drawing.Size(580, 34);
-            this.leGenre.StyleController = this.layoutControl1;
-            this.leGenre.TabIndex = 5;
-            // 
             // AddMovies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -331,6 +331,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.beStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Title)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Description)).EndInit();
@@ -341,7 +342,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Status)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
