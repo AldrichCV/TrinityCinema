@@ -60,9 +60,11 @@ namespace TrinityCinema.Models
             public int TheaterID { get; set; }
             public string TheaterName { get; set; }
             public decimal Price { get; set; }
-            public DateTime ShowDate { get; set; }
+            public DateTime ShowDate { get; set; } 
             public TimeSpan StartTime { get; set; }
             public int Status { get; set; }
+            public int StatusID { get; set; }
+            public string StatusName { get; set; }
             public string StatusDisplay { get; set; }
         }
 

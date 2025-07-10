@@ -22,26 +22,10 @@ namespace TrinityCinema.Views.Admin
             this.adminMainForm = adminMainForm;
             LoadMovies();
             LoadTheaters();
+            LoadShowStatus();
             LoadMoviePoster(null);
             deShowDate.Properties.MinValue = DateTime.Today;
         }
-
-        //public AddShowtime(AdminMainForm adminMainForm, Showtime row)
-        //{
-        //    InitializeComponent();
-        //    this.adminMainForm = adminMainForm;
-        //    this.editingRow = row;
-        //    LoadMovies();
-        //    LoadMoviePoster(null);
-
-        //    // Pre-fill data for editing
-        //    leMovie.EditValue = row.MovieID;
-        //    cbTheater.Text = row.TheaterID;
-        //    deShowDate.DateTime = row.ShowDate;
-        //    teStartTime.EditValue = DateTime.Today.Add(row.StartTime);
-        //    tePrice.Text = row.Price.ToString();
-        //    cbStatusDisplay.Text = row.StatusDisplay;
-        //}
 
         private void LoadMovies()
         {
@@ -60,6 +44,15 @@ namespace TrinityCinema.Views.Admin
                 "SELECT TheaterID, TheaterName FROM Theaters",
                 GlobalSettings.connectionString
             );
+        }
+
+        private void LoadShowStatus()
+        {
+            AllMethods.LoadLookupData<Showtime>(
+                leStatusDisplay,
+                "SELECT StatusID, StatusName FROM ShowtimeStatus",
+                GlobalSettings.connectionString
+         );
         }
 
         private void leMovie_EditValueChanged(object sender, EventArgs e)
@@ -102,7 +95,7 @@ namespace TrinityCinema.Views.Admin
             if (leMovie.EditValue == null ||
                 string.IsNullOrWhiteSpace(tePrice.Text) ||
                 string.IsNullOrWhiteSpace(cbTheater.Text) ||
-                string.IsNullOrWhiteSpace(cbStatusDisplay.Text) ||
+                string.IsNullOrWhiteSpace(leStatusDisplay.Text) ||
                 deShowDate.DateTime == DateTime.MinValue ||
                 teStartTime.EditValue == null)
             {
@@ -113,18 +106,6 @@ namespace TrinityCinema.Views.Admin
             if (!decimal.TryParse(tePrice.Text.Trim(), out decimal parsedPrice))
             {
                 XtraMessageBox.Show("Invalid price format.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string statusText = cbStatusDisplay.Text.Trim();
-            int status;
-            if (statusText == "Upcoming") status = 0;
-            else if (statusText == "Now Showing") status = 1;
-            else if (statusText == "Cancelled") status = 2;
-            else if (statusText == "Ended") status = 3;
-            else
-            {
-                XtraMessageBox.Show("Invalid status selected.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -141,54 +122,20 @@ namespace TrinityCinema.Views.Admin
                     ShowDate = deShowDate.DateTime.Date,
                     StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
                     TheaterID = Convert.ToInt32(cbTheater.EditValue),
-                    Status = status,
-                    StatusDisplay = statusText
+                    StatusID = Convert.ToInt32(leStatusDisplay.EditValue)
                 };
 
-                using (var con = new SqlConnection(GlobalSettings.connectionString))
-                {
-                    if (editingRow != null)
-                    {
-                        showtime.ShowtimeID = editingRow.ShowtimeID;
-                        string updateQuery = @"UPDATE Showtimes SET 
-                                                MovieID = @MovieID,
-                                                TheaterID = @TheaterID,
-                                                ShowDate = @ShowDate,
-                                                StartTime = @StartTime,
-                                                Price = @Price,
-                                                Status = @Status
-                                                WHERE ShowtimeID = @ShowtimeID";
-
-                        con.Execute(updateQuery, showtime);
-                        XtraMessageBox.Show("Showtime successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
                         AllMethods allMethods = new AllMethods();
                         allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
                         XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
+                    
+                
                 this.Close();
                 AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh));
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void RefreshShowtimeGrid()
-        {
-            var showtimeControl = adminMainForm.gcHome.Controls.OfType<ShowtimeControl>().FirstOrDefault();
-            if (showtimeControl != null)
-            {
-                //showtimeControl.RefreshShowtimeGrid();
-                showtimeControl.BringToFront();
-            }
-            else
-            {
-                XtraMessageBox.Show("ShowtimeControl not found. Grid was not refreshed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

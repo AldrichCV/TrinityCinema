@@ -87,6 +87,20 @@ namespace TrinityCinema.Models
 
 
         //Populate LookUpEdits
+
+        public static void LoadComboBoxData<T>(ComboBoxEdit control, string query, string connectionString, Func<T, string> selector)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var data = connection.Query<T>(query).ToList();
+
+                control.Properties.Items.Clear();
+                control.Properties.Items.AddRange(data.Select(selector).ToList());
+            }
+        }
+
+
         public static void LoadLookupData<T>(LookUpEdit control, string query, string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

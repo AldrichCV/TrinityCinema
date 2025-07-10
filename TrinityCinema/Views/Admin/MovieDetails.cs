@@ -1,8 +1,10 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Data.Filtering.Helpers;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
+using Dapper;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -63,7 +66,6 @@ namespace TrinityCinema.Views.Admin
             meDescription.TabStop =
             teDuration.TabStop = isEditing;
             btnBrowse.Enabled = isEditing;
-
             beStatus.Enabled = isEditing;
             btnEdit.Text = isEditing ? "Save" : "Edit";
 
@@ -243,6 +245,11 @@ namespace TrinityCinema.Views.Admin
                 }
 
             }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

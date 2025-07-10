@@ -33,7 +33,6 @@
             this.pePoster = new DevExpress.XtraEditors.PictureEdit();
             this.teStartTime = new DevExpress.XtraEditors.TimeEdit();
             this.deShowDate = new DevExpress.XtraEditors.DateEdit();
-            this.cbStatus = new DevExpress.XtraEditors.ComboBoxEdit();
             this.leHall = new DevExpress.XtraEditors.LookUpEdit();
             this.tePrice = new DevExpress.XtraEditors.TextEdit();
             this.leMovie = new DevExpress.XtraEditors.TextEdit();
@@ -47,13 +46,13 @@
             this.startTime = new DevExpress.XtraLayout.LayoutControlItem();
             this.showStatus = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.leStatusDisplay = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leHall.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).BeginInit();
@@ -67,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.startTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leStatusDisplay.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -75,10 +75,10 @@
             this.layoutControl1.Controls.Add(this.pePoster);
             this.layoutControl1.Controls.Add(this.teStartTime);
             this.layoutControl1.Controls.Add(this.deShowDate);
-            this.layoutControl1.Controls.Add(this.cbStatus);
             this.layoutControl1.Controls.Add(this.leHall);
             this.layoutControl1.Controls.Add(this.tePrice);
             this.layoutControl1.Controls.Add(this.leMovie);
+            this.layoutControl1.Controls.Add(this.leStatusDisplay);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -117,6 +117,8 @@
             this.teStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.teStartTime.Properties.MaskSettings.Set("mask", "t");
+            this.teStartTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.teStartTime.Properties.UseMaskAsDisplayFormat = true;
             this.teStartTime.Size = new System.Drawing.Size(292, 34);
             this.teStartTime.StyleController = this.layoutControl1;
             this.teStartTime.TabIndex = 3;
@@ -131,24 +133,10 @@
             this.deShowDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deShowDate.Properties.MaskSettings.Set("mask", "d");
+            this.deShowDate.Properties.UseMaskAsDisplayFormat = true;
             this.deShowDate.Size = new System.Drawing.Size(291, 34);
             this.deShowDate.StyleController = this.layoutControl1;
             this.deShowDate.TabIndex = 2;
-            // 
-            // cbStatus
-            // 
-            this.cbStatus.Location = new System.Drawing.Point(746, 224);
-            this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbStatus.Properties.Items.AddRange(new object[] {
-            "Upcoming",
-            "Now Showing",
-            "Cancelled",
-            "Ended"});
-            this.cbStatus.Size = new System.Drawing.Size(292, 34);
-            this.cbStatus.StyleController = this.layoutControl1;
-            this.cbStatus.TabIndex = 5;
             // 
             // leHall
             // 
@@ -214,7 +202,7 @@
             this.movieTitle.Size = new System.Drawing.Size(595, 62);
             this.movieTitle.Text = "Movie";
             this.movieTitle.TextLocation = DevExpress.Utils.Locations.Top;
-            this.movieTitle.TextSize = new System.Drawing.Size(66, 16);
+            this.movieTitle.TextSize = new System.Drawing.Size(62, 16);
             // 
             // moviePoster
             // 
@@ -235,7 +223,7 @@
             this.showDate.Size = new System.Drawing.Size(297, 62);
             this.showDate.Text = "Show Date";
             this.showDate.TextLocation = DevExpress.Utils.Locations.Top;
-            this.showDate.TextSize = new System.Drawing.Size(66, 16);
+            this.showDate.TextSize = new System.Drawing.Size(62, 16);
             // 
             // theaterName
             // 
@@ -245,7 +233,7 @@
             this.theaterName.Size = new System.Drawing.Size(595, 62);
             this.theaterName.Text = "Hall";
             this.theaterName.TextLocation = DevExpress.Utils.Locations.Top;
-            this.theaterName.TextSize = new System.Drawing.Size(66, 16);
+            this.theaterName.TextSize = new System.Drawing.Size(62, 16);
             // 
             // showPrice
             // 
@@ -255,7 +243,7 @@
             this.showPrice.Size = new System.Drawing.Size(297, 62);
             this.showPrice.Text = "Price";
             this.showPrice.TextLocation = DevExpress.Utils.Locations.Top;
-            this.showPrice.TextSize = new System.Drawing.Size(66, 16);
+            this.showPrice.TextSize = new System.Drawing.Size(62, 16);
             // 
             // layoutControlItem2
             // 
@@ -274,16 +262,17 @@
             this.startTime.Size = new System.Drawing.Size(298, 62);
             this.startTime.Text = "Start Time";
             this.startTime.TextLocation = DevExpress.Utils.Locations.Top;
-            this.startTime.TextSize = new System.Drawing.Size(66, 16);
+            this.startTime.TextSize = new System.Drawing.Size(62, 16);
             // 
             // showStatus
             // 
-            this.showStatus.Control = this.cbStatus;
+            this.showStatus.Control = this.leStatusDisplay;
             this.showStatus.Location = new System.Drawing.Point(730, 186);
             this.showStatus.Name = "showStatus";
             this.showStatus.Size = new System.Drawing.Size(298, 62);
+            this.showStatus.Text = "Status";
             this.showStatus.TextLocation = DevExpress.Utils.Locations.Top;
-            this.showStatus.TextSize = new System.Drawing.Size(66, 16);
+            this.showStatus.TextSize = new System.Drawing.Size(62, 16);
             // 
             // emptySpaceItem1
             // 
@@ -292,6 +281,23 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(595, 262);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // leStatusDisplay
+            // 
+            this.leStatusDisplay.Location = new System.Drawing.Point(746, 224);
+            this.leStatusDisplay.Name = "leStatusDisplay";
+            this.leStatusDisplay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leStatusDisplay.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusName", ""),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusID", "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leStatusDisplay.Properties.DisplayMember = "StatusName";
+            this.leStatusDisplay.Properties.NullText = "";
+            this.leStatusDisplay.Properties.PopupSizeable = false;
+            this.leStatusDisplay.Properties.ValueMember = "StatusID";
+            this.leStatusDisplay.Size = new System.Drawing.Size(292, 34);
+            this.leStatusDisplay.StyleController = this.layoutControl1;
+            this.leStatusDisplay.TabIndex = 5;
             // 
             // EditShowtime
             // 
@@ -308,7 +314,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leHall.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).EndInit();
@@ -322,6 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.startTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.showStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leStatusDisplay.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -333,7 +339,6 @@
         public DevExpress.XtraEditors.PictureEdit pePoster;
         public DevExpress.XtraEditors.TimeEdit teStartTime;
         public DevExpress.XtraEditors.DateEdit deShowDate;
-        public DevExpress.XtraEditors.ComboBoxEdit cbStatus;
         public DevExpress.XtraEditors.LookUpEdit leHall;
         public DevExpress.XtraEditors.TextEdit tePrice;
         public DevExpress.XtraLayout.LayoutControlGroup Root;
@@ -347,5 +352,6 @@
         public DevExpress.XtraLayout.LayoutControlItem showStatus;
         public DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         public DevExpress.XtraEditors.TextEdit leMovie;
+        public DevExpress.XtraEditors.LookUpEdit leStatusDisplay;
     }
 }

@@ -61,19 +61,15 @@ namespace TrinityCinema.Models
                                             s.[Price],
                                             s.[ShowDate],
                                             s.[StartTime],
-                                            s.[Status],
-                                          CASE
-                                                WHEN s.Status = 0 THEN 'Upcoming'
-                                                WHEN s.Status = 1 THEN 'Now Showing'
-                                                WHEN s.Status = 2 THEN 'Cancelled'
-                                                WHEN s.Status = 3 THEN 'Ended'
-                                                    ELSE 'Unknown'
-                                                END AS StatusDisplay
+                                            ss.[StatusID],
+                                            ss.[StatusName] AS StatusDisplay
                                           FROM [CinemaDB].[dbo].[Showtimes] s
                                             LEFT JOIN Movies m 
                                                 ON m.MovieID = s.MovieID
                                             LEFT JOIN Theaters t 
-                                                ON CAST(t.TheaterID AS VARCHAR) = s.TheaterID";
+                                                ON CAST(t.TheaterID AS VARCHAR) = s.TheaterID
+                                            LEFT JOIN ShowtimeStatus ss
+                                            ON ss.StatusID = s.Status";
 
 
 
@@ -140,7 +136,7 @@ namespace TrinityCinema.Models
                                            ,@ShowDate
                                            ,@StartTime
                                            ,@TheaterID
-                                           ,@Status)";
+                                           ,@StatusID)";
 
 
         #endregion

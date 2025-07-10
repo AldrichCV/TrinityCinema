@@ -307,10 +307,10 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(1009, 6);
+            this.btnEdit.Location = new System.Drawing.Point(869, 6);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(10);
-            this.btnEdit.Size = new System.Drawing.Size(75, 56);
+            this.btnEdit.Size = new System.Drawing.Size(215, 56);
             this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);

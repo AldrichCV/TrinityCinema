@@ -69,7 +69,7 @@ namespace TrinityCinema.Views.Admin
                     "ShowDate",
                     "StartTime",
                     "Price",
-                    "Status",
+                    "StatusID",
                     "MoviePoster"
                     };
 
@@ -83,7 +83,7 @@ namespace TrinityCinema.Views.Admin
                         details.deShowDate.EditValue = record["ShowDate"];
                         details.teStartTime.EditValue = record["StartTime"];
                         details.tePrice.EditValue = record["Price"];
-                        details.cbStatus.EditValue = record["Status"];
+                        details.leStatusDisplay.EditValue = record["StatusID"];
 
                         // ✅ Handle poster
                         if (!string.IsNullOrEmpty(record["MoviePoster"]))

@@ -17,6 +17,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class EditShowtime : DevExpress.XtraEditors.XtraForm
     {
+        AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
         public byte[] existingImageData;
         private int showtime;
@@ -27,6 +28,7 @@ namespace TrinityCinema.Views.Admin
             this.adminMainForm = adminMainForm;
             this.showtime = showtime;
             LoadTheaters();
+            LoadShowStatus();
         }
         private void LoadTheaters()
         {
@@ -38,26 +40,21 @@ namespace TrinityCinema.Views.Admin
             );
         }
 
-        private void RefreshShowtimeGrid()
-            {
-                var showtimeControl = adminMainForm.gcHome.Controls.OfType<ShowtimeControl>().FirstOrDefault();
-                if (showtimeControl != null)
-                {
-                    //showtimeControl.RefreshShowtimeGrid();
-                    showtimeControl.BringToFront();
-                }
-                else
-                {
-                    XtraMessageBox.Show("ShowtimeControl not found. Grid was not refreshed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+        private void LoadShowStatus()
+        {
+            AllMethods.LoadLookupData<Showtime>(
+                leStatusDisplay,
+                "SELECT StatusID, StatusName FROM ShowtimeStatus",
+                GlobalSettings.connectionString
+         );
+        }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (leMovie.EditValue == null ||
               string.IsNullOrWhiteSpace(tePrice.Text) ||
               string.IsNullOrWhiteSpace(leHall.Text) ||
-              string.IsNullOrWhiteSpace(cbStatus.Text) ||
+              string.IsNullOrWhiteSpace(leStatusDisplay.Text) ||
               deShowDate.DateTime == DateTime.MinValue ||
               teStartTime.EditValue == null)
             {
@@ -71,55 +68,39 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            string statusText = cbStatus.Text.Trim();
-            int status;
-            if (statusText == "Upcoming") status = 0;
-            else if (statusText == "Now Showing") status = 1;
-            else if (statusText == "Cancelled") status = 2;
-            else if (statusText == "Ended") status = 3;
-            else
-            {
-                XtraMessageBox.Show("Invalid status selected.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             DialogResult confirm = XtraMessageBox.Show("Are you sure you want to update this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes)
                 return;
 
             try
             {
-                Showtime show = new Showtime
+                var parameters = new Showtime
                 {
                     ShowtimeID = showtime,
-                    MovieID = leMovie.EditValue.ToString(),
                     Price = parsedPrice,
                     ShowDate = deShowDate.DateTime.Date,
-                    StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
+                    StartTime = teStartTime.Time.TimeOfDay,
                     TheaterID = Convert.ToInt32(leHall.EditValue),
-                    Status = status,
-                    StatusDisplay = statusText
+                    Status = Convert.ToInt32(leStatusDisplay.EditValue)
                 };
 
-                string updateQuery = @"UPDATE Showtimes SET 
-                            MovieID = @MovieID,
-                            Price = @Price,
-                            ShowDate = @ShowDate,
-                            StartTime = @StartTime,
-                            TheaterID = @TheaterID,
-                            Status = @Status,
-                            StatusDisplay = @StatusDisplay
-                            WHERE ShowtimeID = @ShowtimeID";
+                var columns = new List<string>
+            {
+                "Price", "ShowDate", "StartTime", "TheaterID", "Status"
+            };
 
-                using (var con = new SqlConnection(GlobalSettings.connectionString))
+                bool success = a.UpdateRecord("Showtimes", parameters, columns, "ShowtimeID");
+
+                if (success)
                 {
-                    con.Execute(updateQuery, showtime);
+                    XtraMessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh));
                 }
-
-                XtraMessageBox.Show("Showtime successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                RefreshShowtimeGrid();
-                this.Close();
+                else
+                {
+                    XtraMessageBox.Show("Update failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
