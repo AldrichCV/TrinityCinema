@@ -45,44 +45,7 @@ namespace TrinityCinema.Views.Admin
 
         private void btnRemove_Click(object sender, EventArgs e)
         {  // Confirm action
-            if (XtraMessageBox.Show("Are you sure you want to remove this employee?", "Confirm Removal",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-            {
-                Close();
-                return;
-            }
-
-            // Get ManagerHome and EmployeeList
-            var managerHome = Application.OpenForms.OfType<AdminMainForm>().FirstOrDefault();
-            var employeeList = managerHome?.gcHome.Controls.OfType<UsersControl>().FirstOrDefault();
-
-            if (managerHome == null || employeeList == null)
-            {
-                XtraMessageBox.Show("Required components not found.");
-                return;
-            }
-
-            // Get selected staffID
-            int rowHandle = employeeList.tvUserView.FocusedRowHandle;
-            string accountID = employeeList.tvUserView.GetRowCellValue(rowHandle, "AccountID")?.ToString();
-
-            if (rowHandle < 0 || string.IsNullOrWhiteSpace(accountID))
-            {
-                XtraMessageBox.Show("No valid employee selected.");
-                return;
-            }
-
-            // Perform deletion
-            a.RemoveRecordByKey(
-                primaryKeyColumn: "UserID",
-                primaryKeyValue: accountID,
-                tablesToDeleteFrom: new List<string> { "Users" },
-                connectionString: GlobalSettings.connectionString
-            );
-
-            // Close current form and reload EmployeeList
-            Close();
-            AllMethods.RefreshManagerHome(mh => new UsersControl(mh));
+            
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -182,6 +145,48 @@ namespace TrinityCinema.Views.Admin
                     }
                 }
             }
+        }
+
+        private void btnRemove_Click_1(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("Are you sure you want to remove this employee?", "Confirm Removal",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                Close();
+                return;
+            }
+
+            // Get ManagerHome and EmployeeList
+            var managerHome = Application.OpenForms.OfType<AdminMainForm>().FirstOrDefault();
+            var employeeList = managerHome?.gcHome.Controls.OfType<UsersControl>().FirstOrDefault();
+
+            if (managerHome == null || employeeList == null)
+            {
+                XtraMessageBox.Show("Required components not found.");
+                return;
+            }
+
+            // Get selected staffID
+            int rowHandle = employeeList.tvUserView.FocusedRowHandle;
+            string accountID = employeeList.tvUserView.GetRowCellValue(rowHandle, "UserID")?.ToString();
+
+            if (rowHandle < 0 || string.IsNullOrWhiteSpace(accountID))
+            {
+                XtraMessageBox.Show("No valid employee selected.");
+                return;
+            }
+
+            // Perform deletion
+            a.RemoveRecordByKey(
+                primaryKeyColumn: "UserID",
+                primaryKeyValue: accountID,
+                tablesToDeleteFrom: new List<string> { "Users" },
+                connectionString: GlobalSettings.connectionString
+            );
+
+            // Close current form and reload EmployeeList
+            Close();
+            AllMethods.RefreshManagerHome(mh => new UsersControl(mh));
         }
     }
     }
