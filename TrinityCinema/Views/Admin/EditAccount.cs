@@ -170,6 +170,11 @@ namespace TrinityCinema.Views.Admin
             Close();
             AllMethods.RefreshManagerHome(mh => new UsersControl(mh, loggedInUser));
         }
+
+        private void btnResetPassword_Click(object sender, EventArgs e)
+        {
+            AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID));
+        }
     }
     }
 
