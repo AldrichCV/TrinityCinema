@@ -33,12 +33,14 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.logsTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
             this.SuspendLayout();
@@ -58,9 +60,10 @@
             this.actionTile.ItemSize = 100;
             this.actionTile.Location = new System.Drawing.Point(0, 0);
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
-            this.actionTile.MaxId = 10;
+            this.actionTile.MaxId = 11;
             this.actionTile.Name = "actionTile";
             this.actionTile.Padding = new System.Windows.Forms.Padding(0);
+            this.actionTile.Position = 339;
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.Size = new System.Drawing.Size(1213, 164);
             this.actionTile.TabIndex = 0;
@@ -74,6 +77,7 @@
             this.tileBarGroup2.Items.Add(this.movieTile);
             this.tileBarGroup2.Items.Add(this.theaterTile);
             this.tileBarGroup2.Items.Add(this.showtimeTile);
+            this.tileBarGroup2.Items.Add(this.logsTile);
             this.tileBarGroup2.Name = "tileBarGroup2";
             // 
             // personnelTile
@@ -137,6 +141,18 @@
             this.showtimeTile.Name = "showtimeTile";
             this.showtimeTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.showtimeTile_ItemClick);
             // 
+            // logsTile
+            // 
+            this.logsTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DimGray;
+            this.logsTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.logsTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement5.Text = "tileBarItem1";
+            this.logsTile.Elements.Add(tileItemElement5);
+            this.logsTile.Id = 10;
+            this.logsTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.logsTile.Name = "logsTile";
+            this.logsTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.logsTile_ItemClick);
+            // 
             // gcHome
             // 
             this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
@@ -149,7 +165,6 @@
             this.gcHome.ShowCaption = false;
             this.gcHome.Size = new System.Drawing.Size(1213, 606);
             this.gcHome.TabIndex = 1;
-            this.gcHome.Text = "groupControl1";
             // 
             // AdminMainForm
             // 
@@ -181,5 +196,6 @@
         private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
         private DevExpress.XtraBars.Navigation.TileBarItem showtimeTile;
         public DevExpress.XtraEditors.GroupControl gcHome;
+        private DevExpress.XtraBars.Navigation.TileBarItem logsTile;
     }
 }

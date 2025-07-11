@@ -71,6 +71,16 @@ namespace TrinityCinema.Models
                                             LEFT JOIN ShowtimeStatus ss
                                             ON ss.StatusID = s.Status";
 
+        public static string getActivityLog = @"SELECT TOP (1000) [LogID]
+                                              ,[Timestamp]
+                                              ,CASE WHEN u.[Username] IS NULL THEN 'SupaAdmin' ELSE u.Username END AS Username
+                                              ,[Action]
+                                              ,[Description]
+                                          FROM [CinemaDB].[dbo].[ActivityLogs] a
+                                          LEFT JOIN Users u
+                                          ON u.UserID = a.UserID
+                                        ";
+
 
 
         #endregion
@@ -81,6 +91,7 @@ namespace TrinityCinema.Models
                                            ,[Username]
                                            ,[PasswordHash]
                                            ,[Fullname]
+                                           ,[DateOfBirth]
                                            ,[Role]
                                            ,[Phone]
                                            ,[PersonnelImage]
@@ -92,6 +103,7 @@ namespace TrinityCinema.Models
                                            ,@Username
                                            ,@PasswordHash
                                            ,@Fullname
+                                           ,@DateOfBirth
                                            ,@Role
                                            ,@Phone
                                            ,@PersonnelImage
@@ -138,6 +150,14 @@ namespace TrinityCinema.Models
                                            ,@TheaterID
                                            ,@StatusID)";
 
+        public static string insertActivityLog = @"INSERT INTO [dbo].[ActivityLogs]
+                                           ([Username]
+                                           ,[Action]
+                                           ,[DateModified])
+                                     VALUES
+                                           (@Username
+                                           ,@Action
+                                           ,@DateModified)";
 
         #endregion
 

@@ -63,5 +63,10 @@ namespace TrinityCinema.Views.Admin
                 XtraMessageBox.Show("Login Failed");
             }
         }
+
+        private void btnCloseWindow_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

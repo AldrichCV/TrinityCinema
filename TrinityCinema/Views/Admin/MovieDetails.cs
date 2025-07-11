@@ -1,9 +1,11 @@
-﻿using DevExpress.Data.Filtering.Helpers;
+﻿using Dapper;
+using DevExpress.Data.Filtering.Helpers;
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -12,7 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
-using Dapper;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -21,16 +22,20 @@ namespace TrinityCinema.Views.Admin
         private bool isEditing = false;
         private bool isInitializing = true;
 
+        AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         private byte[] imageData;
         public byte[] existingImageData;
         private string movieID;
-        public MovieDetails(AdminMainForm adminMainForm, string movieID)
+        private string loggedInUser;
+
+        public MovieDetails(AdminMainForm adminMainForm, string movieID, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             this.movieID = movieID;
             LoadGenre();
+            this.loggedInUser = loggedInUser;
         }
 
         private void LoadGenre()
@@ -176,10 +181,11 @@ namespace TrinityCinema.Views.Admin
             }
 
             XtraMessageBox.Show("Movie updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            allMethods.Log(loggedInUser, "Edit Movie", $"Updated movie: {teTitle.Text}");
 
             this.Close();
 
-            AllMethods.RefreshManagerHome(mh => new MoviesControl(mh));
+            AllMethods.RefreshManagerHome(mh => new MoviesControl(mh, loggedInUser));
         }
 
         private void beStatus_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
@@ -216,8 +222,9 @@ namespace TrinityCinema.Views.Admin
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Cancel = true;
             }
+            allMethods.Log(loggedInUser, "Edit Movie Status", $"Updated movie status of {teTitle.Text} to {(newStatus ? "Active" : "Inactive")}");
 
-            AllMethods.RefreshManagerHome(mh => new MoviesControl(mh));
+            AllMethods.RefreshManagerHome(mh => new MoviesControl(mh, loggedInUser));
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -247,9 +254,5 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

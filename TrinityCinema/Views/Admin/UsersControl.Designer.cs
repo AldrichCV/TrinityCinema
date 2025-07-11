@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersControl));
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition3 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
@@ -40,27 +41,66 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersControl));
+            this.UserID = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.PersonnelImage = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.Role = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.Fullname = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.gcUser = new DevExpress.XtraGrid.GridControl();
             this.tvUserView = new DevExpress.XtraGrid.Views.Tile.TileView();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.userTile = new DevExpress.XtraBars.Navigation.TileBarItem();
-            this.Fullname = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            this.Role = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            this.PersonnelImage = new DevExpress.XtraGrid.Columns.TileViewColumn();
-            this.UserID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvUserView)).BeginInit();
             this.SuspendLayout();
             // 
+            // UserID
+            // 
+            this.UserID.FieldName = "UserID";
+            this.UserID.MinWidth = 27;
+            this.UserID.Name = "UserID";
+            this.UserID.Visible = true;
+            this.UserID.VisibleIndex = 3;
+            this.UserID.Width = 100;
+            // 
+            // PersonnelImage
+            // 
+            this.PersonnelImage.FieldName = "PersonnelImage";
+            this.PersonnelImage.MinWidth = 27;
+            this.PersonnelImage.Name = "PersonnelImage";
+            this.PersonnelImage.Visible = true;
+            this.PersonnelImage.VisibleIndex = 2;
+            this.PersonnelImage.Width = 100;
+            // 
+            // Role
+            // 
+            this.Role.FieldName = "Role";
+            this.Role.MinWidth = 27;
+            this.Role.Name = "Role";
+            this.Role.Visible = true;
+            this.Role.VisibleIndex = 1;
+            this.Role.Width = 100;
+            // 
+            // Fullname
+            // 
+            this.Fullname.FieldName = "Fullname";
+            this.Fullname.MinWidth = 27;
+            this.Fullname.Name = "Fullname";
+            this.Fullname.Visible = true;
+            this.Fullname.VisibleIndex = 0;
+            this.Fullname.Width = 100;
+            // 
             // gcUser
             // 
+            this.gcUser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gcUser.BackgroundImage")));
+            this.gcUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gcUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcUser.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcUser.Location = new System.Drawing.Point(0, 0);
             this.gcUser.MainView = this.tvUserView;
+            this.gcUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcUser.Name = "gcUser";
-            this.gcUser.Size = new System.Drawing.Size(863, 419);
+            this.gcUser.Size = new System.Drawing.Size(1151, 516);
             this.gcUser.TabIndex = 5;
             this.gcUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tvUserView});
@@ -72,6 +112,7 @@
             this.Role,
             this.PersonnelImage,
             this.UserID});
+            this.tvUserView.DetailHeight = 431;
             this.tvUserView.GridControl = this.gcUser;
             this.tvUserView.Name = "tvUserView";
             this.tvUserView.OptionsTiles.ItemSize = new System.Drawing.Size(306, 167);
@@ -132,7 +173,7 @@
             this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
             this.actionTile.ItemSize = 80;
-            this.actionTile.Location = new System.Drawing.Point(0, 419);
+            this.actionTile.Location = new System.Drawing.Point(0, 516);
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
@@ -142,7 +183,7 @@
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.SelectionBorderWidth = 0;
             this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(863, 112);
+            this.actionTile.Size = new System.Drawing.Size(1151, 138);
             this.actionTile.TabIndex = 4;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -170,42 +211,15 @@
             this.userTile.Name = "userTile";
             this.userTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.userTile_ItemClick);
             // 
-            // Fullname
-            // 
-            this.Fullname.FieldName = "Fullname";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.Visible = true;
-            this.Fullname.VisibleIndex = 0;
-            // 
-            // Role
-            // 
-            this.Role.FieldName = "Role";
-            this.Role.Name = "Role";
-            this.Role.Visible = true;
-            this.Role.VisibleIndex = 1;
-            // 
-            // PersonnelImage
-            // 
-            this.PersonnelImage.FieldName = "PersonnelImage";
-            this.PersonnelImage.Name = "PersonnelImage";
-            this.PersonnelImage.Visible = true;
-            this.PersonnelImage.VisibleIndex = 2;
-            // 
-            // UserID
-            // 
-            this.UserID.FieldName = "UserID";
-            this.UserID.Name = "UserID";
-            this.UserID.Visible = true;
-            this.UserID.VisibleIndex = 3;
-            // 
             // UsersControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcUser);
             this.Controls.Add(this.actionTile);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UsersControl";
-            this.Size = new System.Drawing.Size(863, 531);
+            this.Size = new System.Drawing.Size(1151, 654);
             ((System.ComponentModel.ISupportInitialize)(this.gcUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvUserView)).EndInit();
             this.ResumeLayout(false);

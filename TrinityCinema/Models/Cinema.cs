@@ -16,11 +16,20 @@ namespace TrinityCinema.Models
         public string Username { get; set; }
         public string PasswordHash { get; set; }
         public string Fullname { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string Role { get; set; }
         public string Phone { get; set; }
         public byte[] PersonnelImage { get; set; }
         public int Status { get; set; }
         public DateTime DateCreated { get; set; }
+    }
+
+    public class ActivityLog
+    {
+        public DateTime Timestamp { get; set; }
+        public string Username { get; set; }
+        public string Action { get; set; }
+        public string Description { get; set; }
     }
 
     public class Movie

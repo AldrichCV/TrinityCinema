@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using System.Windows.Forms;
+using TrinityCinema.Models;
 using TrinityCinema.Views;
 using TrinityCinema.Views.Admin;
 
@@ -30,15 +31,17 @@ namespace TrinityCinema
                 if (result == DialogResult.OK) // You have to set this on successful login
                 {
                     // After loginAdmin closes, retrieve staffID and role from it
-                    string userID = loginForm.UserID;
+                    string loggedInUser = loginForm.UserID;
                     string role = loginForm.Role;
+
+                    new AllMethods().Log(loggedInUser, "Login", $"User {loggedInUser} has logged in as '{role}'.");
 
                     Form nextForm;
 
                     if (role == "Manager")
-                        nextForm = new AdminMainForm(userID);
+                        nextForm = new AdminMainForm(loggedInUser);
                     else if (role == "Staff")
-                        nextForm = new StaffMainForm(userID);
+                        nextForm = new StaffMainForm(loggedInUser);
                     else
                         return; // Unknown role, exit app
 

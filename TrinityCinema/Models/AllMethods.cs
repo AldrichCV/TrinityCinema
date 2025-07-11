@@ -10,10 +10,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Views.Admin;
+
 
 namespace TrinityCinema.Models
 {
@@ -148,42 +150,6 @@ namespace TrinityCinema.Models
             }
         }
 
-        //public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            // Add parameters dynamically
-        //            foreach (var prop in parameters.GetType().GetProperties())
-        //            {
-        //                command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(parameters) ?? DBNull.Value);
-        //            }
-
-        //            connection.Open();
-
-        //            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-        //            {
-        //                DataTable dt = new DataTable();
-        //                adapter.Fill(dt);
-
-        //                if (dt.Rows.Count == 0)
-        //                    return null;
-
-        //                DataRow row = dt.Rows[0];
-        //                Dictionary<string, string> result = new Dictionary<string, string>();
-
-        //                foreach (string col in columns)
-        //                {
-        //                    result[col] = row[col]?.ToString() ?? "";
-        //                }
-
-        //                return result;
-        //            }
-        //        }
-        //    }
-        //}
-
         public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
         {
             var record = new Dictionary<string, string>();
@@ -229,7 +195,6 @@ namespace TrinityCinema.Models
 
             return record;
         }
-
 
         public bool UpdateRecord(string tableName, object parameters, List<string> columns, string keyColumn)
         {
@@ -360,8 +325,30 @@ namespace TrinityCinema.Models
             newControl.BringToFront();
         }
 
+
+        public void Log(string loggedInUser, string action, string description)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"INSERT INTO ActivityLogs (UserID, Action, Description) 
+                             VALUES (@UserID, @Action, @Description)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", loggedInUser);
+                    cmd.Parameters.AddWithValue("@Action", action);
+                    cmd.Parameters.AddWithValue("@Description", description);
+
+                    conn.Open();        
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
+      
+
 
 
  

@@ -16,10 +16,10 @@ namespace TrinityCinema.Views
     public partial class StaffMainForm : DevExpress.XtraEditors.XtraForm
     {
         private string _userID;
-        public StaffMainForm(string userID)
+        public StaffMainForm(string loggedInUser)
         {
             InitializeComponent();
-            _userID = userID;
+            _userID = loggedInUser;
             labelControl1.Text = $"Welcome, {_userID}!";
         }
 

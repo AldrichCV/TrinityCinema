@@ -17,11 +17,13 @@ namespace TrinityCinema.Views.Admin
     {
         private AdminMainForm adminMainForm;
         private byte[] imageData;
-        public AddMovies(AdminMainForm adminMainForm)
+        private string loggedInUser;
+        public AddMovies(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             LoadGenre();
+            this.loggedInUser = loggedInUser;
         }
         private void LoadGenre()
         {
@@ -148,6 +150,7 @@ namespace TrinityCinema.Views.Admin
                 }
 
                 XtraMessageBox.Show("Movie and genres added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                allMethods.Log(loggedInUser, "Add Movie", $"Added movie: {createMovie.Title}");
 
                 this.Close();
 
@@ -157,7 +160,7 @@ namespace TrinityCinema.Views.Admin
                 if (movieList != null)
                     adminMainForm.gcHome.Controls.Remove(movieList);
 
-                MoviesControl newMoviesControl = new MoviesControl(adminMainForm)
+                MoviesControl newMoviesControl = new MoviesControl(adminMainForm, loggedInUser)
                 {
                     Dock = DockStyle.Fill
                 };

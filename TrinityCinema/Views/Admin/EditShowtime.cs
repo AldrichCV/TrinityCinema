@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Dapper;
+using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -9,26 +12,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
-using DevExpress.XtraEditors;
 using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Admin
 {
     public partial class EditShowtime : DevExpress.XtraEditors.XtraForm
     {
-        AllMethods a = new AllMethods();
+        AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         public byte[] existingImageData;
         private int showtime;
+        private string loggedInUser;
 
-        public EditShowtime(AdminMainForm adminMainForm, int showtime)
+        public EditShowtime(AdminMainForm adminMainForm, int showtime, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             this.showtime = showtime;
             LoadTheaters();
             LoadShowStatus();
+            this.loggedInUser = loggedInUser;
         }
         private void LoadTheaters()
         {
@@ -89,13 +92,15 @@ namespace TrinityCinema.Views.Admin
                 "Price", "ShowDate", "StartTime", "TheaterID", "Status"
             };
 
-                bool success = a.UpdateRecord("Showtimes", parameters, columns, "ShowtimeID");
+                bool success = allMethods.UpdateRecord("Showtimes", parameters, columns, "ShowtimeID");
 
                 if (success)
                 {
                     XtraMessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    allMethods.Log(loggedInUser, "Modified Showtime", $"Modified showtime with showtime ID of {showtime}");
                     this.Close();
-                    AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh));
+                    AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh, loggedInUser));
                 }
                 else
                 {

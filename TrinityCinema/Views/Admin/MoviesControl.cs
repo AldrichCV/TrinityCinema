@@ -21,12 +21,14 @@ namespace TrinityCinema.Views.Admin
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
         private byte[] imageData;
+        private string loggedInUser;
 
-        public MoviesControl(AdminMainForm adminMainForm)
+        public MoviesControl(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             AllMethods.GridCustomization(gcMovies, tvMovieView, GetMovies());
+            this.loggedInUser = loggedInUser;
         }
 
         public List<Movie> GetMovies()
@@ -42,7 +44,7 @@ namespace TrinityCinema.Views.Admin
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            AllMethods.ShowModal(home => new AddMovies(home));
+            AllMethods.ShowModal(home => new AddMovies(home, loggedInUser));
         }
 
         private void tvMovieView_ItemDoubleClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
@@ -58,7 +60,7 @@ namespace TrinityCinema.Views.Admin
 
             AllMethods.ShowModal(home =>
             {
-                MovieDetails details = new MovieDetails(home, movieID);
+                MovieDetails details = new MovieDetails(home, movieID, loggedInUser);
 
                 string where = " WHERE m.MovieID = @MovieID";
                 string query = GlobalSettings.getMovie + where;

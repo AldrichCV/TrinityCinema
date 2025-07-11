@@ -17,11 +17,15 @@ namespace TrinityCinema.Views.Admin
     {
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
-        public UsersControl(AdminMainForm adminMainForm)
+        private string loggedInUser;
+     
+        public UsersControl(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             AllMethods.GridCustomization(gcUser, tvUserView, GetEmployee());
+           
+            this.loggedInUser = loggedInUser;
         }
 
         public List<User> GetEmployee()
@@ -41,13 +45,13 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            EditAccount editAccount = new EditAccount(adminMainForm, userID);
+            EditAccount editAccount = new EditAccount(adminMainForm, userID, loggedInUser);
 
             string query = @"SELECT * FROM [dbo].[Users] WHERE UserID = @UserID";
             var parameters = new { userID };
             List<string> columns = new List<string>
                 {
-                    "Fullname", "Username", "Phone", "Role", "PersonnelImage"
+                    "Fullname", "Phone", "Role", "PersonnelImage", "DateOfBirth"
                 };
 
             Dictionary<string, string> record = allMethods.GetRecordById(query, parameters, columns);
@@ -56,8 +60,9 @@ namespace TrinityCinema.Views.Admin
             {
                 editAccount.teFullName.Text = record["Fullname"];
                 editAccount.tePhone.Text = record["Phone"];
-                editAccount.teUserName.Text = record["Username"];
                 editAccount.cbRole.Text = record["Role"];
+                editAccount.deDateOfBirth.DateTime = Convert.ToDateTime(record["DateOfBirth"]);
+
 
                 if (!string.IsNullOrEmpty(record["PersonnelImage"]))
                 {
@@ -79,7 +84,7 @@ namespace TrinityCinema.Views.Admin
 
         private void userTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            AllMethods.ShowModal(home => new AccountCreation(home));
+            AllMethods.ShowModal(home => new AccountCreation(home,loggedInUser));
         }
     }
 }

@@ -15,8 +15,9 @@ namespace TrinityCinema.Views.Admin
     {
         private AdminMainForm adminMainForm;
         private Showtime editingRow;
+        private string loggedInUser;
 
-        public AddShowtime(AdminMainForm adminMainForm)
+        public AddShowtime(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
@@ -25,6 +26,7 @@ namespace TrinityCinema.Views.Admin
             LoadShowStatus();
             LoadMoviePoster(null);
             deShowDate.Properties.MinValue = DateTime.Today;
+            this.loggedInUser = loggedInUser;
         }
 
         private void LoadMovies()
@@ -128,10 +130,10 @@ namespace TrinityCinema.Views.Admin
                         AllMethods allMethods = new AllMethods();
                         allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
                         XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                
+
+                allMethods.Log(loggedInUser, "Add Showtime", $"Add showtime for {showtime.Title}");
                 this.Close();
-                AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh));
+                AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh, loggedInUser));
             }
             catch (Exception ex)
             {

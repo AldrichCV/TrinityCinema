@@ -1,4 +1,6 @@
-﻿using DevExpress.Utils.Html.Internal;
+﻿using Dapper;
+using DevExpress.Utils.Html.Internal;
+using DevExpress.Utils.Svg;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.DXErrorProvider;
 using System;
@@ -11,22 +13,27 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
 using TrinityCinema.Views.Admin;
-using Dapper;
 
 namespace TrinityCinema.Views
 {
     public partial class AccountCreation : DevExpress.XtraEditors.XtraForm
     {
+        private static SvgImage security_visibility;
+
+
         private AdminMainForm adminMainForm;
         private byte[] imageData;
-        public AccountCreation(AdminMainForm adminMainForm)
+        private string loggedInUser;
+        public AccountCreation(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
-            this.adminMainForm = adminMainForm; 
+            this.adminMainForm = adminMainForm;
+            this.loggedInUser = loggedInUser;
         }
 
         private static string GenerateID()
@@ -47,7 +54,18 @@ namespace TrinityCinema.Views
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (result == DialogResult.Yes)
             {
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(tePassword.Text);
+                string passwordSet = tePassword.Text;
+                string confirmPassword = teConfirmedPassword.Text;
+
+                if (!passwordSet.Equals(confirmPassword))
+                {
+                    passwordErrorProvider.SetError(teConfirmedPassword, "Passwords do not match.");
+                    XtraMessageBox.Show("Passwords do not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passwordSet);
+
                 AllMethods allMethods = new AllMethods();
                 User createUser = new User
                 {
@@ -55,6 +73,7 @@ namespace TrinityCinema.Views
                     Username = teUserName.Text,
                     PasswordHash = hashedPassword,
                     Fullname = teFullName.Text,
+                    DateOfBirth = deDateOfBirth.DateTime.Date,
                     Phone = tePhone.Text,
                     Role = cbRole.Text,
                     PersonnelImage = imageData,
@@ -63,6 +82,8 @@ namespace TrinityCinema.Views
 
                 allMethods.InsertMethod(createUser, GlobalSettings.insertQuery);
                 XtraMessageBox.Show("Account details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                allMethods.Log(loggedInUser, "Add Employee", $"Added employee: {createUser.Fullname} ({createUser.Username})");
 
                 this.Close();
 
@@ -73,7 +94,7 @@ namespace TrinityCinema.Views
                     adminMainForm.gcHome.Controls.Remove(employeeList); // Remove old instance
                 }
 
-                UsersControl newEmployeeList = new UsersControl(adminMainForm)
+                UsersControl newEmployeeList = new UsersControl(adminMainForm, loggedInUser)
                 {
                     Dock = DockStyle.Fill
                 };
@@ -114,25 +135,6 @@ namespace TrinityCinema.Views
             }
         }
 
-        private void teUserName_EditValueChanged(object sender, EventArgs e)
-        {
-            string username = teUserName.Text.Trim();
-
-            if (string.IsNullOrEmpty(username))
-            {
-                errorProvider.SetError(teUserName, "Username is required.");
-                return;
-            }
-
-            if (UsernameExists(username))
-            {
-                errorProvider.SetError(teUserName, "Username already exists.");
-            }
-            else
-            {
-                errorProvider.SetError(teUserName, string.Empty);
-            }
-        }
         private bool UsernameExists(string username)
         {
             using (var connection = new SqlConnection(GlobalSettings.connectionString))
@@ -143,5 +145,109 @@ namespace TrinityCinema.Views
             }
         }
 
+        private void tePassword_EditValueChanged(object sender, EventArgs e)
+        {
+            string password = tePassword.Text.Trim();
+
+            if (string.IsNullOrEmpty(password))
+            {
+                passwordErrorProvider.SetError(tePassword, "Password is required.");
+                return;
+            }
+
+            if (password.Length < 8)
+            {
+                passwordErrorProvider.SetError(tePassword, "Password must be at least 8 characters long.");
+                return;
+            }
+
+            if (!password.Any(char.IsUpper))
+            {
+                passwordErrorProvider.SetError(tePassword, "Password must contain at least one uppercase letter.");
+                return;
+            }
+
+            if (!password.Any(char.IsDigit))
+            {
+                passwordErrorProvider.SetError(tePassword, "Password must contain at least one number.");
+                return;
+            }
+
+            if (!password.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                passwordErrorProvider.SetError(tePassword, "Password must contain at least one special character.");
+                return;
+            }
+
+            // If all checks pass
+            passwordErrorProvider.SetError(tePassword, string.Empty);
+        }
+
+        private void teUserName_EditValueChanged(object sender, EventArgs e)
+        {
+            string username = teUserName.Text.Trim();
+
+            if (string.IsNullOrEmpty(username))
+            {
+                usernameErrorProvider.SetError(teUserName, "Username is required.");
+                return;
+            }
+
+            if (UsernameExists(username))
+            {
+                usernameErrorProvider.SetError(teUserName, "Username already exists.");
+            }
+            else
+            {
+                usernameErrorProvider.SetError(teUserName, string.Empty);
+            }
+        }
+
+        private void teConfirmedPassword_EditValueChanged(object sender, EventArgs e)
+        {
+            string confirmPassword = teConfirmedPassword.Text.Trim();
+            string password = tePassword.Text.Trim();
+
+            if (string.IsNullOrEmpty(confirmPassword))
+            {
+                confirmPasswordErrorProvider.SetError(teConfirmedPassword, "Please confirm your password.");
+                return;
+            }
+
+            if (!confirmPassword.Equals(password))
+            {
+                confirmPasswordErrorProvider.SetError(teConfirmedPassword, "Passwords do not match.");
+            }
+            else
+            {
+                confirmPasswordErrorProvider.SetError(teConfirmedPassword, string.Empty);
+            }
+
+        }
+
+        private void tePhone_EditValueChanged(object sender, EventArgs e)
+        {
+            string phone = tePhone.Text.Trim();
+
+            if (string.IsNullOrEmpty(phone))
+            {
+                phoneErrorProvider.SetError(tePhone, "Phone number is required.");
+                return;
+            }
+
+            // Remove spaces, dashes, or any non-digit characters
+            string digitsOnly = Regex.Replace(phone, @"\D", "");
+
+            if (!Regex.IsMatch(digitsOnly, @"^(09\d{9}|639\d{9})$"))
+            {
+                phoneErrorProvider.SetError(tePhone, "Phone number must be in valid format: 09123456789 or 639123456789.");
+            }
+            else
+            {
+                phoneErrorProvider.SetError(tePhone, string.Empty);
+            }
+        }
     }
 }
+    
+

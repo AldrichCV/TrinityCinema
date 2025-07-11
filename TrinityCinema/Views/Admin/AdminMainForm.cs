@@ -16,17 +16,18 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
-        private string _userID;
-        public AdminMainForm(string userID)
+        private string loggedInUser;
+
+        public AdminMainForm(string loggedInUser)
         {
             InitializeComponent();
-            _userID = userID;
+            this.loggedInUser = loggedInUser;
         }
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            UsersControl personnelControl = new UsersControl(this);
+            UsersControl personnelControl = new UsersControl(this, loggedInUser);
             gcHome.Controls.Add(personnelControl);
             personnelControl.Dock = DockStyle.Fill;
             personnelControl.Show();
@@ -36,7 +37,7 @@ namespace TrinityCinema.Views.Admin
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            MoviesControl movieControl = new MoviesControl(this);
+            MoviesControl movieControl = new MoviesControl(this,loggedInUser);
             gcHome.Controls.Add(movieControl);
             movieControl.Dock = DockStyle.Fill;
             movieControl.Show();
@@ -54,12 +55,21 @@ namespace TrinityCinema.Views.Admin
         private void showtimeTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            ShowtimeControl showtimeControl = new ShowtimeControl(this);
+            ShowtimeControl showtimeControl = new ShowtimeControl(this, loggedInUser);
             gcHome.Controls.Add(showtimeControl);
             showtimeControl.Dock = DockStyle.Fill;
             showtimeControl.Show();
             //showtimeControl.RefreshShowtimeGrid();
 
+        }
+
+        private void logsTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            ActivityLogControl activityControl = new ActivityLogControl(this);
+            gcHome.Controls.Add(activityControl);
+            activityControl.Dock = DockStyle.Fill;
+            activityControl.Show();
         }
     }
 }

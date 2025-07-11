@@ -15,26 +15,28 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class ShowtimeControl : DevExpress.XtraEditors.XtraUserControl
     {
-        AllMethods a = new AllMethods();    
+        AllMethods allMethods = new AllMethods();    
         private AdminMainForm adminMainForm;
+        private string loggedInUser;
 
-        public ShowtimeControl(AdminMainForm adminMainForm)
+        public ShowtimeControl(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             AllMethods.GridCustomization(gcShowtime, gvShowtime, GetMovies());
+            this.loggedInUser = loggedInUser;
         }
 
         public List<Showtime> GetMovies()
         {
             string query = GlobalSettings.getShowtime;
-            return a.GetRecords<Showtime>(query);
+            return allMethods.GetRecords<Showtime>(query);
         }
 
 
         private void ShowtimeTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            AllMethods.ShowModal(home => new AddShowtime(adminMainForm));
+            AllMethods.ShowModal(home => new AddShowtime(adminMainForm, loggedInUser));
             //RefreshShowtimeGrid();
         }
 
@@ -54,7 +56,7 @@ namespace TrinityCinema.Views.Admin
 
                 AllMethods.ShowModal(home =>
                 {
-                    EditShowtime details = new EditShowtime(home, showtime);
+                    EditShowtime details = new EditShowtime(home, showtime, loggedInUser);
 
                     string where = " WHERE s.ShowtimeID = @ShowtimeID";
                     string query = GlobalSettings.getShowtime + where;
@@ -73,7 +75,7 @@ namespace TrinityCinema.Views.Admin
                     "MoviePoster"
                     };
 
-                    Dictionary<string, string> record = a.GetRecordById(query, parameters, columns);
+                    Dictionary<string, string> record = allMethods.GetRecordById(query, parameters, columns);
 
                     if (record != null)
                     {
@@ -128,7 +130,7 @@ namespace TrinityCinema.Views.Admin
                     connection.Execute(deleteQuery, new { ShowtimeID = showtime });
                 }
                 XtraMessageBox.Show("Showtime deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                AllMethods.RefreshManagerHome(mh => new ShowtimeControl(adminMainForm));
+                AllMethods.RefreshManagerHome(mh => new ShowtimeControl(adminMainForm, loggedInUser));
             }
         }
     }
