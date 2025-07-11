@@ -1,6 +1,6 @@
-﻿namespace TrinityCinema.Views.Admin
+﻿namespace TrinityCinema.Views.Staff
 {
-    partial class AdminMainForm
+    partial class StaffMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffMainForm));
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            this.gcHome = new DevExpress.XtraEditors.GroupControl();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
-            this.gcHome = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
-            this.gcHome.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // gcHome
+            // 
+            this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
+            this.gcHome.Appearance.Options.UseBackColor = true;
+            this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcHome.Location = new System.Drawing.Point(0, 164);
+            this.gcHome.Margin = new System.Windows.Forms.Padding(0);
+            this.gcHome.Name = "gcHome";
+            this.gcHome.ShowCaption = false;
+            this.gcHome.Size = new System.Drawing.Size(1213, 606);
+            this.gcHome.TabIndex = 3;
+            this.gcHome.Text = "groupControl1";
             // 
             // actionTile
             // 
@@ -65,7 +77,7 @@
             this.actionTile.Padding = new System.Windows.Forms.Padding(0);
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.Size = new System.Drawing.Size(1213, 164);
-            this.actionTile.TabIndex = 0;
+            this.actionTile.TabIndex = 2;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
             this.actionTile.WideTileWidth = 300;
@@ -91,7 +103,6 @@
             this.personnelTile.Id = 6;
             this.personnelTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.personnelTile.Name = "personnelTile";
-            this.personnelTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.personnelTile_ItemClick);
             // 
             // movieTile
             // 
@@ -107,7 +118,6 @@
             this.movieTile.Id = 7;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.movieTile.Name = "movieTile";
-            this.movieTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.movieTile_ItemClick);
             // 
             // theaterTile
             // 
@@ -122,7 +132,6 @@
             this.theaterTile.Id = 8;
             this.theaterTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.theaterTile.Name = "theaterTile";
-            this.theaterTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.theaterTile_ItemClick);
             // 
             // showtimeTile
             // 
@@ -137,64 +146,32 @@
             this.showtimeTile.Id = 9;
             this.showtimeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.showtimeTile.Name = "showtimeTile";
-            this.showtimeTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.showtimeTile_ItemClick);
             // 
-            // gcHome
+            // StaffMainForm
             // 
-            this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
-            this.gcHome.Appearance.Options.UseBackColor = true;
-            this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gcHome.Controls.Add(this.labelControl1);
-            this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcHome.Location = new System.Drawing.Point(0, 164);
-            this.gcHome.Margin = new System.Windows.Forms.Padding(0);
-            this.gcHome.Name = "gcHome";
-            this.gcHome.ShowCaption = false;
-            this.gcHome.Size = new System.Drawing.Size(1213, 606);
-            this.gcHome.TabIndex = 1;
-            this.gcHome.Text = "groupControl1";
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.BackColor = System.Drawing.Color.DarkRed;
-            this.labelControl1.Appearance.Options.UseBackColor = true;
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(47, 56);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(264, 153);
-            this.labelControl1.TabIndex = 0;
-            // 
-            // AdminMainForm
-            // 
-            this.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 770);
             this.Controls.Add(this.gcHome);
             this.Controls.Add(this.actionTile);
-            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.LookAndFeel.SkinName = "WXI";
-            this.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "AdminMainForm";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "StaffMainForm";
+            this.Text = "StaffMainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).EndInit();
-            this.gcHome.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        public DevExpress.XtraEditors.GroupControl gcHome;
         private DevExpress.XtraBars.Navigation.TileBar actionTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem personnelTile;
         private DevExpress.XtraBars.Navigation.TileBarItem movieTile;
         private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
         private DevExpress.XtraBars.Navigation.TileBarItem showtimeTile;
-        public DevExpress.XtraEditors.GroupControl gcHome;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

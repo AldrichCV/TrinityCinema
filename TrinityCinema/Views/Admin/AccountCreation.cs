@@ -26,6 +26,7 @@ namespace TrinityCinema.Views
             this.adminMainForm = adminMainForm; 
         }
 
+
         private static string GenerateID()
         {
             Random rand = new Random();

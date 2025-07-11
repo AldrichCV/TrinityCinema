@@ -21,6 +21,9 @@ namespace TrinityCinema.Models
         public byte[] PersonnelImage { get; set; }
         public int Status { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public int FailedAttempts { get; set; }
+        public bool IsLocked { get; set; }
     }
 
     public class Movie

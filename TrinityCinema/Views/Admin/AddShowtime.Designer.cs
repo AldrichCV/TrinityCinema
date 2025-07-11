@@ -190,7 +190,7 @@
             this.teStartTime.Properties.MaskSettings.Set("mask", "t");
             this.teStartTime.Size = new System.Drawing.Size(154, 34);
             this.teStartTime.TabIndex = 3;
-            this.teStartTime.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.teStartTime_EditValueChanging);
+            //this.teStartTime.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.teStartTime_EditValueChanging);
             // 
             // cbTheater
             // 
