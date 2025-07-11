@@ -17,6 +17,7 @@ namespace TrinityCinema.Views.Admin
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
         private string loggedInUser;
+        private string username;
 
         public AdminMainForm(string loggedInUser)
         {

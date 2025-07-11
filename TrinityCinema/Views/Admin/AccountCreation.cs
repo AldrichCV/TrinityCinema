@@ -29,6 +29,7 @@ namespace TrinityCinema.Views
         private AdminMainForm adminMainForm;
         private byte[] imageData;
         private string loggedInUser;
+
         public AccountCreation(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();

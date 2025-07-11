@@ -25,12 +25,16 @@ namespace TrinityCinema.Views.Admin
         private string userID;
         private byte[] imageData;
         public byte[] existingImageData;
+      
+
         public EditAccount(AdminMainForm adminMainForm, string userID, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             this.userID = userID;
             this.loggedInUser = loggedInUser;
+            SetLockStatusButton(userID);
+          
         }
         private T FindControl<T>(Control parent) where T : Control
         {
@@ -45,6 +49,49 @@ namespace TrinityCinema.Views.Admin
             }
             return null;
         }
+
+        private void SetLockStatusButton(string userID)
+        {
+            var userStatus = new AllMethods().GetUserLoginStatusByUserID(userID);
+
+            if (userStatus == null)
+            {
+                btnIsLocked.Text = "User Not Found";
+                btnIsLocked.Enabled = false;
+                btnIsLocked.BackColor = Color.Gray;
+                return;
+            }
+            bool isLocked = userStatus.Value.IsLocked;
+
+            if (isLocked)
+            {
+                btnIsLocked.Text = "Locked";
+                btnIsLocked.Enabled = true;
+
+                btnIsLocked.Appearance.BackColor = Color.Red;
+                btnIsLocked.Appearance.ForeColor = Color.White;
+                btnIsLocked.Appearance.Options.UseBackColor = true;
+                btnIsLocked.Appearance.Options.UseForeColor = true;
+
+                btnIsLocked.LookAndFeel.UseDefaultLookAndFeel = false;
+                btnIsLocked.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            }
+            else
+            {
+                btnIsLocked.Text = "Active";
+                btnIsLocked.Enabled = false;
+
+                btnIsLocked.AppearanceDisabled.BackColor = Color.Green;
+                btnIsLocked.AppearanceDisabled.ForeColor = Color.White;
+                btnIsLocked.AppearanceDisabled.Options.UseBackColor = true;
+                btnIsLocked.AppearanceDisabled.Options.UseForeColor = true;
+
+                btnIsLocked.LookAndFeel.UseDefaultLookAndFeel = false;
+                btnIsLocked.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            }
+        }
+
+
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -174,6 +221,11 @@ namespace TrinityCinema.Views.Admin
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
             AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID));
+        }
+
+        private void btnIsLocked_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }

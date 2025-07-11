@@ -55,6 +55,79 @@ namespace TrinityCinema.Models
             return (null, null); // Login failed
         }
 
+        public (bool IsLocked, int FailedAttempts)? GetUserLoginStatus(string username)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("SELECT IsLocked, FailedAttempts FROM Users WHERE Username = @Username", conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        bool isBanned = Convert.ToBoolean(reader["IsLocked"]);
+                        int attempts = Convert.ToInt32(reader["FailedAttempts"]);
+                        return (isBanned, attempts);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public (bool IsLocked, int FailedAttempts)? GetUserLoginStatusByUserID(string userID)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("SELECT IsLocked, FailedAttempts FROM Users WHERE UserID = @UserID", conn))
+            {
+                cmd.Parameters.AddWithValue("@UserID", userID);
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        bool isLocked = Convert.ToBoolean(reader["IsLocked"]);
+                        int attempts = Convert.ToInt32(reader["FailedAttempts"]);
+                        return (isLocked, attempts);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+
+        public void UpdateLoginAttempts(string username, int attempts, bool isBanned)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("UPDATE Users SET FailedAttempts = @Attempts, IsLocked = @Banned WHERE Username = @Username", conn))
+            {
+                cmd.Parameters.AddWithValue("@Attempts", attempts);
+                cmd.Parameters.AddWithValue("@Banned", isBanned);
+                cmd.Parameters.AddWithValue("@Username", username);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void ResetLoginAttempts(string username)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("UPDATE Users SET FailedAttempts = 0, IsLocked = 0 WHERE Username = @Username", conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+
+
+
         //Retrieval of records
         public List<T> GetRecords<T>(string query, object parameters = null)
         {

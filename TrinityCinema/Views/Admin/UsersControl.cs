@@ -18,13 +18,13 @@ namespace TrinityCinema.Views.Admin
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
         private string loggedInUser;
-     
+
         public UsersControl(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             AllMethods.GridCustomization(gcUser, tvUserView, GetEmployee());
-           
+
             this.loggedInUser = loggedInUser;
         }
 

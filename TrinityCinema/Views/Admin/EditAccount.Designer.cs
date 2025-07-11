@@ -38,6 +38,8 @@
             this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.teFullName = new DevExpress.XtraEditors.TextEdit();
             this.deDateOfBirth = new DevExpress.XtraEditors.DateEdit();
+            this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
+            this.btnResetPassword = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Fullname = new DevExpress.XtraLayout.LayoutControlItem();
@@ -49,10 +51,10 @@
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.DateOfBirth = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnResetPassword = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnIsLocked = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -78,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateOfBirth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -115,6 +118,7 @@
             this.layoutControl1.Controls.Add(this.deDateOfBirth);
             this.layoutControl1.Controls.Add(this.btnRemove);
             this.layoutControl1.Controls.Add(this.btnResetPassword);
+            this.layoutControl1.Controls.Add(this.btnIsLocked);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(2, 2);
             this.layoutControl1.Name = "layoutControl1";
@@ -145,20 +149,20 @@
             this.cbRole.Properties.Items.AddRange(new object[] {
             "Staff",
             "Manager"});
-            this.cbRole.Size = new System.Drawing.Size(147, 60);
+            this.cbRole.Size = new System.Drawing.Size(147, 50);
             this.cbRole.StyleController = this.layoutControl1;
             this.cbRole.TabIndex = 4;
             // 
             // tePhone
             // 
-            this.tePhone.Location = new System.Drawing.Point(342, 198);
+            this.tePhone.Location = new System.Drawing.Point(342, 188);
             this.tePhone.Margin = new System.Windows.Forms.Padding(4);
             this.tePhone.Name = "tePhone";
             this.tePhone.Properties.AutoHeight = false;
             this.tePhone.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.RegExpMaskManager));
             this.tePhone.Properties.MaskSettings.Set("MaskManagerSignature", "isOptimistic=False");
             this.tePhone.Properties.MaskSettings.Set("mask", "\\d\\d\\d\\d-\\d\\d\\d-\\d\\d\\d\\d");
-            this.tePhone.Size = new System.Drawing.Size(300, 69);
+            this.tePhone.Size = new System.Drawing.Size(300, 34);
             this.tePhone.StyleController = this.layoutControl1;
             this.tePhone.TabIndex = 5;
             // 
@@ -208,6 +212,26 @@
             this.deDateOfBirth.StyleController = this.layoutControl1;
             this.deDateOfBirth.TabIndex = 18;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(16, 547);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(150, 34);
+            this.btnRemove.StyleController = this.layoutControl1;
+            this.btnRemove.TabIndex = 19;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnResetPassword
+            // 
+            this.btnResetPassword.Location = new System.Drawing.Point(172, 547);
+            this.btnResetPassword.Name = "btnResetPassword";
+            this.btnResetPassword.Size = new System.Drawing.Size(150, 34);
+            this.btnResetPassword.StyleController = this.layoutControl1;
+            this.btnResetPassword.TabIndex = 20;
+            this.btnResetPassword.Text = "Reset Password";
+            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -224,7 +248,8 @@
             this.layoutControlItem1,
             this.DateOfBirth,
             this.layoutControlItem4,
-            this.layoutControlItem5});
+            this.layoutControlItem5,
+            this.layoutControlItem6});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(658, 597);
             this.Root.TextVisible = false;
@@ -255,7 +280,7 @@
             this.Role.Location = new System.Drawing.Point(326, 72);
             this.Role.MinSize = new System.Drawing.Size(110, 62);
             this.Role.Name = "Role";
-            this.Role.Size = new System.Drawing.Size(153, 88);
+            this.Role.Size = new System.Drawing.Size(153, 78);
             this.Role.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Role.TextLocation = DevExpress.Utils.Locations.Top;
             this.Role.TextSize = new System.Drawing.Size(52, 16);
@@ -263,18 +288,18 @@
             // Phone
             // 
             this.Phone.Control = this.tePhone;
-            this.Phone.Location = new System.Drawing.Point(326, 160);
+            this.Phone.Location = new System.Drawing.Point(326, 150);
             this.Phone.Name = "Phone";
-            this.Phone.Size = new System.Drawing.Size(306, 97);
+            this.Phone.Size = new System.Drawing.Size(306, 62);
             this.Phone.TextLocation = DevExpress.Utils.Locations.Top;
             this.Phone.TextSize = new System.Drawing.Size(52, 16);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(326, 257);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(326, 283);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(306, 274);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(306, 248);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -319,21 +344,11 @@
             this.DateOfBirth.Location = new System.Drawing.Point(479, 72);
             this.DateOfBirth.MinSize = new System.Drawing.Size(110, 62);
             this.DateOfBirth.Name = "DateOfBirth";
-            this.DateOfBirth.Size = new System.Drawing.Size(153, 88);
+            this.DateOfBirth.Size = new System.Drawing.Size(153, 78);
             this.DateOfBirth.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.DateOfBirth.Text = "Birthdate";
             this.DateOfBirth.TextLocation = DevExpress.Utils.Locations.Top;
             this.DateOfBirth.TextSize = new System.Drawing.Size(52, 16);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(16, 547);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(150, 34);
-            this.btnRemove.StyleController = this.layoutControl1;
-            this.btnRemove.TabIndex = 19;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // layoutControlItem4
             // 
@@ -344,16 +359,6 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // btnResetPassword
-            // 
-            this.btnResetPassword.Location = new System.Drawing.Point(172, 547);
-            this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(150, 34);
-            this.btnResetPassword.StyleController = this.layoutControl1;
-            this.btnResetPassword.TabIndex = 20;
-            this.btnResetPassword.Text = "Reset Password";
-            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnResetPassword;
@@ -362,6 +367,28 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(156, 40);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
+            // 
+            // btnIsLocked
+            // 
+            this.btnIsLocked.AppearanceDisabled.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnIsLocked.AppearanceDisabled.Options.UseBackColor = true;
+            this.btnIsLocked.Location = new System.Drawing.Point(342, 228);
+            this.btnIsLocked.Name = "btnIsLocked";
+            this.btnIsLocked.Size = new System.Drawing.Size(300, 65);
+            this.btnIsLocked.StyleController = this.layoutControl1;
+            this.btnIsLocked.TabIndex = 21;
+            this.btnIsLocked.Click += new System.EventHandler(this.btnIsLocked_Click);
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.btnIsLocked;
+            this.layoutControlItem6.Location = new System.Drawing.Point(326, 212);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(18, 38);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(306, 71);
+            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
             // 
             // EditAccount
             // 
@@ -398,6 +425,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateOfBirth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -429,5 +457,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.SimpleButton btnResetPassword;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.SimpleButton btnIsLocked;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
     }
 }
