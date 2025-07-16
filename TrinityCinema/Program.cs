@@ -21,7 +21,7 @@ namespace TrinityCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StaffMainForm());
+            Application.Run(new AdminMainForm());
         }
     }
 }

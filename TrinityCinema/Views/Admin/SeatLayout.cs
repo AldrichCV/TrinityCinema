@@ -20,10 +20,11 @@ namespace TrinityCinema.Views.Admin
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
         private int theaterID;
-        int seatWidth = 40;
-        int seatHeight = 40;
+        int seatWidth = 60;
+        int seatHeight = 60;
         int margin = 5;
 
+        // Constructor: Initializes the layout, generates seats if not exist, and loads the seat UI
         public SeatLayout(AdminMainForm adminMainForm, int theaterID)
         {
             InitializeComponent();
@@ -32,23 +33,16 @@ namespace TrinityCinema.Views.Admin
 
             GenerateSeatsIfNotExist(theaterID);
             LoadSeats();
-            AllMethods.GridCustomization(gcSeats, gvSeatView, GetSeats(GlobalSettings.getSeatPrice, theaterID));
         }
 
+        // Retrieves seat data for a specific theater using a SQL query
         public List<SeatInfo> GetSeats(string query, int theaterID)
         {
             var param = new { TheaterID = theaterID };
             return a.GetRecords<SeatInfo>(query, param).ToList();
         }
 
-        public void RefreshGrid()
-        {
-            var seats = GetSeats(GlobalSettings.getSeatPrice, theaterID);
-            AllMethods.GridCustomization(gcSeats, gvSeatView, seats);
-            gvSeatView.RefreshData();
-            gcSeats.Refresh();
-        }
-
+        // Generates seats if none exist for a theater
         private void GenerateSeatsIfNotExist(int theaterID)
         {
             using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
@@ -59,8 +53,9 @@ namespace TrinityCinema.Views.Admin
                 checkCmd.Parameters.AddWithValue("@TheaterID", theaterID);
 
                 int seatCount = (int)checkCmd.ExecuteScalar();
-                if (seatCount > 0) return;
+                if (seatCount > 0) return; // Exit if seats already exist
 
+                // Define seat layout plan (Left-Right pairs per row)
                 int[][] seatPlan = new int[][]
                 {
                     new int[] { 5, 5 },
@@ -73,6 +68,7 @@ namespace TrinityCinema.Views.Admin
 
                 int seatCounter = 1;
 
+                // Insert each seat into the database
                 for (int row = 0; row < seatPlan.Length; row++)
                 {
                     int rowNumber = row + 1;
@@ -100,6 +96,7 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
+        // Loads and displays the seat layout on the panel
         private void LoadSeats()
         {
             panelSeats.Controls.Clear();
@@ -115,6 +112,7 @@ namespace TrinityCinema.Views.Admin
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
+                // Organize seats by row
                 var seatsByRow = new Dictionary<int, List<(string SeatID, int SeatNumber, string Status)>>();
 
                 while (reader.Read())
@@ -131,24 +129,27 @@ namespace TrinityCinema.Views.Admin
                 }
                 reader.Close();
 
-                int buttonWidth = 50;
-                int buttonHeight = 50;
-                int spacing = 5;
-                int aisleSpacing = 30;
-                int frontMargin = 50;
+                // Layout configuration
+                int buttonWidth = seatWidth;
+                int buttonHeight = seatHeight;
+                int spacing = 10;
+                int aisleSpacing = 40;
+                int frontMargin = 70;
 
+                // Add "SCREEN" label
                 Label screenLabel = new Label();
                 screenLabel.Text = "SCREEN";
-                screenLabel.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+                screenLabel.Font = new Font("Segoe UI", 16, FontStyle.Bold);
                 screenLabel.ForeColor = Color.White;
                 screenLabel.BackColor = Color.DimGray;
                 screenLabel.TextAlign = ContentAlignment.MiddleCenter;
-                screenLabel.Width = 200;
-                screenLabel.Height = 30;
+                screenLabel.Width = 250;
+                screenLabel.Height = 35;
                 screenLabel.Left = (panelSeats.ClientSize.Width - screenLabel.Width) / 2;
                 screenLabel.Top = 10;
                 panelSeats.Controls.Add(screenLabel);
 
+                // Draw each row of seats
                 foreach (var row in seatsByRow.OrderBy(r => r.Key))
                 {
                     int rowNumber = row.Key;
@@ -162,22 +163,23 @@ namespace TrinityCinema.Views.Admin
                                       + aisleSpacing
                                       + rightSeats.Count * (buttonWidth + spacing);
                     int startX = (panelSeats.ClientSize.Width - totalRowWidth) / 2;
-
                     int topY = frontMargin + 50 + (rowNumber - 1) * (buttonHeight + spacing);
 
+                    // Add left side seats
                     for (int i = 0; i < leftSeats.Count; i++)
                     {
                         var seat = leftSeats[i];
-                        Button seatButton = CreateSeatButton(seat, buttonWidth, buttonHeight);
+                        Button seatButton = CreateSeatButton(seat, rowNumber, i + 1, buttonWidth, buttonHeight);
                         seatButton.Left = startX + i * (buttonWidth + spacing);
                         seatButton.Top = topY;
                         panelSeats.Controls.Add(seatButton);
                     }
 
+                    // Add right side seats
                     for (int i = 0; i < rightSeats.Count; i++)
                     {
                         var seat = rightSeats[i];
-                        Button seatButton = CreateSeatButton(seat, buttonWidth, buttonHeight);
+                        Button seatButton = CreateSeatButton(seat, rowNumber, mid + i + 1, buttonWidth, buttonHeight);
                         seatButton.Left = startX + leftSeats.Count * (buttonWidth + spacing) + aisleSpacing + i * (buttonWidth + spacing);
                         seatButton.Top = topY;
                         panelSeats.Controls.Add(seatButton);
@@ -186,18 +188,60 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
-        private Button CreateSeatButton((string SeatID, int SeatNumber, string Status) seat, int width, int height)
+        // Creates a styled button for each seat with hover and status color
+        private Button CreateSeatButton((string SeatID, int SeatNumber, string Status) seat, int row, int seatIndex, int width, int height)
         {
             Button btn = new Button();
             btn.Width = width;
             btn.Height = height;
-            btn.Text = seat.SeatNumber.ToString();
-            btn.BackColor = seat.Status == "Reserved" ? Color.Red : Color.Green;
+            btn.Text = $"{(char)('A' + row - 1)}{seatIndex}";
+            btn.ForeColor = Color.White;
+            btn.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            btn.FlatStyle = FlatStyle.Flat;
+
+            // Set color based on seat status
+            switch (seat.Status)
+            {
+                case "Reserved":
+                    btn.BackColor = Color.Red;
+                    break;
+                case "Booked":
+                    btn.BackColor = Color.Gray;
+                    break;
+                default:
+                    btn.BackColor = Color.Green;
+                    break;
+            }
+
+            // Hover effect (darkens color)
+            btn.MouseEnter += (s, e) =>
+            {
+                btn.BackColor = ControlPaint.Dark(btn.BackColor);
+            };
+
+            // Revert to original color after hover
+            btn.MouseLeave += (s, e) =>
+            {
+                switch (seat.Status)
+                {
+                    case "Reserved":
+                        btn.BackColor = Color.Red;
+                        break;
+                    case "Booked":
+                        btn.BackColor = Color.Gray;
+                        break;
+                    default:
+                        btn.BackColor = Color.Green;
+                        break;
+                }
+            };
+
             btn.Tag = new SeatInfo { SeatID = seat.SeatID, Status = seat.Status };
             btn.Click += SeatButton_Click;
             return btn;
         }
 
+        // Handles click event to update seat pricing
         private void SeatButton_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -232,6 +276,7 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
+        // Class to represent seat properties
         public class SeatInfo
         {
             public string SeatID { get; set; }
