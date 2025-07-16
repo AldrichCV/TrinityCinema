@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TrinityCinema.Views;
 using TrinityCinema.Views.Admin;
+using TrinityCinema.Views.Staff;
 
 namespace TrinityCinema
 {
@@ -20,7 +21,7 @@ namespace TrinityCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminMainForm());
+            Application.Run(new StaffMainForm());
         }
     }
 }

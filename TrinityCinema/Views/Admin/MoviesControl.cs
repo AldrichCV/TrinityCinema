@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
+using TrinityCinema.Views.Staff;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -17,12 +18,17 @@ namespace TrinityCinema.Views.Admin
         AllMethods a = new AllMethods();
         private AdminMainForm adminMainForm;
         private byte[] imageData;
+        
 
         public MoviesControl(AdminMainForm adminMainForm)
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             AllMethods.GridCustomization(gcMovies, tvMovieView, GetMovies());
+        }
+
+        public MoviesControl(StaffMainForm staffMainForm)
+        {
         }
 
         public List<Movie> GetMovies()

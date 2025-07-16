@@ -218,6 +218,12 @@
     <Compile Include="Views\Admin\TheaterInfo.Designer.cs">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Staff\BuyTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\BuyTicket.Designer.cs">
+      <DependentUpon>BuyTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Staff\StaffMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,8 +292,14 @@
     <EmbeddedResource Include="Views\Admin\TheaterInfo.resx">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\BuyTicket.resx">
+      <DependentUpon>BuyTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\StaffMainForm.resx">
       <DependentUpon>StaffMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\TicketControl.resx">
+      <DependentUpon>TicketControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

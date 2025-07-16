@@ -67,4 +67,17 @@ namespace TrinityCinema.Models
         public string StatusDisplay { get; set; }
     }
 
+    public class Ticket
+    {
+        public string TicketID { get; set; }
+        public string ShowtimeID { get; set; }
+        public string MovieID { get; set; }
+        public string TheaterID { get; set; }
+        public string UserID { get; set; }
+        public DateTime BookingTime { get; set; }
+        public decimal PricePaid { get; set; }
+        public int SeatNumber { get; set; }
+        public int Status { get; set; } // 0 = Available, 1 = Sold
+    }
 }
+

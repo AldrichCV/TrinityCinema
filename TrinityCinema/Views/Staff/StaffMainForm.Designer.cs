@@ -36,7 +36,7 @@
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
-            this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.ticketTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
@@ -84,25 +84,26 @@
             // 
             // tileBarGroup2
             // 
-            this.tileBarGroup2.Items.Add(this.personnelTile);
+            this.tileBarGroup2.Items.Add(this.ticketTile);
             this.tileBarGroup2.Items.Add(this.movieTile);
             this.tileBarGroup2.Items.Add(this.theaterTile);
             this.tileBarGroup2.Items.Add(this.showtimeTile);
             this.tileBarGroup2.Name = "tileBarGroup2";
             // 
-            // personnelTile
+            // ticketTile
             // 
-            this.personnelTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
-            this.personnelTile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.personnelTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("personnelTile.BackgroundImage")));
-            this.personnelTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
-            this.personnelTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.ticketTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
+            this.ticketTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.ticketTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ticketTile.BackgroundImage")));
+            this.ticketTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
+            this.ticketTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement1.Text = "";
             tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.personnelTile.Elements.Add(tileItemElement1);
-            this.personnelTile.Id = 6;
-            this.personnelTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.personnelTile.Name = "personnelTile";
+            this.ticketTile.Elements.Add(tileItemElement1);
+            this.ticketTile.Id = 6;
+            this.ticketTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.ticketTile.Name = "ticketTile";
+            this.ticketTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.ticketTile_ItemClick);
             // 
             // movieTile
             // 
@@ -118,6 +119,7 @@
             this.movieTile.Id = 7;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.movieTile.Name = "movieTile";
+            this.movieTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.movieTile_ItemClick);
             // 
             // theaterTile
             // 
@@ -169,7 +171,7 @@
         public DevExpress.XtraEditors.GroupControl gcHome;
         private DevExpress.XtraBars.Navigation.TileBar actionTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
-        private DevExpress.XtraBars.Navigation.TileBarItem personnelTile;
+        private DevExpress.XtraBars.Navigation.TileBarItem ticketTile;
         private DevExpress.XtraBars.Navigation.TileBarItem movieTile;
         private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
         private DevExpress.XtraBars.Navigation.TileBarItem showtimeTile;

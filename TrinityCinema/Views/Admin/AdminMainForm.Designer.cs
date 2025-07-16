@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
@@ -62,9 +62,9 @@
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.lbTotalAccounts = new DevExpress.XtraEditors.LabelControl();
             this.labelControl = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.lbTotalStaffs = new DevExpress.XtraEditors.LabelControl();
+            this.lbTotalMovies = new DevExpress.XtraEditors.LabelControl();
+            this.lbTotalTickets = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
             this.gcHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -118,9 +118,9 @@
             this.personnelTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("personnelTile.BackgroundImage")));
             this.personnelTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.personnelTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.Text = "";
-            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.personnelTile.Elements.Add(tileItemElement1);
+            tileItemElement5.Text = "";
+            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.personnelTile.Elements.Add(tileItemElement5);
             this.personnelTile.Id = 6;
             this.personnelTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.personnelTile.Name = "personnelTile";
@@ -134,9 +134,9 @@
             this.movieTile.BackgroundImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             this.movieTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.movieTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement2.Text = "";
-            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.movieTile.Elements.Add(tileItemElement2);
+            tileItemElement6.Text = "";
+            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.movieTile.Elements.Add(tileItemElement6);
             this.movieTile.Id = 7;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.movieTile.Name = "movieTile";
@@ -149,9 +149,9 @@
             this.theaterTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("theaterTile.BackgroundImage")));
             this.theaterTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.theaterTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement3.Text = "";
-            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.theaterTile.Elements.Add(tileItemElement3);
+            tileItemElement7.Text = "";
+            tileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.theaterTile.Elements.Add(tileItemElement7);
             this.theaterTile.Id = 8;
             this.theaterTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.theaterTile.Name = "theaterTile";
@@ -164,9 +164,9 @@
             this.showtimeTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("showtimeTile.BackgroundImage")));
             this.showtimeTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.showtimeTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement4.Text = "";
-            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.showtimeTile.Elements.Add(tileItemElement4);
+            tileItemElement8.Text = "";
+            tileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.showtimeTile.Elements.Add(tileItemElement8);
             this.showtimeTile.Id = 9;
             this.showtimeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.showtimeTile.Name = "showtimeTile";
@@ -177,9 +177,9 @@
             this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
             this.gcHome.Appearance.Options.UseBackColor = true;
             this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gcHome.Controls.Add(this.labelControl4);
-            this.gcHome.Controls.Add(this.labelControl3);
-            this.gcHome.Controls.Add(this.labelControl2);
+            this.gcHome.Controls.Add(this.lbTotalTickets);
+            this.gcHome.Controls.Add(this.lbTotalMovies);
+            this.gcHome.Controls.Add(this.lbTotalStaffs);
             this.gcHome.Controls.Add(this.groupControl1);
             this.gcHome.Controls.Add(this.pictureEdit8);
             this.gcHome.Controls.Add(this.lbTicketSold);
@@ -550,50 +550,50 @@
             this.labelControl.TabIndex = 0;
             this.labelControl.Text = "Total Accounts";
             // 
-            // labelControl2
+            // lbTotalStaffs
             // 
-            this.labelControl2.Appearance.BackColor = System.Drawing.Color.Maroon;
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl2.Appearance.Options.UseBackColor = true;
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(278, 30);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(81, 23);
-            this.labelControl2.TabIndex = 25;
-            this.labelControl2.Text = "0";
+            this.lbTotalStaffs.Appearance.BackColor = System.Drawing.Color.Maroon;
+            this.lbTotalStaffs.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalStaffs.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lbTotalStaffs.Appearance.Options.UseBackColor = true;
+            this.lbTotalStaffs.Appearance.Options.UseFont = true;
+            this.lbTotalStaffs.Appearance.Options.UseForeColor = true;
+            this.lbTotalStaffs.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lbTotalStaffs.Location = new System.Drawing.Point(278, 30);
+            this.lbTotalStaffs.Name = "lbTotalStaffs";
+            this.lbTotalStaffs.Size = new System.Drawing.Size(81, 23);
+            this.lbTotalStaffs.TabIndex = 25;
+            this.lbTotalStaffs.Text = "0";
             // 
-            // labelControl3
+            // lbTotalMovies
             // 
-            this.labelControl3.Appearance.BackColor = System.Drawing.Color.Maroon;
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl3.Appearance.Options.UseBackColor = true;
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(513, 30);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(81, 23);
-            this.labelControl3.TabIndex = 26;
-            this.labelControl3.Text = "0";
+            this.lbTotalMovies.Appearance.BackColor = System.Drawing.Color.Maroon;
+            this.lbTotalMovies.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalMovies.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lbTotalMovies.Appearance.Options.UseBackColor = true;
+            this.lbTotalMovies.Appearance.Options.UseFont = true;
+            this.lbTotalMovies.Appearance.Options.UseForeColor = true;
+            this.lbTotalMovies.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lbTotalMovies.Location = new System.Drawing.Point(513, 30);
+            this.lbTotalMovies.Name = "lbTotalMovies";
+            this.lbTotalMovies.Size = new System.Drawing.Size(81, 23);
+            this.lbTotalMovies.TabIndex = 26;
+            this.lbTotalMovies.Text = "0";
             // 
-            // labelControl4
+            // lbTotalTickets
             // 
-            this.labelControl4.Appearance.BackColor = System.Drawing.Color.Maroon;
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl4.Appearance.Options.UseBackColor = true;
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(742, 30);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(86, 23);
-            this.labelControl4.TabIndex = 27;
-            this.labelControl4.Text = "0";
+            this.lbTotalTickets.Appearance.BackColor = System.Drawing.Color.Maroon;
+            this.lbTotalTickets.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalTickets.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lbTotalTickets.Appearance.Options.UseBackColor = true;
+            this.lbTotalTickets.Appearance.Options.UseFont = true;
+            this.lbTotalTickets.Appearance.Options.UseForeColor = true;
+            this.lbTotalTickets.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lbTotalTickets.Location = new System.Drawing.Point(742, 30);
+            this.lbTotalTickets.Name = "lbTotalTickets";
+            this.lbTotalTickets.Size = new System.Drawing.Size(86, 23);
+            this.lbTotalTickets.TabIndex = 27;
+            this.lbTotalTickets.Text = "0";
             // 
             // AdminMainForm
             // 
@@ -657,8 +657,8 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit7;
         private DevExpress.XtraEditors.LabelControl lbAvailableTickets;
         private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl lbTotalTickets;
+        private DevExpress.XtraEditors.LabelControl lbTotalMovies;
+        private DevExpress.XtraEditors.LabelControl lbTotalStaffs;
     }
 }
