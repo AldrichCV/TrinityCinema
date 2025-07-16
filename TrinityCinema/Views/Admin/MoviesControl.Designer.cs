@@ -28,29 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MoviesControl));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition3 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
-            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition4 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
-            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition4 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
-            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition5 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
-            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition6 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
-            DevExpress.XtraEditors.TableLayout.TableSpan tableSpan2 = new DevExpress.XtraEditors.TableLayout.TableSpan();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
+            DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition2 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition3 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraEditors.TableLayout.TableSpan tableSpan1 = new DevExpress.XtraEditors.TableLayout.TableSpan();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement1 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement2 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement5 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement6 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
-            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement7 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
-            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement8 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
-            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement9 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
-            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement10 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             this.Title = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.MovieID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.MoviePoster = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Status = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Genre = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.Rating = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Action = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.viewDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcMovies = new DevExpress.XtraGrid.GridControl();
@@ -108,6 +110,15 @@
             this.Genre.VisibleIndex = 5;
             this.Genre.Width = 94;
             // 
+            // Rating
+            // 
+            this.Rating.FieldName = "ContentRatingCode";
+            this.Rating.MinWidth = 25;
+            this.Rating.Name = "Rating";
+            this.Rating.Visible = true;
+            this.Rating.VisibleIndex = 6;
+            this.Rating.Width = 94;
+            // 
             // Action
             // 
             this.Action.Caption = "Action";
@@ -123,11 +134,11 @@
             // viewDetails
             // 
             this.viewDetails.AutoHeight = false;
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
-            editorButtonImageOptions2.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
-            editorButtonImageOptions2.SvgImageSize = new System.Drawing.Size(25, 25);
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions1.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
+            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(25, 25);
             this.viewDetails.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.viewDetails.LookAndFeel.SkinName = "WXI";
             this.viewDetails.LookAndFeel.UseDefaultLookAndFeel = false;
             this.viewDetails.Name = "viewDetails";
@@ -159,72 +170,83 @@
             this.Action,
             this.Status,
             this.MoviePoster,
-            this.Genre});
+            this.Genre,
+            this.Rating});
             this.tvMovieView.DetailHeight = 431;
             this.tvMovieView.GridControl = this.gcMovies;
             this.tvMovieView.Name = "tvMovieView";
             this.tvMovieView.OptionsTiles.IndentBetweenGroups = 28;
             this.tvMovieView.OptionsTiles.IndentBetweenItems = 12;
             this.tvMovieView.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(23);
-            this.tvMovieView.OptionsTiles.ItemSize = new System.Drawing.Size(430, 372);
+            this.tvMovieView.OptionsTiles.ItemSize = new System.Drawing.Size(430, 396);
             this.tvMovieView.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tvMovieView.OptionsTiles.RowCount = 0;
             this.tvMovieView.OptionsTiles.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Top;
-            tableColumnDefinition3.Length.Value = 239D;
-            tableColumnDefinition4.Length.Value = 159D;
-            this.tvMovieView.TileColumns.Add(tableColumnDefinition3);
-            this.tvMovieView.TileColumns.Add(tableColumnDefinition4);
-            tableRowDefinition4.Length.Value = 27D;
-            tableRowDefinition5.Length.Value = 147D;
-            tableRowDefinition6.Length.Value = 87D;
-            this.tvMovieView.TileRows.Add(tableRowDefinition4);
-            this.tvMovieView.TileRows.Add(tableRowDefinition5);
-            this.tvMovieView.TileRows.Add(tableRowDefinition6);
-            tableSpan2.RowSpan = 3;
-            this.tvMovieView.TileSpans.Add(tableSpan2);
-            tileViewItemElement6.Appearance.Normal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tableColumnDefinition1.Length.Value = 239D;
+            tableColumnDefinition2.Length.Value = 159D;
+            this.tvMovieView.TileColumns.Add(tableColumnDefinition1);
+            this.tvMovieView.TileColumns.Add(tableColumnDefinition2);
+            tableRowDefinition1.Length.Value = 27D;
+            tableRowDefinition2.Length.Value = 147D;
+            tableRowDefinition3.Length.Value = 87D;
+            this.tvMovieView.TileRows.Add(tableRowDefinition1);
+            this.tvMovieView.TileRows.Add(tableRowDefinition2);
+            this.tvMovieView.TileRows.Add(tableRowDefinition3);
+            tableSpan1.RowSpan = 3;
+            this.tvMovieView.TileSpans.Add(tableSpan1);
+            tileViewItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileViewItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileViewItemElement1.Column = this.Title;
+            tileViewItemElement1.ColumnIndex = 1;
+            tileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement1.RowIndex = 1;
+            tileViewItemElement1.Text = "Title";
+            tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
+            tileViewItemElement2.Appearance.Normal.Options.UseFont = true;
+            tileViewItemElement2.Column = this.MovieID;
+            tileViewItemElement2.ColumnIndex = 1;
+            tileViewItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement2.Text = "MovieID";
+            tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
+            tileViewItemElement3.Column = this.MoviePoster;
+            tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement3.Text = "MoviePoster";
+            tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+            tileViewItemElement4.Appearance.Normal.Options.UseFont = true;
+            tileViewItemElement4.Column = this.Status;
+            tileViewItemElement4.ColumnIndex = 1;
+            tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement4.RowIndex = 2;
+            tileViewItemElement4.Text = "Status";
+            tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
+            tileViewItemElement5.Column = this.Genre;
+            tileViewItemElement5.ColumnIndex = 1;
+            tileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement5.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement5.RowIndex = 1;
+            tileViewItemElement5.Text = "Genre";
+            tileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileViewItemElement6.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.8F);
             tileViewItemElement6.Appearance.Normal.Options.UseFont = true;
-            tileViewItemElement6.Column = this.Title;
+            tileViewItemElement6.Column = this.Rating;
             tileViewItemElement6.ColumnIndex = 1;
             tileViewItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement6.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement6.RowIndex = 1;
-            tileViewItemElement6.Text = "Title";
+            tileViewItemElement6.RowIndex = 2;
+            tileViewItemElement6.Text = "Rating";
             tileViewItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement7.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
-            tileViewItemElement7.Appearance.Normal.Options.UseFont = true;
-            tileViewItemElement7.Column = this.MovieID;
-            tileViewItemElement7.ColumnIndex = 1;
-            tileViewItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement7.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement7.Text = "MovieID";
-            tileViewItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
-            tileViewItemElement8.Column = this.MoviePoster;
-            tileViewItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement8.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement8.Text = "MoviePoster";
-            tileViewItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement9.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
-            tileViewItemElement9.Appearance.Normal.Options.UseFont = true;
-            tileViewItemElement9.Column = this.Status;
-            tileViewItemElement9.ColumnIndex = 1;
-            tileViewItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement9.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement9.RowIndex = 2;
-            tileViewItemElement9.Text = "Status";
-            tileViewItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement10.Column = this.Genre;
-            tileViewItemElement10.ColumnIndex = 1;
-            tileViewItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileViewItemElement10.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
-            tileViewItemElement10.RowIndex = 1;
-            tileViewItemElement10.Text = "Genre";
-            tileViewItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.tvMovieView.TileTemplate.Add(tileViewItemElement1);
+            this.tvMovieView.TileTemplate.Add(tileViewItemElement2);
+            this.tvMovieView.TileTemplate.Add(tileViewItemElement3);
+            this.tvMovieView.TileTemplate.Add(tileViewItemElement4);
+            this.tvMovieView.TileTemplate.Add(tileViewItemElement5);
             this.tvMovieView.TileTemplate.Add(tileViewItemElement6);
-            this.tvMovieView.TileTemplate.Add(tileViewItemElement7);
-            this.tvMovieView.TileTemplate.Add(tileViewItemElement8);
-            this.tvMovieView.TileTemplate.Add(tileViewItemElement9);
-            this.tvMovieView.TileTemplate.Add(tileViewItemElement10);
             this.tvMovieView.ItemDoubleClick += new DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventHandler(this.tvMovieView_ItemDoubleClick);
             // 
             // actionTile
@@ -266,13 +288,13 @@
             this.movieTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.movieTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.movieTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
-            tileItemElement2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
-            tileItemElement2.StretchHorizontal = true;
-            tileItemElement2.StretchVertical = true;
-            tileItemElement2.Text = "";
-            this.movieTile.Elements.Add(tileItemElement2);
+            tileItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
+            tileItemElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
+            tileItemElement1.StretchHorizontal = true;
+            tileItemElement1.StretchVertical = true;
+            tileItemElement1.Text = "";
+            this.movieTile.Elements.Add(tileItemElement1);
             this.movieTile.Id = 10;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium;
             this.movieTile.Name = "movieTile";
@@ -307,5 +329,6 @@
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup2;
         private DevExpress.XtraBars.Navigation.TileBarItem movieTile;
         private DevExpress.XtraGrid.Columns.TileViewColumn Genre;
+        private DevExpress.XtraGrid.Columns.TileViewColumn Rating;
     }
 }

@@ -34,6 +34,8 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
@@ -42,6 +44,9 @@
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logsTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
+            this.tileBarGroup3 = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.tileBarItem1 = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.logoutTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,22 +55,24 @@
             this.actionTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Brown;
             this.actionTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.actionTile.BackColor = System.Drawing.Color.Brown;
+            this.actionTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("actionTile.BackgroundImage")));
+            this.actionTile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.actionTile.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.OutAnimation;
             this.actionTile.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.actionTile.Dock = System.Windows.Forms.DockStyle.Top;
             this.actionTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             this.actionTile.Groups.Add(this.tileBarGroup2);
-            this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.actionTile.Groups.Add(this.tileBarGroup3);
+            this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
             this.actionTile.ItemSize = 100;
             this.actionTile.Location = new System.Drawing.Point(0, 0);
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
-            this.actionTile.MaxId = 11;
+            this.actionTile.MaxId = 15;
             this.actionTile.Name = "actionTile";
-            this.actionTile.Padding = new System.Windows.Forms.Padding(0);
-            this.actionTile.Position = 339;
+            this.actionTile.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
-            this.actionTile.Size = new System.Drawing.Size(1213, 164);
+            this.actionTile.Size = new System.Drawing.Size(1854, 189);
             this.actionTile.TabIndex = 0;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -143,10 +150,13 @@
             // 
             // logsTile
             // 
-            this.logsTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DimGray;
+            this.logsTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.logsTile.AppearanceItem.Normal.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold);
             this.logsTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.logsTile.AppearanceItem.Normal.Options.UseFont = true;
             this.logsTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement5.Text = "tileBarItem1";
+            tileItemElement5.Text = "Logs";
+            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomLeft;
             this.logsTile.Elements.Add(tileItemElement5);
             this.logsTile.Id = 10;
             this.logsTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -159,12 +169,38 @@
             this.gcHome.Appearance.Options.UseBackColor = true;
             this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcHome.Location = new System.Drawing.Point(0, 164);
+            this.gcHome.Location = new System.Drawing.Point(0, 189);
             this.gcHome.Margin = new System.Windows.Forms.Padding(0);
             this.gcHome.Name = "gcHome";
             this.gcHome.ShowCaption = false;
-            this.gcHome.Size = new System.Drawing.Size(1213, 606);
+            this.gcHome.Size = new System.Drawing.Size(1854, 640);
             this.gcHome.TabIndex = 1;
+            this.gcHome.Paint += new System.Windows.Forms.PaintEventHandler(this.gcHome_Paint);
+            // 
+            // tileBarGroup3
+            // 
+            this.tileBarGroup3.Items.Add(this.tileBarItem1);
+            this.tileBarGroup3.Items.Add(this.logoutTile);
+            this.tileBarGroup3.Name = "tileBarGroup3";
+            // 
+            // tileBarItem1
+            // 
+            this.tileBarItem1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement6.Text = "tileBarItem1";
+            this.tileBarItem1.Elements.Add(tileItemElement6);
+            this.tileBarItem1.Id = 11;
+            this.tileBarItem1.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium;
+            this.tileBarItem1.Name = "tileBarItem1";
+            // 
+            // logoutTile
+            // 
+            this.logoutTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement7.Text = "Logout";
+            this.logoutTile.Elements.Add(tileItemElement7);
+            this.logoutTile.Id = 14;
+            this.logoutTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium;
+            this.logoutTile.Name = "logoutTile";
+            this.logoutTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.logoutTile_ItemClick);
             // 
             // AdminMainForm
             // 
@@ -172,7 +208,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 770);
+            this.ClientSize = new System.Drawing.Size(1854, 829);
             this.Controls.Add(this.gcHome);
             this.Controls.Add(this.actionTile);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
@@ -197,5 +233,8 @@
         private DevExpress.XtraBars.Navigation.TileBarItem showtimeTile;
         public DevExpress.XtraEditors.GroupControl gcHome;
         private DevExpress.XtraBars.Navigation.TileBarItem logsTile;
+        private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup3;
+        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem1;
+        private DevExpress.XtraBars.Navigation.TileBarItem logoutTile;
     }
 }

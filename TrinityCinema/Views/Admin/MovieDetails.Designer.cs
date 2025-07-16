@@ -46,8 +46,10 @@
             this.Genre = new DevExpress.XtraLayout.LayoutControlItem();
             this.Duration = new DevExpress.XtraLayout.LayoutControlItem();
             this.Status = new DevExpress.XtraLayout.LayoutControlItem();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.Rating = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.leRating = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -67,15 +69,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.Genre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Duration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Status)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Rating)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leRating.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
             this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl1.Controls.Add(this.layoutControl1);
-            this.groupControl1.Controls.Add(this.groupControl3);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
@@ -87,6 +89,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnEdit);
             this.layoutControl1.Controls.Add(this.teTitle);
             this.layoutControl1.Controls.Add(this.meDescription);
             this.layoutControl1.Controls.Add(this.pePosterImage);
@@ -95,13 +98,14 @@
             this.layoutControl1.Controls.Add(this.groupControl2);
             this.layoutControl1.Controls.Add(this.teDuration);
             this.layoutControl1.Controls.Add(this.leGenre);
+            this.layoutControl1.Controls.Add(this.leRating);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(30, 30);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(113, 203, 812, 500);
             this.layoutControl1.OptionsView.ItemBorderColor = System.Drawing.Color.Transparent;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1089, 601);
+            this.layoutControl1.Size = new System.Drawing.Size(1089, 668);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -115,9 +119,9 @@
             // 
             // meDescription
             // 
-            this.meDescription.Location = new System.Drawing.Point(82, 155);
+            this.meDescription.Location = new System.Drawing.Point(82, 258);
             this.meDescription.Name = "meDescription";
-            this.meDescription.Size = new System.Drawing.Size(515, 328);
+            this.meDescription.Size = new System.Drawing.Size(515, 301);
             this.meDescription.StyleController = this.layoutControl1;
             this.meDescription.TabIndex = 4;
             // 
@@ -127,15 +131,15 @@
             this.pePosterImage.Name = "pePosterImage";
             this.pePosterImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pePosterImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-            this.pePosterImage.Size = new System.Drawing.Size(483, 536);
+            this.pePosterImage.Size = new System.Drawing.Size(483, 544);
             this.pePosterImage.StyleController = this.layoutControl1;
             this.pePosterImage.TabIndex = 7;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(610, 552);
+            this.btnBrowse.Location = new System.Drawing.Point(610, 560);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(469, 39);
+            this.btnBrowse.Size = new System.Drawing.Size(469, 38);
             this.btnBrowse.StyleController = this.layoutControl1;
             this.btnBrowse.TabIndex = 8;
             this.btnBrowse.Text = "Browse";
@@ -144,7 +148,7 @@
             // beStatus
             // 
             this.beStatus.EditValue = null;
-            this.beStatus.Location = new System.Drawing.Point(290, 518);
+            this.beStatus.Location = new System.Drawing.Point(290, 594);
             this.beStatus.Name = "beStatus";
             this.beStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.beStatus.Properties.ContentAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -167,12 +171,13 @@
             // teDuration
             // 
             this.teDuration.EditValue = null;
-            this.teDuration.Location = new System.Drawing.Point(10, 518);
+            this.teDuration.Location = new System.Drawing.Point(10, 594);
             this.teDuration.Name = "teDuration";
             this.teDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.teDuration.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.teDuration.Properties.MaskSettings.Set("mask", "HH:mm:s");
+            this.teDuration.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.teDuration.Properties.UseMaskAsDisplayFormat = true;
             this.teDuration.Size = new System.Drawing.Size(260, 34);
             this.teDuration.StyleController = this.layoutControl1;
@@ -180,7 +185,7 @@
             // 
             // leGenre
             // 
-            this.leGenre.Location = new System.Drawing.Point(10, 108);
+            this.leGenre.Location = new System.Drawing.Point(10, 116);
             this.leGenre.Name = "leGenre";
             this.leGenre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -199,9 +204,11 @@
             this.layoutControlItem1,
             this.Genre,
             this.Duration,
-            this.Status});
+            this.Status,
+            this.Rating,
+            this.layoutControlItem3});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1089, 601);
+            this.Root.Size = new System.Drawing.Size(1089, 668);
             this.Root.TextVisible = false;
             // 
             // Title
@@ -211,7 +218,7 @@
             this.Title.MinSize = new System.Drawing.Size(128, 76);
             this.Title.Name = "Title";
             this.Title.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Title.Size = new System.Drawing.Size(600, 76);
+            this.Title.Size = new System.Drawing.Size(600, 84);
             this.Title.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Title.TextLocation = DevExpress.Utils.Locations.Top;
             this.Title.TextSize = new System.Drawing.Size(48, 16);
@@ -224,12 +231,12 @@
             this.Description.Control = this.meDescription;
             this.Description.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.Description.CustomizationFormText = "Description";
-            this.Description.Location = new System.Drawing.Point(0, 152);
+            this.Description.Location = new System.Drawing.Point(0, 255);
             this.Description.MinSize = new System.Drawing.Size(97, 40);
             this.Description.Name = "Description";
             this.Description.OptionsCustomization.AllowDrag = DevExpress.XtraLayout.ItemDragDropMode.Allow;
             this.Description.OptionsCustomization.AllowDrop = DevExpress.XtraLayout.ItemDragDropMode.Allow;
-            this.Description.Size = new System.Drawing.Size(600, 334);
+            this.Description.Size = new System.Drawing.Size(600, 307);
             this.Description.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Description.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.Description.TextSize = new System.Drawing.Size(63, 16);
@@ -240,18 +247,19 @@
             this.peImage.Control = this.pePosterImage;
             this.peImage.Location = new System.Drawing.Point(600, 0);
             this.peImage.Name = "peImage";
-            this.peImage.Size = new System.Drawing.Size(489, 542);
+            this.peImage.Size = new System.Drawing.Size(489, 550);
             this.peImage.TextSize = new System.Drawing.Size(0, 0);
             this.peImage.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnBrowse;
-            this.layoutControlItem1.Location = new System.Drawing.Point(600, 542);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(57, 40);
+            this.layoutControlItem1.Location = new System.Drawing.Point(600, 550);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(489, 58);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(489, 58);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(489, 59);
+            this.layoutControlItem1.Size = new System.Drawing.Size(489, 58);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -259,11 +267,11 @@
             // Genre
             // 
             this.Genre.Control = this.leGenre;
-            this.Genre.Location = new System.Drawing.Point(0, 76);
-            this.Genre.MinSize = new System.Drawing.Size(50, 25);
+            this.Genre.Location = new System.Drawing.Point(0, 84);
+            this.Genre.MinSize = new System.Drawing.Size(128, 76);
             this.Genre.Name = "Genre";
             this.Genre.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Genre.Size = new System.Drawing.Size(600, 76);
+            this.Genre.Size = new System.Drawing.Size(600, 85);
             this.Genre.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Genre.TextLocation = DevExpress.Utils.Locations.Top;
             this.Genre.TextSize = new System.Drawing.Size(48, 16);
@@ -271,11 +279,11 @@
             // Duration
             // 
             this.Duration.Control = this.teDuration;
-            this.Duration.Location = new System.Drawing.Point(0, 486);
+            this.Duration.Location = new System.Drawing.Point(0, 562);
             this.Duration.MinSize = new System.Drawing.Size(50, 25);
             this.Duration.Name = "Duration";
             this.Duration.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Duration.Size = new System.Drawing.Size(280, 115);
+            this.Duration.Size = new System.Drawing.Size(280, 106);
             this.Duration.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Duration.TextLocation = DevExpress.Utils.Locations.Top;
             this.Duration.TextSize = new System.Drawing.Size(48, 16);
@@ -285,35 +293,67 @@
             this.Status.Control = this.beStatus;
             this.Status.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.Status.CustomizationFormText = "layoutControlItem2";
-            this.Status.Location = new System.Drawing.Point(280, 486);
+            this.Status.Location = new System.Drawing.Point(280, 562);
             this.Status.MinSize = new System.Drawing.Size(99, 49);
             this.Status.Name = "Status";
             this.Status.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Status.Size = new System.Drawing.Size(320, 115);
+            this.Status.Size = new System.Drawing.Size(320, 106);
             this.Status.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Status.TextLocation = DevExpress.Utils.Locations.Top;
             this.Status.TextSize = new System.Drawing.Size(48, 16);
             // 
-            // groupControl3
-            // 
-            this.groupControl3.Controls.Add(this.btnEdit);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl3.Location = new System.Drawing.Point(30, 631);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.ShowCaption = false;
-            this.groupControl3.Size = new System.Drawing.Size(1089, 67);
-            this.groupControl3.TabIndex = 2;
-            this.groupControl3.Text = "groupControl3";
-            // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(869, 6);
+            this.btnEdit.Location = new System.Drawing.Point(603, 611);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(10);
-            this.btnEdit.Size = new System.Drawing.Size(215, 56);
+            this.btnEdit.Size = new System.Drawing.Size(483, 54);
+            this.btnEdit.StyleController = this.layoutControl1;
             this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // Rating
+            // 
+            this.Rating.Control = this.leRating;
+            this.Rating.Location = new System.Drawing.Point(0, 169);
+            this.Rating.MaxSize = new System.Drawing.Size(600, 86);
+            this.Rating.MinSize = new System.Drawing.Size(600, 86);
+            this.Rating.Name = "Rating";
+            this.Rating.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.Rating.Size = new System.Drawing.Size(600, 86);
+            this.Rating.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.Rating.TextLocation = DevExpress.Utils.Locations.Top;
+            this.Rating.TextSize = new System.Drawing.Size(48, 16);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.btnEdit;
+            this.layoutControlItem3.Location = new System.Drawing.Point(600, 608);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(489, 60);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(489, 60);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(489, 60);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // leRating
+            // 
+            this.leRating.Location = new System.Drawing.Point(10, 211);
+            this.leRating.Name = "leRating";
+            this.leRating.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leRating.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RatingCode", ""),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RatingID", "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leRating.Properties.DisplayMember = "RatingCode";
+            this.leRating.Properties.NullText = "";
+            this.leRating.Properties.PopupSizeable = false;
+            this.leRating.Properties.ValueMember = "RatingID";
+            this.leRating.Size = new System.Drawing.Size(580, 34);
+            this.leRating.StyleController = this.layoutControl1;
+            this.leRating.TabIndex = 10;
             // 
             // MovieDetails
             // 
@@ -343,8 +383,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Genre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Duration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Status)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Rating)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leRating.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,8 +409,10 @@
         public DevExpress.XtraLayout.LayoutControlItem Genre;
         public DevExpress.XtraLayout.LayoutControlItem Duration;
         public DevExpress.XtraLayout.LayoutControlItem Status;
-        public DevExpress.XtraEditors.GroupControl groupControl3;
         public DevExpress.XtraEditors.SimpleButton btnEdit;
         public DevExpress.XtraEditors.CheckedComboBoxEdit leGenre;
+        private DevExpress.XtraLayout.LayoutControlItem Rating;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        public DevExpress.XtraEditors.LookUpEdit leRating;
     }
 }

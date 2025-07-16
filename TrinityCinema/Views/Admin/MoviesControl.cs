@@ -74,7 +74,8 @@ namespace TrinityCinema.Views.Admin
                     "Description",
                     "Duration",
                     "Status",
-                    "MoviePoster"
+                    "MoviePoster",
+                    "ContentRating"
                 };
 
                 Dictionary<string, string> record = a.GetRecordById(query, parameters, columns);
@@ -86,6 +87,7 @@ namespace TrinityCinema.Views.Admin
                     details.meDescription.Text = record["Description"];
                     details.teDuration.EditValue = record["Duration"];
                     details.beStatus.IsOn = record["Status"] == "1";
+                    details.leRating.EditValue = record["ContentRating"];
 
                     string[] genres = record["GenreName"].Split(',');
 

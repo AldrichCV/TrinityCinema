@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
+        AllMethods allMethods = new AllMethods();
         private string loggedInUser;
         private string username;
 
@@ -71,6 +73,27 @@ namespace TrinityCinema.Views.Admin
             gcHome.Controls.Add(activityControl);
             activityControl.Dock = DockStyle.Fill;
             activityControl.Show();
+        }
+
+        private void gcHome_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void logoutTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            DialogResult result = XtraMessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                allMethods.Log(loggedInUser, "Logout", $"{loggedInUser} has been logged out");
+                Application.Restart();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

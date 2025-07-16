@@ -59,6 +59,7 @@
             this.passwordErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.confirmPasswordErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.phoneErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.fullNameErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.teFullName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -90,6 +91,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.passwordErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.confirmPasswordErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fullNameErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // teFullName
@@ -102,6 +104,7 @@
             this.teFullName.Size = new System.Drawing.Size(302, 45);
             this.teFullName.StyleController = this.layoutControl1;
             this.teFullName.TabIndex = 0;
+            this.teFullName.EditValueChanged += new System.EventHandler(this.teFullName_EditValueChanged);
             // 
             // layoutControl1
             // 
@@ -205,6 +208,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deDateOfBirth.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateOfBirth.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.TouchUI;
+            this.deDateOfBirth.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.deDateOfBirth.Size = new System.Drawing.Size(148, 34);
             this.deDateOfBirth.StyleController = this.layoutControl1;
             this.deDateOfBirth.TabIndex = 18;
@@ -407,6 +412,10 @@
             // 
             this.phoneErrorProvider.ContainerControl = this;
             // 
+            // fullNameErrorProvider
+            // 
+            this.fullNameErrorProvider.ContainerControl = this;
+            // 
             // AccountCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -448,6 +457,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.passwordErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.confirmPasswordErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fullNameErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -484,5 +494,6 @@
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider passwordErrorProvider;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider confirmPasswordErrorProvider;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider phoneErrorProvider;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider fullNameErrorProvider;
     }
 }

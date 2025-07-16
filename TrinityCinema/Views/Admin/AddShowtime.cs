@@ -26,6 +26,8 @@ namespace TrinityCinema.Views.Admin
             LoadShowStatus();
             LoadMoviePoster(null);
             deShowDate.Properties.MinValue = DateTime.Today;
+            teStartTime.EditValueChanging += teStartTime_EditValueChanging;
+
             this.loggedInUser = loggedInUser;
         }
 
@@ -105,29 +107,28 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            if (!decimal.TryParse(tePrice.Text.Trim(), out decimal parsedPrice))
-            {
-                XtraMessageBox.Show("Invalid price format.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             DialogResult confirm = XtraMessageBox.Show("Are you sure you want to save this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes)
                 return;
 
             try
             {
+
                 var showtime = new Showtime
                 {
                     MovieID = leMovie.EditValue.ToString(),
-                    Price = parsedPrice,
+                    Price = Convert.ToDecimal(tePrice.Text),
                     ShowDate = deShowDate.DateTime.Date,
                     StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
                     TheaterID = Convert.ToInt32(cbTheater.EditValue),
                     StatusID = Convert.ToInt32(leStatusDisplay.EditValue)
-                };
+                }; 
+                
+                var selectedMovieTitle = leMovie.Text;
+                showtime.Title = selectedMovieTitle;
 
-                        AllMethods allMethods = new AllMethods();
+
+                AllMethods allMethods = new AllMethods();
                         allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
                         XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -145,13 +146,18 @@ namespace TrinityCinema.Views.Admin
         {
             if (e.NewValue is DateTime newTime)
             {
-                var minTime = DateTime.Today.AddHours(9);   // 9:00 AM
-                var maxTime = DateTime.Today.AddHours(20);  // 8:00 PM
+                TimeSpan min = new TimeSpan(9, 0, 0);   // 9:00 AM
+                TimeSpan max = new TimeSpan(17, 0, 0);  // 5:00 PM
+                TimeSpan inputTime = newTime.TimeOfDay;
 
-                if (newTime.TimeOfDay < minTime.TimeOfDay || newTime.TimeOfDay > maxTime.TimeOfDay)
+                if (inputTime < min || inputTime > max)
                 {
-                    MessageBox.Show("Please select a time between 9:00 AM and 8:00 PM.", "Invalid Time", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     e.Cancel = true;
+                    teStartTime.ErrorText = "Please select a time between 9:00 AM and 5:00 PM.";
+                }
+                else
+                {
+                    teStartTime.ErrorText = string.Empty;
                 }
             }
         }

@@ -41,12 +41,21 @@ namespace TrinityCinema.Models
         public string Description { get; set; }
         public int Genre { get; set; }
         public string GenreName { get; set; }
+        public int ContentRating { get; set; }
+        public string ContentRatingCode { get; set; }
         public TimeSpan Duration { get; set; }        
         public bool Status { get; set; }
         public DateTime DateAdded { get; set; }
         public byte[] MoviePoster { get; set; }
         public string StatusDisplay { get; set; }
 
+    }
+
+    public class ContentRating
+    {
+        public int RatingID { get; set; }
+        public string RatingCode { get; set; }
+        public string Details { get; set; }
     }
 
     public class Genre

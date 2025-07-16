@@ -152,6 +152,12 @@
     <Compile Include="Views\Admin\MoviesControl.Designer.cs">
       <DependentUpon>MoviesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\NewGenre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\NewGenre.Designer.cs">
+      <DependentUpon>NewGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\PasswordReset.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\MoviesControl.resx">
       <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\NewGenre.resx">
+      <DependentUpon>NewGenre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\PasswordReset.resx">
       <DependentUpon>PasswordReset.cs</DependentUpon>

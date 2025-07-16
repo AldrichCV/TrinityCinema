@@ -32,7 +32,6 @@ namespace TrinityCinema.Views.Admin
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
             string newPassword = teNewPassword.Text.Trim();
             string confirmPassword = teConfirmPassword.Text.Trim();
 
@@ -63,23 +62,25 @@ namespace TrinityCinema.Views.Admin
 
             try
             {
-           
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
 
                 var parameters = new
                 {
                     UserID = userID,
-                    PasswordHash = hashedPassword
+                    PasswordHash = hashedPassword,
+                    IsLocked = 0,
+                    FailedAttempts = 0
                 };
 
-                var columns = new List<string> { "PasswordHash" };
+                var columns = new List<string> { "PasswordHash", "IsLocked", "FailedAttempts" };
 
                 bool success = new AllMethods().UpdateRecord("Users", parameters, columns, "UserID");
 
                 if (success)
                 {
-                    allMethods.Log(loggedInUser, "Reset Password", $"Reset password for user ID {userID}");
-                    XtraMessageBox.Show("Password reset successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    allMethods.Log(loggedInUser, "Reset Password", $"Reset password, unlocked account, and cleared attempts for user ID {userID}");
+                    XtraMessageBox.Show("Password reset successfully. User unlocked and attempts reset!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                     this.Close();
                 }
                 else

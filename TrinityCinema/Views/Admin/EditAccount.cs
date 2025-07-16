@@ -96,7 +96,7 @@ namespace TrinityCinema.Views.Admin
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (XtraMessageBox.Show("Are you sure you want to update this employee?", "Confirm",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+             MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
             if (string.IsNullOrWhiteSpace(teFullName.Text))
@@ -105,9 +105,44 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
+            if (NameExists(teFullName.Text))
+            {
+                XtraMessageBox.Show("Name already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!ValidBirthday(deDateOfBirth.DateTime))
+            {
+                XtraMessageBox.Show("You must be at least 18 years old.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (imageData == null)
                 imageData = existingImageData;
 
+            // Step 1: Fetch the current (original) values from the database
+            DataRow original = allMethods.GetRecord("Users", "userID", userID); // Implement this if not existing
+
+            if (original == null)
+            {
+                XtraMessageBox.Show("Original user record not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 2: Compare values
+            bool isModified =
+                original["Fullname"].ToString() != teFullName.Text ||
+                original["Phone"].ToString() != tePhone.Text ||
+                original["Role"].ToString() != cbRole.Text ||
+                !imageData.SequenceEqual((byte[])original["PersonnelImage"]);
+
+            if (!isModified)
+            {
+                XtraMessageBox.Show("No changes detected.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Step 3: Proceed with update
             var parameters = new
             {
                 userID,
@@ -118,9 +153,9 @@ namespace TrinityCinema.Views.Admin
             };
 
             var columns = new List<string>
-            {
-                "Fullname", "Phone", "Role", "PersonnelImage"
-            };
+    {
+        "Fullname", "Phone", "Role", "PersonnelImage"
+    };
 
             if (!new AllMethods().UpdateRecord("Users", parameters, columns, "userID"))
             {
@@ -130,14 +165,20 @@ namespace TrinityCinema.Views.Admin
 
             XtraMessageBox.Show("User updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Log the action (using form field values instead of undefined `createUser`)
-            allMethods.Log(loggedInUser, "Edit Employee", $"Updated employee: {teFullName.Text}");
+            string logDetails = "Modified ";
+            if (original["Fullname"].ToString() != teFullName.Text)
+                logDetails += $" Fullname ({original["Fullname"]} -> {teFullName.Text});";
+            if (original["Phone"].ToString() != tePhone.Text)
+                logDetails += $" Phone ({original["Phone"]} -> {tePhone.Text});";
+            if (original["Role"].ToString() != cbRole.Text)
+                logDetails += $" Role ({original["Role"]} -> {cbRole.Text});";
 
-            this.Close(); // Close the form
+            allMethods.Log(loggedInUser, "Modified Employee", logDetails);
 
+            this.Close();
             AllMethods.RefreshManagerHome(mh => new UsersControl(mh, userID));
-
         }
+        
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -211,7 +252,7 @@ namespace TrinityCinema.Views.Admin
             );
 
             // Log the deletion
-            allMethods.Log(loggedInUser, "Delete Employee", $"Removed employee: {fullname} ({username})");
+            allMethods.Log(loggedInUser, "Remove Employee", $"Removed employee: {fullname} ({username})");
 
             // Close current form and reload user list
             Close();
@@ -223,11 +264,30 @@ namespace TrinityCinema.Views.Admin
             AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID));
         }
 
-        private void btnIsLocked_Click(object sender, EventArgs e)
+        private bool NameExists(string fullName)
         {
-
+            using (var connection = new SqlConnection(GlobalSettings.connectionString))
+            {
+                string query = "SELECT COUNT(1) FROM Users WHERE Fullname = @Fullname";
+                int count = connection.ExecuteScalar<int>(query, new { Fullname = fullName });
+                return count > 0;
+            }
         }
+        private bool ValidBirthday(DateTime birthdate)
+        {
+            DateTime today = DateTime.Today;
+            DateTime minimumDate = today.AddYears(-18); // Must be born on or before this date
+
+            if (birthdate == null || birthdate > today || birthdate > minimumDate)
+            {
+                deDateOfBirth.ErrorText = "You must be at least 18 years old.";
+                return false;
+            }
+
+            return true;
+        }
+
     }
-    }
+}
 
     

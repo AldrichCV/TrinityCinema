@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
 using TrinityCinema.Views.Admin;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TrinityCinema.Views
 {
@@ -47,8 +48,6 @@ namespace TrinityCinema.Views
                     : (char)('0' + rand.Next(10))).ToArray());
         }
 
-
-
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             DialogResult result = XtraMessageBox.Show("Are You Sure You Want to Add This Employee?", "Verify",
@@ -58,10 +57,36 @@ namespace TrinityCinema.Views
                 string passwordSet = tePassword.Text;
                 string confirmPassword = teConfirmedPassword.Text;
 
+                if(PasswordValid(passwordSet) == false)
+                {
+                    passwordErrorProvider.SetError(tePassword, "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.");
+                    XtraMessageBox.Show("Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (!passwordSet.Equals(confirmPassword))
                 {
                     passwordErrorProvider.SetError(teConfirmedPassword, "Passwords do not match.");
                     XtraMessageBox.Show("Passwords do not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (NameExists(teFullName.Text))
+                {
+                    XtraMessageBox.Show("Name already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (UsernameExists(teUserName.Text.Trim()))
+                {
+                    usernameErrorProvider.SetError(teUserName, "Username already exists.");
+                    XtraMessageBox.Show("Username already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!ValidBirthday(deDateOfBirth.DateTime))
+                {
+                    XtraMessageBox.Show("You must be at least 18 years old.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -107,7 +132,6 @@ namespace TrinityCinema.Views
             {
                 this.Close();
             }
-
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -144,6 +168,45 @@ namespace TrinityCinema.Views
                 int count = connection.ExecuteScalar<int>(query, new { Username = username });
                 return count > 0;
             }
+        }
+
+        private bool NameExists(string fullName)
+        {
+            using (var connection = new SqlConnection(GlobalSettings.connectionString))
+            {
+                string query = "SELECT COUNT(1) FROM Users WHERE Fullname = @Fullname";
+                int count = connection.ExecuteScalar<int>(query, new { Fullname = fullName });
+                return count > 0;
+            }
+        }
+
+        private bool PasswordValid(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+                return false;
+            if (password.Length < 8)
+                return false;
+            if (!password.Any(char.IsUpper))
+                return false;
+            if (!password.Any(char.IsDigit))
+                return false;
+            if (!password.Any(ch => !char.IsLetterOrDigit(ch)))
+                return false;
+            return true;
+        }
+
+        private bool ValidBirthday(DateTime birthdate)
+        {
+            DateTime today = DateTime.Today;
+            DateTime minimumDate = today.AddYears(-18); // Must be born on or before this date
+
+            if (birthdate == null || birthdate > today || birthdate > minimumDate)
+            {
+                deDateOfBirth.ErrorText = "You must be at least 18 years old.";
+                return false;
+            }
+
+            return true;
         }
 
         private void tePassword_EditValueChanged(object sender, EventArgs e)
@@ -246,6 +309,29 @@ namespace TrinityCinema.Views
             else
             {
                 phoneErrorProvider.SetError(tePhone, string.Empty);
+            }
+        }
+
+        private void teFullName_EditValueChanged(object sender, EventArgs e)
+        {
+            string fullName = teFullName.Text.Trim();
+
+            if (string.IsNullOrEmpty(fullName))
+            {
+                fullNameErrorProvider.SetError(teFullName, "Full name is required.");
+            }
+            else
+            {
+                fullNameErrorProvider.SetError(teFullName, string.Empty);
+
+                if (NameExists(fullName))
+                {
+                    fullNameErrorProvider.SetError(teFullName, "Full name already exists.");
+                }
+                else
+                {
+                    fullNameErrorProvider.SetError(teFullName, string.Empty);
+                }
             }
         }
     }

@@ -43,9 +43,12 @@ namespace TrinityCinema.Models
                                                                         WHEN m.Status = 0 THEN 'Unavailable'
                                                                         ELSE 'Unknown'
                                                                     END AS StatusDisplay,
-                                                                    m.MoviePoster
+                                                                    m.MoviePoster,
+                                                                    mr.RatingCode AS ContentRatingCode
+                                                                    , mr.RatingID AS ContentRating      
                                                                 FROM [CinemaDB].[dbo].[Movies] m
                                                                 LEFT JOIN GenreAggregates ga ON m.MovieID = ga.MovieID
+                                                                LEFT JOIN MovieRating mr ON mr.RatingID = m.ContentRating
                                     ";
 
         public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
@@ -79,10 +82,7 @@ namespace TrinityCinema.Models
                                           FROM [CinemaDB].[dbo].[ActivityLogs] a
                                           LEFT JOIN Users u
                                           ON u.UserID = a.UserID
-                                        ";
-
-
-
+                                            ORDER BY [Timestamp] DESC";
         #endregion
 
         #region Insert Queries
@@ -117,7 +117,8 @@ namespace TrinityCinema.Models
                                                        ,[Duration]
                                                        ,[Status]
                                                        ,[DateAdded]
-                                                       ,[MoviePoster])
+                                                       ,[MoviePoster]
+                                                       ,[ContentRating])
                                                  VALUES
                                                        (@MovieID
                                                        ,@Title
@@ -125,7 +126,13 @@ namespace TrinityCinema.Models
                                                        ,@Duration
                                                        ,@Status
                                                        ,@DateAdded
-                                                       ,@MoviePoster);";
+                                                       ,@MoviePoster
+                                                       ,@ContentRating);";
+
+        public static string insertNewGenre = @"INSERT INTO [dbo].[Genre]
+                                                       ([GenreName])
+                                                 VALUES
+                                                       (@GenreName);";
 
 
         public static string createTheater = @"INSERT INTO [dbo].[Theaters]

@@ -35,7 +35,11 @@ namespace TrinityCinema.Views.Admin
             this.adminMainForm = adminMainForm;
             this.movieID = movieID;
             LoadGenre();
+            LoadRating();
             this.loggedInUser = loggedInUser;
+            beStatus.Properties.OnText = "Available";
+            beStatus.Properties.OffText = "Unavailable";
+
         }
 
         private void LoadGenre()
@@ -47,10 +51,20 @@ namespace TrinityCinema.Views.Admin
             );
         }
 
+        private void LoadRating()
+        {
+            AllMethods.LoadLookupData<ContentRating>(
+              leRating,
+              "SELECT RatingID, RatingCode FROM MovieRating",
+              GlobalSettings.connectionString
+          );
+        }
+
         private void MovieDetails_Load(object sender, EventArgs e)
         {
             teTitle.Properties.ReadOnly = true;
             leGenre.Properties.ReadOnly = true;
+            leRating.Properties.ReadOnly = true;
             meDescription.Properties.ReadOnly = true;
             teDuration.Properties.ReadOnly = true;
             btnBrowse.Enabled = false;
@@ -63,6 +77,7 @@ namespace TrinityCinema.Views.Admin
 
             teTitle.Properties.ReadOnly =
             leGenre.Properties.ReadOnly =
+            leRating.Properties.ReadOnly =
             meDescription.Properties.ReadOnly =
             teDuration.Properties.ReadOnly = !isEditing;
 
@@ -131,7 +146,8 @@ namespace TrinityCinema.Views.Admin
                 Description = meDescription.Text,
                 Duration = duration,
                 Status = beStatus.IsOn,
-                MoviePoster = imageData
+                MoviePoster = imageData,
+                ContentRating = Convert.ToInt32(leRating.EditValue)
             };
 
             var columns = new List<string>
@@ -140,7 +156,8 @@ namespace TrinityCinema.Views.Admin
                 "Description",
                 "Duration",
                 "Status",
-                "MoviePoster"
+                "MoviePoster",
+                "ContentRating"
             };
 
             var db = new AllMethods();

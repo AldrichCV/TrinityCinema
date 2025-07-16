@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class UsersControl : UserControl 
     {
-        AllMethods a = new AllMethods();
+        AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         private string loggedInUser;
 
@@ -31,7 +32,7 @@ namespace TrinityCinema.Views.Admin
         public List<User> GetEmployee()
         {
             string query = GlobalSettings.getPersonnel;
-            return a.GetRecords<User>(query);
+            return allMethods.GetRecords<User>(query);
         }
 
         private void tvUserView_ItemClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
@@ -74,6 +75,7 @@ namespace TrinityCinema.Views.Admin
                     editAccount.existingImageData = imageBytes;
                 }
 
+                allMethods.Log(loggedInUser, "View Employee", $"{loggedInUser} viewed employee's {userID} information");
                 editAccount.ShowDialog();
             }
             else
@@ -85,6 +87,25 @@ namespace TrinityCinema.Views.Admin
         private void userTile_ItemClick(object sender, TileItemEventArgs e)
         {
             AllMethods.ShowModal(home => new AccountCreation(home,loggedInUser));
+        }
+
+        private void teSearch_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            //tvUserView.ApplyFindFilter(e.NewValue as string);
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            string keyword = teSearch.Text.Trim();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                tvUserView.ApplyFindFilter(keyword);
+            }
+            else
+            {
+                tvUserView.ClearFindFilter(); // optional: clear the filter if empty
+            }
         }
     }
 }

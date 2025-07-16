@@ -129,6 +129,8 @@ namespace TrinityCinema.Views.Admin
                     string deleteQuery = "DELETE FROM Showtimes WHERE ShowtimeID = @ShowtimeID";
                     connection.Execute(deleteQuery, new { ShowtimeID = showtime });
                 }
+
+                allMethods.Log(loggedInUser, "Remove Showtime", $"{loggedInUser} removed showtime {showtime}");
                 XtraMessageBox.Show("Showtime deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AllMethods.RefreshManagerHome(mh => new ShowtimeControl(adminMainForm, loggedInUser));
             }

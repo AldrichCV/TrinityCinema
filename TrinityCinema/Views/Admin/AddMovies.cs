@@ -15,6 +15,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class AddMovies : DevExpress.XtraEditors.XtraForm
     {
+        AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         private byte[] imageData;
         private string loggedInUser;
@@ -23,7 +24,10 @@ namespace TrinityCinema.Views.Admin
             InitializeComponent();
             this.adminMainForm = adminMainForm;
             LoadGenre();
+            LoadRating();
             this.loggedInUser = loggedInUser;
+            beStatus.Properties.OnText = "Available";
+            beStatus.Properties.OffText = "Unavailable";
         }
         private void LoadGenre()
         {
@@ -32,6 +36,15 @@ namespace TrinityCinema.Views.Admin
                 "SELECT GenreID, GenreName FROM Genre",
                 GlobalSettings.connectionString
             );
+        }
+
+        private void LoadRating()
+        {
+            AllMethods.LoadLookupData<ContentRating>(
+              leRating,
+              "SELECT RatingID, RatingCode FROM MovieRating",
+              GlobalSettings.connectionString
+          );
         }
 
         private void btnBrowse_Click_1(object sender, EventArgs e)
@@ -62,27 +75,27 @@ namespace TrinityCinema.Views.Admin
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            DialogResult result = XtraMessageBox.Show("Are You Sure You Want to Add This Movie?", "Verify",
-                 MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (string.IsNullOrWhiteSpace(teTitle.Text) ||
+       string.IsNullOrWhiteSpace(meDescription.Text) ||
+       !(teDuration.EditValue is DateTime) ||
+       imageData == null ||
+       string.IsNullOrWhiteSpace(leGenre.EditValue as string))
+            {
+                XtraMessageBox.Show("Please fill in the required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult result = XtraMessageBox.Show("Are you sure you want to add this movie?", "Verify",
+                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                // Get selected genres as comma-separated string from CheckedComboBoxEdit
-                string checkedValues = leGenre.EditValue as string;
-
-                if (string.IsNullOrWhiteSpace(checkedValues))
-                {
-                    MessageBox.Show("Please select at least one genre.");
-                    return;
-                }
-
-                // Split the string into individual genre IDs and trim spaces
-                var selectedGenreIDs = checkedValues
+                // Parse genre IDs
+                var selectedGenreIDs = (leGenre.EditValue as string)
                     .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(s => s.Trim())
                     .ToList();
 
-                // Validate parsed genre IDs
                 List<int> genreIDs = new List<int>();
                 foreach (var genreIdStr in selectedGenreIDs)
                 {
@@ -92,58 +105,27 @@ namespace TrinityCinema.Views.Admin
                     }
                     else
                     {
-                        MessageBox.Show($"Invalid genre selected: {genreIdStr}");
+                        XtraMessageBox.Show($"Invalid genre selected: {genreIdStr}", "Invalid Genre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
 
-                // Validate Title
-                if (string.IsNullOrWhiteSpace(teTitle.Text))
-                {
-                    MessageBox.Show("Please enter a movie title.");
-                    return;
-                }
-
-                // Validate Description
-                if (string.IsNullOrWhiteSpace(meDescription.Text))
-                {
-                    MessageBox.Show("Please enter a movie description.");
-                    return;
-                }
-
-                // Validate Duration
-                if (!(teDuration.EditValue is DateTime durationValue))
-                {
-                    MessageBox.Show("Please enter a valid duration.");
-                    return;
-                }
-
-                // Validate Image Data (poster)
-                if (imageData == null)
-                {
-                    MessageBox.Show("Please upload a movie poster.");
-                    return;
-                }
-
                 string movieID = "MID-" + Guid.NewGuid().ToString("N").Substring(0, 4).ToUpper();
-
-                AllMethods allMethods = new AllMethods();
 
                 Movie createMovie = new Movie
                 {
                     MovieID = movieID,
-                    Title = teTitle.Text,
-                    Description = meDescription.Text,
-                    Duration = durationValue.TimeOfDay,
+                    Title = teTitle.Text.Trim(),
+                    Description = meDescription.Text.Trim(),
+                    Duration = ((DateTime)teDuration.EditValue).TimeOfDay,
                     Status = beStatus.IsOn,
                     DateAdded = DateTime.Now,
-                    MoviePoster = imageData
+                    MoviePoster = imageData,
+                    ContentRating = Convert.ToInt32(leRating.EditValue)
                 };
 
-                // Insert the movie record
                 allMethods.InsertMethod(createMovie, GlobalSettings.insertMovieQuery);
 
-                // Insert the selected genres into the junction table
                 foreach (int genreID in genreIDs)
                 {
                     allMethods.InsertMovieGenre(movieID, genreID);
@@ -156,7 +138,6 @@ namespace TrinityCinema.Views.Admin
 
                 // Refresh movie list UI
                 var movieList = adminMainForm.gcHome.Controls.OfType<MoviesControl>().FirstOrDefault();
-
                 if (movieList != null)
                     adminMainForm.gcHome.Controls.Remove(movieList);
 
@@ -167,11 +148,21 @@ namespace TrinityCinema.Views.Admin
                 adminMainForm.gcHome.Controls.Add(newMoviesControl);
                 newMoviesControl.BringToFront();
             }
-            else if (result == DialogResult.No)
+            else
             {
                 this.Close();
             }
         }
 
+        private void btnNewGenre_Click(object sender, EventArgs e)
+        {
+            NewGenre genreForm = new NewGenre(loggedInUser);
+            genreForm.RefreshGenreList = LoadGenre;
+            genreForm.ShowDialog();
+        }
+
+        private void leRating_EditValueChanged(object sender, EventArgs e)
+        {
+        }
     }
     }

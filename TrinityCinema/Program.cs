@@ -23,7 +23,9 @@ namespace TrinityCinema
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //var userID = string.Empty;
-            //Application.Run(new AdminMainForm(userID));
+
+
+
             using (var loginForm = new LoginForm())
             {
                 var result = loginForm.ShowDialog();
@@ -54,6 +56,6 @@ namespace TrinityCinema
                 }
             }
         }
-
     }
-}
+    }
+

@@ -40,6 +40,7 @@
             this.deDateOfBirth = new DevExpress.XtraEditors.DateEdit();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnResetPassword = new DevExpress.XtraEditors.SimpleButton();
+            this.btnIsLocked = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Fullname = new DevExpress.XtraLayout.LayoutControlItem();
@@ -53,7 +54,6 @@
             this.DateOfBirth = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnIsLocked = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -149,20 +149,20 @@
             this.cbRole.Properties.Items.AddRange(new object[] {
             "Staff",
             "Manager"});
-            this.cbRole.Size = new System.Drawing.Size(147, 50);
+            this.cbRole.Size = new System.Drawing.Size(147, 34);
             this.cbRole.StyleController = this.layoutControl1;
             this.cbRole.TabIndex = 4;
             // 
             // tePhone
             // 
-            this.tePhone.Location = new System.Drawing.Point(342, 188);
+            this.tePhone.Location = new System.Drawing.Point(342, 172);
             this.tePhone.Margin = new System.Windows.Forms.Padding(4);
             this.tePhone.Name = "tePhone";
             this.tePhone.Properties.AutoHeight = false;
             this.tePhone.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.RegExpMaskManager));
             this.tePhone.Properties.MaskSettings.Set("MaskManagerSignature", "isOptimistic=False");
             this.tePhone.Properties.MaskSettings.Set("mask", "\\d\\d\\d\\d-\\d\\d\\d-\\d\\d\\d\\d");
-            this.tePhone.Size = new System.Drawing.Size(300, 34);
+            this.tePhone.Size = new System.Drawing.Size(300, 50);
             this.tePhone.StyleController = this.layoutControl1;
             this.tePhone.TabIndex = 5;
             // 
@@ -208,6 +208,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deDateOfBirth.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deDateOfBirth.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.TouchUI;
+            this.deDateOfBirth.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.deDateOfBirth.Size = new System.Drawing.Size(147, 34);
             this.deDateOfBirth.StyleController = this.layoutControl1;
             this.deDateOfBirth.TabIndex = 18;
@@ -231,6 +233,16 @@
             this.btnResetPassword.TabIndex = 20;
             this.btnResetPassword.Text = "Reset Password";
             this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
+            // 
+            // btnIsLocked
+            // 
+            this.btnIsLocked.AppearanceDisabled.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnIsLocked.AppearanceDisabled.Options.UseBackColor = true;
+            this.btnIsLocked.Location = new System.Drawing.Point(342, 228);
+            this.btnIsLocked.Name = "btnIsLocked";
+            this.btnIsLocked.Size = new System.Drawing.Size(300, 65);
+            this.btnIsLocked.StyleController = this.layoutControl1;
+            this.btnIsLocked.TabIndex = 21;
             // 
             // Root
             // 
@@ -280,7 +292,7 @@
             this.Role.Location = new System.Drawing.Point(326, 72);
             this.Role.MinSize = new System.Drawing.Size(110, 62);
             this.Role.Name = "Role";
-            this.Role.Size = new System.Drawing.Size(153, 78);
+            this.Role.Size = new System.Drawing.Size(153, 62);
             this.Role.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Role.TextLocation = DevExpress.Utils.Locations.Top;
             this.Role.TextSize = new System.Drawing.Size(52, 16);
@@ -288,9 +300,9 @@
             // Phone
             // 
             this.Phone.Control = this.tePhone;
-            this.Phone.Location = new System.Drawing.Point(326, 150);
+            this.Phone.Location = new System.Drawing.Point(326, 134);
             this.Phone.Name = "Phone";
-            this.Phone.Size = new System.Drawing.Size(306, 62);
+            this.Phone.Size = new System.Drawing.Size(306, 78);
             this.Phone.TextLocation = DevExpress.Utils.Locations.Top;
             this.Phone.TextSize = new System.Drawing.Size(52, 16);
             // 
@@ -344,7 +356,7 @@
             this.DateOfBirth.Location = new System.Drawing.Point(479, 72);
             this.DateOfBirth.MinSize = new System.Drawing.Size(110, 62);
             this.DateOfBirth.Name = "DateOfBirth";
-            this.DateOfBirth.Size = new System.Drawing.Size(153, 78);
+            this.DateOfBirth.Size = new System.Drawing.Size(153, 62);
             this.DateOfBirth.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.DateOfBirth.Text = "Birthdate";
             this.DateOfBirth.TextLocation = DevExpress.Utils.Locations.Top;
@@ -367,17 +379,6 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(156, 40);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // btnIsLocked
-            // 
-            this.btnIsLocked.AppearanceDisabled.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnIsLocked.AppearanceDisabled.Options.UseBackColor = true;
-            this.btnIsLocked.Location = new System.Drawing.Point(342, 228);
-            this.btnIsLocked.Name = "btnIsLocked";
-            this.btnIsLocked.Size = new System.Drawing.Size(300, 65);
-            this.btnIsLocked.StyleController = this.layoutControl1;
-            this.btnIsLocked.TabIndex = 21;
-            this.btnIsLocked.Click += new System.EventHandler(this.btnIsLocked_Click);
             // 
             // layoutControlItem6
             // 

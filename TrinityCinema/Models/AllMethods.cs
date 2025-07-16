@@ -5,6 +5,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Tile;
+using DevExpress.XtraGrid.Views.WinExplorer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -223,6 +224,32 @@ namespace TrinityCinema.Models
             }
         }
 
+
+        public DataRow GetRecord(string tableName, string keyColumn, object keyValue)
+        {
+            using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
+            {
+                conn.Open();
+                string query = $"SELECT * FROM {tableName} WHERE {keyColumn} = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", keyValue);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        if (table.Rows.Count > 0)
+                            return table.Rows[0];
+                        else
+                            return null;
+                    }
+                }
+            }
+        }
+
+
+
+
         public Dictionary<string, string> GetRecordById(string query, object parameters, List<string> columns)
         {
             var record = new Dictionary<string, string>();
@@ -344,6 +371,20 @@ namespace TrinityCinema.Models
         }
 
         public static void GridCustomization(GridControl grid, TileView view, object data)
+        {
+            view.BeginUpdate();
+            try
+            {
+                grid.DataSource = null;
+                grid.DataSource = data;
+                grid.RefreshDataSource();
+            }
+            finally
+            {
+                view.EndUpdate();
+            }
+        }
+        public static void WinViewCustomization(GridControl grid, WinExplorerView view, object data)
         {
             view.BeginUpdate();
             try
