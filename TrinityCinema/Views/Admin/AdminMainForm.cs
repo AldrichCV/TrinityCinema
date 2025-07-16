@@ -59,5 +59,6 @@ namespace TrinityCinema.Views.Admin
             showtimeControl.RefreshShowtimeGrid();
 
         }
+
     }
 }
