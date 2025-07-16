@@ -136,6 +136,8 @@
             // 
             // gcMovies
             // 
+            this.gcMovies.BackgroundImage = global::TrinityCinema.Properties.Resources._516777173_1087917039937354_651591537518408061_n;
+            this.gcMovies.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gcMovies.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcMovies.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcMovies.Location = new System.Drawing.Point(0, 0);
@@ -279,6 +281,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TrinityCinema.Properties.Resources._516777173_1087917039937354_651591537518408061_n;
             this.Controls.Add(this.gcMovies);
             this.Controls.Add(this.actionTile);
             this.Name = "MoviesControl";

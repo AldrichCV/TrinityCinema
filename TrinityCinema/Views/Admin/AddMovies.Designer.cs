@@ -30,45 +30,45 @@
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.teTitle = new DevExpress.XtraEditors.TextEdit();
             this.meDescription = new DevExpress.XtraEditors.MemoEdit();
             this.pePosterImage = new DevExpress.XtraEditors.PictureEdit();
-            this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
             this.beStatus = new DevExpress.XtraEditors.ToggleSwitch();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.leGenre = new DevExpress.XtraEditors.LookUpEdit();
             this.teDuration = new DevExpress.XtraEditors.TimeEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.Title = new DevExpress.XtraLayout.LayoutControlItem();
             this.Description = new DevExpress.XtraLayout.LayoutControlItem();
             this.peImage = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Genre = new DevExpress.XtraLayout.LayoutControlItem();
             this.Duration = new DevExpress.XtraLayout.LayoutControlItem();
             this.Status = new DevExpress.XtraLayout.LayoutControlItem();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePosterImage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.beStatus.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Title)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Description)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Genre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Duration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Status)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -105,6 +105,72 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(610, 552);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(469, 39);
+            this.btnBrowse.StyleController = this.layoutControl1;
+            this.btnBrowse.TabIndex = 8;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Location = new System.Drawing.Point(3, 669);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(1110, 46);
+            this.groupControl2.TabIndex = 2;
+            this.groupControl2.Text = "groupControl2";
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.False;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.Title,
+            this.Description,
+            this.peImage,
+            this.layoutControlItem1,
+            this.Genre,
+            this.Duration,
+            this.Status});
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(1089, 601);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.btnBrowse;
+            this.layoutControlItem1.Location = new System.Drawing.Point(600, 542);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(57, 40);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.layoutControlItem1.Size = new System.Drawing.Size(489, 59);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Controls.Add(this.btnSubmit);
+            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupControl3.Location = new System.Drawing.Point(30, 631);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.ShowCaption = false;
+            this.groupControl3.Size = new System.Drawing.Size(1089, 67);
+            this.groupControl3.TabIndex = 2;
+            this.groupControl3.Text = "groupControl3";
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(908, 6);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(171, 56);
+            this.btnSubmit.TabIndex = 0;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // teTitle
             // 
             this.teTitle.Location = new System.Drawing.Point(10, 32);
@@ -130,16 +196,6 @@
             this.pePosterImage.StyleController = this.layoutControl1;
             this.pePosterImage.TabIndex = 7;
             // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Location = new System.Drawing.Point(610, 552);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(469, 39);
-            this.btnBrowse.StyleController = this.layoutControl1;
-            this.btnBrowse.TabIndex = 8;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
-            // 
             // beStatus
             // 
             this.beStatus.EditValue = null;
@@ -153,14 +209,6 @@
             this.beStatus.Size = new System.Drawing.Size(300, 29);
             this.beStatus.StyleController = this.layoutControl1;
             this.beStatus.TabIndex = 9;
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Location = new System.Drawing.Point(3, 669);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1110, 46);
-            this.groupControl2.TabIndex = 2;
-            this.groupControl2.Text = "groupControl2";
             // 
             // leGenre
             // 
@@ -192,22 +240,6 @@
             this.teDuration.Size = new System.Drawing.Size(260, 34);
             this.teDuration.StyleController = this.layoutControl1;
             this.teDuration.TabIndex = 9;
-            // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.False;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.Title,
-            this.Description,
-            this.peImage,
-            this.layoutControlItem1,
-            this.Genre,
-            this.Duration,
-            this.Status});
-            this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1089, 601);
-            this.Root.TextVisible = false;
             // 
             // Title
             // 
@@ -249,18 +281,6 @@
             this.peImage.TextSize = new System.Drawing.Size(0, 0);
             this.peImage.TextVisible = false;
             // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.btnBrowse;
-            this.layoutControlItem1.Location = new System.Drawing.Point(600, 542);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(57, 40);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem1.Size = new System.Drawing.Size(489, 59);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
             // Genre
             // 
             this.Genre.Control = this.leGenre;
@@ -299,26 +319,6 @@
             this.Status.TextLocation = DevExpress.Utils.Locations.Top;
             this.Status.TextSize = new System.Drawing.Size(48, 16);
             // 
-            // groupControl3
-            // 
-            this.groupControl3.Controls.Add(this.btnSubmit);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl3.Location = new System.Drawing.Point(30, 631);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.ShowCaption = false;
-            this.groupControl3.Size = new System.Drawing.Size(1089, 67);
-            this.groupControl3.TabIndex = 2;
-            this.groupControl3.Text = "groupControl3";
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(908, 6);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(171, 56);
-            this.btnSubmit.TabIndex = 0;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-            // 
             // AddMovies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -331,23 +331,23 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.teTitle.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pePosterImage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.beStatus.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leGenre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teDuration.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Title)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Description)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.peImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Genre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Duration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Status)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

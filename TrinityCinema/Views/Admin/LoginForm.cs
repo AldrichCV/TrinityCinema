@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -7,18 +8,26 @@ using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Admin
 {
-    public partial class LoginForm : DevExpress.XtraEditors.XtraForm
+    public partial class LoginForm : XtraForm
     {
-        private int attempt = 0;
-        private Timer delayTimer;
-        private int timeLeft = 60; // 60 seconds (1 minute)
+        private int attempt = 0;                     // Tracks the current failed login attempts
+        private Timer delayTimer;                   // Timer used to delay the 3rd attempt
+        private int timeLeft = 60;                  // Countdown for the 1-minute delay
+        private bool isPasswordVisible = false;     // Tracks visibility toggle state
 
         public LoginForm()
         {
             InitializeComponent();
             InitializeDelayTimer();
+
+            // Set initial password to hidden
+            tePassword.Properties.UseSystemPasswordChar = true;
+
+            // Add button click event manually (or via Designer)
+            tePassword.ButtonClick += tePassword_ButtonClick;
         }
 
+        // Setup 1-minute delay timer
         private void InitializeDelayTimer()
         {
             delayTimer = new Timer();
@@ -26,6 +35,7 @@ namespace TrinityCinema.Views.Admin
             delayTimer.Tick += DelayTimer_Tick;
         }
 
+        // Called every second during delay
         private void DelayTimer_Tick(object sender, EventArgs e)
         {
             timeLeft--;
@@ -37,10 +47,11 @@ namespace TrinityCinema.Views.Admin
                 delayTimer.Stop();
                 btnLogin.Text = "Login";
                 btnLogin.Enabled = true;
-                timeLeft = 60; // Reset for future use
+                timeLeft = 60; // Reset for next time
             }
         }
 
+        // Login logic
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = teUser.Text.Trim();
@@ -54,17 +65,19 @@ namespace TrinityCinema.Views.Admin
 
             using (var con = new SqlConnection(GlobalSettings.connectionString))
             {
-                var user = con.QueryFirstOrDefault<User>("SELECT * FROM Users WHERE Username = @Username", new { Username = username });
+                var user = con.QueryFirstOrDefault<User>(
+                    "SELECT * FROM Users WHERE Username = @Username", new { Username = username });
 
                 if (user == null)
                 {
-                    HandleFailedAttempt(); // No user found
+                    HandleFailedAttempt(); // Invalid username
                     return;
                 }
 
-                if (user.Status == 1) // 1 = Locked
+                if (user.Status == 1) // Locked account
                 {
-                    XtraMessageBox.Show("Your account is locked. Please contact the administrator.", "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("Your account is locked. Please contact the administrator.",
+                        "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -72,7 +85,9 @@ namespace TrinityCinema.Views.Admin
 
                 if (passwordMatch)
                 {
+                    // Reset failed attempts
                     con.Execute("UPDATE Users SET FailedAttempts = 0 WHERE UserID = @UserID", new { user.UserID });
+
                     XtraMessageBox.Show("Login successful!");
                     this.Hide();
                     new AdminMainForm().Show();
@@ -84,6 +99,7 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
+        // Handles failed login attempts
         private void HandleFailedAttempt(User user = null)
         {
             attempt++;
@@ -91,15 +107,15 @@ namespace TrinityCinema.Views.Admin
             if (user == null)
             {
                 XtraMessageBox.Show($"Invalid username or password.\nAttempts left: {3 - attempt}");
+
                 if (attempt == 2)
-                {
                     StartDelayBeforeFinalAttempt();
-                }
                 else if (attempt >= 3)
                 {
                     XtraMessageBox.Show("Too many failed attempts. Exiting...");
                     Application.Exit();
                 }
+
                 return;
             }
 
@@ -109,17 +125,20 @@ namespace TrinityCinema.Views.Admin
             {
                 if (newFailed >= 3)
                 {
+                    // Lock account
                     con.Execute("UPDATE Users SET FailedAttempts = @FailedAttempts, Status = 1 WHERE UserID = @UserID", new
                     {
                         FailedAttempts = newFailed,
                         user.UserID
                     });
 
-                    XtraMessageBox.Show("Your account has been locked due to multiple failed login attempts.", "Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Your account has been locked due to multiple failed login attempts.",
+                        "Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Application.Exit();
                 }
                 else
                 {
+                    // Just update failed count
                     con.Execute("UPDATE Users SET FailedAttempts = @FailedAttempts WHERE UserID = @UserID", new
                     {
                         FailedAttempts = newFailed,
@@ -134,10 +153,25 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
+        // Called after 2 failed attempts to delay before 3rd
         private void StartDelayBeforeFinalAttempt()
         {
-            XtraMessageBox.Show("You have 1 attempt left. Please review your credentials carefully.\nWait 1 minute before your final attempt.", "Final Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            XtraMessageBox.Show("You have 1 attempt left. Please review your credentials carefully.\nWait 1 minute before your final attempt.",
+                "Final Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             delayTimer.Start();
+        }
+
+        // Handles visibility toggle on eye button click in tePassword
+        private void tePassword_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            isPasswordVisible = !isPasswordVisible;
+            tePassword.Properties.UseSystemPasswordChar = !isPasswordVisible;
+
+            // Change the button's icon
+            var button = tePassword.Properties.Buttons[0];
+            button.ImageOptions.Image = isPasswordVisible
+                ? DevExpress.Images.ImageResourceCache.Default.GetImage("actions_visibility_16x16")
+                : DevExpress.Images.ImageResourceCache.Default.GetImage("actions_visibilityoff_16x16");
         }
     }
 }
