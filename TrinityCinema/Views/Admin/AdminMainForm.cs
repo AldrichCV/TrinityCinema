@@ -49,10 +49,10 @@ namespace TrinityCinema.Views.Admin
         private void theaterTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            TheaterControl theaterControl = new TheaterControl(this);
-            gcHome.Controls.Add(theaterControl);
-            theaterControl.Dock = DockStyle.Fill;
-            theaterControl.Show();
+            HallControl hallControl = new HallControl(this, loggedInUser);
+            gcHome.Controls.Add(hallControl);
+            hallControl.Dock = DockStyle.Fill;
+            hallControl.Show();
         }
 
         private void showtimeTile_ItemClick(object sender, TileItemEventArgs e)

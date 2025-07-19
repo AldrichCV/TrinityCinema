@@ -56,11 +56,11 @@
             this.userTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.headerControl = new DevExpress.XtraEditors.GroupControl();
             this.headerLayoutControl = new DevExpress.XtraLayout.LayoutControl();
+            this.btnFind = new DevExpress.XtraEditors.SimpleButton();
             this.teSearch = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.Search = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnFind = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvUserView)).BeginInit();
@@ -117,11 +117,11 @@
             this.gcUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gcUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcUser.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcUser.Location = new System.Drawing.Point(0, 93);
+            this.gcUser.Location = new System.Drawing.Point(0, 76);
             this.gcUser.MainView = this.tvUserView;
             this.gcUser.Margin = new System.Windows.Forms.Padding(4);
             this.gcUser.Name = "gcUser";
-            this.gcUser.Size = new System.Drawing.Size(1151, 423);
+            this.gcUser.Size = new System.Drawing.Size(1151, 469);
             this.gcUser.TabIndex = 5;
             this.gcUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tvUserView});
@@ -200,7 +200,7 @@
             this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
             this.actionTile.ItemSize = 80;
-            this.actionTile.Location = new System.Drawing.Point(0, 516);
+            this.actionTile.Location = new System.Drawing.Point(0, 545);
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
@@ -210,7 +210,7 @@
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.SelectionBorderWidth = 0;
             this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(1151, 138);
+            this.actionTile.Size = new System.Drawing.Size(1151, 109);
             this.actionTile.TabIndex = 4;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -246,7 +246,7 @@
             this.headerControl.Location = new System.Drawing.Point(0, 0);
             this.headerControl.Name = "headerControl";
             this.headerControl.ShowCaption = false;
-            this.headerControl.Size = new System.Drawing.Size(1151, 93);
+            this.headerControl.Size = new System.Drawing.Size(1151, 76);
             this.headerControl.TabIndex = 6;
             this.headerControl.Text = "groupControl1";
             // 
@@ -259,9 +259,19 @@
             this.headerLayoutControl.Location = new System.Drawing.Point(0, 0);
             this.headerLayoutControl.Name = "headerLayoutControl";
             this.headerLayoutControl.Root = this.Root;
-            this.headerLayoutControl.Size = new System.Drawing.Size(1151, 93);
+            this.headerLayoutControl.Size = new System.Drawing.Size(1151, 76);
             this.headerLayoutControl.TabIndex = 0;
             this.headerLayoutControl.Text = "layoutControl1";
+            // 
+            // btnFind
+            // 
+            this.btnFind.Location = new System.Drawing.Point(577, 16);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(91, 44);
+            this.btnFind.StyleController = this.headerLayoutControl;
+            this.btnFind.TabIndex = 5;
+            this.btnFind.Text = "FIND";
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // teSearch
             // 
@@ -274,8 +284,8 @@
             this.teSearch.Properties.AppearanceReadOnly.Options.UseForeColor = true;
             this.teSearch.Properties.AutoHeight = false;
             this.teSearch.Properties.NullText = "SEARCH";
-            this.teSearch.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)((DevExpress.XtraEditors.ShowNullValuePromptOptions.EmptyValue | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
-            this.teSearch.Size = new System.Drawing.Size(555, 61);
+            this.teSearch.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)((DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
+            this.teSearch.Size = new System.Drawing.Size(555, 44);
             this.teSearch.StyleController = this.headerLayoutControl;
             this.teSearch.TabIndex = 4;
             this.teSearch.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.teSearch_EditValueChanging);
@@ -289,7 +299,7 @@
             this.emptySpaceItem1,
             this.layoutControlItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1151, 93);
+            this.Root.Size = new System.Drawing.Size(1151, 76);
             this.Root.TextVisible = false;
             // 
             // Search
@@ -298,7 +308,7 @@
             this.Search.Location = new System.Drawing.Point(0, 0);
             this.Search.MinSize = new System.Drawing.Size(68, 40);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(561, 67);
+            this.Search.Size = new System.Drawing.Size(561, 50);
             this.Search.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Search.TextLocation = DevExpress.Utils.Locations.Top;
             this.Search.TextSize = new System.Drawing.Size(0, 0);
@@ -309,25 +319,17 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(658, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(467, 67);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(467, 50);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnFind
-            // 
-            this.btnFind.Location = new System.Drawing.Point(577, 16);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(91, 34);
-            this.btnFind.StyleController = this.headerLayoutControl;
-            this.btnFind.TabIndex = 5;
-            this.btnFind.Text = "FIND";
-            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnFind;
             this.layoutControlItem1.Location = new System.Drawing.Point(561, 0);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(42, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(97, 67);
+            this.layoutControlItem1.Size = new System.Drawing.Size(97, 50);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 

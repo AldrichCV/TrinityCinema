@@ -43,10 +43,10 @@
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logsTile = new DevExpress.XtraBars.Navigation.TileBarItem();
-            this.gcHome = new DevExpress.XtraEditors.GroupControl();
             this.tileBarGroup3 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.tileBarItem1 = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logoutTile = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.gcHome = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +72,7 @@
             this.actionTile.Name = "actionTile";
             this.actionTile.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
-            this.actionTile.Size = new System.Drawing.Size(1854, 189);
+            this.actionTile.Size = new System.Drawing.Size(1854, 145);
             this.actionTile.TabIndex = 0;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -163,20 +163,6 @@
             this.logsTile.Name = "logsTile";
             this.logsTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.logsTile_ItemClick);
             // 
-            // gcHome
-            // 
-            this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
-            this.gcHome.Appearance.Options.UseBackColor = true;
-            this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcHome.Location = new System.Drawing.Point(0, 189);
-            this.gcHome.Margin = new System.Windows.Forms.Padding(0);
-            this.gcHome.Name = "gcHome";
-            this.gcHome.ShowCaption = false;
-            this.gcHome.Size = new System.Drawing.Size(1854, 640);
-            this.gcHome.TabIndex = 1;
-            this.gcHome.Paint += new System.Windows.Forms.PaintEventHandler(this.gcHome_Paint);
-            // 
             // tileBarGroup3
             // 
             this.tileBarGroup3.Items.Add(this.tileBarItem1);
@@ -202,6 +188,20 @@
             this.logoutTile.Name = "logoutTile";
             this.logoutTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.logoutTile_ItemClick);
             // 
+            // gcHome
+            // 
+            this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
+            this.gcHome.Appearance.Options.UseBackColor = true;
+            this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcHome.Location = new System.Drawing.Point(0, 145);
+            this.gcHome.Margin = new System.Windows.Forms.Padding(0);
+            this.gcHome.Name = "gcHome";
+            this.gcHome.ShowCaption = false;
+            this.gcHome.Size = new System.Drawing.Size(1854, 684);
+            this.gcHome.TabIndex = 1;
+            this.gcHome.Paint += new System.Windows.Forms.PaintEventHandler(this.gcHome_Paint);
+            // 
             // AdminMainForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -212,7 +212,7 @@
             this.Controls.Add(this.gcHome);
             this.Controls.Add(this.actionTile);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.LookAndFeel.SkinName = "WXI";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Margin = new System.Windows.Forms.Padding(4);

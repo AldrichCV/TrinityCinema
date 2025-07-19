@@ -48,6 +48,8 @@
             this.showStatus = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.teBasePrice = new DevExpress.XtraEditors.TextEdit();
+            this.BasePrice = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -69,11 +71,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.showStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teBasePrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BasePrice)).BeginInit();
             this.SuspendLayout();
             // 
             // tePrice
             // 
-            this.tePrice.Location = new System.Drawing.Point(449, 224);
+            this.tePrice.Location = new System.Drawing.Point(449, 286);
             this.tePrice.Name = "tePrice";
             this.tePrice.Properties.Appearance.Options.UseTextOptions = true;
             this.tePrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -85,6 +89,7 @@
             this.tePrice.Size = new System.Drawing.Size(291, 34);
             this.tePrice.StyleController = this.layoutControl1;
             this.tePrice.TabIndex = 1;
+            this.tePrice.EditValueChanged += new System.EventHandler(this.tePrice_EditValueChanged);
             // 
             // layoutControl1
             // 
@@ -96,6 +101,7 @@
             this.layoutControl1.Controls.Add(this.cbTheater);
             this.layoutControl1.Controls.Add(this.tePrice);
             this.layoutControl1.Controls.Add(this.leStatusDisplay);
+            this.layoutControl1.Controls.Add(this.teBasePrice);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -160,18 +166,19 @@
             // deShowDate
             // 
             this.deShowDate.EditValue = null;
-            this.deShowDate.Location = new System.Drawing.Point(449, 162);
+            this.deShowDate.Location = new System.Drawing.Point(449, 224);
             this.deShowDate.Name = "deShowDate";
             this.deShowDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deShowDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deShowDate.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.TouchUI;
+            this.deShowDate.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Classic;
             this.deShowDate.Properties.MaskSettings.Set("mask", "d");
             this.deShowDate.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.deShowDate.Size = new System.Drawing.Size(291, 34);
             this.deShowDate.StyleController = this.layoutControl1;
             this.deShowDate.TabIndex = 2;
+            this.deShowDate.EditValueChanged += new System.EventHandler(this.deShowDate_EditValueChanged);
             // 
             // cbTheater
             // 
@@ -192,7 +199,7 @@
             // 
             // leStatusDisplay
             // 
-            this.leStatusDisplay.Location = new System.Drawing.Point(746, 224);
+            this.leStatusDisplay.Location = new System.Drawing.Point(746, 286);
             this.leStatusDisplay.Name = "leStatusDisplay";
             this.leStatusDisplay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -219,7 +226,8 @@
             this.layoutControlItem2,
             this.startTime,
             this.showStatus,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.BasePrice});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1054, 576);
             this.Root.TextVisible = false;
@@ -248,7 +256,7 @@
             // showDate
             // 
             this.showDate.Control = this.deShowDate;
-            this.showDate.Location = new System.Drawing.Point(433, 124);
+            this.showDate.Location = new System.Drawing.Point(433, 186);
             this.showDate.Name = "showDate";
             this.showDate.Size = new System.Drawing.Size(297, 62);
             this.showDate.Text = "Show Date";
@@ -268,7 +276,7 @@
             // showPrice
             // 
             this.showPrice.Control = this.tePrice;
-            this.showPrice.Location = new System.Drawing.Point(433, 186);
+            this.showPrice.Location = new System.Drawing.Point(433, 248);
             this.showPrice.Name = "showPrice";
             this.showPrice.Size = new System.Drawing.Size(297, 62);
             this.showPrice.Text = "Price";
@@ -288,8 +296,10 @@
             // 
             this.startTime.Control = this.teStartTime;
             this.startTime.Location = new System.Drawing.Point(730, 124);
+            this.startTime.MinSize = new System.Drawing.Size(78, 62);
             this.startTime.Name = "startTime";
-            this.startTime.Size = new System.Drawing.Size(298, 62);
+            this.startTime.Size = new System.Drawing.Size(298, 124);
+            this.startTime.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.startTime.Text = "Start Time";
             this.startTime.TextLocation = DevExpress.Utils.Locations.Top;
             this.startTime.TextSize = new System.Drawing.Size(62, 16);
@@ -297,7 +307,7 @@
             // showStatus
             // 
             this.showStatus.Control = this.leStatusDisplay;
-            this.showStatus.Location = new System.Drawing.Point(730, 186);
+            this.showStatus.Location = new System.Drawing.Point(730, 248);
             this.showStatus.Name = "showStatus";
             this.showStatus.Size = new System.Drawing.Size(298, 62);
             this.showStatus.Text = "Status";
@@ -307,9 +317,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(433, 248);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(433, 310);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(595, 262);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(595, 200);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
@@ -319,6 +329,23 @@
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(197, 157);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(50, 20);
+            // 
+            // teBasePrice
+            // 
+            this.teBasePrice.Location = new System.Drawing.Point(449, 162);
+            this.teBasePrice.Name = "teBasePrice";
+            this.teBasePrice.Size = new System.Drawing.Size(291, 34);
+            this.teBasePrice.StyleController = this.layoutControl1;
+            this.teBasePrice.TabIndex = 15;
+            // 
+            // BasePrice
+            // 
+            this.BasePrice.Control = this.teBasePrice;
+            this.BasePrice.Location = new System.Drawing.Point(433, 124);
+            this.BasePrice.Name = "BasePrice";
+            this.BasePrice.Size = new System.Drawing.Size(297, 62);
+            this.BasePrice.TextLocation = DevExpress.Utils.Locations.Top;
+            this.BasePrice.TextSize = new System.Drawing.Size(62, 16);
             // 
             // AddShowtime
             // 
@@ -349,6 +376,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.showStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teBasePrice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BasePrice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -375,5 +404,7 @@
         private DevExpress.XtraLayout.LayoutControlItem showStatus;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.LookUpEdit leStatusDisplay;
+        private DevExpress.XtraEditors.TextEdit teBasePrice;
+        private DevExpress.XtraLayout.LayoutControlItem BasePrice;
     }
 }

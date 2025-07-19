@@ -48,6 +48,7 @@ namespace TrinityCinema.Models
         public DateTime DateAdded { get; set; }
         public byte[] MoviePoster { get; set; }
         public string StatusDisplay { get; set; }
+        public int TheaterID { get; set; }  
 
     }
 

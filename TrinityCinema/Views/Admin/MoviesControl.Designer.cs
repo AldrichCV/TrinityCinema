@@ -157,7 +157,7 @@
             this.gcMovies.Name = "gcMovies";
             this.gcMovies.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.viewDetails});
-            this.gcMovies.Size = new System.Drawing.Size(1151, 516);
+            this.gcMovies.Size = new System.Drawing.Size(1151, 543);
             this.gcMovies.TabIndex = 7;
             this.gcMovies.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tvMovieView});
@@ -262,7 +262,7 @@
             this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
             this.actionTile.ItemSize = 80;
-            this.actionTile.Location = new System.Drawing.Point(0, 516);
+            this.actionTile.Location = new System.Drawing.Point(0, 543);
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
@@ -272,7 +272,7 @@
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.SelectionBorderWidth = 0;
             this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(1151, 138);
+            this.actionTile.Size = new System.Drawing.Size(1151, 111);
             this.actionTile.TabIndex = 6;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;

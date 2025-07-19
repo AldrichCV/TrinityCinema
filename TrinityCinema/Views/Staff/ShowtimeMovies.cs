@@ -27,13 +27,14 @@ namespace TrinityCinema.Views.Staff
 
         public List<Movie> GetMovies()
         {
-            string query = GlobalSettings.getMovie;
+            string query = GlobalSettings.getMovieWithTheater;
             return a.GetRecords<Movie>(query);
         }
 
         private void tvShowMovies_ItemClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
         {
-            ChooseSeatLayout chooseSeatLayout = new ChooseSeatLayout();
+            int theaterID = Convert.ToInt32(tvShowMovies.GetRowCellValue(e.Item.RowHandle, "TheaterID"));
+            ChooseSeatLayout chooseSeatLayout = new ChooseSeatLayout(theaterID);
             chooseSeatLayout.ShowDialog();
         }
     }

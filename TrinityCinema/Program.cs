@@ -22,6 +22,7 @@ namespace TrinityCinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new SeatManagement());
             //var userID = string.Empty;
 
 
@@ -57,5 +58,4 @@ namespace TrinityCinema
             }
         }
     }
-    }
-
+}

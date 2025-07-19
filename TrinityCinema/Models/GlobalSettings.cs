@@ -83,6 +83,40 @@ namespace TrinityCinema.Models
                                           LEFT JOIN Users u
                                           ON u.UserID = a.UserID
                                             ORDER BY [Timestamp] DESC";
+
+        public static string getMovieWithTheater = @"WITH GenreAggregates AS (
+                                                                    SELECT 
+                                                                        mg.MovieID,
+                                                                        STRING_AGG(g.GenreName, ', ') AS GenreList
+                                                                    FROM MovieGenres mg
+                                                                    JOIN Genre g ON g.GenreID = mg.GenreID
+                                                                    GROUP BY mg.MovieID
+                                                                )
+                                                                SELECT
+                                                                    s.TheaterID,
+                                                                    t.TheaterName,
+                                                                    m.MovieID,
+                                                                    m.Title,
+                                                                    ga.GenreList AS GenreName,
+                                                                    m.Duration,
+                                                                    m.Description,
+                                                                    m.DateAdded,
+                                                                    m.Status,
+                                                                    CASE 
+                                                                        WHEN m.Status = 1 THEN 'Available'
+                                                                        WHEN m.Status = 0 THEN 'Unavailable'
+                                                                        ELSE 'Unknown'
+                                                                    END AS StatusDisplay,
+                                                                    m.MoviePoster,
+                                                                    mr.RatingCode AS ContentRatingCode
+                                                                    , mr.RatingID AS ContentRating      
+                                                                FROM [CinemaDB].[dbo].[Movies] m
+                                                                LEFT JOIN GenreAggregates ga ON m.MovieID = ga.MovieID
+                                                                LEFT JOIN MovieRating mr ON mr.RatingID = m.ContentRating
+                                                                LEFT JOIN Showtimes s ON s.MovieID = m.MovieID
+                                                                LEFT JOIN Theaters t ON t.TheaterID = s.TheaterID";
+
+
         #endregion
 
         #region Insert Queries

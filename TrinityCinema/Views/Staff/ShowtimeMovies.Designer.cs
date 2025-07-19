@@ -42,12 +42,14 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement2 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement5 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             this.MoviePoster = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Title = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.MovieID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Genre = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.gcShowMovies = new DevExpress.XtraGrid.GridControl();
             this.tvShowMovies = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.TheaterID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcShowMovies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvShowMovies)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +107,8 @@
             this.MoviePoster,
             this.MovieID,
             this.Genre,
-            this.Title});
+            this.Title,
+            this.TheaterID});
             this.tvShowMovies.GridControl = this.gcShowMovies;
             this.tvShowMovies.Name = "tvShowMovies";
             this.tvShowMovies.OptionsTiles.ItemSize = new System.Drawing.Size(344, 584);
@@ -156,17 +159,34 @@
             tileViewItemElement3.RowIndex = 3;
             tileViewItemElement3.Text = "MovieID";
             tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileViewItemElement3.TextVisible = false;
             tileViewItemElement4.Column = this.Genre;
             tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement4.RowIndex = 4;
             tileViewItemElement4.Text = "Genre";
             tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            tileViewItemElement5.Column = this.TheaterID;
+            tileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement5.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement5.Text = "TheaterID";
+            tileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
+            tileViewItemElement5.TextVisible = false;
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement1);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement2);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement3);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement4);
+            this.tvShowMovies.TileTemplate.Add(tileViewItemElement5);
             this.tvShowMovies.ItemClick += new DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventHandler(this.tvShowMovies_ItemClick);
+            // 
+            // TheaterID
+            // 
+            this.TheaterID.FieldName = "TheaterID";
+            this.TheaterID.MinWidth = 25;
+            this.TheaterID.Name = "TheaterID";
+            this.TheaterID.Visible = true;
+            this.TheaterID.VisibleIndex = 4;
+            this.TheaterID.Width = 94;
             // 
             // ShowtimeMovies
             // 
@@ -189,5 +209,6 @@
         private DevExpress.XtraGrid.Columns.TileViewColumn MovieID;
         private DevExpress.XtraGrid.Columns.TileViewColumn Genre;
         private DevExpress.XtraGrid.Columns.TileViewColumn Title;
+        private DevExpress.XtraGrid.Columns.TileViewColumn TheaterID;
     }
 }

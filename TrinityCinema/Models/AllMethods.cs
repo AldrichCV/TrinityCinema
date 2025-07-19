@@ -442,7 +442,6 @@ namespace TrinityCinema.Models
 
         public void Log(string loggedInUser, string action, string description)
         {
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO ActivityLogs (UserID, Action, Description) 
@@ -459,6 +458,35 @@ namespace TrinityCinema.Models
                 }
             }
         }
+
+        public string GetSeatStatusFromDatabase(string seatIdentifier)
+        {
+            string status = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT Status FROM SeatLayouts WHERE seat_Identifier = @seatIdentifier";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@seatIdentifier", seatIdentifier);
+
+                try
+                {
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        status = result.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Database error: {ex.Message}");
+                }
+            }
+
+            return status;
+        }
+
     }
 }
       
