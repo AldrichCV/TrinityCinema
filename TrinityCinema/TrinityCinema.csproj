@@ -169,6 +169,12 @@
     <Compile Include="Views\Admin\HallControl.Designer.cs">
       <DependentUpon>HallControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\HomeDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\HomeDashboard.Designer.cs">
+      <DependentUpon>HomeDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\HallControl.resx">
       <DependentUpon>HallControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\HomeDashboard.resx">
+      <DependentUpon>HomeDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
