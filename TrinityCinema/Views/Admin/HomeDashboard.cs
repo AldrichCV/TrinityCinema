@@ -23,10 +23,13 @@ namespace TrinityCinema.Views.Admin
 
             public int UserStatusCount { get; set; }
         }
+        private bool hasLoaded = false;
+
 
         AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         private string loggedInUser;
+        public event EventHandler DashboardReady;
 
         public HomeDashboard(AdminMainForm adminMainForm, string loggedInUser)
         {
@@ -34,14 +37,47 @@ namespace TrinityCinema.Views.Admin
             this.adminMainForm = adminMainForm;
             this.loggedInUser = loggedInUser;
             labelControl1.Text = $"Welcome back, {loggedInUser}";
-            AllMethods.GridCustomization(gcShowtime, gvShow, GetShowtimeToday());
-            ElementCustomization();
         }
 
-        private void ElementCustomization() {
-            var counts = GetUserRoleCounts();
+        public async Task InitializeDashboardAsync()
+        {
+            await LoadDashboardAsync();
+            await Task.Delay(100); // Allow UI to breathe
+            DashboardReady?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            if (!hasLoaded)
+            {
+                hasLoaded = true;
+
+                // Let the form fully load before starting async logic
+                BeginInvoke(new Action(async () =>
+                {
+                    await LoadDashboardAsync();
+                    await Task.Delay(100); // Let rendering finish
+                    DashboardReady?.Invoke(this, EventArgs.Empty);
+                }));
+            }
+        }
+        private async Task LoadDashboardAsync()
+        {
+            var showtimes = await GetShowtimeTodayAsync();
+            AllMethods.GridCustomization(gcShowtime, gvShow, showtimes);
+
+            var counts = await GetUserRoleCountsAsync();
+            UpdateUserTileElements(counts);
+        }
+
+        private void UpdateUserTileElements(RoleCounts counts)
+        {
             userTile.Elements.ElementAt(4).Text = $"{counts.ManagerCount}";
             userTile.Elements.ElementAt(3).Text = $"{counts.StaffCount}";
+
             if (counts.UserStatusCount == 0)
             {
                 userTile.Elements.ElementAt(5).Text = "✔ All users active";
@@ -53,24 +89,26 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
-        private RoleCounts GetUserRoleCounts()
+        private async Task<RoleCounts> GetUserRoleCountsAsync()
         {
             using (var conn = new SqlConnection(GlobalSettings.connectionString))
             {
-                string query = @" SELECT
-                                    SUM(CASE WHEN Role = 'Manager' THEN 1 ELSE 0 END) AS ManagerCount,
-                                    SUM(CASE WHEN Role = 'Staff' THEN 1 ELSE 0 END) AS StaffCount,
-                                    SUM(CASE WHEN IsLocked = 1 THEN 1 ELSE 0 END) AS UserStatusCount
-                                  FROM Users";
-                return conn.QueryFirstOrDefault<RoleCounts>(query);
+                string query = @"
+                    SELECT
+                        SUM(CASE WHEN Role = 'Manager' THEN 1 ELSE 0 END) AS ManagerCount,
+                        SUM(CASE WHEN Role = 'Staff' THEN 1 ELSE 0 END) AS StaffCount,
+                        SUM(CASE WHEN IsLocked = 1 THEN 1 ELSE 0 END) AS UserStatusCount
+                    FROM Users";
+
+                return await conn.QueryFirstOrDefaultAsync<RoleCounts>(query);
             }
         }
 
-        public List<Showtime> GetShowtimeToday()
+        public async Task<List<Showtime>> GetShowtimeTodayAsync()
         {
             string query = GlobalSettings.getShowtime + @"
-            WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
-            return allMethods.GetRecords<Showtime>(query, null);
+                WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
+            return await Task.Run(() => allMethods.GetRecords<Showtime>(query, null));
         }
 
         private void tileItem2_ItemClick(object sender, TileItemEventArgs e)

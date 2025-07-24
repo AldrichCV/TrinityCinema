@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
+using DevExpress.XtraWaitForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using TrinityCinema.Models;
 
+
 namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
@@ -21,15 +24,58 @@ namespace TrinityCinema.Views.Admin
         private string loggedInUser;
         private string username;
 
-        public AdminMainForm(string loggedInUser)
+        private Timer fadeInTimer;
+        private double fadeStep = 0.05;
+        public event EventHandler DashboardLoaded;
+
+        private HomeDashboard dashboard;
+
+        public AdminMainForm(string loggedInUser, EventHandler dashboardLoadedHandler = null)
         {
             InitializeComponent();
             this.loggedInUser = loggedInUser;
-            HomeDashboard homeDashboard = new HomeDashboard(this, loggedInUser);
-            gcHome.Controls.Add(homeDashboard);
-            homeDashboard.Dock = DockStyle.Fill;
-            homeDashboard.Show();
+
+            if (dashboardLoadedHandler != null)
+                DashboardLoaded += dashboardLoadedHandler;
+
+            dashboard = new HomeDashboard(this, loggedInUser);
+            dashboard.Dock = DockStyle.Fill;
+            gcHome.Controls.Add(dashboard);
+
+            this.Shown += AdminMainForm_Shown;
         }
+
+        private async void AdminMainForm_Shown(object sender, EventArgs e)
+        {
+            dashboard.DashboardReady += (s, args) =>
+            {
+                DashboardLoaded?.Invoke(this, EventArgs.Empty);
+            };
+
+            // Defer loading until form is visible
+            await dashboard.InitializeDashboardAsync();
+        }
+
+        public void StartFadeIn()
+        {
+            fadeInTimer = new Timer();
+            fadeInTimer.Interval = 5; // Smoother animation
+            fadeInTimer.Tick += (s, e) =>
+            {
+                if (this.Opacity < 1)
+                {
+                    this.Opacity += fadeStep;
+                }
+                else
+                {
+                    this.Opacity = 1;
+                    fadeInTimer.Stop();
+                    fadeInTimer.Dispose();
+                }
+            };
+            fadeInTimer.Start();
+        }
+
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {

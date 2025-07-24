@@ -217,6 +217,12 @@
     <Compile Include="Views\Admin\ShowtimeControl.Designer.cs">
       <DependentUpon>ShowtimeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\UsersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +252,12 @@
     </Compile>
     <Compile Include="Views\Admin\TheaterInfo.Designer.cs">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginSplash.Designer.cs">
+      <DependentUpon>LoginSplash.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Staff\ChooseSeatLayout.cs">
       <SubType>Form</SubType>
@@ -322,6 +334,9 @@
     <EmbeddedResource Include="Views\Admin\ShowtimeControl.resx">
       <DependentUpon>ShowtimeControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\UsersControl.resx">
       <DependentUpon>UsersControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\TheaterInfo.resx">
       <DependentUpon>TheaterInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginSplash.resx">
+      <DependentUpon>LoginSplash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\ChooseSeatLayout.resx">
       <DependentUpon>ChooseSeatLayout.cs</DependentUpon>

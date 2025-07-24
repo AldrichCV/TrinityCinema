@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +13,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using Dapper;
 
 namespace TrinityCinema.Views.Admin
 {
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
+        private SplashScreenManager splashScreenManager;
+
         private int attempt = 0;                     // Tracks the current failed login attempts
         private Timer delayTimer;                   // Timer used to delay the 3rd attempt
         private int timeLeft = 60;                  // Countdown for the 1-minute delay
@@ -32,6 +35,8 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
             InitializeDelayTimer();
+            splashScreenManager = new SplashScreenManager(this, typeof(LoginSplash), true, true);
+
         }
 
         private void InitializeDelayTimer()
@@ -59,21 +64,10 @@ namespace TrinityCinema.Views.Admin
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
-            string userName = teUserName.Text.Trim();
+            string username = teUserName.Text.Trim();
             string password = tePassword.Text.Trim();
 
-            // Hardcoded admin override
-            if (userName == "admin" && password == "1")
-            {
-                this.UserID = "admin";
-                this.Role = "Manager";
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 XtraMessageBox.Show("Please fill up the forms.", "Missing Fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -81,40 +75,44 @@ namespace TrinityCinema.Views.Admin
 
             AllMethods authService = new AllMethods();
 
-            var userStatus = authService.GetUserLoginStatus(userName);
+            // Hardcoded Admin Login
+            if (username == "admin" && password == "1")
+            {
+                this.UserID = "admin";
+                this.Role = "Manager";
+                this.DialogResult = DialogResult.OK;
+                return;
+            }
+
+            var userStatus = authService.GetUserLoginStatus(username);
 
             if (userStatus == null)
             {
-                HandleFailedAttempt(); // Unknown user
+                HandleFailedAttempt();
                 return;
             }
 
             if (userStatus.Value.IsLocked)
             {
-                XtraMessageBox.Show("Your account is locked due to multiple failed login attempts. Contact admin.",
-                                    "Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Your account is locked.", "Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var loginResult = authService.ValidateLogin(userName, password);
+            var loginResult = authService.ValidateLogin(username, password);
 
             if (!string.IsNullOrEmpty(loginResult.Role))
             {
-                authService.ResetLoginAttempts(userName);
-
-                XtraMessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                authService.ResetLoginAttempts(username);
 
                 this.UserID = loginResult.UserID;
                 this.Role = loginResult.Role;
                 this.DialogResult = DialogResult.OK;
-                this.Close();
             }
             else
             {
-                // Incorrect password for existing username
                 HandleFailedAttempt(new User
                 {
-                    Username = userName,
+                    Username = username,
                     FailedAttempts = userStatus.Value.FailedAttempts
                 });
             }

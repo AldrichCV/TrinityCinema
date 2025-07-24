@@ -1,9 +1,12 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 using TrinityCinema.Models;
@@ -26,36 +29,82 @@ namespace TrinityCinema
             //var userID = string.Empty;
 
 
-
-            using (var loginForm = new LoginForm())
+            using (LoginForm loginForm = new LoginForm())
             {
-                var result = loginForm.ShowDialog();
-
-                if (result == DialogResult.OK) // You have to set this on successful login
+                if (loginForm.ShowDialog() == DialogResult.OK)
                 {
-                    // After loginAdmin closes, retrieve staffID and role from it
-                    string loggedInUser = loginForm.UserID;
+                    string userID = loginForm.UserID;
                     string role = loginForm.Role;
 
-                    new AllMethods().Log(loggedInUser, "Login", $"User {loggedInUser} has logged in as '{role}'.");
+                    var splash = new SplashScreenManager(null, typeof(LoginSplash), true, true);
+                    splash.ShowWaitForm();
+                    splash.SetWaitFormDescription("Loading interface...");
 
-                    Form nextForm;
+                    Form mainForm = null;
 
                     if (role == "Manager")
-                        nextForm = new AdminMainForm(loggedInUser);
-                    else if (role == "Staff")
-                        nextForm = new StaffMainForm(loggedInUser);
-                    else
-                        return; // Unknown role, exit app
+                    {
+                        var dashboardReadyTcs = new TaskCompletionSource<object>();
 
-                    Application.Run(nextForm);
-                }
-                else
-                {
-                    // Login cancelled or failed, exit app
-                    return;
+                        var adminForm = new AdminMainForm(userID, (s, e) =>
+                        {
+                            dashboardReadyTcs.TrySetResult(null);
+                        });
+
+                        adminForm.Opacity = 0;
+                        mainForm = adminForm; // assign to the shared mainForm variable
+
+                        // Run background wait task
+                        Task.Run(async () =>
+                        {
+                            var fiveSecondDelay = Task.Delay(5000);
+                            await Task.WhenAll(fiveSecondDelay, dashboardReadyTcs.Task);
+
+                            if (adminForm.IsHandleCreated)
+                            {
+                                adminForm.Invoke(new MethodInvoker(() =>
+                                {
+                                    if (splash.IsSplashFormVisible)
+                                        splash.CloseWaitForm();
+
+                                    adminForm.StartFadeIn();
+                                }));
+                            }
+
+                        });
+                    }
+                    else if (role == "Staff")
+                    {
+                        mainForm = new StaffMainForm(userID);
+
+                        // Simple 5s splash delay
+                        Task.Run(async () =>
+                        {
+                            await Task.Delay(5000);
+
+                            if (splash.IsSplashFormVisible)
+                                splash.CloseWaitForm();
+                        });
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    // ✅ Only one Application.Run call — consistent
+                    Application.Run(mainForm);
                 }
             }
+
         }
+
     }
-}
+
+    }
+        
+   
+
+    
+
+
+       
