@@ -55,6 +55,8 @@
             // 
             // gvActivities
             // 
+            this.gvActivities.Appearance.HeaderPanel.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.gvActivities.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvActivities.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.timeStamp,
             this.User,
@@ -62,10 +64,13 @@
             this.Description});
             this.gvActivities.GridControl = this.gcLogs;
             this.gvActivities.Name = "gvActivities";
+            this.gvActivities.OptionsBehavior.ReadOnly = true;
             this.gvActivities.OptionsView.ShowGroupPanel = false;
             // 
             // timeStamp
             // 
+            this.timeStamp.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.timeStamp.AppearanceCell.Options.UseFont = true;
             this.timeStamp.AppearanceCell.Options.UseTextOptions = true;
             this.timeStamp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.timeStamp.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -88,6 +93,8 @@
             // 
             // User
             // 
+            this.User.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.User.AppearanceCell.Options.UseFont = true;
             this.User.AppearanceCell.Options.UseTextOptions = true;
             this.User.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.User.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -108,6 +115,8 @@
             // 
             // Action
             // 
+            this.Action.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Action.AppearanceCell.Options.UseFont = true;
             this.Action.AppearanceCell.Options.UseTextOptions = true;
             this.Action.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Action.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -128,6 +137,8 @@
             // 
             // Description
             // 
+            this.Description.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Description.AppearanceCell.Options.UseFont = true;
             this.Description.AppearanceCell.Options.UseTextOptions = true;
             this.Description.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Description.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;

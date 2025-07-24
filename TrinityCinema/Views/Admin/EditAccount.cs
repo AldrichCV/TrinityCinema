@@ -50,7 +50,9 @@ namespace TrinityCinema.Views.Admin
             return null;
         }
 
-        private void SetLockStatusButton(string userID)
+
+
+        public void SetLockStatusButton(string userID)
         {
             var userStatus = new AllMethods().GetUserLoginStatusByUserID(userID);
 
@@ -269,15 +271,7 @@ namespace TrinityCinema.Views.Admin
             AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID, this));
         }
 
-        private bool NameExists(string fullName)
-        {
-            using (var connection = new SqlConnection(GlobalSettings.connectionString))
-            {
-                string query = "SELECT COUNT(1) FROM Users WHERE Fullname = @Fullname";
-                int count = connection.ExecuteScalar<int>(query, new { Fullname = fullName });
-                return count > 0;
-            }
-        }
+       
         private bool ValidBirthday(DateTime birthdate)
         {
             DateTime today = DateTime.Today;

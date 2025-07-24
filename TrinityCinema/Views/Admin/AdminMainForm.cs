@@ -25,6 +25,10 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
             this.loggedInUser = loggedInUser;
+            HomeDashboard homeDashboard = new HomeDashboard(this, loggedInUser);
+            gcHome.Controls.Add(homeDashboard);
+            homeDashboard.Dock = DockStyle.Fill;
+            homeDashboard.Show();
         }
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
@@ -75,11 +79,6 @@ namespace TrinityCinema.Views.Admin
             activityControl.Show();
         }
 
-        private void gcHome_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void logoutTile_ItemClick(object sender, TileItemEventArgs e)
         {
             DialogResult result = XtraMessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
@@ -94,6 +93,15 @@ namespace TrinityCinema.Views.Admin
             {
                 return;
             }
+        }
+
+        private void homeTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            HomeDashboard homeDashboard = new HomeDashboard(this, loggedInUser);
+            gcHome.Controls.Add(homeDashboard);
+            homeDashboard.Dock = DockStyle.Fill;
+            homeDashboard.Show();
         }
     }
 }

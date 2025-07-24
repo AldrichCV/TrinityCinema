@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
@@ -36,9 +37,9 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.homeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.personnelTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
@@ -48,7 +49,6 @@
             this.tileBarItem1 = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logoutTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
-            this.homeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +91,20 @@
             this.tileBarGroup2.Items.Add(this.showtimeTile);
             this.tileBarGroup2.Items.Add(this.logsTile);
             this.tileBarGroup2.Name = "tileBarGroup2";
+            // 
+            // homeTile
+            // 
+            this.homeTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.homeTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.homeTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileItemElement1.Text = "Home";
+            this.homeTile.Elements.Add(tileItemElement1);
+            this.homeTile.Id = 15;
+            this.homeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.homeTile.Name = "homeTile";
+            this.homeTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.homeTile_ItemClick);
             // 
             // personnelTile
             // 
@@ -176,6 +190,12 @@
             // 
             // tileBarItem1
             // 
+            this.tileBarItem1.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.tileBarItem1.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
+            this.tileBarItem1.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.tileBarItem1.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileBarItem1.AppearanceItem.Normal.Options.UseBorderColor = true;
+            this.tileBarItem1.AppearanceItem.Normal.Options.UseFont = true;
             this.tileBarItem1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement7.Text = "tileBarItem1";
             this.tileBarItem1.Elements.Add(tileItemElement7);
@@ -185,8 +205,15 @@
             // 
             // logoutTile
             // 
+            this.logoutTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.logoutTile.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
+            this.logoutTile.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.logoutTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.logoutTile.AppearanceItem.Normal.Options.UseBorderColor = true;
+            this.logoutTile.AppearanceItem.Normal.Options.UseFont = true;
             this.logoutTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement8.Text = "Logout";
+            tileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
             this.logoutTile.Elements.Add(tileItemElement8);
             this.logoutTile.Id = 14;
             this.logoutTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
@@ -205,20 +232,6 @@
             this.gcHome.ShowCaption = false;
             this.gcHome.Size = new System.Drawing.Size(1940, 718);
             this.gcHome.TabIndex = 1;
-            this.gcHome.Paint += new System.Windows.Forms.PaintEventHandler(this.gcHome_Paint);
-            // 
-            // homeTile
-            // 
-            this.homeTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
-            this.homeTile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.homeTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            tileItemElement1.Appearance.Normal.Options.UseFont = true;
-            tileItemElement1.Text = "Home";
-            this.homeTile.Elements.Add(tileItemElement1);
-            this.homeTile.Id = 15;
-            this.homeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.homeTile.Name = "homeTile";
             // 
             // AdminMainForm
             // 

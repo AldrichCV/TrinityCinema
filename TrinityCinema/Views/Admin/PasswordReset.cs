@@ -19,7 +19,7 @@ namespace TrinityCinema.Views.Admin
         private AdminMainForm adminMainForm;
         private string loggedInUser;
         private string userID;
-        private EditAccount parentForm;
+        private EditAccount editAccount;
         public PasswordReset(AdminMainForm adminMainForm, string loggedInUser, string userID, EditAccount parentForm)
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace TrinityCinema.Views.Admin
             this.userID = userID;
             teUser.Text = userID;
             teUser.Properties.ReadOnly = true;
-            this.parentForm = parentForm;
+            this.editAccount = parentForm;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -82,11 +82,9 @@ namespace TrinityCinema.Views.Admin
                     allMethods.Log(loggedInUser, "Reset Password", $"Reset password, unlocked account, and cleared attempts for user ID {userID}");
                     XtraMessageBox.Show("Password reset successfully. User unlocked and attempts reset!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                 
                     XtraMessageBox.Show("Password updated and account unlocked.");
 
-           
-
+                    editAccount?.SetLockStatusButton(userID);
                     this.Close();
                   
                 }
