@@ -105,11 +105,6 @@ namespace TrinityCinema.Views.Admin
                 return;
             }
 
-            if (NameExists(teFullName.Text))
-            {
-                XtraMessageBox.Show("Name already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             if (!ValidBirthday(deDateOfBirth.DateTime))
             {
@@ -132,6 +127,7 @@ namespace TrinityCinema.Views.Admin
             // Step 2: Compare values
             bool isModified =
                 original["Fullname"].ToString() != teFullName.Text ||
+                original["DateOfBirth"].ToString() != deDateOfBirth.DateTime.ToString("yyyy-MM-dd") || 
                 original["Phone"].ToString() != tePhone.Text ||
                 original["Role"].ToString() != cbRole.Text ||
                 !imageData.SequenceEqual((byte[])original["PersonnelImage"]);
@@ -149,12 +145,13 @@ namespace TrinityCinema.Views.Admin
                 Fullname = teFullName.Text,
                 Phone = tePhone.Text,
                 Role = cbRole.Text,
-                PersonnelImage = imageData
+                PersonnelImage = imageData,
+                DateOfBirth = deDateOfBirth.DateTime.ToString("yyyy-MM-dd") 
             };
 
             var columns = new List<string>
     {
-        "Fullname", "Phone", "Role", "PersonnelImage"
+        "Fullname", "Phone", "Role","DateOfBirth", "PersonnelImage"
     };
 
             if (!new AllMethods().UpdateRecord("Users", parameters, columns, "userID"))
@@ -172,6 +169,14 @@ namespace TrinityCinema.Views.Admin
                 logDetails += $" Phone ({original["Phone"]} -> {tePhone.Text});";
             if (original["Role"].ToString() != cbRole.Text)
                 logDetails += $" Role ({original["Role"]} -> {cbRole.Text});";
+            DateTime originalDob = Convert.ToDateTime(original["DateOfBirth"]);
+            DateTime newDob = deDateOfBirth.DateTime;
+
+            if (originalDob.Date != newDob.Date)
+            {
+                logDetails += $" DateOfBirth of {userID} ({originalDob:yyyy-MM-dd} -> {newDob:yyyy-MM-dd});";
+            }
+
 
             allMethods.Log(loggedInUser, "Modified Employee", logDetails);
 
@@ -261,7 +266,7 @@ namespace TrinityCinema.Views.Admin
 
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
-            AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID));
+            AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID, this));
         }
 
         private bool NameExists(string fullName)

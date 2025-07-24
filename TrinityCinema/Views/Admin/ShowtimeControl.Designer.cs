@@ -73,12 +73,30 @@
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.ShowtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.headerControl = new DevExpress.XtraEditors.GroupControl();
+            this.headerLayoutControl = new DevExpress.XtraLayout.LayoutControl();
+            this.teShowFilter = new DevExpress.XtraEditors.DateEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.Search = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnAllRecords = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcShowtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvShowtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemActionButtons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribtnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribtnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.headerControl)).BeginInit();
+            this.headerControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.headerLayoutControl)).BeginInit();
+            this.headerLayoutControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teShowFilter.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teShowFilter.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Search)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEdit
@@ -95,14 +113,14 @@
             // gcShowtime
             // 
             this.gcShowtime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcShowtime.Location = new System.Drawing.Point(0, 0);
+            this.gcShowtime.Location = new System.Drawing.Point(0, 76);
             this.gcShowtime.MainView = this.gvShowtime;
             this.gcShowtime.Name = "gcShowtime";
             this.gcShowtime.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemActionButtons,
             this.ribtnEdit,
             this.ribtnDelete});
-            this.gcShowtime.Size = new System.Drawing.Size(1151, 516);
+            this.gcShowtime.Size = new System.Drawing.Size(1151, 440);
             this.gcShowtime.TabIndex = 0;
             this.gcShowtime.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvShowtime});
@@ -125,6 +143,7 @@
             this.gcAction});
             this.gvShowtime.GridControl = this.gcShowtime;
             this.gvShowtime.Name = "gvShowtime";
+            this.gvShowtime.OptionsView.ShowGroupPanel = false;
             // 
             // gcShowtimeID
             // 
@@ -305,11 +324,121 @@
             this.ShowtimeTile.Name = "ShowtimeTile";
             this.ShowtimeTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.ShowtimeTile_ItemClick);
             // 
+            // headerControl
+            // 
+            this.headerControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.headerControl.Controls.Add(this.headerLayoutControl);
+            this.headerControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerControl.Location = new System.Drawing.Point(0, 0);
+            this.headerControl.Name = "headerControl";
+            this.headerControl.ShowCaption = false;
+            this.headerControl.Size = new System.Drawing.Size(1151, 76);
+            this.headerControl.TabIndex = 8;
+            this.headerControl.Text = "groupControl1";
+            // 
+            // headerLayoutControl
+            // 
+            this.headerLayoutControl.BackColor = System.Drawing.Color.Transparent;
+            this.headerLayoutControl.Controls.Add(this.teShowFilter);
+            this.headerLayoutControl.Controls.Add(this.btnAllRecords);
+            this.headerLayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerLayoutControl.Location = new System.Drawing.Point(0, 0);
+            this.headerLayoutControl.Name = "headerLayoutControl";
+            this.headerLayoutControl.Root = this.Root;
+            this.headerLayoutControl.Size = new System.Drawing.Size(1151, 76);
+            this.headerLayoutControl.TabIndex = 0;
+            this.headerLayoutControl.Text = "layoutControl1";
+            // 
+            // teShowFilter
+            // 
+            this.teShowFilter.EditValue = "";
+            this.teShowFilter.Location = new System.Drawing.Point(16, 16);
+            this.teShowFilter.Name = "teShowFilter";
+            this.teShowFilter.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.teShowFilter.Properties.Appearance.Options.UseFont = true;
+            this.teShowFilter.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.DarkGray;
+            this.teShowFilter.Properties.AppearanceReadOnly.Options.UseForeColor = true;
+            this.teShowFilter.Properties.AutoHeight = false;
+            this.teShowFilter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.teShowFilter.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.teShowFilter.Properties.DisplayFormat.FormatString = "";
+            this.teShowFilter.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.teShowFilter.Properties.EditFormat.FormatString = "";
+            this.teShowFilter.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.teShowFilter.Properties.MaskSettings.Set("mask", "d");
+            this.teShowFilter.Properties.NullText = "SEARCH";
+            this.teShowFilter.Properties.NullValuePrompt = "SEARCH";
+            this.teShowFilter.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)(((DevExpress.XtraEditors.ShowNullValuePromptOptions.EmptyValue | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused) 
+            | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
+            this.teShowFilter.Properties.UseMaskAsDisplayFormat = true;
+            this.teShowFilter.Size = new System.Drawing.Size(202, 44);
+            this.teShowFilter.StyleController = this.headerLayoutControl;
+            this.teShowFilter.TabIndex = 4;
+            this.teShowFilter.EditValueChanged += new System.EventHandler(this.teShowFilter_EditValueChanged);
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.Search,
+            this.emptySpaceItem1,
+            this.layoutControlItem1});
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(1151, 76);
+            this.Root.TextVisible = false;
+            // 
+            // Search
+            // 
+            this.Search.Control = this.teShowFilter;
+            this.Search.Location = new System.Drawing.Point(0, 0);
+            this.Search.MaxSize = new System.Drawing.Size(208, 50);
+            this.Search.MinSize = new System.Drawing.Size(208, 50);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(208, 50);
+            this.Search.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.Search.TextLocation = DevExpress.Utils.Locations.Top;
+            this.Search.TextSize = new System.Drawing.Size(0, 0);
+            this.Search.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(388, 0);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(737, 50);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // btnAllRecords
+            // 
+            this.btnAllRecords.Location = new System.Drawing.Point(224, 16);
+            this.btnAllRecords.Name = "btnAllRecords";
+            this.btnAllRecords.Size = new System.Drawing.Size(174, 44);
+            this.btnAllRecords.StyleController = this.headerLayoutControl;
+            this.btnAllRecords.TabIndex = 5;
+            this.btnAllRecords.Text = "All";
+            this.btnAllRecords.Click += new System.EventHandler(this.btnAllRecords_Click);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.btnAllRecords;
+            this.layoutControlItem1.Location = new System.Drawing.Point(208, 0);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(180, 50);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(180, 50);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(180, 50);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
             // ShowtimeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcShowtime);
+            this.Controls.Add(this.headerControl);
             this.Controls.Add(this.actionTile);
             this.Name = "ShowtimeControl";
             this.Size = new System.Drawing.Size(1151, 654);
@@ -319,6 +448,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemActionButtons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribtnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribtnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.headerControl)).EndInit();
+            this.headerControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.headerLayoutControl)).EndInit();
+            this.headerLayoutControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.teShowFilter.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teShowFilter.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Search)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -342,5 +481,13 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ribtnEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit ribtnDelete;
         private DevExpress.XtraGrid.Columns.GridColumn gcStatusDisplay;
+        private DevExpress.XtraEditors.GroupControl headerControl;
+        private DevExpress.XtraLayout.LayoutControl headerLayoutControl;
+        private DevExpress.XtraEditors.DateEdit teShowFilter;
+        private DevExpress.XtraLayout.LayoutControlGroup Root;
+        private DevExpress.XtraLayout.LayoutControlItem Search;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.SimpleButton btnAllRecords;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

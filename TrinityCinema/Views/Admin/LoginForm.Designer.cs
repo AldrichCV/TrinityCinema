@@ -41,31 +41,40 @@
             // 
             // teUserName
             // 
-            this.teUserName.Location = new System.Drawing.Point(70, 279);
+            this.teUserName.EditValue = "";
+            this.teUserName.Location = new System.Drawing.Point(72, 295);
             this.teUserName.Margin = new System.Windows.Forms.Padding(4);
             this.teUserName.Name = "teUserName";
             this.teUserName.Properties.AutoHeight = false;
-            this.teUserName.Size = new System.Drawing.Size(346, 68);
+            this.teUserName.Properties.NullValuePrompt = "Username";
+            this.teUserName.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)(((DevExpress.XtraEditors.ShowNullValuePromptOptions.EmptyValue | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused) 
+            | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
+            this.teUserName.Size = new System.Drawing.Size(358, 46);
             this.teUserName.TabIndex = 0;
             // 
             // tePassword
             // 
-            this.tePassword.Location = new System.Drawing.Point(70, 376);
+            this.tePassword.Location = new System.Drawing.Point(72, 374);
             this.tePassword.Margin = new System.Windows.Forms.Padding(4);
             this.tePassword.Name = "tePassword";
             this.tePassword.Properties.AutoHeight = false;
+            this.tePassword.Properties.NullValuePrompt = "Password";
             this.tePassword.Properties.UseSystemPasswordChar = true;
-            this.tePassword.Size = new System.Drawing.Size(346, 68);
+            this.tePassword.Size = new System.Drawing.Size(358, 48);
             this.tePassword.TabIndex = 1;
             // 
             // btnLogin
             // 
             this.btnLogin.AllowFocus = false;
-            this.btnLogin.Location = new System.Drawing.Point(70, 470);
+            this.btnLogin.Appearance.BackColor = System.Drawing.Color.DarkRed;
+            this.btnLogin.Appearance.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnLogin.Appearance.Options.UseBackColor = true;
+            this.btnLogin.Appearance.Options.UseFont = true;
+            this.btnLogin.Location = new System.Drawing.Point(96, 470);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
-            this.btnLogin.Size = new System.Drawing.Size(346, 79);
+            this.btnLogin.Size = new System.Drawing.Size(302, 55);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "SIGN IN";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -87,9 +96,9 @@
             // 
             this.btnCloseWindow.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnCloseWindow.Appearance.Options.UseFont = true;
-            this.btnCloseWindow.Location = new System.Drawing.Point(432, 12);
+            this.btnCloseWindow.Location = new System.Drawing.Point(449, 12);
             this.btnCloseWindow.Name = "btnCloseWindow";
-            this.btnCloseWindow.Size = new System.Drawing.Size(49, 42);
+            this.btnCloseWindow.Size = new System.Drawing.Size(32, 28);
             this.btnCloseWindow.TabIndex = 4;
             this.btnCloseWindow.Text = "X";
             this.btnCloseWindow.Click += new System.EventHandler(this.btnCloseWindow_Click);

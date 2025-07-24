@@ -99,11 +99,11 @@ namespace TrinityCinema.Views.Admin
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
-        {
+        {// 1. Field validation
             if (leMovie.EditValue == null ||
                 string.IsNullOrWhiteSpace(tePrice.Text) ||
-                string.IsNullOrWhiteSpace(cbTheater.Text) ||
-                string.IsNullOrWhiteSpace(leStatusDisplay.Text) ||
+                cbTheater.EditValue == null ||
+                leStatusDisplay.EditValue == null ||
                 deShowDate.DateTime == DateTime.MinValue ||
                 teStartTime.EditValue == null)
             {
@@ -113,103 +113,94 @@ namespace TrinityCinema.Views.Admin
 
             string movieId = leMovie.EditValue.ToString();
 
-            if (string.IsNullOrWhiteSpace(movieId))
+            // 2. Parse TheaterID
+            if (!int.TryParse(cbTheater.EditValue.ToString(), out int theaterId))
             {
-                XtraMessageBox.Show("Please select a movie.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select a valid theater.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Validate theater selection
-            if (!int.TryParse(cbTheater.EditValue?.ToString(), out int theaterId))
-            {
-                XtraMessageBox.Show("Please select a theater.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 3. Validate start time
-            if (teStartTime.EditValue == null || !DateTime.TryParse(teStartTime.EditValue.ToString(), out DateTime newStartTime))
+            // 3. Parse StartTime
+            if (!DateTime.TryParse(teStartTime.EditValue.ToString(), out DateTime newStartDateTime))
             {
                 XtraMessageBox.Show("Please select a valid showtime.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            DateTime showDate = deShowDate.DateTime.Date;
+            TimeSpan newStartTime = newStartDateTime.TimeOfDay;
             TimeSpan duration;
 
             using (var connection = new SqlConnection(GlobalSettings.connectionString))
             {
                 try
                 {
-                    // Fetch duration as a string to avoid casting issues
+                    connection.Open();
+
+                    // 4. Fetch Duration as string
                     string rawDuration = connection.ExecuteScalar<string>(
                         "SELECT CONVERT(VARCHAR(8), Duration, 108) FROM Movies WHERE MovieID = @MovieID",
                         new { MovieID = movieId });
 
-                    if (string.IsNullOrWhiteSpace(rawDuration))
+                    if (string.IsNullOrWhiteSpace(rawDuration) || !TimeSpan.TryParse(rawDuration, out duration) || duration.TotalMinutes <= 0)
                     {
-                        XtraMessageBox.Show("No duration found for the selected movie.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("Invalid movie duration.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    if (!TimeSpan.TryParse(rawDuration, out duration))
+                    TimeSpan newEndTime = newStartTime.Add(duration);
+
+                    // 5. Conflict detection
+                    string conflictQuery = @"SELECT 1
+                                            FROM Showtimes s
+                                            LEFT JOIN Movies m ON m.MovieID = s.MovieID
+                                            WHERE 
+                                            s.TheaterID = @TheaterID
+                                            AND s.ShowDate = @ShowDate
+                                            AND (
+                                                @NewStartTime < DATEADD(SECOND, DATEDIFF(SECOND, '00:00:00', m.Duration), s.StartTime)
+                                                AND s.StartTime < @NewEndTime
+                    )";
+
+                    var hasConflict = connection.QueryFirstOrDefault<int>(
+                        conflictQuery,
+                        new
+                        {
+                            TheaterID = theaterId,
+                            ShowDate = showDate,
+                            NewStartTime = newStartTime,
+                            NewEndTime = newEndTime
+                        });
+
+                    if (hasConflict > 0)
                     {
-                        XtraMessageBox.Show("Invalid format for movie duration.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("A conflicting showtime already exists in this theater during that time.",
+                                            "Conflict", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    if (duration.TotalMinutes <= 0)
-                    {
-                        XtraMessageBox.Show("Movie duration must be greater than 0 minutes.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // 6. Confirm and submit
+                    DialogResult confirm = XtraMessageBox.Show("Are you sure you want to save this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirm != DialogResult.Yes)
                         return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("Error retrieving movie duration: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-
-                // Later...
-                DateTime newEndTime = newStartTime.Add(duration);
-
-
-
-                // 6. Check for showtime conflicts
-                if (ShowtimeConflicts(theaterId, newStartTime, newEndTime))
-                {
-                    XtraMessageBox.Show("A conflicting showtime already exists in this theater during that time.",
-                                        "Conflict", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
-                DialogResult confirm = XtraMessageBox.Show("Are you sure you want to save this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirm != DialogResult.Yes)
-                    return;
-
-                try
-                {
 
                     var showtime = new Showtime
                     {
-                        MovieID = leMovie.EditValue.ToString(),
+                        MovieID = movieId,
                         Price = Convert.ToDecimal(tePrice.Text),
-                        ShowDate = deShowDate.DateTime.Date,
-                        StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
-                        TheaterID = Convert.ToInt32(cbTheater.EditValue),
-                        StatusID = Convert.ToInt32(leStatusDisplay.EditValue)
+                        ShowDate = showDate,
+                        StartTime = newStartTime,
+                        TheaterID = theaterId,
+                        StatusID = Convert.ToInt32(leStatusDisplay.EditValue),
+                        Title = leMovie.Text
                     };
-
-                    var selectedMovieTitle = leMovie.Text;
-                    showtime.Title = selectedMovieTitle;
-
 
                     AllMethods allMethods = new AllMethods();
                     allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
-                    XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     allMethods.Log(loggedInUser, "Add Showtime", $"Add showtime for {showtime.Title}");
+
                     this.Close();
                     AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh, loggedInUser));
                 }
@@ -217,7 +208,6 @@ namespace TrinityCinema.Views.Admin
                 {
                     XtraMessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
 

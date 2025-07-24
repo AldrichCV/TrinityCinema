@@ -64,6 +64,10 @@ namespace TrinityCinema.Models
                                             s.[Price],
                                             s.[ShowDate],
                                             s.[StartTime],
+                                             DATEADD(SECOND, 
+                                             DATEDIFF(SECOND, '00:00:00', m.Duration), 
+                                            [StartTime]
+                                            ) AS EndTime,
                                             ss.[StatusID],
                                             ss.[StatusName] AS StatusDisplay
                                           FROM [CinemaDB].[dbo].[Showtimes] s

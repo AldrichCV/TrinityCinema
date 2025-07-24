@@ -43,12 +43,12 @@
             // gcLogs
             // 
             this.gcLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcLogs.Location = new System.Drawing.Point(50, 50);
+            this.gcLogs.Location = new System.Drawing.Point(0, 0);
             this.gcLogs.MainView = this.gvActivities;
             this.gcLogs.Name = "gcLogs";
             this.gcLogs.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.logDescription});
-            this.gcLogs.Size = new System.Drawing.Size(680, 486);
+            this.gcLogs.Size = new System.Drawing.Size(780, 586);
             this.gcLogs.TabIndex = 0;
             this.gcLogs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvActivities});
@@ -69,6 +69,10 @@
             this.timeStamp.AppearanceCell.Options.UseTextOptions = true;
             this.timeStamp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.timeStamp.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.timeStamp.AppearanceHeader.BackColor = System.Drawing.Color.Black;
+            this.timeStamp.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.timeStamp.AppearanceHeader.Options.UseBackColor = true;
+            this.timeStamp.AppearanceHeader.Options.UseFont = true;
             this.timeStamp.AppearanceHeader.Options.UseTextOptions = true;
             this.timeStamp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.timeStamp.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -87,6 +91,10 @@
             this.User.AppearanceCell.Options.UseTextOptions = true;
             this.User.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.User.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.User.AppearanceHeader.BackColor = System.Drawing.Color.Black;
+            this.User.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.User.AppearanceHeader.Options.UseBackColor = true;
+            this.User.AppearanceHeader.Options.UseFont = true;
             this.User.AppearanceHeader.Options.UseTextOptions = true;
             this.User.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.User.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -103,6 +111,10 @@
             this.Action.AppearanceCell.Options.UseTextOptions = true;
             this.Action.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Action.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Action.AppearanceHeader.BackColor = System.Drawing.Color.Black;
+            this.Action.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.Action.AppearanceHeader.Options.UseBackColor = true;
+            this.Action.AppearanceHeader.Options.UseFont = true;
             this.Action.AppearanceHeader.Options.UseTextOptions = true;
             this.Action.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Action.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -119,6 +131,10 @@
             this.Description.AppearanceCell.Options.UseTextOptions = true;
             this.Description.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Description.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Description.AppearanceHeader.BackColor = System.Drawing.Color.Black;
+            this.Description.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.Description.AppearanceHeader.Options.UseBackColor = true;
+            this.Description.AppearanceHeader.Options.UseFont = true;
             this.Description.AppearanceHeader.Options.UseTextOptions = true;
             this.Description.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Description.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -141,7 +157,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcLogs);
             this.Name = "ActivityLogControl";
-            this.Padding = new System.Windows.Forms.Padding(50);
             this.Size = new System.Drawing.Size(780, 586);
             ((System.ComponentModel.ISupportInitialize)(this.gcLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvActivities)).EndInit();

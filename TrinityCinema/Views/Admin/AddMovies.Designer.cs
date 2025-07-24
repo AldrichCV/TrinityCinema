@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMovies));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
@@ -79,6 +80,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupControl1.Appearance.Options.UseBackColor = true;
             this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl1.Controls.Add(this.layoutControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,6 +95,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.BackColor = System.Drawing.Color.Transparent;
             this.layoutControl1.Controls.Add(this.btnSubmit);
             this.layoutControl1.Controls.Add(this.teTitle);
             this.layoutControl1.Controls.Add(this.meDescription);
@@ -163,6 +167,8 @@
             this.beStatus.EditValue = null;
             this.beStatus.Location = new System.Drawing.Point(266, 622);
             this.beStatus.Name = "beStatus";
+            this.beStatus.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.beStatus.Properties.Appearance.Options.UseForeColor = true;
             this.beStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.beStatus.Properties.ContentAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.beStatus.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -253,6 +259,8 @@
             // 
             // Title
             // 
+            this.Title.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Title.AppearanceItemCaption.Options.UseForeColor = true;
             this.Title.Control = this.teTitle;
             this.Title.Location = new System.Drawing.Point(0, 0);
             this.Title.MinSize = new System.Drawing.Size(128, 76);
@@ -265,6 +273,8 @@
             // 
             // Description
             // 
+            this.Description.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Description.AppearanceItemCaption.Options.UseForeColor = true;
             this.Description.AppearanceItemCaption.Options.UseTextOptions = true;
             this.Description.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Description.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
@@ -300,6 +310,8 @@
             // 
             // Genre
             // 
+            this.Genre.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Genre.AppearanceItemCaption.Options.UseForeColor = true;
             this.Genre.Control = this.leGenre;
             this.Genre.Location = new System.Drawing.Point(0, 86);
             this.Genre.MaxSize = new System.Drawing.Size(547, 76);
@@ -313,6 +325,8 @@
             // 
             // Duration
             // 
+            this.Duration.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Duration.AppearanceItemCaption.Options.UseForeColor = true;
             this.Duration.Control = this.teDuration;
             this.Duration.Location = new System.Drawing.Point(0, 590);
             this.Duration.MinSize = new System.Drawing.Size(50, 25);
@@ -325,6 +339,8 @@
             // 
             // Status
             // 
+            this.Status.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Status.AppearanceItemCaption.Options.UseForeColor = true;
             this.Status.Control = this.beStatus;
             this.Status.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.Status.CustomizationFormText = "layoutControlItem2";
@@ -362,6 +378,8 @@
             // 
             // Rating
             // 
+            this.Rating.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Rating.AppearanceItemCaption.Options.UseForeColor = true;
             this.Rating.Control = this.leRating;
             this.Rating.Location = new System.Drawing.Point(0, 162);
             this.Rating.MaxSize = new System.Drawing.Size(651, 77);
@@ -389,6 +407,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackgroundImageStore = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImageStore")));
             this.ClientSize = new System.Drawing.Size(1182, 728);
             this.Controls.Add(this.groupControl1);
             this.Name = "AddMovies";

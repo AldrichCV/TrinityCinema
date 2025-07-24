@@ -1,15 +1,16 @@
 ﻿using Dapper;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TrinityCinema.Models;
-using System.Drawing;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -23,11 +24,18 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
-            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetMovies());
+            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetShowtimeToday());
             this.loggedInUser = loggedInUser;
         }
 
-        public List<Showtime> GetMovies()
+        public List<Showtime> GetShowtimeToday()
+        {
+            string query = GlobalSettings.getShowtime + @"
+            WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
+            return allMethods.GetRecords<Showtime>(query, null);
+        }
+
+        public List<Showtime> GetAllShowtimes()
         {
             string query = GlobalSettings.getShowtime;
             return allMethods.GetRecords<Showtime>(query);
@@ -135,5 +143,35 @@ namespace TrinityCinema.Views.Admin
                 AllMethods.RefreshManagerHome(mh => new ShowtimeControl(adminMainForm, loggedInUser));
             }
         }
+
+        private void teShowFilter_EditValueChanged(object sender, EventArgs e)
+        {
+
+            if (teShowFilter.EditValue is DateTime selectedDate)
+            {
+                gcShowtime.DataSource = GetShowtimeByDate(selectedDate);
+            }
+            else
+            {
+                gvShowtime.ActiveFilterString = string.Empty;
+            }
+        }
+
+        public List<Showtime> GetShowtimeByDate(DateTime selectedDate)
+        {
+            string query = GlobalSettings.getShowtime + @"
+        WHERE CAST(ShowDate AS DATE) = @SelectedDate
+    ";
+
+            var param = new { SelectedDate = selectedDate.Date };
+
+            return allMethods.GetRecords<Showtime>(query, param);
+        }
+
+        private void btnAllRecords_Click(object sender, EventArgs e)
+        {
+            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetAllShowtimes());
+        }
     }
 }
+    
