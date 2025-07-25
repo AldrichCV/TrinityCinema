@@ -101,9 +101,9 @@ namespace TrinityCinema.Models
         }
 
 
-        public void UpdateLoginAttempts(string username, int attempts, bool isBanned)
+        public static void UpdateLoginAttempts(string username, int attempts, bool isBanned)
         {
-            using (var conn = new SqlConnection(connectionString))
+            using (var conn = new SqlConnection(GlobalSettings.connectionString))
             using (var cmd = new SqlCommand("UPDATE Users SET FailedAttempts = @Attempts, IsLocked = @Banned WHERE Username = @Username", conn))
             {
                 cmd.Parameters.AddWithValue("@Attempts", attempts);

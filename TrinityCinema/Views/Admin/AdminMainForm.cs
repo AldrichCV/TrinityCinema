@@ -99,7 +99,7 @@ namespace TrinityCinema.Views.Admin
         private void theaterTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            HallControl hallControl = new HallControl(this, loggedInUser);
+            SeatsControl hallControl = new SeatsControl(this, loggedInUser);
             gcHome.Controls.Add(hallControl);
             hallControl.Dock = DockStyle.Fill;
             hallControl.Show();
@@ -125,21 +125,38 @@ namespace TrinityCinema.Views.Admin
             activityControl.Show();
         }
 
-        private void logoutTile_ItemClick(object sender, TileItemEventArgs e)
+        private async void logoutTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            DialogResult result = XtraMessageBox.Show("Are you sure you want to logout?", "Confirm Logout",
-        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+            DialogResult result = XtraMessageBox.Show(
+            "Are you sure you want to logout?",
+            "Confirm Logout",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+    
             if (result == DialogResult.Yes)
             {
+                // ✅ Show splash screen
+                var splash = new SplashScreenManager(null, typeof(LoginSplash), true, true);
+                splash.ShowWaitForm();
+                splash.SetWaitFormDescription("Logging out...");
+
+                // Optional: simulate a short delay for UX polish
+                await Task.Delay(1000);
+
+                // ✅ Log the logout activity
                 allMethods.Log(loggedInUser, "Logout", $"{loggedInUser} has been logged out");
+
+                // ✅ Close splash (optional since app is restarting)
+                if (splash.IsSplashFormVisible)
+                    splash.CloseWaitForm();
+
+                // ✅ Restart the app
                 Application.Restart();
             }
-            else
-            {
-                return;
-            }
         }
+
+        
 
         private void homeTile_ItemClick(object sender, TileItemEventArgs e)
         {

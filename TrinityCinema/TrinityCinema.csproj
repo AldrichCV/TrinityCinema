@@ -259,6 +259,12 @@
     <Compile Include="Views\LoginSplash.Designer.cs">
       <DependentUpon>LoginSplash.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SeatsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SeatsControl.Designer.cs">
+      <DependentUpon>SeatsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Staff\ChooseSeatLayout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginSplash.resx">
       <DependentUpon>LoginSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SeatsControl.resx">
+      <DependentUpon>SeatsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\ChooseSeatLayout.resx">
       <DependentUpon>ChooseSeatLayout.cs</DependentUpon>

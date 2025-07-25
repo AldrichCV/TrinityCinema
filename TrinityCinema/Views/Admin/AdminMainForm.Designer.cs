@@ -222,7 +222,7 @@
             // 
             // gcHome
             // 
-            this.gcHome.Appearance.BackColor = System.Drawing.Color.Brown;
+            this.gcHome.Appearance.BackColor = System.Drawing.Color.White;
             this.gcHome.Appearance.Options.UseBackColor = true;
             this.gcHome.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.gcHome.Dock = System.Windows.Forms.DockStyle.Fill;

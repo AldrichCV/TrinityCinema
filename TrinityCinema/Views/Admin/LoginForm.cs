@@ -138,34 +138,22 @@ namespace TrinityCinema.Views.Admin
             }
 
             int newFailed = user.FailedAttempts + 1;
+            bool isLocked = newFailed >= 3;
 
-            using (var con = new SqlConnection(GlobalSettings.connectionString))
+            AllMethods.UpdateLoginAttempts(user.Username, newFailed, isLocked);
+
+            if (isLocked)
             {
-                if (newFailed >= 3)
-                {
-                    con.Execute("UPDATE Users SET FailedAttempts = @FailedAttempts, Status = 1 WHERE Username = @Username", new
-                    {
-                        FailedAttempts = newFailed,
-                        user.Username
-                    });
+                XtraMessageBox.Show("Your account has been locked due to multiple failed login attempts.",
+                    "Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            else
+            {
+                XtraMessageBox.Show($"Incorrect password.\nAttempts left: {3 - newFailed}");
 
-                    XtraMessageBox.Show("Your account has been locked due to multiple failed login attempts.",
-                        "Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
-                }
-                else
-                {
-                    con.Execute("UPDATE Users SET FailedAttempts = @FailedAttempts WHERE Username = @Username", new
-                    {
-                        FailedAttempts = newFailed,
-                        user.Username
-                    });
-
-                    XtraMessageBox.Show($"Incorrect password.\nAttempts left: {3 - newFailed}");
-
-                    if (newFailed == 2)
-                        StartDelayBeforeFinalAttempt();
-                }
+                if (newFailed == 2)
+                    StartDelayBeforeFinalAttempt();
             }
         }
 
