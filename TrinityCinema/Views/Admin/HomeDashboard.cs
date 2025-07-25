@@ -16,14 +16,8 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class HomeDashboard : DevExpress.XtraEditors.XtraUserControl
     {
-        public class RoleCounts
-        {
-            public int ManagerCount { get; set; }
-            public int StaffCount { get; set; }
-
-            public int UserStatusCount { get; set; }
-        }
         private bool hasLoaded = false;
+        private Timer dashboardRefreshTimer;
 
 
         AllMethods allMethods = new AllMethods();
@@ -43,40 +37,38 @@ namespace TrinityCinema.Views.Admin
         {
             await LoadDashboardAsync();
             await Task.Delay(100); // Allow UI to breathe
+
+            StartAutoRefresh(); // <- start periodic refresh
             DashboardReady?.Invoke(this, EventArgs.Empty);
         }
 
-
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
-
-            if (!hasLoaded)
-            {
-                hasLoaded = true;
-
-                // Let the form fully load before starting async logic
-                BeginInvoke(new Action(async () =>
-                {
-                    await LoadDashboardAsync();
-                    await Task.Delay(100); // Let rendering finish
-                    DashboardReady?.Invoke(this, EventArgs.Empty);
-                }));
-            }
-        }
         private async Task LoadDashboardAsync()
         {
             var showtimes = await GetShowtimeTodayAsync();
             AllMethods.GridCustomization(gcShowtime, gvShow, showtimes);
 
             var counts = await GetUserRoleCountsAsync();
+            var seats = await GetSeatCountsAsync();
             UpdateUserTileElements(counts);
+            UpdateHallTileElements(seats);
         }
+
+        private void StartAutoRefresh()
+        {
+            dashboardRefreshTimer = new Timer();
+            dashboardRefreshTimer.Interval = 10000; // refresh every 10 seconds
+            dashboardRefreshTimer.Tick += async (s, e) =>
+            {
+                await LoadDashboardAsync();
+            };
+            dashboardRefreshTimer.Start();
+        }
+
 
         private void UpdateUserTileElements(RoleCounts counts)
         {
-            userTile.Elements.ElementAt(4).Text = $"{counts.ManagerCount}";
-            userTile.Elements.ElementAt(3).Text = $"{counts.StaffCount}";
+            userTile.Elements.ElementAt(1).Text = $"{counts.ManagerCount} Managers";
+            userTile.Elements.ElementAt(2).Text = $"{counts.StaffCount} Staffs";
 
             if (counts.UserStatusCount == 0)
             {
@@ -85,9 +77,79 @@ namespace TrinityCinema.Views.Admin
             else
             {
                 string label = counts.UserStatusCount == 1 ? "user" : "users";
-                userTile.Elements.ElementAt(5).Text = $"🔒 {counts.UserStatusCount} {label} locked";
+                userTile.Elements.ElementAt(3).Text = $"🔒 {counts.UserStatusCount} {label} locked";
             }
         }
+
+        private void UpdateHallTileElements(SeatCounts seats)
+        {
+            hallTile.Elements.ElementAt(1).Text = $"Hall1: {seats.Hall1Available} Available | Hall2: {seats.Hall2Available} Available";
+
+            if (seats.Hall1Damaged == 0 && seats.Hall2Damaged == 0)
+            {
+                hallTile.Elements.ElementAt(2).Text = "✔ No seats were damaged";
+            }
+            else
+            {
+                string hall1 = seats.Hall1Damaged > 0 ? $"Hall1: {seats.Hall1Damaged}" : "";
+                string hall2 = seats.Hall2Damaged > 0 ? $"Hall2: {seats.Hall2Damaged}" : "";
+
+                string damageInfo = "";
+
+                if (!string.IsNullOrEmpty(hall1) && !string.IsNullOrEmpty(hall2))
+                    damageInfo = $"{hall1} | {hall2}";
+                else
+                    damageInfo = hall1 + hall2;
+
+
+                hallTile.Elements.ElementAt(2).Text = $"🔒 Damaged seats - {damageInfo}";
+
+            }
+        }
+
+
+
+        private async Task<SeatCounts> GetSeatCountsAsync()
+        {
+            using (var conn = new SqlConnection(GlobalSettings.connectionString))
+            {
+                string query = @"
+            SELECT Hall,
+                   SUM(CASE WHEN Status = 'Available' THEN 1 ELSE 0 END) AS AvailableCount,
+                   SUM(CASE WHEN IsDamaged = 1 THEN 1 ELSE 0 END) AS DamagedCount
+            FROM Seats
+            WHERE Hall IN ('Hall1', 'Hall2')
+            GROUP BY Hall";
+
+                var results = await conn.QueryAsync(query);
+
+                var counts = new SeatCounts();
+
+                foreach (var row in results)
+                {
+                    string hall = row.Hall?.ToString();
+                    int available = row.AvailableCount;
+                    int damaged = row.DamagedCount;
+
+                    if (hall == "Hall1")
+                    {
+                        counts.Hall1Available = available;
+                        counts.Hall1Damaged = damaged;
+                    }
+                    else if (hall == "Hall2")
+                    {
+                        counts.Hall2Available = available;
+                        counts.Hall2Damaged = damaged;
+                    }
+                }
+
+                return counts;
+            }
+        }
+
+
+
+
 
         private async Task<RoleCounts> GetUserRoleCountsAsync()
         {
@@ -109,16 +171,6 @@ namespace TrinityCinema.Views.Admin
             string query = GlobalSettings.getShowtime + @"
                 WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
             return await Task.Run(() => allMethods.GetRecords<Showtime>(query, null));
-        }
-
-        private void tileItem2_ItemClick(object sender, TileItemEventArgs e)
-        {
-
-        }
-
-        private void dashBoard_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -10,6 +10,7 @@ namespace TrinityCinema.Models
     {
     }
 
+    #region User and Role Models
     public class User
     {
         public string UserID { get; set; }
@@ -34,7 +35,16 @@ namespace TrinityCinema.Models
             }
         }   
     }
-        public class ActivityLog
+    public class RoleCounts
+    {
+        public int ManagerCount { get; set; }
+        public int StaffCount { get; set; }
+
+        public int UserStatusCount { get; set; }
+    }
+    #endregion
+
+    public class ActivityLog
         {
             public DateTime Timestamp { get; set; }
             public string Username { get; set; }
@@ -42,7 +52,8 @@ namespace TrinityCinema.Models
             public string Description { get; set; }
         }
 
-        public class Movie
+    #region Movie and Showtime Models
+    public class Movie
         {
             public string MovieID { get; set; }
             public string Title { get; set; }
@@ -96,6 +107,25 @@ namespace TrinityCinema.Models
             public string StatusName { get; set; }
             public string StatusDisplay { get; set; }
         }
+    #endregion
 
+
+    public class Seat
+    {
+        public string SeatId { get; set; }
+        public string Status { get; set; }
+        public string SeatLabel { get; set; }
+        public string Hall { get; set; }
+        public bool IsDamaged { get; set; }
     }
+
+    public class SeatCounts
+    {
+        public int Hall1Available { get; set; }
+        public int Hall1Damaged { get; set; }
+        public int Hall2Available { get; set; }
+        public int Hall2Damaged { get; set; }
+    }
+
+}
 

@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DevExpress.XtraEditors;
+using DevExpress.XtraPrinting.Control;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,6 @@ namespace TrinityCinema.Views.Admin
         private bool isPasswordVisible = false;     // Tracks visibility toggle state
         private const int MaxFailedAttempts = 3;
 
-        private string userType = "";
-        private string userName = "";
         public string UserID { get; private set; }
         public string Role { get; private set; }
       
@@ -36,32 +35,34 @@ namespace TrinityCinema.Views.Admin
             InitializeComponent();
             InitializeDelayTimer();
             splashScreenManager = new SplashScreenManager(this, typeof(LoginSplash), true, true);
+            Styles();
 
         }
 
-        private void InitializeDelayTimer()
+        public void Styles()
         {
-            delayTimer = new Timer();
-            delayTimer.Interval = 1000;
-            delayTimer.Tick += DelayTimer_Tick;
+            btnLogin.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            btnLogin.LookAndFeel.UseDefaultLookAndFeel = false;
+            btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 
+            // Default (Normal) Appearance
+            btnLogin.Appearance.Font = new Font("Segoe UI", 12);
+            btnLogin.Appearance.BackColor = Color.Maroon;
+            btnLogin.Appearance.ForeColor = Color.White;
+            btnLogin.Appearance.BorderColor = Color.Maroon;
+            btnLogin.Appearance.Options.UseBackColor = true;
+            btnLogin.Appearance.Options.UseForeColor = true;
+            btnLogin.Appearance.Options.UseBorderColor = true;
+
+            // Hover Appearance (HotTracked)
+            btnLogin.AppearanceHovered.BackColor = Color.FromArgb(180, 0, 0); // darker maroon
+            btnLogin.AppearanceHovered.ForeColor = Color.White;
+            btnLogin.AppearanceHovered.BorderColor = Color.DarkRed;
+            btnLogin.AppearanceHovered.Options.UseBackColor = true;
+            btnLogin.AppearanceHovered.Options.UseForeColor = true;
+            btnLogin.AppearanceHovered.Options.UseBorderColor = true;
         }
-
-        private void DelayTimer_Tick(object sender, EventArgs e)
-        {
-            timeLeft--;
-            btnLogin.Text = $"Wait ({timeLeft}s)";
-            btnLogin.Enabled = false;
-
-            if (timeLeft <= 0)
-            {
-                delayTimer.Stop();
-                btnLogin.Text = "Login";
-                btnLogin.Enabled = true;
-                timeLeft = 60;
-            }
-        }
-
+  
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = teUserName.Text.Trim();
@@ -118,6 +119,30 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
+        #region Validation
+        private void InitializeDelayTimer()
+        {
+            delayTimer = new Timer();
+            delayTimer.Interval = 1000;
+            delayTimer.Tick += DelayTimer_Tick;
+
+        }
+
+        private void DelayTimer_Tick(object sender, EventArgs e)
+        {
+            timeLeft--;
+            btnLogin.Text = $"Wait ({timeLeft}s)";
+            btnLogin.Enabled = false;
+
+            if (timeLeft <= 0)
+            {
+                delayTimer.Stop();
+                btnLogin.Text = "Login";
+                btnLogin.Enabled = true;
+                timeLeft = 60;
+            }
+        }
+
         private void HandleFailedAttempt(User user = null)
         {
             attempt++;
@@ -163,9 +188,9 @@ namespace TrinityCinema.Views.Admin
                 "Final Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             delayTimer.Start();
         }
+        #endregion
 
-
-        private void btnCloseWindow_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }

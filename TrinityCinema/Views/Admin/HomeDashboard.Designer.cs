@@ -41,7 +41,7 @@
             this.tileGroup1 = new DevExpress.XtraEditors.TileGroup();
             this.userTile = new DevExpress.XtraEditors.TileItem();
             this.tileGroup2 = new DevExpress.XtraEditors.TileGroup();
-            this.tileItem2 = new DevExpress.XtraEditors.TileItem();
+            this.hallTile = new DevExpress.XtraEditors.TileItem();
             this.tileItem4 = new DevExpress.XtraEditors.TileItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gcShowtime = new DevExpress.XtraGrid.GridControl();
@@ -80,7 +80,6 @@
             this.dashBoard.Size = new System.Drawing.Size(892, 638);
             this.dashBoard.TabIndex = 0;
             this.dashBoard.Text = "tileControl1";
-            this.dashBoard.Click += new System.EventHandler(this.dashBoard_Click);
             // 
             // tileGroup1
             // 
@@ -98,24 +97,16 @@
             tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
             tileItemElement1.Appearance.Normal.Options.UseFont = true;
             tileItemElement1.Text = "Users";
-            tileItemElement2.Text = "Manager";
-            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
-            tileItemElement3.Text = "Staff";
-            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
-            tileItemElement4.Text = "--";
-            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomLeft;
-            tileItemElement4.TextLocation = new System.Drawing.Point(300, 0);
-            tileItemElement5.Text = "--";
-            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
-            tileItemElement5.TextLocation = new System.Drawing.Point(300, 0);
-            tileItemElement6.Text = "Status";
-            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
+            tileItemElement2.Text = "StaffCount";
+            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
+            tileItemElement3.Text = "ManagerCount";
+            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            tileItemElement4.Text = "Status";
+            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
             this.userTile.Elements.Add(tileItemElement1);
             this.userTile.Elements.Add(tileItemElement2);
             this.userTile.Elements.Add(tileItemElement3);
             this.userTile.Elements.Add(tileItemElement4);
-            this.userTile.Elements.Add(tileItemElement5);
-            this.userTile.Elements.Add(tileItemElement6);
             this.userTile.Id = 2;
             this.userTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Large;
             this.userTile.Name = "userTile";
@@ -123,24 +114,32 @@
             // 
             // tileGroup2
             // 
-            this.tileGroup2.Items.Add(this.tileItem2);
+            this.tileGroup2.Items.Add(this.hallTile);
             this.tileGroup2.Items.Add(this.tileItem4);
             this.tileGroup2.Name = "tileGroup2";
             // 
-            // tileItem2
+            // hallTile
             // 
-            this.tileItem2.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
-            this.tileItem2.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
-            this.tileItem2.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.tileItem2.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileItem2.AppearanceItem.Normal.Options.UseBorderColor = true;
-            this.tileItem2.AppearanceItem.Normal.Options.UseFont = true;
-            tileItemElement7.Text = "Halls";
-            this.tileItem2.Elements.Add(tileItemElement7);
-            this.tileItem2.Id = 3;
-            this.tileItem2.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
-            this.tileItem2.Name = "tileItem2";
-            this.tileItem2.Padding = new System.Windows.Forms.Padding(20);
+            this.hallTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.hallTile.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
+            this.hallTile.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.hallTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.hallTile.AppearanceItem.Normal.Options.UseBorderColor = true;
+            this.hallTile.AppearanceItem.Normal.Options.UseFont = true;
+            tileItemElement5.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            tileItemElement5.Appearance.Normal.Options.UseFont = true;
+            tileItemElement5.Text = "Halls";
+            tileItemElement6.Text = "element1";
+            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
+            tileItemElement7.Text = "element2";
+            tileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
+            this.hallTile.Elements.Add(tileItemElement5);
+            this.hallTile.Elements.Add(tileItemElement6);
+            this.hallTile.Elements.Add(tileItemElement7);
+            this.hallTile.Id = 3;
+            this.hallTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            this.hallTile.Name = "hallTile";
+            this.hallTile.Padding = new System.Windows.Forms.Padding(20);
             // 
             // tileItem4
             // 
@@ -293,7 +292,7 @@
 
         private DevExpress.XtraEditors.TileControl dashBoard;
         private DevExpress.XtraEditors.TileItem userTile;
-        private DevExpress.XtraEditors.TileItem tileItem2;
+        private DevExpress.XtraEditors.TileItem hallTile;
         private DevExpress.XtraEditors.TileItem tileItem4;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl gcShowtime;

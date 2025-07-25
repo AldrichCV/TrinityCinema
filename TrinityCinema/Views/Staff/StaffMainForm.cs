@@ -20,7 +20,6 @@ namespace TrinityCinema.Views
         {
             InitializeComponent();
             _userID = loggedInUser;
-            labelControl1.Text = $"Welcome, {_userID}!";
         }
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)

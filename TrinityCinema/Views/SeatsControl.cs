@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -16,16 +17,7 @@ namespace TrinityCinema.Views
 {
     public partial class SeatsControl : DevExpress.XtraEditors.XtraUserControl
     {
-        public class Seat
-        {
-            public string SeatId { get; set; }
-            public string Status { get; set; }
-            public string SeatLabel { get; set; }
-            public string Hall { get; set; }
-            public bool IsDamaged { get; set; }
-        }
-
-
+        AllMethods allMethods = new AllMethods();   
         private string currentHall = "Hall1";
         private AdminMainForm adminMainForm;
         private string loggedInUser;
@@ -33,7 +25,15 @@ namespace TrinityCinema.Views
         public SeatsControl(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();
+            SvgImageBoxLoad();
+            LoadSeatData(currentHall);
+            ApplySeatStyles();
+            UpdateSeatCounts();
+            this.loggedInUser = loggedInUser;
+        }
 
+        public void SvgImageBoxLoad()
+        {
             svgImageBox1.ItemAppearance.Selected.FillColor = DevExpress.LookAndFeel.DXSkinColors.IconColors.Blue;
             svgImageBox1.ItemAppearance.Hovered.FillColor = DevExpress.LookAndFeel.DXSkinColors.IconColors.Black;
             svgImageBox1.ItemHitTestType = DevExpress.XtraEditors.ItemHitTestType.BoundingBox;
@@ -50,13 +50,6 @@ namespace TrinityCinema.Views
 
             // Set current hall
             currentHall = cbHall.SelectedItem.ToString();
-
-
-
-            LoadSeatData(currentHall);
-            ApplySeatStyles();
-            UpdateSeatCounts();
-            this.loggedInUser = loggedInUser;
         }
 
         public void OnSvgImageBoxQueryHoveredItem(object sender, SvgImageQueryHoveredItemEventArgs e)
@@ -72,6 +65,7 @@ namespace TrinityCinema.Views
   
         private Dictionary<string, Seat> seatData = new Dictionary<string, Seat>();
 
+        #region SeatRenderering
         private void LoadSeatData(string hall)
         {
             seatData.Clear();
@@ -81,7 +75,7 @@ namespace TrinityCinema.Views
                 conn.Open();
 
                 // Single valid query
-                string query = @" SELECT SeatId, Status, Hall, ISNULL(IsDamaged, 0) AS IsDamaged
+                string query = @" SELECT SeatId, Status, Hall, ISNULL(IsDamaged, 0) AS IsDamaged, SeatLabel
                                   FROM Seats
                                   WHERE Hall = @Hall";
 
@@ -97,6 +91,7 @@ namespace TrinityCinema.Views
                             {
                                 SeatId = reader["SeatId"].ToString(),
                                 Status = reader["Status"].ToString(),
+                                SeatLabel = reader["SeatLabel"].ToString(),
                                 Hall = reader["Hall"].ToString(),
                                 IsDamaged = Convert.ToBoolean(reader["IsDamaged"]) // <- Assign here
                             };
@@ -176,7 +171,9 @@ namespace TrinityCinema.Views
 
             svgImageBox1.Invalidate(); // Force redraw
         }
+        #endregion
 
+        #region ToggleConditions
         private void ToggleSeatStatus(string seatId, string hall)
         {
             using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
@@ -184,11 +181,11 @@ namespace TrinityCinema.Views
                 conn.Open();
 
                 string query = @"UPDATE Seats
-                                    SET Status = CASE 
-                                        WHEN Status = 'Available' THEN 'Taken'
-                                        ELSE 'Available'
-                                    END
-                                    WHERE SeatId = @SeatId AND Hall = @Hall";
+                            SET Status = CASE 
+                                WHEN Status = 'Available' THEN 'Taken'
+                                ELSE 'Available'
+                            END
+                            WHERE SeatId = @SeatId AND Hall = @Hall";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -198,10 +195,56 @@ namespace TrinityCinema.Views
                 }
             }
 
-            // Refresh view
-            LoadSeatData(hall); // pass the current hall again
+            // Refresh data so we can get the updated status and label
+            LoadSeatData(hall);
+
+            if (seatData.TryGetValue(seatId, out var seat))
+            {
+                string label = seat.SeatLabel;
+                string newStatus = seat.Status; // Now contains "Taken" or "Available"
+                allMethods.Log(loggedInUser, "Seat Availability Changed",
+                    $"Seat {label} (ID: {seatId}) in {hall} was changed to '{newStatus}' by {loggedInUser}.");
+            }
+
             ApplySeatStyles();
         }
+
+        private void ToggleSeatDamage(string seatId, string hall)
+        {
+            using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
+            {
+                conn.Open();
+
+                string query = @"UPDATE Seats
+                        SET IsDamaged = CASE 
+                            WHEN IsDamaged = 1 THEN 0
+                            ELSE 1
+                        END
+                        WHERE SeatId = @SeatId AND Hall = @Hall";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SeatId", seatId);
+                    cmd.Parameters.AddWithValue("@Hall", hall);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            // Refresh data
+            LoadSeatData(hall);
+
+            if (seatData.TryGetValue(seatId, out var seat))
+            {
+                string label = seat.SeatLabel;
+                string newCondition = seat.IsDamaged ? "marked as DAMAGED" : "marked as RESTORED";
+                allMethods.Log(loggedInUser, "Seat Condition Changed",
+                    $"Seat {label} (ID: {seatId}) in {hall} was {newCondition} by {loggedInUser}.");
+            }
+
+            ApplySeatStyles();
+        }
+        #endregion
+
         private void svgImageBox1_ItemClick(object sender, SvgImageItemMouseEventArgs e)
         {
             string clickedSeatId = e.Item?.Id;
@@ -220,33 +263,8 @@ namespace TrinityCinema.Views
             }
         }
 
-        private void ToggleSeatDamage(string seatId, string hall)
-        {
-            using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
-            {
-                conn.Open();
 
-                string query = @"UPDATE Seats
-                                SET IsDamaged = CASE 
-                                    WHEN IsDamaged = 1 THEN 0
-                                    ELSE 1
-                                END
-                                WHERE SeatId = @SeatId AND Hall = @Hall";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@SeatId", seatId);
-                    cmd.Parameters.AddWithValue("@Hall", hall);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            // Refresh UI
-            LoadSeatData(hall);
-            ApplySeatStyles();
-        }
-
-
+        #region IndexChangedEvents and UpdateSeatCounts
         private void cbHall_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentHall = cbHall.SelectedItem.ToString(); // "Hall1" or "Hall2"
@@ -314,6 +332,6 @@ namespace TrinityCinema.Views
                 }
             }
         }
-
+        #endregion
     }
 }

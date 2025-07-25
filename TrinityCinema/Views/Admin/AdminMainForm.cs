@@ -20,6 +20,12 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
+        private UsersControl cachedPersonnelControl;
+        private MoviesControl cachedMovieControl;
+        private SeatsControl cachedHallControl;
+        private ShowtimeControl cachedShowtimeControl;
+        private ActivityLogControl cachedActivityControl;
+
         AllMethods allMethods = new AllMethods();
         private string loggedInUser;
         private string username;
@@ -45,6 +51,7 @@ namespace TrinityCinema.Views.Admin
             this.Shown += AdminMainForm_Shown;
         }
 
+        #region Initialization
         private async void AdminMainForm_Shown(object sender, EventArgs e)
         {
             dashboard.DashboardReady += (s, args) =>
@@ -75,45 +82,58 @@ namespace TrinityCinema.Views.Admin
             };
             fadeInTimer.Start();
         }
+        #endregion
 
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            UsersControl personnelControl = new UsersControl(this, loggedInUser);
-            gcHome.Controls.Add(personnelControl);
-            personnelControl.Dock = DockStyle.Fill;
-            personnelControl.Show();
+
+            if (cachedPersonnelControl == null)
+            {
+                cachedPersonnelControl = new UsersControl(this, loggedInUser);
+                cachedPersonnelControl.Dock = DockStyle.Fill;
+            }
+
+            gcHome.Controls.Add(cachedPersonnelControl);
+            cachedPersonnelControl.Show();
 
         }
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            MoviesControl movieControl = new MoviesControl(this,loggedInUser);
-            gcHome.Controls.Add(movieControl);
-            movieControl.Dock = DockStyle.Fill;
-            movieControl.Show();
+            if (cachedMovieControl == null)
+            {
+                cachedMovieControl = new MoviesControl(this, loggedInUser);
+                cachedMovieControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(cachedMovieControl);
+            cachedMovieControl.Show();
         }
 
         private void theaterTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            SeatsControl hallControl = new SeatsControl(this, loggedInUser);
-            gcHome.Controls.Add(hallControl);
-            hallControl.Dock = DockStyle.Fill;
-            hallControl.Show();
+            if (cachedHallControl == null)
+            {
+                cachedHallControl = new SeatsControl(this, loggedInUser);
+                cachedHallControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(cachedHallControl);
+            cachedHallControl.Show();
         }
 
         private void showtimeTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            ShowtimeControl showtimeControl = new ShowtimeControl(this, loggedInUser);
-            gcHome.Controls.Add(showtimeControl);
-            showtimeControl.Dock = DockStyle.Fill;
-            showtimeControl.Show();
-            //showtimeControl.RefreshShowtimeGrid();
-
+            if (cachedShowtimeControl == null)
+            {
+                cachedShowtimeControl = new ShowtimeControl(this, loggedInUser);
+                cachedShowtimeControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(cachedShowtimeControl);
+            cachedShowtimeControl.Show();
         }
 
         private void logsTile_ItemClick(object sender, TileItemEventArgs e)
@@ -156,15 +176,12 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
-        
-
         private void homeTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            HomeDashboard homeDashboard = new HomeDashboard(this, loggedInUser);
-            gcHome.Controls.Add(homeDashboard);
-            homeDashboard.Dock = DockStyle.Fill;
-            homeDashboard.Show();
+            gcHome.Controls.Add(dashboard);
+            dashboard.Dock = DockStyle.Fill;
+            dashboard.Show();
         }
     }
 }
