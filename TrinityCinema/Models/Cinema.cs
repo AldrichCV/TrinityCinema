@@ -25,6 +25,14 @@ namespace TrinityCinema.Models
 
         public int FailedAttempts { get; set; }
         public bool IsLocked { get; set; }
+
+        public string IsLockedDisplay
+        {
+            get
+            {
+                return IsLocked ? "Locked" : "Active";
+            }
+        }   
     }
         public class ActivityLog
         {

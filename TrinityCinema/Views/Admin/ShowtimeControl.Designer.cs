@@ -76,11 +76,13 @@
             this.headerControl = new DevExpress.XtraEditors.GroupControl();
             this.headerLayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.teShowFilter = new DevExpress.XtraEditors.DateEdit();
+            this.btnAllRecords = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.Search = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnAllRecords = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnFilterToday = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcShowtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvShowtime)).BeginInit();
@@ -97,6 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEdit
@@ -341,6 +344,7 @@
             this.headerLayoutControl.BackColor = System.Drawing.Color.Transparent;
             this.headerLayoutControl.Controls.Add(this.teShowFilter);
             this.headerLayoutControl.Controls.Add(this.btnAllRecords);
+            this.headerLayoutControl.Controls.Add(this.btnFilterToday);
             this.headerLayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.headerLayoutControl.Location = new System.Drawing.Point(0, 0);
             this.headerLayoutControl.Name = "headerLayoutControl";
@@ -378,6 +382,16 @@
             this.teShowFilter.TabIndex = 4;
             this.teShowFilter.EditValueChanged += new System.EventHandler(this.teShowFilter_EditValueChanged);
             // 
+            // btnAllRecords
+            // 
+            this.btnAllRecords.Location = new System.Drawing.Point(224, 16);
+            this.btnAllRecords.Name = "btnAllRecords";
+            this.btnAllRecords.Size = new System.Drawing.Size(174, 44);
+            this.btnAllRecords.StyleController = this.headerLayoutControl;
+            this.btnAllRecords.TabIndex = 5;
+            this.btnAllRecords.Text = "All";
+            this.btnAllRecords.Click += new System.EventHandler(this.btnAllRecords_Click);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -385,7 +399,8 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.Search,
             this.emptySpaceItem1,
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1151, 76);
             this.Root.TextVisible = false;
@@ -406,20 +421,10 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(388, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(596, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(737, 50);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(529, 50);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnAllRecords
-            // 
-            this.btnAllRecords.Location = new System.Drawing.Point(224, 16);
-            this.btnAllRecords.Name = "btnAllRecords";
-            this.btnAllRecords.Size = new System.Drawing.Size(174, 44);
-            this.btnAllRecords.StyleController = this.headerLayoutControl;
-            this.btnAllRecords.TabIndex = 5;
-            this.btnAllRecords.Text = "All";
-            this.btnAllRecords.Click += new System.EventHandler(this.btnAllRecords_Click);
             // 
             // layoutControlItem1
             // 
@@ -432,6 +437,28 @@
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // btnFilterToday
+            // 
+            this.btnFilterToday.Location = new System.Drawing.Point(404, 16);
+            this.btnFilterToday.Name = "btnFilterToday";
+            this.btnFilterToday.Size = new System.Drawing.Size(202, 44);
+            this.btnFilterToday.StyleController = this.headerLayoutControl;
+            this.btnFilterToday.TabIndex = 6;
+            this.btnFilterToday.Text = "Today";
+            this.btnFilterToday.Click += new System.EventHandler(this.btnFilterToday_Click);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnFilterToday;
+            this.layoutControlItem2.Location = new System.Drawing.Point(388, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(208, 50);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(208, 50);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(208, 50);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
             // 
             // ShowtimeControl
             // 
@@ -458,6 +485,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,5 +517,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton btnAllRecords;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.SimpleButton btnFilterToday;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

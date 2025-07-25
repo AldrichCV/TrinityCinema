@@ -21,7 +21,11 @@ namespace TrinityCinema.Models
                                         AND PasswordHash = @Password";
 
 
-        public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
+        public static string getPersonnel = @"SELECT  *, 
+                                                CASE 
+                                                    WHEN IsLocked = 1 THEN 'Locked'
+                                                    ELSE 'Active'
+                                                END AS IsLockedDisplay FROM [dbo].[Users]";
         public static string getMovie = @"WITH GenreAggregates AS (
                                                                     SELECT 
                                                                         mg.MovieID,

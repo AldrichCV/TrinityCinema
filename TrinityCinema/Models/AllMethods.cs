@@ -24,6 +24,7 @@ namespace TrinityCinema.Models
     {
         string connectionString = GlobalSettings.connectionString;
 
+        #region Login and User Management
         public (string Role, string UserID) ValidateLogin(string userName, string password)
         {
             using (var sql = new SqlConnection(connectionString))
@@ -124,9 +125,7 @@ namespace TrinityCinema.Models
                 cmd.ExecuteNonQuery();
             }
         }
-
-
-
+        #endregion
 
 
         //Retrieval of records

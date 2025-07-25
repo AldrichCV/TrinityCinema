@@ -172,6 +172,11 @@ namespace TrinityCinema.Views.Admin
         {
             AllMethods.GridCustomization(gcShowtime, gvShowtime, GetAllShowtimes());
         }
+
+        private void btnFilterToday_Click(object sender, EventArgs e)
+        {
+            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetShowtimeToday());
+        }
     }
 }
     
