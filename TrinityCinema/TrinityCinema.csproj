@@ -372,6 +372,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\StaffMainForm.resx">
       <DependentUpon>StaffMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
