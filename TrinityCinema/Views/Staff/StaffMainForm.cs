@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,37 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using TrinityCinema.Models;
 using TrinityCinema.Views.Admin;
+using TrinityCinema.Views.Staff;
 
-namespace TrinityCinema.Views.Staff
+namespace TrinityCinema.Views
 {
     public partial class StaffMainForm : DevExpress.XtraEditors.XtraForm
     {
-        AllMethods a = new AllMethods();
-
-        public StaffMainForm()
+        private string _userID;
+        public StaffMainForm(string loggedInUser)
         {
             InitializeComponent();
+            _userID = loggedInUser;
         }
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            MoviesControl movieControl = new MoviesControl(this);
-            gcHome.Controls.Add(movieControl);
-            movieControl.Dock = DockStyle.Fill;
-            movieControl.Show();
-        }
-
-        private void ticketTile_ItemClick(object sender, TileItemEventArgs e)
-        {
-            gcHome.Controls.Clear();
-            TicketControl ticketControl = new TicketControl(this);
-            gcHome.Controls.Add(ticketControl);
-            ticketControl.Dock = DockStyle.Fill;
-            ticketControl.Show();
+            ShowtimeMovies showtimeMovies = new ShowtimeMovies(this);
+            gcHome.Controls.Add(showtimeMovies);
+            showtimeMovies.Dock = DockStyle.Fill;
+            showtimeMovies.Show();
         }
     }
 }

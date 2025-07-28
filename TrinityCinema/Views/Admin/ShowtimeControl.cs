@@ -1,108 +1,182 @@
-﻿// Import necessary libraries
-using System; // For core .NET functionality
-using System.Collections.Generic; // For using List<T>
-using System.Data.SqlClient; // For SQL Server connection
-using System.Linq; // For LINQ methods like FirstOrDefault()
-using System.Windows.Forms; // For Windows Forms components
-using Dapper; // Lightweight ORM for database operations
-using DevExpress.XtraEditors; // DevExpress UI components like XtraUserControl
-using DevExpress.XtraEditors.Controls; // For DevExpress button click events
-using DevExpress.XtraGrid.Views.Grid; // For GridView access
-using TrinityCinema.Models; // Custom data models like Showtime
+﻿using Dapper;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using TrinityCinema.Models;
 
-namespace TrinityCinema.Views.Admin // Namespace for admin-related views
+namespace TrinityCinema.Views.Admin
 {
-    // Partial class for the custom UserControl to manage showtimes
     public partial class ShowtimeControl : DevExpress.XtraEditors.XtraUserControl
     {
-        private AdminMainForm adminMainForm; // Reference to the parent admin form
+        AllMethods allMethods = new AllMethods();    
+        private AdminMainForm adminMainForm;
+        private string loggedInUser;
 
-        // Constructor with dependency injection of the AdminMainForm
-        public ShowtimeControl(AdminMainForm adminMainForm)
+        public ShowtimeControl(AdminMainForm adminMainForm, string loggedInUser)
         {
-            InitializeComponent(); // Initialize all controls and layout
-            this.adminMainForm = adminMainForm; // Store reference to the admin form
-
-            // Optional: Attach custom event handler for action buttons in the grid (currently commented out)
-            // repositoryItemActionButtons.ButtonClick += repositoryItemActionButtons_ButtonClick;
-
-            // Load showtime data into the grid when the control is initialized
-            RefreshShowtimeGrid();
+            InitializeComponent();
+            this.adminMainForm = adminMainForm;
+            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetShowtimeToday());
+            this.loggedInUser = loggedInUser;
         }
 
-        // Loads all showtime records into the GridControl
-        public void RefreshShowtimeGrid()
+        public List<Showtime> GetShowtimeToday()
         {
-            using (var connection = new SqlConnection(GlobalSettings.connectionString)) // Open DB connection
-            {
-                // Execute SQL query to get all showtimes and map to List<Showtime>
-                var showtimes = connection.Query<Showtime>(GlobalSettings.getShowtime).ToList();
-
-                // Bind the result list to the grid control's data source
-                gcShowtime.DataSource = showtimes;
-            }
+            string query = GlobalSettings.getShowtime + @"
+            WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
+            return allMethods.GetRecords<Showtime>(query, null);
         }
 
-        // Event handler: triggered when a tile (button) is clicked to add new showtime
+        public List<Showtime> GetAllShowtimes()
+        {
+            string query = GlobalSettings.getShowtime;
+            return allMethods.GetRecords<Showtime>(query);
+        }
+
+
         private void ShowtimeTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            // Open the AddShowtime modal form
-            AllMethods.ShowModal(home => new AddShowtime(adminMainForm));
-
-            // Refresh the grid after adding
-            RefreshShowtimeGrid();
+            AllMethods.ShowModal(home => new AddShowtime(adminMainForm, loggedInUser));
+            //RefreshShowtimeGrid();
         }
 
-        // Handles clicks on action buttons inside the GridView (e.g., Edit/Delete)
         private void repositoryItemActionButtons_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
-            GridView view = gvShowtime as GridView; // Cast to GridView
-            Showtime row = view.GetFocusedRow() as Showtime; // Get the focused (selected) row
-
-            if (row == null) return; // Exit if no row is selected
-
-            string tag = e.Button.Tag?.ToString(); // Get the action tag ("Edit" or "Delete")
+            string tag = e.Button.Tag?.ToString();
 
             if (tag == "Edit")
             {
-                EditShowtime(row); // Call method to open edit form
+                int showtime = Convert.ToInt32(gvShowtime.GetFocusedRowCellValue("ShowtimeID"));
+
+                if (showtime <= 0)
+                {
+                    MessageBox.Show("Invalid movie selection.");
+                    return;
+                }
+
+                AllMethods.ShowModal(home =>
+                {
+                    EditShowtime details = new EditShowtime(home, showtime, loggedInUser);
+
+                    string where = " WHERE s.ShowtimeID = @ShowtimeID";
+                    string query = GlobalSettings.getShowtime + where;
+                    var parameters = new { ShowtimeID = showtime };
+
+                    List<string> columns = new List<string>
+                    {
+                    "ShowtimeID",
+                    "Title",
+                    "TheaterID",     // aggregated genre names like "Action, Comedy"
+                    "TheaterName",
+                    "ShowDate",
+                    "StartTime",
+                    "Price",
+                    "StatusID",
+                    "MoviePoster"
+                    };
+
+                    Dictionary<string, string> record = allMethods.GetRecordById(query, parameters, columns);
+
+                    if (record != null)
+                    {
+                        // ✅ Set base text fields
+                        details.leMovie.Text = record["Title"];
+                        details.leHall.EditValue = record["TheaterID"];
+                        details.deShowDate.EditValue = record["ShowDate"];
+                        details.teStartTime.EditValue = record["StartTime"];
+                        details.tePrice.EditValue = record["Price"];
+                        details.leStatusDisplay.EditValue = record["StatusID"];
+
+                        // ✅ Handle poster
+                        if (!string.IsNullOrEmpty(record["MoviePoster"]))
+                        {
+                            try
+                            {
+                                byte[] imageBytes = Convert.FromBase64String(record["MoviePoster"]);
+                                using (MemoryStream ms = new MemoryStream(imageBytes))
+                                {
+                                    details.pePoster.Image = Image.FromStream(ms);
+                                }
+                                details.existingImageData = imageBytes;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Failed to load movie poster image.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No movie found.");
+                    }
+
+                    return details;
+                });
             }
+            
             else if (tag == "Delete")
             {
-                DeleteShowtime(row); // Call method to delete the row
+                int showtime = Convert.ToInt32(gvShowtime.GetFocusedRowCellValue("ShowtimeID"));
+                if (showtime <= 0)
+                {
+                    MessageBox.Show("Invalid movie selection.");
+                    return;
+                }
+                DialogResult confirm = XtraMessageBox.Show($"Delete showtime with ID {showtime}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm != DialogResult.Yes) return;
+                using (var connection = new SqlConnection(GlobalSettings.connectionString))
+                {
+                    string deleteQuery = "DELETE FROM Showtimes WHERE ShowtimeID = @ShowtimeID";
+                    connection.Execute(deleteQuery, new { ShowtimeID = showtime });
+                }
+
+                allMethods.Log(loggedInUser, "Remove Showtime", $"{loggedInUser} removed showtime {showtime}");
+                XtraMessageBox.Show("Showtime deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AllMethods.RefreshManagerHome(mh => new ShowtimeControl(adminMainForm, loggedInUser));
             }
         }
 
-        // Opens the EditShowtime form and passes the selected row to it
-        private void EditShowtime(Showtime row)
+        private void teShowFilter_EditValueChanged(object sender, EventArgs e)
         {
-            EditShowtime editForm = new EditShowtime(adminMainForm, row); // Create form instance
-            editForm.ShowDialog(); // Show the form as a modal dialog
-            RefreshShowtimeGrid(); // Refresh grid after update
-        }
 
-        // Deletes the selected showtime after confirmation
-        private void DeleteShowtime(Showtime row)
-        {
-            // Ask user to confirm deletion
-            DialogResult confirm = XtraMessageBox.Show(
-                $"Delete showtime for movie ID {row.MovieID} on {row.ShowDate:yyyy-MM-dd}?",
-                "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (confirm != DialogResult.Yes) return; // Cancel if not confirmed
-
-            using (var connection = new SqlConnection(GlobalSettings.connectionString)) // Open DB connection
+            if (teShowFilter.EditValue is DateTime selectedDate)
             {
-                // Define and execute delete query using Dapper
-                string deleteQuery = "DELETE FROM Showtimes WHERE ShowtimeID = @ShowtimeID";
-                connection.Execute(deleteQuery, new { row.ShowtimeID });
+                gcShowtime.DataSource = GetShowtimeByDate(selectedDate);
             }
+            else
+            {
+                gvShowtime.ActiveFilterString = string.Empty;
+            }
+        }
 
-            // Notify user of successful deletion
-            XtraMessageBox.Show("Showtime deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        public List<Showtime> GetShowtimeByDate(DateTime selectedDate)
+        {
+            string query = GlobalSettings.getShowtime + @"
+        WHERE CAST(ShowDate AS DATE) = @SelectedDate
+    ";
 
-            // Refresh the grid to reflect the deletion
-            RefreshShowtimeGrid();
+            var param = new { SelectedDate = selectedDate.Date };
+
+            return allMethods.GetRecords<Showtime>(query, param);
+        }
+
+        private void btnAllRecords_Click(object sender, EventArgs e)
+        {
+            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetAllShowtimes());
+        }
+
+        private void btnFilterToday_Click(object sender, EventArgs e)
+        {
+            AllMethods.GridCustomization(gcShowtime, gvShowtime, GetShowtimeToday());
         }
     }
 }
+    

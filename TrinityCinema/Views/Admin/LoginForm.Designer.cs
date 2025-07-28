@@ -28,80 +28,118 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.teUser = new DevExpress.XtraEditors.TextEdit();
+            this.teUserName = new DevExpress.XtraEditors.TextEdit();
+            this.tePassword = new DevExpress.XtraEditors.TextEdit();
             this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
-            this.tePassword = new DevExpress.XtraEditors.ButtonEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.teUser.Properties)).BeginInit();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.teUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // teUser
+            // teUserName
             // 
-            this.teUser.Location = new System.Drawing.Point(70, 194);
-            this.teUser.Margin = new System.Windows.Forms.Padding(4);
-            this.teUser.Name = "teUser";
-            this.teUser.Properties.AutoHeight = false;
-            this.teUser.Size = new System.Drawing.Size(289, 68);
-            this.teUser.TabIndex = 0;
+            this.teUserName.EditValue = "";
+            this.teUserName.Location = new System.Drawing.Point(72, 295);
+            this.teUserName.Margin = new System.Windows.Forms.Padding(4);
+            this.teUserName.Name = "teUserName";
+            this.teUserName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.teUserName.Properties.Appearance.Options.UseFont = true;
+            this.teUserName.Properties.AutoHeight = false;
+            this.teUserName.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.teUserName.Properties.NullValuePrompt = "Username";
+            this.teUserName.Properties.Padding = new System.Windows.Forms.Padding(3);
+            this.teUserName.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)(((DevExpress.XtraEditors.ShowNullValuePromptOptions.EmptyValue | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused) 
+            | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
+            this.teUserName.Size = new System.Drawing.Size(358, 46);
+            this.teUserName.TabIndex = 0;
+            // 
+            // tePassword
+            // 
+            this.tePassword.Location = new System.Drawing.Point(72, 374);
+            this.tePassword.Margin = new System.Windows.Forms.Padding(4);
+            this.tePassword.Name = "tePassword";
+            this.tePassword.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.tePassword.Properties.Appearance.Options.UseFont = true;
+            this.tePassword.Properties.AutoHeight = false;
+            this.tePassword.Properties.LookAndFeel.SkinName = "WXI";
+            this.tePassword.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.tePassword.Properties.NullValuePrompt = "Password";
+            this.tePassword.Properties.Padding = new System.Windows.Forms.Padding(3);
+            this.tePassword.Properties.UseSystemPasswordChar = true;
+            this.tePassword.Size = new System.Drawing.Size(358, 48);
+            this.tePassword.TabIndex = 1;
             // 
             // btnLogin
             // 
             this.btnLogin.AllowFocus = false;
-            this.btnLogin.Location = new System.Drawing.Point(70, 418);
+            this.btnLogin.Appearance.BackColor = System.Drawing.Color.DarkRed;
+            this.btnLogin.Appearance.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnLogin.Appearance.Options.UseBackColor = true;
+            this.btnLogin.Appearance.Options.UseFont = true;
+            this.btnLogin.Location = new System.Drawing.Point(72, 453);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
-            this.btnLogin.Size = new System.Drawing.Size(289, 79);
+            this.btnLogin.Size = new System.Drawing.Size(358, 55);
             this.btnLogin.TabIndex = 2;
-            this.btnLogin.Text = "LOGIN";
+            this.btnLogin.Text = "SIGN IN";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // tePassword
+            // pictureEdit1
             // 
-            this.tePassword.Location = new System.Drawing.Point(70, 298);
-            this.tePassword.Margin = new System.Windows.Forms.Padding(4);
-            this.tePassword.Name = "tePassword";
-            this.tePassword.Properties.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.tePassword.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.tePassword.Properties.UseSystemPasswordChar = true;
-            this.tePassword.Size = new System.Drawing.Size(289, 68);
-            this.tePassword.TabIndex = 1;
+            this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
+            this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Size = new System.Drawing.Size(493, 706);
+            this.pictureEdit1.TabIndex = 3;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClose.Appearance.Options.UseBackColor = true;
+            this.btnClose.Location = new System.Drawing.Point(209, 659);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(82, 29);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // LoginForm
             // 
-            this.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Stretch;
-            this.BackgroundImageStore = global::TrinityCinema.Properties.Resources._514689021_743178154893957_7682020956588384692_n;
-            this.ClientSize = new System.Drawing.Size(429, 638);
+            this.ClientSize = new System.Drawing.Size(493, 706);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.teUser);
             this.Controls.Add(this.tePassword);
+            this.Controls.Add(this.teUserName);
+            this.Controls.Add(this.pictureEdit1);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            ((System.ComponentModel.ISupportInitialize)(this.teUser.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.TextEdit teUser;
+        private DevExpress.XtraEditors.TextEdit teUserName;
+        private DevExpress.XtraEditors.TextEdit tePassword;
         private DevExpress.XtraEditors.SimpleButton btnLogin;
-        private DevExpress.XtraEditors.ButtonEdit tePassword;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.SimpleButton btnClose;
     }
 }

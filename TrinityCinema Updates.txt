@@ -1,0 +1,6 @@
+TrinityCinema Updates
+
+1. Katunga sa Login
+2. Account Creation and Editing enabled
+3. Movie Insertion and Editing enabled
+4. Theater Creation and Seats layout and Pricing enabled

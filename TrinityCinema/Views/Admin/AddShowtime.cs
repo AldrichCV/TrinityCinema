@@ -1,87 +1,109 @@
-﻿// Importing required libraries and namespaces
-using System; // Base .NET library for core types
-using System.Data; // For working with DataTable and DataSet
-using System.Drawing; // For image handling
-using System.IO; // For working with file and memory streams
-using System.Linq; // For LINQ operations like FirstOrDefault()
-using System.Windows.Forms; // For Windows Forms controls
-using Dapper; // Lightweight ORM for executing SQL queries
-using DevExpress.XtraEditors; // DevExpress UI components
-using TrinityCinema.Models; // Custom model classes
-using System.Data.SqlClient; // SQL Server connection support
+﻿using System;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using Dapper;
+using DevExpress.XtraEditors;
+using TrinityCinema.Models;
+using System.Data.SqlClient;
 
-namespace TrinityCinema.Views.Admin // Namespace for organizing admin-related forms
+namespace TrinityCinema.Views.Admin
 {
-    public partial class AddShowtime : XtraForm // Inherits from DevExpress XtraForm
+    public partial class AddShowtime : XtraForm
     {
-        private AdminMainForm adminMainForm; // Reference to the main admin form
-  
+        private AdminMainForm adminMainForm;
+        private Showtime editingRow;
+        private string loggedInUser;
 
-        // Constructor that accepts the admin main form
-        public AddShowtime(AdminMainForm adminMainForm)
+        public AddShowtime(AdminMainForm adminMainForm, string loggedInUser)
         {
-            InitializeComponent(); // Initialize UI components
-            this.adminMainForm = adminMainForm; // Store passed form for later reference
-            LoadMovies(); // Load movies into lookup control
-            LoadMoviePoster(null); // Set initial poster to empty
+            InitializeComponent();
+            this.adminMainForm = adminMainForm;
+            LoadMovies();
+            LoadTheaters();
+            LoadShowStatus();
+            LoadMoviePoster(null);
+            deShowDate.Properties.MinValue = DateTime.Today;
+            teStartTime.EditValue = DateTime.Today.AddHours(9); // sets to 9:00 AM today
+
+            teStartTime.EditValueChanging += teStartTime_EditValueChanging;
+            this.deShowDate.EditValueChanged += DateOrPriceChanged;
+            this.teBasePrice.EditValueChanged += DateOrPriceChanged;
+
+            this.loggedInUser = loggedInUser;
         }
 
-        // Loads movies from the database into the LookUpEdit control
         private void LoadMovies()
         {
-            AllMethods.LoadLookupData<Movie>( // Reusable method for populating lookup
-                leMovie, // The LookUpEdit control
-                "SELECT MovieID, Title, MoviePoster FROM Movies", // SQL query
-                GlobalSettings.connectionString // Database connection string
+            AllMethods.LoadLookupData<Movie>(
+                leMovie,
+                "SELECT MovieID, Title, MoviePoster FROM Movies WHERE Status=1",
+                GlobalSettings.connectionString
             );
         }
 
-        // Event handler for when a movie is selected from the dropdown
+        private void LoadTheaters()
+        {
+            // Assuming you have a method to load theaters into the ComboBox
+            AllMethods.LoadLookupData<Theater>(
+                cbTheater,
+                "SELECT TheaterID, TheaterName FROM Theaters",
+                GlobalSettings.connectionString
+            );
+        }
+
+        private void LoadShowStatus()
+        {
+            AllMethods.LoadLookupData<Showtime>(
+                leStatusDisplay,
+                "SELECT StatusID, StatusName FROM ShowtimeStatus",
+                GlobalSettings.connectionString
+         );
+        }
+
         private void leMovie_EditValueChanged(object sender, EventArgs e)
         {
-            var selectedMovie = leMovie.GetSelectedDataRow() as Movie; // Get selected movie
+            var selectedMovie = leMovie.GetSelectedDataRow() as Movie;
 
             if (selectedMovie != null && selectedMovie.MoviePoster != null)
             {
                 try
                 {
-                    // Load movie poster from byte[] and display it
                     var ms = new MemoryStream(selectedMovie.MoviePoster);
                     pePoster.Image = Image.FromStream(ms);
                 }
                 catch
                 {
-                    pePoster.Image = null; // Clear image on error
+                    pePoster.Image = null;
                 }
             }
             else
             {
-                pePoster.Image = null; // Clear image if no poster
+                pePoster.Image = null;
             }
         }
 
-        // Manually load a movie poster image into the PictureEdit
         private void LoadMoviePoster(byte[] moviePoster)
         {
             if (moviePoster != null)
             {
-                var ms = new MemoryStream(moviePoster); // Convert byte[] to stream
-                pePoster.Image = Image.FromStream(ms); // Set image from stream
+                var ms = new MemoryStream(moviePoster);
+                pePoster.Image = Image.FromStream(ms);
             }
             else
             {
-                pePoster.Image = null; // Clear image if null
+                pePoster.Image = null;
             }
         }
 
-        // Handler for the Submit button click event
         private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            // Validation: Check for required fields
+        {// 1. Field validation
             if (leMovie.EditValue == null ||
                 string.IsNullOrWhiteSpace(tePrice.Text) ||
-                string.IsNullOrWhiteSpace(cbTheater.Text) ||
-                string.IsNullOrWhiteSpace(cbStatusDisplay.Text) ||
+                cbTheater.EditValue == null ||
+                leStatusDisplay.EditValue == null ||
                 deShowDate.DateTime == DateTime.MinValue ||
                 teStartTime.EditValue == null)
             {
@@ -89,77 +111,203 @@ namespace TrinityCinema.Views.Admin // Namespace for organizing admin-related fo
                 return;
             }
 
-            // Validate price input
-            if (!decimal.TryParse(tePrice.Text.Trim(), out decimal parsedPrice))
+            string movieId = leMovie.EditValue.ToString();
+
+            // 2. Parse TheaterID
+            if (!int.TryParse(cbTheater.EditValue.ToString(), out int theaterId))
             {
-                XtraMessageBox.Show("Invalid price format.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select a valid theater.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Convert status text into an integer value
-            string statusText = cbStatusDisplay.Text.Trim(); // Get status text
-            int status;
-            if (statusText == "Upcoming") status = 0;
-            else if (statusText == "Now Showing") status = 1;
-            else if (statusText == "Cancelled") status = 2;
-            else if (statusText == "Ended") status = 3;
-            else
+            // 3. Parse StartTime
+            if (!DateTime.TryParse(teStartTime.EditValue.ToString(), out DateTime newStartDateTime))
             {
-                XtraMessageBox.Show("Invalid status selected.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select a valid showtime.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Ask the user to confirm saving
-            DialogResult confirm = XtraMessageBox.Show("Are you sure you want to save this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-                return;
+            DateTime showDate = deShowDate.DateTime.Date;
+            TimeSpan newStartTime = newStartDateTime.TimeOfDay;
+            TimeSpan duration;
 
-            try
+            using (var connection = new SqlConnection(GlobalSettings.connectionString))
             {
-                // Create and fill Showtime object with form data
-                var showtime = new Showtime
+                try
                 {
-                    MovieID = leMovie.EditValue.ToString(),
-                    Price = parsedPrice,
-                    ShowDate = deShowDate.DateTime.Date,
-                    StartTime = ((DateTime)teStartTime.EditValue).TimeOfDay,
-                    TheaterID = cbTheater.Text,
-                    Status = status,
-                    StatusDisplay = statusText
-                };
+                    connection.Open();
 
-                // Insert the new showtime into the database
-                AllMethods allMethods = new AllMethods();
-                allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
+                    // 4. Fetch Duration as string
+                    string rawDuration = connection.ExecuteScalar<string>(
+                        "SELECT CONVERT(VARCHAR(8), Duration, 108) FROM Movies WHERE MovieID = @MovieID",
+                        new { MovieID = movieId });
 
-                // Show success message and refresh grid
-                XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                RefreshShowtimeGrid(); // Refresh grid after insert
-                this.Close(); // Close the form
-            }
-            catch (Exception ex)
-            {
-                // Show error message if insert fails
-                XtraMessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (string.IsNullOrWhiteSpace(rawDuration) || !TimeSpan.TryParse(rawDuration, out duration) || duration.TotalMinutes <= 0)
+                    {
+                        XtraMessageBox.Show("Invalid movie duration.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    TimeSpan newEndTime = newStartTime.Add(duration);
+
+                    // 5. Conflict detection
+                    string conflictQuery = @"SELECT 1
+                                            FROM Showtimes s
+                                            LEFT JOIN Movies m ON m.MovieID = s.MovieID
+                                            WHERE 
+                                            s.TheaterID = @TheaterID
+                                            AND s.ShowDate = @ShowDate
+                                            AND (
+                                                @NewStartTime < DATEADD(SECOND, DATEDIFF(SECOND, '00:00:00', m.Duration), s.StartTime)
+                                                AND s.StartTime < @NewEndTime
+                    )";
+
+                    var hasConflict = connection.QueryFirstOrDefault<int>(
+                        conflictQuery,
+                        new
+                        {
+                            TheaterID = theaterId,
+                            ShowDate = showDate,
+                            NewStartTime = newStartTime,
+                            NewEndTime = newEndTime
+                        });
+
+                    if (hasConflict > 0)
+                    {
+                        XtraMessageBox.Show("A conflicting showtime already exists in this theater during that time.",
+                                            "Conflict", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 6. Confirm and submit
+                    DialogResult confirm = XtraMessageBox.Show("Are you sure you want to save this showtime?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirm != DialogResult.Yes)
+                        return;
+
+                    var showtime = new Showtime
+                    {
+                        MovieID = movieId,
+                        Price = Convert.ToDecimal(tePrice.Text),
+                        ShowDate = showDate,
+                        StartTime = newStartTime,
+                        TheaterID = theaterId,
+                        StatusID = Convert.ToInt32(leStatusDisplay.EditValue),
+                        Title = leMovie.Text
+                    };
+
+                    AllMethods allMethods = new AllMethods();
+                    allMethods.InsertMethod(showtime, GlobalSettings.insertShowtimeQuery);
+
+                    XtraMessageBox.Show("Showtime successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    allMethods.Log(loggedInUser, "Add Showtime", $"Add showtime for {showtime.Title}");
+
+                    this.Close();
+                    AllMethods.RefreshManagerHome(mh => new ShowtimeControl(mh, loggedInUser));
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        // Refreshes the showtime grid on the main form
-        private void RefreshShowtimeGrid()
+        private void teStartTime_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
-            // Try to get the ShowtimeControl inside the AdminMainForm
-            var showtimeControl = adminMainForm.gcHome.Controls.OfType<ShowtimeControl>().FirstOrDefault();
+            if (e.NewValue is DateTime newTime)
+            {
+                TimeSpan min = new TimeSpan(9, 0, 0);   // 9:00 AM
+                TimeSpan max = new TimeSpan(17, 0, 0);  // 5:00 PM
+                TimeSpan inputTime = newTime.TimeOfDay;
 
-            if (showtimeControl != null)
-            {
-                showtimeControl.RefreshShowtimeGrid(); // Reload data in grid
-                showtimeControl.BringToFront(); // Bring the control into view
-            }
-            else
-            {
-                // Show warning if the control wasn't found
-                XtraMessageBox.Show("ShowtimeControl not found. Grid was not refreshed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (inputTime < min || inputTime > max)
+                {
+                    e.Cancel = true;
+                    teStartTime.ErrorText = "Please select a time between 9:00 AM and 5:00 PM.";
+                }
+                else
+                {
+                    teStartTime.ErrorText = string.Empty;
+                }
             }
         }
+
+        private void DateOrPriceChanged(object sender, EventArgs e)
+        {
+            CalculateFinalPrice();
+        }
+
+        private void CalculateFinalPrice()
+        {
+            // Make sure date and price are not null or empty
+            if (deShowDate.EditValue == null || string.IsNullOrWhiteSpace(teBasePrice.Text))
+            {
+                tePrice.Text = "";
+                return;
+            }
+
+            // Try parsing the base price
+            if (!decimal.TryParse(teBasePrice.Text.Trim(), out decimal basePrice))
+            {
+                tePrice.Text = "Invalid";
+                return;
+            }
+
+            DateTime selectedDate = (DateTime)deShowDate.EditValue;
+
+            // Check if weekend
+            bool isWeekend = selectedDate.DayOfWeek == DayOfWeek.Saturday || selectedDate.DayOfWeek == DayOfWeek.Sunday;
+
+            // Add ₱50 if weekend
+            decimal finalPrice = basePrice + (isWeekend ? 50 : 0);
+
+            tePrice.Text = finalPrice.ToString("0.00");
+        }
+
+        private void tePrice_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateFinalPrice();
+        }
+
+        private void deShowDate_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateFinalPrice();
+        }
+
+        private bool ShowtimeConflicts(int theaterId, DateTime newStartTime, DateTime newEndTime)
+        {
+            using (var connection = new SqlConnection(GlobalSettings.connectionString))
+            {
+                string sql = @"SELECT COUNT(1)
+FROM Showtimes s
+LEFT JOIN Movies m ON m.MovieID = s.MovieID
+WHERE s.TheaterID = @TheaterID
+  AND (
+        @NewStartTime >= DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+        AND @NewStartTime < DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+      )
+   OR
+        @NewEndTime > DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+        AND @NewEndTime <= DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+      )
+   OR
+        @NewStartTime <= DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+        AND @NewEndTime >= DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+      )
+)
+
+";
+
+                int count = connection.ExecuteScalar<int>(sql, new
+                {
+                    TheaterID = theaterId,
+                    NewStartTime = newStartTime,
+                    NewEndTime = newEndTime
+                });
+
+                return count > 0;
+            }
+        }
+
+
     }
 }

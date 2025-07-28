@@ -1,92 +1,187 @@
 ﻿using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
+using DevExpress.XtraWaitForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using TrinityCinema.Models;
-using System.Data.SqlClient;
+
 
 namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
-        AllMethods a = new AllMethods();
+        private UsersControl cachedPersonnelControl;
+        private MoviesControl cachedMovieControl;
+        private SeatsControl cachedHallControl;
+        private ShowtimeControl cachedShowtimeControl;
+        private ActivityLogControl cachedActivityControl;
 
-        public AdminMainForm()
+        AllMethods allMethods = new AllMethods();
+        private string loggedInUser;
+        private string username;
+
+        private Timer fadeInTimer;
+        private double fadeStep = 0.05;
+        public event EventHandler DashboardLoaded;
+
+        private HomeDashboard dashboard;
+
+        public AdminMainForm(string loggedInUser, EventHandler dashboardLoadedHandler = null)
         {
             InitializeComponent();
-            LoadDashboardData();
+            this.loggedInUser = loggedInUser;
+
+            if (dashboardLoadedHandler != null)
+                DashboardLoaded += dashboardLoadedHandler;
+
+            dashboard = new HomeDashboard(this, loggedInUser);
+            dashboard.Dock = DockStyle.Fill;
+            gcHome.Controls.Add(dashboard);
+
+            this.Shown += AdminMainForm_Shown;
         }
 
-        private void LoadDashboardData()
+        #region Initialization
+        private async void AdminMainForm_Shown(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(GlobalSettings.connectionString))
+            dashboard.DashboardReady += (s, args) =>
             {
-                conn.Open();
+                DashboardLoaded?.Invoke(this, EventArgs.Empty);
+            };
 
-                lbTotalAccounts.Text = GetCount(conn, "SELECT COUNT(*) FROM Users").ToString();
-                lbTotalStaffs.Text = GetCount(conn, "SELECT COUNT(*) FROM Users WHERE Role = 'Staff'").ToString();
-                lbTotalMovies.Text = GetCount(conn, "SELECT COUNT(*) FROM Movies").ToString();
-                lbTotalTickets.Text = GetCount(conn, "SELECT COUNT(*) FROM Tickets").ToString();
-                lbAvailableMovies.Text = GetCount(conn, "SELECT COUNT(*) FROM Movies WHERE Status = 0").ToString();
-
-                lbAvailableSeats.Text = GetCount(conn, "SELECT COUNT(*) FROM Seats WHERE Status = 'Available'").ToString();
-                lbAvailableTickets.Text = GetCount(conn, "SELECT COUNT(*) FROM Tickets WHERE Status = 0").ToString();
-                //lbTicketSold.Text = GetCount(conn, "SELECT COUNT(*) FROM Tickets WHERE Status = 'Sold'").ToString();
-
-                conn.Close();
-            }
+            // Defer loading until form is visible
+            await dashboard.InitializeDashboardAsync();
         }
 
-        private int GetCount(SqlConnection conn, string query)
+        public void StartFadeIn()
         {
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            fadeInTimer = new Timer();
+            fadeInTimer.Interval = 5; // Smoother animation
+            fadeInTimer.Tick += (s, e) =>
             {
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
+                if (this.Opacity < 1)
+                {
+                    this.Opacity += fadeStep;
+                }
+                else
+                {
+                    this.Opacity = 1;
+                    fadeInTimer.Stop();
+                    fadeInTimer.Dispose();
+                }
+            };
+            fadeInTimer.Start();
         }
+        #endregion
+
 
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            UsersControl personnelControl = new UsersControl(this);
-            gcHome.Controls.Add(personnelControl);
-            personnelControl.Dock = DockStyle.Fill;
-            personnelControl.Show();
+
+            if (cachedPersonnelControl == null)
+            {
+                cachedPersonnelControl = new UsersControl(this, loggedInUser);
+                cachedPersonnelControl.Dock = DockStyle.Fill;
+            }
+
+            gcHome.Controls.Add(cachedPersonnelControl);
+            cachedPersonnelControl.Show();
+
         }
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            MoviesControl movieControl = new MoviesControl(this);
-            gcHome.Controls.Add(movieControl);
-            movieControl.Dock = DockStyle.Fill;
-            movieControl.Show();
+            if (cachedMovieControl == null)
+            {
+                cachedMovieControl = new MoviesControl(this, loggedInUser);
+                cachedMovieControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(cachedMovieControl);
+            cachedMovieControl.Show();
         }
 
         private void theaterTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            TheaterControl theaterControl = new TheaterControl(this);
-            gcHome.Controls.Add(theaterControl);
-            theaterControl.Dock = DockStyle.Fill;
-            theaterControl.Show();
+            if (cachedHallControl == null)
+            {
+                cachedHallControl = new SeatsControl(this, loggedInUser);
+                cachedHallControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(cachedHallControl);
+            cachedHallControl.Show();
         }
 
         private void showtimeTile_ItemClick(object sender, TileItemEventArgs e)
         {
             gcHome.Controls.Clear();
-            ShowtimeControl showtimeControl = new ShowtimeControl(this);
-            gcHome.Controls.Add(showtimeControl);
-            showtimeControl.Dock = DockStyle.Fill;
-            showtimeControl.Show();
-            showtimeControl.RefreshShowtimeGrid();
+            if (cachedShowtimeControl == null)
+            {
+                cachedShowtimeControl = new ShowtimeControl(this, loggedInUser);
+                cachedShowtimeControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(cachedShowtimeControl);
+            cachedShowtimeControl.Show();
+        }
+
+        private void logsTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            ActivityLogControl activityControl = new ActivityLogControl(this);
+            gcHome.Controls.Add(activityControl);
+            activityControl.Dock = DockStyle.Fill;
+            activityControl.Show();
+        }
+
+        private async void logoutTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            DialogResult result = XtraMessageBox.Show(
+            "Are you sure you want to logout?",
+            "Confirm Logout",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+    
+            if (result == DialogResult.Yes)
+            {
+                // ✅ Show splash screen
+                var splash = new SplashScreenManager(null, typeof(LoginSplash), true, true);
+                splash.ShowWaitForm();
+                splash.SetWaitFormDescription("Logging out...");
+
+                // Optional: simulate a short delay for UX polish
+                await Task.Delay(1000);
+
+                // ✅ Log the logout activity
+                allMethods.Log(loggedInUser, "Logout", $"{loggedInUser} has been logged out");
+
+                // ✅ Close splash (optional since app is restarting)
+                if (splash.IsSplashFormVisible)
+                    splash.CloseWaitForm();
+
+                // ✅ Restart the app
+                Application.Restart();
+            }
+        }
+
+        private void homeTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            gcHome.Controls.Add(dashboard);
+            dashboard.Dock = DockStyle.Fill;
+            dashboard.Show();
         }
     }
 }

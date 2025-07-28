@@ -61,22 +61,22 @@ namespace TrinityCinema.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static System.Drawing.Bitmap _514689021_743178154893957_7682020956588384692_n {
+        internal static byte[] coloredSeats {
             get {
-                object obj = ResourceManager.GetObject("514689021_743178154893957_7682020956588384692_n", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("coloredSeats", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static System.Drawing.Bitmap _516777173_1087917039937354_651591537518408061_n {
+        internal static byte[] seatLayout {
             get {
-                object obj = ResourceManager.GetObject("516777173_1087917039937354_651591537518408061_n", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("seatLayout", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

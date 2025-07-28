@@ -15,30 +15,46 @@ namespace TrinityCinema.Models
         #region AccountsSQL
 
         #region Select Queries
-        public static string loginQuery = @"SELECT s.position, a.staffID
-                                        FROM [InventoryDB].[dbo].[Account] a
-                                        LEFT JOIN [InventoryDB].[dbo].[Staff] s ON a.staffID = s.staffID
-                                        WHERE a.userName = @User 
-                                        AND a.userPassword = @Password";
+        public static string loginQuery = @"SELECT s.Role, a.UserID
+                                        FROM [Users] 
+                                        WHERE UserName = @User 
+                                        AND PasswordHash = @Password";
 
 
-        public static string getPersonnel = @"SELECT  * FROM [dbo].[Users]";
-        public static string getMovie = @"SELECT [MovieID]
-                                          ,[Title]
-                                          ,g.[GenreName]
-                                          ,[Duration]
-                                          ,[Description]
-                                          ,[DateAdded]
-                                          ,[MoviePoster]
-                                          ,CASE
-                                          WHEN [Status] = 1
-                                          THEN 'Active'
-                                          ELSE 'Inactive'
-                                          END AS StatusDisplay
-                                      FROM [CinemaDB].[dbo].[Movies] m
-                                      LEFT JOIN Genre g
-                                      ON g.GenreID = m.Genre
+        public static string getPersonnel = @"SELECT  *, 
+                                                CASE 
+                                                    WHEN IsLocked = 1 THEN 'Locked'
+                                                    ELSE 'Active'
+                                                END AS IsLockedDisplay FROM [dbo].[Users]";
+        public static string getMovie = @"WITH GenreAggregates AS (
+                                                                    SELECT 
+                                                                        mg.MovieID,
+                                                                        STRING_AGG(g.GenreName, ', ') AS GenreList
+                                                                    FROM MovieGenres mg
+                                                                    JOIN Genre g ON g.GenreID = mg.GenreID
+                                                                    GROUP BY mg.MovieID
+                                                                )
+                                                                SELECT
+                                                                    m.MovieID,
+                                                                    m.Title,
+                                                                    ga.GenreList AS GenreName,
+                                                                    m.Duration,
+                                                                    m.Description,
+                                                                    m.DateAdded,
+                                                                    m.Status,
+                                                                    CASE 
+                                                                        WHEN m.Status = 1 THEN 'Available'
+                                                                        WHEN m.Status = 0 THEN 'Unavailable'
+                                                                        ELSE 'Unknown'
+                                                                    END AS StatusDisplay,
+                                                                    m.MoviePoster,
+                                                                    mr.RatingCode AS ContentRatingCode
+                                                                    , mr.RatingID AS ContentRating      
+                                                                FROM [CinemaDB].[dbo].[Movies] m
+                                                                LEFT JOIN GenreAggregates ga ON m.MovieID = ga.MovieID
+                                                                LEFT JOIN MovieRating mr ON mr.RatingID = m.ContentRating
                                     ";
+
         public static string getTheater = @"SELECT * FROM [dbo].[Theaters]";
 
         public static string getSeatPrice = @"SELECT * FROM [dbo].[Seats] WHERE TheaterID = @TheaterID";
@@ -47,24 +63,67 @@ namespace TrinityCinema.Models
                                             s.[ShowtimeID],
                                             s.[MovieID],
                                             m.[Title],
+                                            m.[MoviePoster],        
                                             s.[TheaterID],
+                                            t.[TheaterName],    
                                             s.[Price],
                                             s.[ShowDate],
                                             s.[StartTime],
-                                            s.[Status],
-                                          CASE
-                                                WHEN s.Status = 0 THEN 'Upcoming'
-                                                WHEN s.Status = 1 THEN 'Now Showing'
-                                                WHEN s.Status = 2 THEN 'Cancelled'
-                                                WHEN s.Status = 3 THEN 'Ended'
-                                                    ELSE 'Unknown'
-                                                END AS StatusDisplay
+                                             DATEADD(SECOND, 
+                                             DATEDIFF(SECOND, '00:00:00', m.Duration), 
+                                            [StartTime]
+                                            ) AS EndTime,
+                                            ss.[StatusID],
+                                            ss.[StatusName] AS StatusDisplay
                                           FROM [CinemaDB].[dbo].[Showtimes] s
                                             LEFT JOIN Movies m 
                                                 ON m.MovieID = s.MovieID
                                             LEFT JOIN Theaters t 
-                                                ON CAST(t.TheaterID AS VARCHAR) = s.TheaterID";
+                                                ON CAST(t.TheaterID AS VARCHAR) = s.TheaterID
+                                            LEFT JOIN ShowtimeStatus ss
+                                            ON ss.StatusID = s.Status";
 
+        public static string getActivityLog = @"SELECT TOP (1000) [LogID]
+                                              ,[Timestamp]
+                                              ,CASE WHEN u.[Username] IS NULL THEN 'SupaAdmin' ELSE u.Username END AS Username
+                                              ,[Action]
+                                              ,[Description]
+                                          FROM [CinemaDB].[dbo].[ActivityLogs] a
+                                          LEFT JOIN Users u
+                                          ON u.UserID = a.UserID
+                                            ORDER BY [Timestamp] DESC";
+
+        public static string getMovieWithTheater = @"WITH GenreAggregates AS (
+                                                                    SELECT 
+                                                                        mg.MovieID,
+                                                                        STRING_AGG(g.GenreName, ', ') AS GenreList
+                                                                    FROM MovieGenres mg
+                                                                    JOIN Genre g ON g.GenreID = mg.GenreID
+                                                                    GROUP BY mg.MovieID
+                                                                )
+                                                                SELECT
+                                                                    s.TheaterID,
+                                                                    t.TheaterName,
+                                                                    m.MovieID,
+                                                                    m.Title,
+                                                                    ga.GenreList AS GenreName,
+                                                                    m.Duration,
+                                                                    m.Description,
+                                                                    m.DateAdded,
+                                                                    m.Status,
+                                                                    CASE 
+                                                                        WHEN m.Status = 1 THEN 'Available'
+                                                                        WHEN m.Status = 0 THEN 'Unavailable'
+                                                                        ELSE 'Unknown'
+                                                                    END AS StatusDisplay,
+                                                                    m.MoviePoster,
+                                                                    mr.RatingCode AS ContentRatingCode
+                                                                    , mr.RatingID AS ContentRating      
+                                                                FROM [CinemaDB].[dbo].[Movies] m
+                                                                LEFT JOIN GenreAggregates ga ON m.MovieID = ga.MovieID
+                                                                LEFT JOIN MovieRating mr ON mr.RatingID = m.ContentRating
+                                                                LEFT JOIN Showtimes s ON s.MovieID = m.MovieID
+                                                                LEFT JOIN Theaters t ON t.TheaterID = s.TheaterID";
 
 
         #endregion
@@ -75,6 +134,7 @@ namespace TrinityCinema.Models
                                            ,[Username]
                                            ,[PasswordHash]
                                            ,[Fullname]
+                                           ,[DateOfBirth]
                                            ,[Role]
                                            ,[Phone]
                                            ,[PersonnelImage]
@@ -86,6 +146,7 @@ namespace TrinityCinema.Models
                                            ,@Username
                                            ,@PasswordHash
                                            ,@Fullname
+                                           ,@DateOfBirth
                                            ,@Role
                                            ,@Phone
                                            ,@PersonnelImage
@@ -93,23 +154,29 @@ namespace TrinityCinema.Models
                                            ,@DateCreated)";
 
         public static string insertMovieQuery = @"INSERT INTO [dbo].[Movies]
-                                   ([MovieID]
-                                    ,[Title]
-                                    ,[Description]
-                                    ,[Genre]
-                                    ,[Duration]
-                                    ,[Status]
-                                    ,[DateAdded]
-                                    ,[MoviePoster])
-                           VALUES
-                                    (@MovieID
-                                    ,@Title
-                                    ,@Description
-                                    ,@Genre
-                                    ,@Duration
-                                    ,@Status
-                                    ,@DateAdded
-                                    ,@MoviePoster);";
+                                                       ([MovieID]
+                                                       ,[Title]
+                                                       ,[Description]
+                                                       ,[Duration]
+                                                       ,[Status]
+                                                       ,[DateAdded]
+                                                       ,[MoviePoster]
+                                                       ,[ContentRating])
+                                                 VALUES
+                                                       (@MovieID
+                                                       ,@Title
+                                                       ,@Description
+                                                       ,@Duration
+                                                       ,@Status
+                                                       ,@DateAdded
+                                                       ,@MoviePoster
+                                                       ,@ContentRating);";
+
+        public static string insertNewGenre = @"INSERT INTO [dbo].[Genre]
+                                                       ([GenreName])
+                                                 VALUES
+                                                       (@GenreName);";
+
 
         public static string createTheater = @"INSERT INTO [dbo].[Theaters]
                                            ([TheaterName]
@@ -133,8 +200,16 @@ namespace TrinityCinema.Models
                                            ,@ShowDate
                                            ,@StartTime
                                            ,@TheaterID
-                                           ,@Status)";
+                                           ,@StatusID)";
 
+        public static string insertActivityLog = @"INSERT INTO [dbo].[ActivityLogs]
+                                           ([Username]
+                                           ,[Action]
+                                           ,[DateModified])
+                                     VALUES
+                                           (@Username
+                                           ,@Action
+                                           ,@DateModified)";
 
         #endregion
 

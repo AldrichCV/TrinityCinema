@@ -28,214 +28,330 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
-            this.cbStatusDisplay = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cbTheater = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
+            this.pePoster = new DevExpress.XtraEditors.PictureEdit();
             this.teStartTime = new DevExpress.XtraEditors.TimeEdit();
             this.deShowDate = new DevExpress.XtraEditors.DateEdit();
+            this.leHall = new DevExpress.XtraEditors.LookUpEdit();
             this.tePrice = new DevExpress.XtraEditors.TextEdit();
-            this.teMovie = new DevExpress.XtraEditors.TextEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbStatusDisplay.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).BeginInit();
+            this.leMovie = new DevExpress.XtraEditors.TextEdit();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.movieTitle = new DevExpress.XtraLayout.LayoutControlItem();
+            this.moviePoster = new DevExpress.XtraLayout.LayoutControlItem();
+            this.showDate = new DevExpress.XtraLayout.LayoutControlItem();
+            this.theaterName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.showPrice = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.startTime = new DevExpress.XtraLayout.LayoutControlItem();
+            this.showStatus = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.leStatusDisplay = new DevExpress.XtraEditors.LookUpEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leHall.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teMovie.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moviePoster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.theaterName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leStatusDisplay.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelControl6
+            // layoutControl1
             // 
-            this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(259, 230);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(75, 16);
-            this.labelControl6.TabIndex = 27;
-            this.labelControl6.Text = "Status";
+            this.layoutControl1.Controls.Add(this.btnSubmit);
+            this.layoutControl1.Controls.Add(this.pePoster);
+            this.layoutControl1.Controls.Add(this.teStartTime);
+            this.layoutControl1.Controls.Add(this.deShowDate);
+            this.layoutControl1.Controls.Add(this.leHall);
+            this.layoutControl1.Controls.Add(this.tePrice);
+            this.layoutControl1.Controls.Add(this.leMovie);
+            this.layoutControl1.Controls.Add(this.leStatusDisplay);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.Root = this.Root;
+            this.layoutControl1.Size = new System.Drawing.Size(1054, 576);
+            this.layoutControl1.TabIndex = 28;
+            this.layoutControl1.Text = "layoutControl1";
             // 
-            // labelControl5
+            // btnSubmit
             // 
-            this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(45, 230);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(75, 16);
-            this.labelControl5.TabIndex = 26;
-            this.labelControl5.Text = "Theater";
+            this.btnSubmit.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnSubmit.Appearance.Options.UseBackColor = true;
+            this.btnSubmit.Location = new System.Drawing.Point(449, 526);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(589, 34);
+            this.btnSubmit.StyleController = this.layoutControl1;
+            this.btnSubmit.TabIndex = 6;
+            this.btnSubmit.Text = "SAVE CHANGES";
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // labelControl4
+            // pePoster
             // 
-            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(474, 136);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(75, 16);
-            this.labelControl4.TabIndex = 25;
-            this.labelControl4.Text = "Start Time";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(259, 136);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(75, 16);
-            this.labelControl3.TabIndex = 24;
-            this.labelControl3.Text = "Show Date";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(42, 136);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(75, 16);
-            this.labelControl2.TabIndex = 23;
-            this.labelControl2.Text = "Price";
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(42, 52);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(75, 16);
-            this.labelControl1.TabIndex = 22;
-            this.labelControl1.Text = "Movie";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnUpdate.Appearance.Options.UseBackColor = true;
-            this.btnUpdate.Location = new System.Drawing.Point(457, 397);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(171, 56);
-            this.btnUpdate.TabIndex = 21;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // cbStatusDisplay
-            // 
-            this.cbStatusDisplay.Location = new System.Drawing.Point(259, 252);
-            this.cbStatusDisplay.Name = "cbStatusDisplay";
-            this.cbStatusDisplay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbStatusDisplay.Properties.Items.AddRange(new object[] {
-            "Upcoming",
-            "Now Showing",
-            "Cancelled",
-            "Ended"});
-            this.cbStatusDisplay.Size = new System.Drawing.Size(154, 34);
-            this.cbStatusDisplay.TabIndex = 20;
-            // 
-            // cbTheater
-            // 
-            this.cbTheater.Location = new System.Drawing.Point(45, 252);
-            this.cbTheater.Name = "cbTheater";
-            this.cbTheater.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbTheater.Properties.Items.AddRange(new object[] {
-            "Cinema 1",
-            "Cinema 2",
-            "Cinema 3",
-            "Cinema 4"});
-            this.cbTheater.Size = new System.Drawing.Size(154, 34);
-            this.cbTheater.TabIndex = 19;
+            this.pePoster.Location = new System.Drawing.Point(16, 16);
+            this.pePoster.Name = "pePoster";
+            this.pePoster.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pePoster.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pePoster.Size = new System.Drawing.Size(427, 544);
+            this.pePoster.StyleController = this.layoutControl1;
+            this.pePoster.TabIndex = 14;
             // 
             // teStartTime
             // 
             this.teStartTime.EditValue = new System.DateTime(2025, 7, 7, 0, 0, 0, 0);
-            this.teStartTime.Location = new System.Drawing.Point(474, 158);
+            this.teStartTime.Location = new System.Drawing.Point(746, 162);
             this.teStartTime.Name = "teStartTime";
             this.teStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.teStartTime.Properties.MaskSettings.Set("mask", "t");
-            this.teStartTime.Size = new System.Drawing.Size(154, 34);
-            this.teStartTime.TabIndex = 18;
+            this.teStartTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.teStartTime.Properties.UseMaskAsDisplayFormat = true;
+            this.teStartTime.Size = new System.Drawing.Size(292, 34);
+            this.teStartTime.StyleController = this.layoutControl1;
+            this.teStartTime.TabIndex = 3;
             // 
             // deShowDate
             // 
             this.deShowDate.EditValue = null;
-            this.deShowDate.Location = new System.Drawing.Point(259, 158);
+            this.deShowDate.Location = new System.Drawing.Point(449, 162);
             this.deShowDate.Name = "deShowDate";
             this.deShowDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deShowDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deShowDate.Properties.MaskSettings.Set("mask", "d");
-            this.deShowDate.Size = new System.Drawing.Size(154, 34);
-            this.deShowDate.TabIndex = 17;
+            this.deShowDate.Properties.UseMaskAsDisplayFormat = true;
+            this.deShowDate.Size = new System.Drawing.Size(291, 34);
+            this.deShowDate.StyleController = this.layoutControl1;
+            this.deShowDate.TabIndex = 2;
+            // 
+            // leHall
+            // 
+            this.leHall.Location = new System.Drawing.Point(449, 100);
+            this.leHall.Name = "leHall";
+            this.leHall.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leHall.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TheaterID", ""),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TheaterName", "")});
+            this.leHall.Properties.DisplayMember = "TheaterName";
+            this.leHall.Properties.NullText = "";
+            this.leHall.Properties.PopupSizeable = false;
+            this.leHall.Properties.ValueMember = "TheaterID";
+            this.leHall.Size = new System.Drawing.Size(589, 34);
+            this.leHall.StyleController = this.layoutControl1;
+            this.leHall.TabIndex = 4;
             // 
             // tePrice
             // 
-            this.tePrice.Location = new System.Drawing.Point(42, 158);
+            this.tePrice.Location = new System.Drawing.Point(449, 224);
             this.tePrice.Name = "tePrice";
             this.tePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.tePrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.tePrice.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.tePrice.Properties.MaskSettings.Set("mask", "c");
-            this.tePrice.Size = new System.Drawing.Size(157, 34);
-            this.tePrice.TabIndex = 16;
+            this.tePrice.Size = new System.Drawing.Size(291, 34);
+            this.tePrice.StyleController = this.layoutControl1;
+            this.tePrice.TabIndex = 1;
             // 
-            // teMovie
+            // leMovie
             // 
-            this.teMovie.Location = new System.Drawing.Point(42, 74);
-            this.teMovie.Name = "teMovie";
-            this.teMovie.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.teMovie.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.teMovie.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.teMovie.Properties.MaskSettings.Set("mask", "c");
-            this.teMovie.Properties.NullText = "-- Select Movie --";
-            this.teMovie.Size = new System.Drawing.Size(586, 34);
-            this.teMovie.TabIndex = 28;
+            this.leMovie.Location = new System.Drawing.Point(449, 38);
+            this.leMovie.Name = "leMovie";
+            this.leMovie.Properties.NullText = "--Select Movie--";
+            this.leMovie.Size = new System.Drawing.Size(589, 34);
+            this.leMovie.StyleController = this.layoutControl1;
+            this.leMovie.TabIndex = 0;
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.movieTitle,
+            this.moviePoster,
+            this.showDate,
+            this.theaterName,
+            this.showPrice,
+            this.layoutControlItem2,
+            this.startTime,
+            this.showStatus,
+            this.emptySpaceItem1});
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(1054, 576);
+            this.Root.TextVisible = false;
+            // 
+            // movieTitle
+            // 
+            this.movieTitle.Control = this.leMovie;
+            this.movieTitle.Location = new System.Drawing.Point(433, 0);
+            this.movieTitle.Name = "movieTitle";
+            this.movieTitle.Size = new System.Drawing.Size(595, 62);
+            this.movieTitle.Text = "Movie";
+            this.movieTitle.TextLocation = DevExpress.Utils.Locations.Top;
+            this.movieTitle.TextSize = new System.Drawing.Size(62, 16);
+            // 
+            // moviePoster
+            // 
+            this.moviePoster.Control = this.pePoster;
+            this.moviePoster.Location = new System.Drawing.Point(0, 0);
+            this.moviePoster.MinSize = new System.Drawing.Size(26, 26);
+            this.moviePoster.Name = "moviePoster";
+            this.moviePoster.Size = new System.Drawing.Size(433, 550);
+            this.moviePoster.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.moviePoster.TextSize = new System.Drawing.Size(0, 0);
+            this.moviePoster.TextVisible = false;
+            // 
+            // showDate
+            // 
+            this.showDate.Control = this.deShowDate;
+            this.showDate.Location = new System.Drawing.Point(433, 124);
+            this.showDate.Name = "showDate";
+            this.showDate.Size = new System.Drawing.Size(297, 62);
+            this.showDate.Text = "Show Date";
+            this.showDate.TextLocation = DevExpress.Utils.Locations.Top;
+            this.showDate.TextSize = new System.Drawing.Size(62, 16);
+            // 
+            // theaterName
+            // 
+            this.theaterName.Control = this.leHall;
+            this.theaterName.Location = new System.Drawing.Point(433, 62);
+            this.theaterName.Name = "theaterName";
+            this.theaterName.Size = new System.Drawing.Size(595, 62);
+            this.theaterName.Text = "Hall";
+            this.theaterName.TextLocation = DevExpress.Utils.Locations.Top;
+            this.theaterName.TextSize = new System.Drawing.Size(62, 16);
+            // 
+            // showPrice
+            // 
+            this.showPrice.Control = this.tePrice;
+            this.showPrice.Location = new System.Drawing.Point(433, 186);
+            this.showPrice.Name = "showPrice";
+            this.showPrice.Size = new System.Drawing.Size(297, 62);
+            this.showPrice.Text = "Price";
+            this.showPrice.TextLocation = DevExpress.Utils.Locations.Top;
+            this.showPrice.TextSize = new System.Drawing.Size(62, 16);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.btnSubmit;
+            this.layoutControlItem2.Location = new System.Drawing.Point(433, 510);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(595, 40);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // startTime
+            // 
+            this.startTime.Control = this.teStartTime;
+            this.startTime.Location = new System.Drawing.Point(730, 124);
+            this.startTime.Name = "startTime";
+            this.startTime.Size = new System.Drawing.Size(298, 62);
+            this.startTime.Text = "Start Time";
+            this.startTime.TextLocation = DevExpress.Utils.Locations.Top;
+            this.startTime.TextSize = new System.Drawing.Size(62, 16);
+            // 
+            // showStatus
+            // 
+            this.showStatus.Control = this.leStatusDisplay;
+            this.showStatus.Location = new System.Drawing.Point(730, 186);
+            this.showStatus.Name = "showStatus";
+            this.showStatus.Size = new System.Drawing.Size(298, 62);
+            this.showStatus.Text = "Status";
+            this.showStatus.TextLocation = DevExpress.Utils.Locations.Top;
+            this.showStatus.TextSize = new System.Drawing.Size(62, 16);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(433, 248);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(595, 262);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // leStatusDisplay
+            // 
+            this.leStatusDisplay.Location = new System.Drawing.Point(746, 224);
+            this.leStatusDisplay.Name = "leStatusDisplay";
+            this.leStatusDisplay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leStatusDisplay.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusName", ""),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StatusID", "", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leStatusDisplay.Properties.DisplayMember = "StatusName";
+            this.leStatusDisplay.Properties.NullText = "";
+            this.leStatusDisplay.Properties.PopupSizeable = false;
+            this.leStatusDisplay.Properties.ValueMember = "StatusID";
+            this.leStatusDisplay.Size = new System.Drawing.Size(292, 34);
+            this.leStatusDisplay.StyleController = this.layoutControl1;
+            this.leStatusDisplay.TabIndex = 5;
             // 
             // EditShowtime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 474);
-            this.Controls.Add(this.teMovie);
-            this.Controls.Add(this.labelControl6);
-            this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.cbStatusDisplay);
-            this.Controls.Add(this.cbTheater);
-            this.Controls.Add(this.teStartTime);
-            this.Controls.Add(this.deShowDate);
-            this.Controls.Add(this.tePrice);
+            this.ClientSize = new System.Drawing.Size(1054, 576);
+            this.Controls.Add(this.layoutControl1);
             this.Name = "EditShowtime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Showtime";
-            ((System.ComponentModel.ISupportInitialize)(this.cbStatusDisplay.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbTheater.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pePoster.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teStartTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deShowDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leHall.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tePrice.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teMovie.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leMovie.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moviePoster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.theaterName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.startTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leStatusDisplay.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.SimpleButton btnUpdate;
-        private DevExpress.XtraEditors.ComboBoxEdit cbStatusDisplay;
-        private DevExpress.XtraEditors.ComboBoxEdit cbTheater;
-        private DevExpress.XtraEditors.TimeEdit teStartTime;
-        private DevExpress.XtraEditors.DateEdit deShowDate;
-        private DevExpress.XtraEditors.TextEdit tePrice;
-        private DevExpress.XtraEditors.TextEdit teMovie;
+        public DevExpress.XtraLayout.LayoutControl layoutControl1;
+        public DevExpress.XtraEditors.SimpleButton btnSubmit;
+        public DevExpress.XtraEditors.PictureEdit pePoster;
+        public DevExpress.XtraEditors.TimeEdit teStartTime;
+        public DevExpress.XtraEditors.DateEdit deShowDate;
+        public DevExpress.XtraEditors.LookUpEdit leHall;
+        public DevExpress.XtraEditors.TextEdit tePrice;
+        public DevExpress.XtraLayout.LayoutControlGroup Root;
+        public DevExpress.XtraLayout.LayoutControlItem movieTitle;
+        public DevExpress.XtraLayout.LayoutControlItem moviePoster;
+        public DevExpress.XtraLayout.LayoutControlItem showDate;
+        public DevExpress.XtraLayout.LayoutControlItem theaterName;
+        public DevExpress.XtraLayout.LayoutControlItem showPrice;
+        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        public DevExpress.XtraLayout.LayoutControlItem startTime;
+        public DevExpress.XtraLayout.LayoutControlItem showStatus;
+        public DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        public DevExpress.XtraEditors.TextEdit leMovie;
+        public DevExpress.XtraEditors.LookUpEdit leStatusDisplay;
     }
 }

@@ -21,10 +21,10 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
-            AllMethods.GridCustomization(gcTheater, tvTheaterView, GetEmployee());
+            AllMethods.GridCustomization(gcTheater, tvTheaterView, GetTheater());
         }
 
-        public List<Theater> GetEmployee()
+        public List<Theater> GetTheater()
         {
             string query = GlobalSettings.getTheater;
             return a.GetRecords<Theater>(query);
