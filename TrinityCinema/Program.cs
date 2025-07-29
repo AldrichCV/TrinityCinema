@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using TrinityCinema.Models;
 using TrinityCinema.Views;
 using TrinityCinema.Views.Admin;
+using TrinityCinema.Views.Staff;
 
 namespace TrinityCinema
 {

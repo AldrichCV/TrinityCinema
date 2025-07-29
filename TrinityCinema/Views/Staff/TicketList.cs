@@ -8,25 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using TrinityCinema.Views.Admin;
 
 namespace TrinityCinema.Views.Staff
 {
-    public partial class StaffMainForm : DevExpress.XtraEditors.XtraForm
+    public partial class TicketList : DevExpress.XtraEditors.XtraForm
     {
         private string userID;
 
-        public StaffMainForm(string userID)
+        public TicketList()
         {
             InitializeComponent();
+        }
+
+        public TicketList(string userID)
+        {
             this.userID = userID;
         }
 
-
-        private void ticketTile_ItemClick(object sender, TileItemEventArgs e)
+        private void btnBuyTicket_Click(object sender, EventArgs e)
         {
-            TicketList ticketListForm = new TicketList();
-            ticketListForm.Show(); // Opens as a separate window
+            BuyTicket buyTicket = new BuyTicket(this);
+            buyTicket.Show(); // Opens as a separate window
         }
     }
 }
