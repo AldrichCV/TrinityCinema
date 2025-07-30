@@ -294,6 +294,12 @@
     <Compile Include="Views\Staff\ChooseSeatLayout.Designer.cs">
       <DependentUpon>ChooseSeatLayout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Staff\MyTransactions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\MyTransactions.Designer.cs">
+      <DependentUpon>MyTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Staff\SeatLayout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +311,12 @@
     </Compile>
     <Compile Include="Views\Staff\ShowtimeMovies.Designer.cs">
       <DependentUpon>ShowtimeMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffHome.Designer.cs">
+      <DependentUpon>StaffHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Staff\StaffMainForm.cs">
       <SubType>Form</SubType>
@@ -408,11 +420,17 @@
     <EmbeddedResource Include="Views\Staff\ChooseSeatLayout.resx">
       <DependentUpon>ChooseSeatLayout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\MyTransactions.resx">
+      <DependentUpon>MyTransactions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\SeatLayout.resx">
       <DependentUpon>SeatLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\ShowtimeMovies.resx">
       <DependentUpon>ShowtimeMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\StaffHome.resx">
+      <DependentUpon>StaffHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\StaffMainForm.resx">
       <DependentUpon>StaffMainForm.cs</DependentUpon>

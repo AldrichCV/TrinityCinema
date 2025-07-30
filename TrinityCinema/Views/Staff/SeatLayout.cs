@@ -368,13 +368,14 @@ namespace TrinityCinema.Views.Staff
                     }
 
                     // Insert transaction record
-                    string insertTransQuery = @"INSERT INTO BookingTransactions (ShowtimeId, SeatId, Price)
-                                        VALUES (@ShowtimeId, @SeatId, @Price)";
+                    string insertTransQuery = @"INSERT INTO BookingTransactions (ShowtimeId, SeatId, Price,CreatedBy)
+                                        VALUES (@ShowtimeId, @SeatId, @Price,@Creator)";
                     using (var transCmd = new SqlCommand(insertTransQuery, conn))
                     {
                         transCmd.Parameters.AddWithValue("@ShowtimeId", showtimeId);
                         transCmd.Parameters.AddWithValue("@SeatId", seatId);
                         transCmd.Parameters.AddWithValue("@Price", showtime.Price);
+                        transCmd.Parameters.AddWithValue("@Creator", loggedInUser);
                         transCmd.ExecuteNonQuery();
                     }
 

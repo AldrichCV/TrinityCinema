@@ -53,6 +53,8 @@
             // svgImageBox1
             // 
             this.svgImageBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.svgImageBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("svgImageBox1.BackgroundImage")));
+            this.svgImageBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.svgImageBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.svgImageBox1.Location = new System.Drawing.Point(0, 0);
             this.svgImageBox1.Name = "svgImageBox1";
