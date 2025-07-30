@@ -173,9 +173,12 @@
             this.MoviePoster,
             this.Genre,
             this.Rating});
+            this.tvMovieView.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.None;
             this.tvMovieView.DetailHeight = 431;
             this.tvMovieView.GridControl = this.gcMovies;
             this.tvMovieView.Name = "tvMovieView";
+            this.tvMovieView.OptionsKanban.GroupHeaderContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.None;
+            this.tvMovieView.OptionsTiles.AllowPressAnimation = false;
             this.tvMovieView.OptionsTiles.IndentBetweenGroups = 28;
             this.tvMovieView.OptionsTiles.IndentBetweenItems = 12;
             this.tvMovieView.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(5);

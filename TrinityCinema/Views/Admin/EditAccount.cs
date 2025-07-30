@@ -50,8 +50,6 @@ namespace TrinityCinema.Views.Admin
             return null;
         }
 
-
-
         public void SetLockStatusButton(string userID)
         {
             var userStatus = new AllMethods().GetUserLoginStatusByUserID(userID);
@@ -271,7 +269,6 @@ namespace TrinityCinema.Views.Admin
             AllMethods.ShowModal(mh => new PasswordReset(mh, loggedInUser, userID, this));
         }
 
-       
         private bool ValidBirthday(DateTime birthdate)
         {
             DateTime today = DateTime.Today;

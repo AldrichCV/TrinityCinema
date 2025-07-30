@@ -197,7 +197,7 @@
             this.tileBarItem1.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.tileBarItem1.AppearanceItem.Normal.Options.UseFont = true;
             this.tileBarItem1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement7.Text = "tileBarItem1";
+            tileItemElement7.Text = "Reports";
             this.tileBarItem1.Elements.Add(tileItemElement7);
             this.tileBarItem1.Id = 11;
             this.tileBarItem1.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;

@@ -132,7 +132,7 @@
             this.gcUser.MainView = this.tvUserView;
             this.gcUser.Margin = new System.Windows.Forms.Padding(4);
             this.gcUser.Name = "gcUser";
-            this.gcUser.Size = new System.Drawing.Size(1151, 469);
+            this.gcUser.Size = new System.Drawing.Size(1151, 494);
             this.gcUser.TabIndex = 5;
             this.gcUser.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tvUserView});
@@ -214,7 +214,7 @@
             // 
             this.actionTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Brown;
             this.actionTile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.actionTile.BackColor = System.Drawing.Color.Brown;
+            this.actionTile.BackColor = System.Drawing.Color.Maroon;
             this.actionTile.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.OutAnimation;
             this.actionTile.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.actionTile.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -222,8 +222,8 @@
             this.actionTile.Groups.Add(this.tileBarGroup2);
             this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
-            this.actionTile.ItemSize = 80;
-            this.actionTile.Location = new System.Drawing.Point(0, 545);
+            this.actionTile.ItemSize = 50;
+            this.actionTile.Location = new System.Drawing.Point(0, 570);
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
@@ -233,7 +233,7 @@
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.SelectionBorderWidth = 0;
             this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(1151, 109);
+            this.actionTile.Size = new System.Drawing.Size(1151, 84);
             this.actionTile.TabIndex = 4;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -249,15 +249,11 @@
             this.userTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.userTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.userTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
-            tileItemElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
-            tileItemElement1.StretchHorizontal = true;
-            tileItemElement1.StretchVertical = true;
-            tileItemElement1.Text = "";
+            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileItemElement1.Text = "Add User";
             this.userTile.Elements.Add(tileItemElement1);
             this.userTile.Id = 10;
-            this.userTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium;
             this.userTile.Name = "userTile";
             this.userTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.userTile_ItemClick);
             // 
@@ -275,7 +271,7 @@
             // 
             // headerLayoutControl
             // 
-            this.headerLayoutControl.BackColor = System.Drawing.Color.Transparent;
+            this.headerLayoutControl.BackColor = System.Drawing.Color.Maroon;
             this.headerLayoutControl.Controls.Add(this.btnFind);
             this.headerLayoutControl.Controls.Add(this.teSearch);
             this.headerLayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -353,6 +349,8 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(561, 0);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(42, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.OptionsPrint.AppearanceItem.BackColor = System.Drawing.Color.Maroon;
+            this.layoutControlItem1.OptionsPrint.AppearanceItem.Options.UseBackColor = true;
             this.layoutControlItem1.Size = new System.Drawing.Size(97, 50);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);

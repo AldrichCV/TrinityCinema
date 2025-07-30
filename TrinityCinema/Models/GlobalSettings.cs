@@ -68,6 +68,7 @@ namespace TrinityCinema.Models
                                             s.[Price],
                                             s.[ShowDate],
                                             s.[StartTime],
+                                            m.[Duration],
                                              DATEADD(SECOND, 
                                              DATEDIFF(SECOND, '00:00:00', m.Duration), 
                                             [StartTime]
@@ -82,7 +83,7 @@ namespace TrinityCinema.Models
                                             LEFT JOIN ShowtimeStatus ss
                                             ON ss.StatusID = s.Status";
 
-        public static string getActivityLog = @"SELECT TOP (1000) [LogID]
+        public static string getActivityLog = @"SELECT [LogID]
                                               ,[Timestamp]
                                               ,CASE WHEN u.[Username] IS NULL THEN 'SupaAdmin' ELSE u.Username END AS Username
                                               ,[Action]

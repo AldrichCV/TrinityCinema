@@ -107,5 +107,21 @@ namespace TrinityCinema.Views.Admin
                 tvUserView.ClearFindFilter(); // optional: clear the filter if empty
             }
         }
+        public void RefreshList()
+        {
+            try
+            {
+                string query = "SELECT * FROM Users"; // Modify if you have filters
+                var users = allMethods.GetRecords<User>(query, null); // Replace 'User' with your actual model
+
+                gcUser.DataSource = users;
+                gcUser.RefreshDataSource(); // Optional: if needed to force refresh
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Failed to refresh user list.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

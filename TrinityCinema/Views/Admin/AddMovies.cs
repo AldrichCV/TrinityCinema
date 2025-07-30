@@ -153,16 +153,5 @@ namespace TrinityCinema.Views.Admin
                 this.Close();
             }
         }
-
-        private void btnNewGenre_Click(object sender, EventArgs e)
-        {
-            NewGenre genreForm = new NewGenre(loggedInUser);
-            genreForm.RefreshGenreList = LoadGenre;
-            genreForm.ShowDialog();
-        }
-
-        private void leRating_EditValueChanged(object sender, EventArgs e)
-        {
-        }
     }
     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -13,12 +14,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
+using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace TrinityCinema.Views.Admin
 {
     public partial class MoviesControl : DevExpress.XtraEditors.XtraUserControl
     {
-        AllMethods a = new AllMethods();
+        private List<Movie> movieCache = null;
+
+        AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         private byte[] imageData;
         private string loggedInUser;
@@ -33,8 +37,12 @@ namespace TrinityCinema.Views.Admin
 
         public List<Movie> GetMovies()
         {
-            string query = GlobalSettings.getMovie;
-            return a.GetRecords<Movie>(query);
+            if (movieCache == null)
+            {
+                string query = GlobalSettings.getMovie;
+                movieCache = allMethods.GetRecords<Movie>(query);
+            }
+            return movieCache;
         }
 
         private void viewDetails_Click(object sender, EventArgs e)
@@ -78,7 +86,7 @@ namespace TrinityCinema.Views.Admin
                     "ContentRating"
                 };
 
-                Dictionary<string, string> record = a.GetRecordById(query, parameters, columns);
+                Dictionary<string, string> record = allMethods.GetRecordById(query, parameters, columns);
 
                 if (record != null)
                 {
@@ -123,6 +131,12 @@ namespace TrinityCinema.Views.Admin
 
                 return details;
             });
+        }
+        public void RefreshList()
+        {
+            movieCache = null;
+            AllMethods.GridCustomization(gcMovies, tvMovieView, GetMovies());
+              // Resume UI updates
         }
     }
 }

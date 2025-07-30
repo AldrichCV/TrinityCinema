@@ -19,6 +19,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
+        #region Class Variables
         private SplashScreenManager splashScreenManager;
 
         private int attempt = 0;                     // Tracks the current failed login attempts
@@ -29,7 +30,8 @@ namespace TrinityCinema.Views.Admin
 
         public string UserID { get; private set; }
         public string Role { get; private set; }
-      
+        #endregion
+
         public LoginForm()
         {
             InitializeComponent();

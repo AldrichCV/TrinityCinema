@@ -20,6 +20,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
     {
+        #region Class Variables
         private UsersControl cachedPersonnelControl;
         private MoviesControl cachedMovieControl;
         private SeatsControl cachedHallControl;
@@ -35,6 +36,7 @@ namespace TrinityCinema.Views.Admin
         public event EventHandler DashboardLoaded;
 
         private HomeDashboard dashboard;
+        #endregion
 
         public AdminMainForm(string loggedInUser, EventHandler dashboardLoadedHandler = null)
         {
@@ -84,32 +86,21 @@ namespace TrinityCinema.Views.Admin
         }
         #endregion
 
-
         private void personnelTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            gcHome.Controls.Clear();
-
-            if (cachedPersonnelControl == null)
-            {
-                cachedPersonnelControl = new UsersControl(this, loggedInUser);
-                cachedPersonnelControl.Dock = DockStyle.Fill;
-            }
-
-            gcHome.Controls.Add(cachedPersonnelControl);
-            cachedPersonnelControl.Show();
+            AllMethods.RefreshManagerHome<UsersControl>(
+            createNewControl: form => new UsersControl(form, loggedInUser),
+            refreshIfExists: control => control.RefreshList()
+          );
 
         }
 
         private void movieTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            gcHome.Controls.Clear();
-            if (cachedMovieControl == null)
-            {
-                cachedMovieControl = new MoviesControl(this, loggedInUser);
-                cachedMovieControl.Dock = DockStyle.Fill;
-            }
-            gcHome.Controls.Add(cachedMovieControl);
-            cachedMovieControl.Show();
+            AllMethods.RefreshManagerHome<MoviesControl>(
+               createNewControl: form => new MoviesControl(form, loggedInUser),
+               refreshIfExists: control => control.RefreshList()
+           );
         }
 
         private void theaterTile_ItemClick(object sender, TileItemEventArgs e)
@@ -126,23 +117,18 @@ namespace TrinityCinema.Views.Admin
 
         private void showtimeTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            gcHome.Controls.Clear();
-            if (cachedShowtimeControl == null)
-            {
-                cachedShowtimeControl = new ShowtimeControl(this, loggedInUser);
-                cachedShowtimeControl.Dock = DockStyle.Fill;
-            }
-            gcHome.Controls.Add(cachedShowtimeControl);
-            cachedShowtimeControl.Show();
+             AllMethods.RefreshManagerHome<ShowtimeControl>(
+             createNewControl: form => new ShowtimeControl(form, loggedInUser),
+             refreshIfExists: control => control.RefreshList()
+         );
         }
 
         private void logsTile_ItemClick(object sender, TileItemEventArgs e)
         {
-            gcHome.Controls.Clear();
-            ActivityLogControl activityControl = new ActivityLogControl(this);
-            gcHome.Controls.Add(activityControl);
-            activityControl.Dock = DockStyle.Fill;
-            activityControl.Show();
+            AllMethods.RefreshManagerHome<ActivityLogControl>(
+              createNewControl: form => new ActivityLogControl(form),
+              refreshIfExists: control => control.RefreshList()
+          );
         }
 
         private async void logoutTile_ItemClick(object sender, TileItemEventArgs e)

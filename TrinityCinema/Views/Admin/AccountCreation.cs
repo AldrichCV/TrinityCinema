@@ -24,9 +24,6 @@ namespace TrinityCinema.Views
 {
     public partial class AccountCreation : DevExpress.XtraEditors.XtraForm
     {
-        private static SvgImage security_visibility;
-
-
         private AdminMainForm adminMainForm;
         private byte[] imageData;
         private string loggedInUser;
@@ -160,6 +157,7 @@ namespace TrinityCinema.Views
             }
         }
 
+        #region Login Validation
         private bool UsernameExists(string username)
         {
             using (var connection = new SqlConnection(GlobalSettings.connectionString))
@@ -333,6 +331,8 @@ namespace TrinityCinema.Views
                     fullNameErrorProvider.SetError(teFullName, string.Empty);
                 }
             }
+            #endregion
+
         }
     }
 }

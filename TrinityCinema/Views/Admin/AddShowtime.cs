@@ -35,6 +35,7 @@ namespace TrinityCinema.Views.Admin
             this.loggedInUser = loggedInUser;
         }
 
+        #region DataLoad
         private void LoadMovies()
         {
             AllMethods.LoadLookupData<Movie>(
@@ -62,7 +63,6 @@ namespace TrinityCinema.Views.Admin
                 GlobalSettings.connectionString
          );
         }
-
         private void leMovie_EditValueChanged(object sender, EventArgs e)
         {
             var selectedMovie = leMovie.GetSelectedDataRow() as Movie;
@@ -97,6 +97,7 @@ namespace TrinityCinema.Views.Admin
                 pePoster.Image = null;
             }
         }
+        #endregion
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {// 1. Field validation
@@ -211,6 +212,7 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
+        #region ValueChanging Events
         private void teStartTime_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
             if (e.NewValue is DateTime newTime)
@@ -278,24 +280,24 @@ namespace TrinityCinema.Views.Admin
             using (var connection = new SqlConnection(GlobalSettings.connectionString))
             {
                 string sql = @"SELECT COUNT(1)
-FROM Showtimes s
-LEFT JOIN Movies m ON m.MovieID = s.MovieID
-WHERE s.TheaterID = @TheaterID
-  AND (
-        @NewStartTime >= DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
-        AND @NewStartTime < DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
-      )
-   OR
-        @NewEndTime > DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
-        AND @NewEndTime <= DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
-      )
-   OR
-        @NewStartTime <= DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
-        AND @NewEndTime >= DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
-      )
-)
+                                FROM Showtimes s
+                                LEFT JOIN Movies m ON m.MovieID = s.MovieID
+                                WHERE s.TheaterID = @TheaterID
+                                  AND (
+                                        @NewStartTime >= DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+                                        AND @NewStartTime < DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+                                      )
+                                   OR
+                                        @NewEndTime > DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+                                        AND @NewEndTime <= DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+                                      )
+                                   OR
+                                        @NewStartTime <= DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+                                        AND @NewEndTime >= DATEADD(MINUTE, DATEDIFF(MINUTE, 0, m.Duration), DATEADD(SECOND, 0, CAST(s.ShowDate AS DATETIME) + CAST(s.StartTime AS DATETIME))
+                                      )
+                                )
 
-";
+                                ";
 
                 int count = connection.ExecuteScalar<int>(sql, new
                 {
@@ -307,7 +309,7 @@ WHERE s.TheaterID = @TheaterID
                 return count > 0;
             }
         }
-
+        #endregion
 
     }
 }
