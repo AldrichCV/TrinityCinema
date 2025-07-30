@@ -28,5 +28,11 @@ namespace TrinityCinema.Views.Staff
             TicketList ticketListForm = new TicketList();
             ticketListForm.Show(); // Opens as a separate window
         }
+
+        private void reportsTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            ReportsForm reportsForm = new ReportsForm();
+            reportsForm.Show(); // Opens as a separate window
+        }
     }
 }

@@ -46,10 +46,12 @@
             // 
             // gcTickets
             // 
-            this.gcTickets.Location = new System.Drawing.Point(12, 42);
+            this.gcTickets.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcTickets.Location = new System.Drawing.Point(15, 52);
             this.gcTickets.MainView = this.gridView1;
+            this.gcTickets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcTickets.Name = "gcTickets";
-            this.gcTickets.Size = new System.Drawing.Size(1325, 571);
+            this.gcTickets.Size = new System.Drawing.Size(1656, 714);
             this.gcTickets.TabIndex = 0;
             this.gcTickets.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -66,104 +68,107 @@
             this.BuyerContact,
             this.BookedBy,
             this.BookingTime});
+            this.gridView1.DetailHeight = 437;
             this.gridView1.GridControl = this.gcTickets;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsEditForm.PopupEditFormWidth = 1000;
             // 
             // TicketID
             // 
             this.TicketID.Caption = "Ticket ID";
             this.TicketID.FieldName = "TicketID";
-            this.TicketID.MinWidth = 25;
+            this.TicketID.MinWidth = 31;
             this.TicketID.Name = "TicketID";
             this.TicketID.Visible = true;
             this.TicketID.VisibleIndex = 0;
-            this.TicketID.Width = 94;
+            this.TicketID.Width = 117;
             // 
             // MovieTitle
             // 
             this.MovieTitle.Caption = "Movie Title";
             this.MovieTitle.FieldName = "Title";
-            this.MovieTitle.MinWidth = 25;
+            this.MovieTitle.MinWidth = 31;
             this.MovieTitle.Name = "MovieTitle";
             this.MovieTitle.Visible = true;
             this.MovieTitle.VisibleIndex = 1;
-            this.MovieTitle.Width = 94;
+            this.MovieTitle.Width = 117;
             // 
             // ShowtimeID
             // 
             this.ShowtimeID.Caption = "Showtime";
             this.ShowtimeID.FieldName = "ShowtimeID";
-            this.ShowtimeID.MinWidth = 25;
+            this.ShowtimeID.MinWidth = 31;
             this.ShowtimeID.Name = "ShowtimeID";
             this.ShowtimeID.Visible = true;
             this.ShowtimeID.VisibleIndex = 2;
-            this.ShowtimeID.Width = 94;
+            this.ShowtimeID.Width = 117;
             // 
             // Price
             // 
             this.Price.Caption = "Price";
             this.Price.FieldName = "PricePaid";
-            this.Price.MinWidth = 25;
+            this.Price.MinWidth = 31;
             this.Price.Name = "Price";
             this.Price.Visible = true;
             this.Price.VisibleIndex = 3;
-            this.Price.Width = 94;
+            this.Price.Width = 117;
             // 
             // SeatNumber
             // 
             this.SeatNumber.Caption = "Seat Number";
             this.SeatNumber.FieldName = "SeatNumber";
-            this.SeatNumber.MinWidth = 25;
+            this.SeatNumber.MinWidth = 31;
             this.SeatNumber.Name = "SeatNumber";
             this.SeatNumber.Visible = true;
             this.SeatNumber.VisibleIndex = 4;
-            this.SeatNumber.Width = 94;
+            this.SeatNumber.Width = 117;
             // 
             // BuyerName
             // 
             this.BuyerName.Caption = "Customer Name";
             this.BuyerName.FieldName = "BuyerName";
-            this.BuyerName.MinWidth = 25;
+            this.BuyerName.MinWidth = 31;
             this.BuyerName.Name = "BuyerName";
             this.BuyerName.Visible = true;
             this.BuyerName.VisibleIndex = 5;
-            this.BuyerName.Width = 94;
+            this.BuyerName.Width = 117;
             // 
             // BuyerContact
             // 
             this.BuyerContact.Caption = "Customer Contact";
             this.BuyerContact.FieldName = "BuyerContact";
-            this.BuyerContact.MinWidth = 25;
+            this.BuyerContact.MinWidth = 31;
             this.BuyerContact.Name = "BuyerContact";
             this.BuyerContact.Visible = true;
             this.BuyerContact.VisibleIndex = 6;
-            this.BuyerContact.Width = 94;
+            this.BuyerContact.Width = 117;
             // 
             // BookedBy
             // 
             this.BookedBy.Caption = "Booked By";
             this.BookedBy.FieldName = "BookedBy";
-            this.BookedBy.MinWidth = 25;
+            this.BookedBy.MinWidth = 31;
             this.BookedBy.Name = "BookedBy";
             this.BookedBy.Visible = true;
             this.BookedBy.VisibleIndex = 7;
-            this.BookedBy.Width = 94;
+            this.BookedBy.Width = 117;
             // 
             // BookingTime
             // 
             this.BookingTime.Caption = "Booking Time";
             this.BookingTime.FieldName = "BookingTime";
-            this.BookingTime.MinWidth = 25;
+            this.BookingTime.MinWidth = 31;
             this.BookingTime.Name = "BookingTime";
             this.BookingTime.Visible = true;
             this.BookingTime.VisibleIndex = 8;
-            this.BookingTime.Width = 94;
+            this.BookingTime.Width = 117;
             // 
             // btnBuyTicket
             // 
-            this.btnBuyTicket.Location = new System.Drawing.Point(614, 648);
+            this.btnBuyTicket.Location = new System.Drawing.Point(768, 810);
+            this.btnBuyTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBuyTicket.Name = "btnBuyTicket";
-            this.btnBuyTicket.Size = new System.Drawing.Size(134, 47);
+            this.btnBuyTicket.Size = new System.Drawing.Size(168, 59);
             this.btnBuyTicket.TabIndex = 1;
             this.btnBuyTicket.Text = "Buy Ticket";
             this.btnBuyTicket.Click += new System.EventHandler(this.btnBuyTicket_Click);
@@ -172,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1349, 725);
+            this.ClientSize = new System.Drawing.Size(1700, 905);
             this.Controls.Add(this.btnBuyTicket);
             this.Controls.Add(this.gcTickets);
             this.Name = "TicketList";

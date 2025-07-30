@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffMainForm));
-            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
             this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
             this.homeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.movieTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.theaterTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.ticketTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.tileBarGroup3 = new DevExpress.XtraBars.Navigation.TileBarGroup();
-            this.tileBarItem1 = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.reportsTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logoutTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
-            this.ticketTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
-            this.actionTile.MaxId = 17;
+            this.actionTile.MaxId = 18;
             this.actionTile.Name = "actionTile";
             this.actionTile.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
@@ -94,10 +94,10 @@
             this.homeTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
             this.homeTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.homeTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement8.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            tileItemElement8.Appearance.Normal.Options.UseFont = true;
-            tileItemElement8.Text = "Home";
-            this.homeTile.Elements.Add(tileItemElement8);
+            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileItemElement1.Text = "Home";
+            this.homeTile.Elements.Add(tileItemElement1);
             this.homeTile.Id = 15;
             this.homeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.homeTile.Name = "homeTile";
@@ -111,8 +111,8 @@
             this.movieTile.BackgroundImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             this.movieTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.movieTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement9.Text = "Movies";
-            this.movieTile.Elements.Add(tileItemElement9);
+            tileItemElement2.Text = "Movies";
+            this.movieTile.Elements.Add(tileItemElement2);
             this.movieTile.Id = 7;
             this.movieTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.movieTile.Name = "movieTile";
@@ -125,8 +125,8 @@
             this.theaterTile.AppearanceItem.Normal.Options.UseFont = true;
             this.theaterTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.theaterTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement10.Text = "Seats";
-            this.theaterTile.Elements.Add(tileItemElement10);
+            tileItemElement3.Text = "Seats";
+            this.theaterTile.Elements.Add(tileItemElement3);
             this.theaterTile.Id = 8;
             this.theaterTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.theaterTile.Name = "theaterTile";
@@ -139,32 +139,44 @@
             this.showtimeTile.AppearanceItem.Normal.Options.UseFont = true;
             this.showtimeTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.showtimeTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement11.Text = "Showtime";
-            this.showtimeTile.Elements.Add(tileItemElement11);
+            tileItemElement4.Text = "Showtime";
+            this.showtimeTile.Elements.Add(tileItemElement4);
             this.showtimeTile.Id = 9;
             this.showtimeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.showtimeTile.Name = "showtimeTile";
             // 
+            // ticketTile
+            // 
+            this.ticketTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
+            this.ticketTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement5.Text = "Ticket";
+            this.ticketTile.Elements.Add(tileItemElement5);
+            this.ticketTile.Id = 16;
+            this.ticketTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.ticketTile.Name = "ticketTile";
+            this.ticketTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.ticketTile_ItemClick);
+            // 
             // tileBarGroup3
             // 
-            this.tileBarGroup3.Items.Add(this.tileBarItem1);
+            this.tileBarGroup3.Items.Add(this.reportsTile);
             this.tileBarGroup3.Items.Add(this.logoutTile);
             this.tileBarGroup3.Name = "tileBarGroup3";
             // 
-            // tileBarItem1
+            // reportsTile
             // 
-            this.tileBarItem1.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
-            this.tileBarItem1.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
-            this.tileBarItem1.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.tileBarItem1.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileBarItem1.AppearanceItem.Normal.Options.UseBorderColor = true;
-            this.tileBarItem1.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileBarItem1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement12.Text = "Reports";
-            this.tileBarItem1.Elements.Add(tileItemElement12);
-            this.tileBarItem1.Id = 11;
-            this.tileBarItem1.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.tileBarItem1.Name = "tileBarItem1";
+            this.reportsTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.reportsTile.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
+            this.reportsTile.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.reportsTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.reportsTile.AppearanceItem.Normal.Options.UseBorderColor = true;
+            this.reportsTile.AppearanceItem.Normal.Options.UseFont = true;
+            this.reportsTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement6.Text = "Reports";
+            this.reportsTile.Elements.Add(tileItemElement6);
+            this.reportsTile.Id = 11;
+            this.reportsTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.reportsTile.Name = "reportsTile";
+            this.reportsTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.reportsTile_ItemClick);
             // 
             // logoutTile
             // 
@@ -175,9 +187,9 @@
             this.logoutTile.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.logoutTile.AppearanceItem.Normal.Options.UseFont = true;
             this.logoutTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement13.Text = "Logout";
-            tileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
-            this.logoutTile.Elements.Add(tileItemElement13);
+            tileItemElement7.Text = "Logout";
+            tileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomRight;
+            this.logoutTile.Elements.Add(tileItemElement7);
             this.logoutTile.Id = 14;
             this.logoutTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.logoutTile.Name = "logoutTile";
@@ -194,17 +206,6 @@
             this.gcHome.ShowCaption = false;
             this.gcHome.Size = new System.Drawing.Size(1940, 829);
             this.gcHome.TabIndex = 3;
-            // 
-            // ticketTile
-            // 
-            this.ticketTile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
-            this.ticketTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement14.Text = "Ticket";
-            this.ticketTile.Elements.Add(tileItemElement14);
-            this.ticketTile.Id = 16;
-            this.ticketTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.ticketTile.Name = "ticketTile";
-            this.ticketTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.ticketTile_ItemClick);
             // 
             // StaffMainForm
             // 
@@ -230,7 +231,7 @@
         private DevExpress.XtraBars.Navigation.TileBarItem theaterTile;
         private DevExpress.XtraBars.Navigation.TileBarItem showtimeTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup3;
-        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem1;
+        private DevExpress.XtraBars.Navigation.TileBarItem reportsTile;
         private DevExpress.XtraBars.Navigation.TileBarItem logoutTile;
         public DevExpress.XtraEditors.GroupControl gcHome;
         private DevExpress.XtraBars.Navigation.TileBarItem ticketTile;
