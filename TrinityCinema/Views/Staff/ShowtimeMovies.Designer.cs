@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowtimeMovies));
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
             DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
@@ -43,15 +44,25 @@
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement4 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement5 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement6 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             this.MoviePoster = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Title = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.MovieID = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.Genre = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.Hall = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.Startime = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.gcShowMovies = new DevExpress.XtraGrid.GridControl();
             this.tvShowMovies = new DevExpress.XtraGrid.Views.Tile.TileView();
-            this.TheaterID = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.ShowtimeID = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.ShowtimeMovieslayoutControl1ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.gcShowMoviesitem = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcShowMovies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvShowMovies)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ShowtimeMovieslayoutControl1ConvertedLayout)).BeginInit();
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcShowMoviesitem)).BeginInit();
             this.SuspendLayout();
             // 
             // MoviePoster
@@ -90,13 +101,33 @@
             this.Genre.VisibleIndex = 2;
             this.Genre.Width = 94;
             // 
+            // Hall
+            // 
+            this.Hall.FieldName = "TheaterName";
+            this.Hall.MinWidth = 25;
+            this.Hall.Name = "Hall";
+            this.Hall.Visible = true;
+            this.Hall.VisibleIndex = 4;
+            this.Hall.Width = 94;
+            // 
+            // Startime
+            // 
+            this.Startime.FieldName = "StartTime";
+            this.Startime.MinWidth = 25;
+            this.Startime.Name = "Startime";
+            this.Startime.Visible = true;
+            this.Startime.VisibleIndex = 5;
+            this.Startime.Width = 94;
+            // 
             // gcShowMovies
             // 
-            this.gcShowMovies.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcShowMovies.Location = new System.Drawing.Point(0, 0);
+            this.gcShowMovies.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gcShowMovies.BackgroundImage")));
+            this.gcShowMovies.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gcShowMovies.Location = new System.Drawing.Point(3, 3);
             this.gcShowMovies.MainView = this.tvShowMovies;
+            this.gcShowMovies.Margin = new System.Windows.Forms.Padding(0);
             this.gcShowMovies.Name = "gcShowMovies";
-            this.gcShowMovies.Size = new System.Drawing.Size(1151, 654);
+            this.gcShowMovies.Size = new System.Drawing.Size(1359, 762);
             this.gcShowMovies.TabIndex = 8;
             this.gcShowMovies.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tvShowMovies});
@@ -108,10 +139,14 @@
             this.MovieID,
             this.Genre,
             this.Title,
-            this.TheaterID});
+            this.Hall,
+            this.Startime,
+            this.ShowtimeID});
             this.tvShowMovies.GridControl = this.gcShowMovies;
             this.tvShowMovies.Name = "tvShowMovies";
-            this.tvShowMovies.OptionsTiles.ItemSize = new System.Drawing.Size(344, 584);
+            this.tvShowMovies.OptionsTiles.IndentBetweenGroups = 33;
+            this.tvShowMovies.OptionsTiles.ItemSize = new System.Drawing.Size(510, 846);
+            this.tvShowMovies.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tvShowMovies.OptionsTiles.RowCount = 0;
             this.tvShowMovies.TileColumns.Add(tableColumnDefinition1);
             this.tvShowMovies.TileColumns.Add(tableColumnDefinition2);
@@ -143,7 +178,7 @@
             tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement2.Appearance.Hovered.Font = new System.Drawing.Font("Arial", 12F);
             tileViewItemElement2.Appearance.Hovered.Options.UseFont = true;
-            tileViewItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            tileViewItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             tileViewItemElement2.Appearance.Normal.Options.UseFont = true;
             tileViewItemElement2.Column = this.Title;
             tileViewItemElement2.ColumnIndex = 1;
@@ -151,7 +186,7 @@
             tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement2.RowIndex = 4;
             tileViewItemElement2.Text = "Title";
-            tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
             tileViewItemElement3.Column = this.MovieID;
             tileViewItemElement3.ColumnIndex = 1;
             tileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
@@ -160,43 +195,92 @@
             tileViewItemElement3.Text = "MovieID";
             tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
             tileViewItemElement3.TextVisible = false;
+            tileViewItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileViewItemElement4.Appearance.Normal.Options.UseFont = true;
             tileViewItemElement4.Column = this.Genre;
             tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement4.RowIndex = 4;
             tileViewItemElement4.Text = "Genre";
-            tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            tileViewItemElement5.Column = this.TheaterID;
+            tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement5.Column = this.Hall;
             tileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileViewItemElement5.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
             tileViewItemElement5.Text = "TheaterID";
             tileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter;
             tileViewItemElement5.TextVisible = false;
+            tileViewItemElement6.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileViewItemElement6.Appearance.Normal.Options.UseFont = true;
+            tileViewItemElement6.Column = this.Startime;
+            tileViewItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileViewItemElement6.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Squeeze;
+            tileViewItemElement6.RowIndex = 4;
+            tileViewItemElement6.Text = "Startime";
+            tileViewItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement1);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement2);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement3);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement4);
             this.tvShowMovies.TileTemplate.Add(tileViewItemElement5);
+            this.tvShowMovies.TileTemplate.Add(tileViewItemElement6);
             this.tvShowMovies.ItemClick += new DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventHandler(this.tvShowMovies_ItemClick);
             // 
-            // TheaterID
+            // ShowtimeID
             // 
-            this.TheaterID.FieldName = "TheaterID";
-            this.TheaterID.MinWidth = 25;
-            this.TheaterID.Name = "TheaterID";
-            this.TheaterID.Visible = true;
-            this.TheaterID.VisibleIndex = 4;
-            this.TheaterID.Width = 94;
+            this.ShowtimeID.FieldName = "ShowtimeID";
+            this.ShowtimeID.MinWidth = 25;
+            this.ShowtimeID.Name = "ShowtimeID";
+            this.ShowtimeID.Visible = true;
+            this.ShowtimeID.VisibleIndex = 6;
+            this.ShowtimeID.Width = 94;
+            // 
+            // ShowtimeMovieslayoutControl1ConvertedLayout
+            // 
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.Controls.Add(this.gcShowMovies);
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.Location = new System.Drawing.Point(0, 0);
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.Name = "ShowtimeMovieslayoutControl1ConvertedLayout";
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.Root = this.layoutControlGroup1;
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.Size = new System.Drawing.Size(1365, 768);
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.TabIndex = 9;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.gcShowMoviesitem});
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1365, 768);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // gcShowMoviesitem
+            // 
+            this.gcShowMoviesitem.Control = this.gcShowMovies;
+            this.gcShowMoviesitem.Location = new System.Drawing.Point(0, 0);
+            this.gcShowMoviesitem.Name = "gcShowMoviesitem";
+            this.gcShowMoviesitem.Size = new System.Drawing.Size(1365, 768);
+            this.gcShowMoviesitem.TextSize = new System.Drawing.Size(0, 0);
+            this.gcShowMoviesitem.TextVisible = false;
             // 
             // ShowtimeMovies
             // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gcShowMovies);
+            this.ClientSize = new System.Drawing.Size(1365, 768);
+            this.Controls.Add(this.ShowtimeMovieslayoutControl1ConvertedLayout);
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.Name = "ShowtimeMovies";
-            this.Size = new System.Drawing.Size(1151, 654);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gcShowMovies)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvShowMovies)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ShowtimeMovieslayoutControl1ConvertedLayout)).EndInit();
+            this.ShowtimeMovieslayoutControl1ConvertedLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcShowMoviesitem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,6 +293,11 @@
         private DevExpress.XtraGrid.Columns.TileViewColumn MovieID;
         private DevExpress.XtraGrid.Columns.TileViewColumn Genre;
         private DevExpress.XtraGrid.Columns.TileViewColumn Title;
-        private DevExpress.XtraGrid.Columns.TileViewColumn TheaterID;
+        private DevExpress.XtraGrid.Columns.TileViewColumn Hall;
+        private DevExpress.XtraLayout.LayoutControl ShowtimeMovieslayoutControl1ConvertedLayout;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlItem gcShowMoviesitem;
+        private DevExpress.XtraGrid.Columns.TileViewColumn Startime;
+        private DevExpress.XtraGrid.Columns.TileViewColumn ShowtimeID;
     }
 }

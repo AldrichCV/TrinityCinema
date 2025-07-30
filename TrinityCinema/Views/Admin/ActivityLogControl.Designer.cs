@@ -43,6 +43,12 @@
             // gcLogs
             // 
             this.gcLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcLogs.EmbeddedNavigator.Buttons.Append.Enabled = false;
+            this.gcLogs.EmbeddedNavigator.Buttons.Append.Visible = false;
+            this.gcLogs.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
+            this.gcLogs.EmbeddedNavigator.Buttons.Edit.Visible = false;
+            this.gcLogs.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
+            this.gcLogs.EmbeddedNavigator.Buttons.Remove.Visible = false;
             this.gcLogs.Location = new System.Drawing.Point(0, 0);
             this.gcLogs.MainView = this.gvActivities;
             this.gcLogs.Name = "gcLogs";
@@ -50,6 +56,7 @@
             this.logDescription});
             this.gcLogs.Size = new System.Drawing.Size(780, 586);
             this.gcLogs.TabIndex = 0;
+            this.gcLogs.UseEmbeddedNavigator = true;
             this.gcLogs.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvActivities});
             // 

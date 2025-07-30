@@ -15,7 +15,6 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using TrinityCinema.Models;
 
-
 namespace TrinityCinema.Views.Admin
 {
     public partial class AdminMainForm : DevExpress.XtraEditors.XtraForm
@@ -37,7 +36,6 @@ namespace TrinityCinema.Views.Admin
 
         private HomeDashboard dashboard;
         #endregion
-
         public AdminMainForm(string loggedInUser, EventHandler dashboardLoadedHandler = null)
         {
             InitializeComponent();
@@ -51,6 +49,7 @@ namespace TrinityCinema.Views.Admin
             gcHome.Controls.Add(dashboard);
 
             this.Shown += AdminMainForm_Shown;
+           
         }
 
         #region Initialization
@@ -59,10 +58,11 @@ namespace TrinityCinema.Views.Admin
             dashboard.DashboardReady += (s, args) =>
             {
                 DashboardLoaded?.Invoke(this, EventArgs.Empty);
+                
             };
-
             // Defer loading until form is visible
             await dashboard.InitializeDashboardAsync();
+           
         }
 
         public void StartFadeIn()

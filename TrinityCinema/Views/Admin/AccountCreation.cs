@@ -35,6 +35,7 @@ namespace TrinityCinema.Views
             this.loggedInUser = loggedInUser;
         }
 
+
         private static string GenerateID()
         {
             Random rand = new Random();

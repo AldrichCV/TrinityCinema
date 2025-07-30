@@ -12,17 +12,23 @@ using System.Windows.Forms;
 using TrinityCinema.Models;
 using TrinityCinema.Views;
 using TrinityCinema.Views.Admin;
+using TrinityCinema.Views.Staff;
+using System.Media;
 
 namespace TrinityCinema
 {
     internal static class Program
     {
+        static SoundPlayer splashPlayer;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new SeatManagement());
@@ -38,6 +44,7 @@ namespace TrinityCinema
 
                     var splash = new SplashScreenManager(null, typeof(LoginSplash), true, true);
                     splash.ShowWaitForm();
+                    //PlaySplashMusic();
                     splash.SetWaitFormDescription("Loading interface...");
 
                     Form mainForm = null;
@@ -66,6 +73,7 @@ namespace TrinityCinema
                                 {
                                     if (splash.IsSplashFormVisible)
                                         splash.CloseWaitForm();
+                                                StopSplashMusic();
 
                                     adminForm.StartFadeIn();
                                 }));
@@ -84,6 +92,7 @@ namespace TrinityCinema
 
                             if (splash.IsSplashFormVisible)
                                 splash.CloseWaitForm();
+                                   StopSplashMusic();
                         });
                     }
                     else
@@ -95,12 +104,36 @@ namespace TrinityCinema
                     Application.Run(mainForm);
                 }
             }
+        }
+            static void PlaySplashMusic()
+            {
+                try
+                {
+                    splashPlayer = new SoundPlayer("rbd.wav"); // Make sure file exists
+                    splashPlayer.Play(); // Or use .PlayLooping() if needed
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to play splash sound: " + ex.Message);
+                }
+            }
 
+            // 🛑 Stop music if looping
+            static void StopSplashMusic()
+            {
+                try
+                {
+                    splashPlayer?.Stop();
+                }
+                catch { /* Silently ignore */ }
+            }
         }
 
     }
 
-    }
+    
+
+    
         
    
 
