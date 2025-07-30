@@ -32,6 +32,8 @@
             this.svgImageBox1 = new DevExpress.XtraEditors.SvgImageBox();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.lcStatus = new DevExpress.XtraEditors.LabelControl();
+            this.lcMode = new DevExpress.XtraEditors.LabelControl();
             this.cbAction = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cbHall = new DevExpress.XtraEditors.ComboBoxEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -40,10 +42,8 @@
             this.actionLayout = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.lcMode = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.lcStatus = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
@@ -101,6 +101,32 @@
             this.layoutControl1.Size = new System.Drawing.Size(360, 734);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // lcStatus
+            // 
+            this.lcStatus.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lcStatus.Appearance.Options.UseFont = true;
+            this.lcStatus.Appearance.Options.UseTextOptions = true;
+            this.lcStatus.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lcStatus.Location = new System.Drawing.Point(16, 262);
+            this.lcStatus.Name = "lcStatus";
+            this.lcStatus.Size = new System.Drawing.Size(328, 16);
+            this.lcStatus.StyleController = this.layoutControl1;
+            this.lcStatus.TabIndex = 2;
+            this.lcStatus.Text = "--";
+            // 
+            // lcMode
+            // 
+            this.lcMode.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lcMode.Appearance.Options.UseFont = true;
+            this.lcMode.Appearance.Options.UseTextOptions = true;
+            this.lcMode.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lcMode.Location = new System.Drawing.Point(16, 218);
+            this.lcMode.Name = "lcMode";
+            this.lcMode.Size = new System.Drawing.Size(328, 28);
+            this.lcMode.StyleController = this.layoutControl1;
+            this.lcMode.TabIndex = 2;
+            this.lcMode.Text = "--";
             // 
             // cbAction
             // 
@@ -202,19 +228,6 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(334, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // lcMode
-            // 
-            this.lcMode.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lcMode.Appearance.Options.UseFont = true;
-            this.lcMode.Appearance.Options.UseTextOptions = true;
-            this.lcMode.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lcMode.Location = new System.Drawing.Point(16, 218);
-            this.lcMode.Name = "lcMode";
-            this.lcMode.Size = new System.Drawing.Size(328, 28);
-            this.lcMode.StyleController = this.layoutControl1;
-            this.lcMode.TabIndex = 2;
-            this.lcMode.Text = "--";
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.lcMode;
@@ -233,19 +246,6 @@
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(334, 10);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // lcStatus
-            // 
-            this.lcStatus.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lcStatus.Appearance.Options.UseFont = true;
-            this.lcStatus.Appearance.Options.UseTextOptions = true;
-            this.lcStatus.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lcStatus.Location = new System.Drawing.Point(16, 262);
-            this.lcStatus.Name = "lcStatus";
-            this.lcStatus.Size = new System.Drawing.Size(328, 16);
-            this.lcStatus.StyleController = this.layoutControl1;
-            this.lcStatus.TabIndex = 2;
-            this.lcStatus.Text = "--";
             // 
             // layoutControlItem7
             // 
