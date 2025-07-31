@@ -9,9 +9,9 @@ namespace TrinityCinema.Models
     public class GlobalSettings
     {
         //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
-        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
+        //public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
         //public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
-
+        public static string connectionString = @"";
         #region AccountsSQL
 
         #region Select Queries
@@ -139,6 +139,14 @@ namespace TrinityCinema.Models
                                                                 LEFT JOIN MovieRating mr ON mr.RatingID = m.ContentRating
                                                                 LEFT JOIN Showtimes s ON s.MovieID = m.MovieID
                                                                 LEFT JOIN Theaters t ON t.TheaterID = s.TheaterID";
+
+        public static string getTraction = @"SELECT [TransactionId]
+                                          ,'Seat ' + SeatId + ' booked for Showtime #' + CAST(ShowtimeId AS VARCHAR) AS Description
+                                          ,[TransactionDate]
+                                          ,[Price] AS Amount
+                                          ,[Status]
+                                          ,[CreatedBy]
+                                      FROM [CinemaDB].[dbo].[BookingTransactions]";
 
 
         #endregion

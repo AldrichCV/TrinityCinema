@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Views.Admin;
+using TrinityCinema.Views.Staff;
 
 
 namespace TrinityCinema.Models
@@ -516,6 +517,39 @@ namespace TrinityCinema.Models
             adminForm.gcHome.Controls.Add(newControl);
             newControl.BringToFront();
         }
+
+        public static void RefreshStaffHome<T>(
+    Func<StaffMainForm, T> createNewControl,
+    Action<T> refreshIfExists = null
+) where T : Control
+        {
+            StaffMainForm staffForm = Application.OpenForms.OfType<StaffMainForm>().FirstOrDefault();
+            if (staffForm == null)
+            {
+                MessageBox.Show("StaffHome not found.");
+                return;
+            }
+
+            T oldControl = staffForm.gcHome.Controls.OfType<T>().FirstOrDefault();
+            if (oldControl != null)
+            {
+                if (refreshIfExists != null)
+                {
+                    refreshIfExists(oldControl);
+                    oldControl.BringToFront();
+                    return;
+                }
+
+                staffForm.gcHome.Controls.Remove(oldControl);
+                oldControl.Dispose();
+            }
+
+            T newControl = createNewControl(staffForm);
+            newControl.Dock = DockStyle.Fill;
+            staffForm.gcHome.Controls.Add(newControl);
+            newControl.BringToFront();
+        }
+
 
     }
 }

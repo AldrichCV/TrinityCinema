@@ -35,6 +35,7 @@ namespace TrinityCinema.Views.Admin
         public LoginForm()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             InitializeDelayTimer();
             splashScreenManager = new SplashScreenManager(this, typeof(LoginSplash), true, true);
             Styles();
@@ -205,6 +206,16 @@ namespace TrinityCinema.Views.Admin
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.Shift && e.KeyCode == Keys.M)
+            {
+                // Show your desired form
+                var form = new ConnConfig(); // or StaffMainForm, etc.
+                form.Show();
+            }
         }
     }
     }

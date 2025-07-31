@@ -8,14 +8,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrinityCinema.Models;
 
 namespace TrinityCinema.Views.Staff
 {
     public partial class MyTransactions : DevExpress.XtraEditors.XtraUserControl
     {
-        public MyTransactions()
+        AllMethods allMethods = new AllMethods();
+        private StaffMainForm staffMainForm;  
+        private string loggedInUser;
+        public MyTransactions(StaffMainForm staffMainForm, string loggedInUser)
         {
             InitializeComponent();
+            this.staffMainForm = staffMainForm;
+            this.loggedInUser = loggedInUser;
+
+            // Start async initialization without blocking the UI thread
+            _ = InitializeAsync();
+        }
+
+        private async Task InitializeAsync()
+        {
+            var logs = await GetLogsAsync();
+            AllMethods.GridCustomization(gcTransactions, gvTraction, logs);
+        }
+
+        public async Task<List<Traction>> GetLogsAsync()
+        {
+            string query = GlobalSettings.getTraction;
+            return await Task.Run(() => allMethods.GetRecords<Traction>(query));
+        }
+
+        public async void RefreshList()
+        {
+            try
+            {
+                var logs = await GetLogsAsync();
+                AllMethods.GridCustomization(gcTransactions, gvTraction, logs);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Failed to refresh user list.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PrintTransaction_ItemClick(object sender, TileItemEventArgs e)
+        {
+
         }
     }
 }
+    

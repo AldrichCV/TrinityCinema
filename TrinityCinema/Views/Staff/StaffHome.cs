@@ -36,5 +36,12 @@ namespace TrinityCinema.Views.Staff
             ShowtimeMovies ticketListForm = new ShowtimeMovies(staffMainForm, loggedInUser);
             ticketListForm.Show();
         }
+
+        private void Transactions_ItemClick(object sender, TileItemEventArgs e)
+        {
+            AllMethods.RefreshStaffHome<MyTransactions>(
+           createNewControl: form => new MyTransactions(staffMainForm, loggedInUser),
+           refreshIfExists: control => control.RefreshList());
+        }
     }
 }

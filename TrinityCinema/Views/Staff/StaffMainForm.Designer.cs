@@ -129,6 +129,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.GroupControl gcHome;
+        public DevExpress.XtraEditors.GroupControl gcHome;
     }
 }

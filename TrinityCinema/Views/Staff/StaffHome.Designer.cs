@@ -90,6 +90,7 @@
             this.Transactions.Id = 4;
             this.Transactions.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.Transactions.Name = "Transactions";
+            this.Transactions.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.Transactions_ItemClick);
             // 
             // Accounts
             // 

@@ -144,5 +144,17 @@ namespace TrinityCinema.Models
         public string Status { get; set; } // e.g., "Purchased", "Cancelled"
     }
 
-}
+    public class Traction
+    {
+        public int TransactionId { get; set; }
+        public int ShowtimeId { get; set; }
+        public string SeatId { get; set; }
+        public string Description { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public decimal Amount { get; set; }
+        public string Status { get; set; }      // Consider using an enum
+        public string CreatedBy { get; set; }
+    }
 
+
+}
