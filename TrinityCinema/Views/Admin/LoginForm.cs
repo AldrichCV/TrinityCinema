@@ -19,6 +19,7 @@ namespace TrinityCinema.Views.Admin
 {
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
+        #region Class Variables
         private SplashScreenManager splashScreenManager;
 
         private int attempt = 0;                     // Tracks the current failed login attempts
@@ -29,7 +30,8 @@ namespace TrinityCinema.Views.Admin
 
         public string UserID { get; private set; }
         public string Role { get; private set; }
-      
+        #endregion
+
         public LoginForm()
         {
             InitializeComponent();
@@ -81,6 +83,9 @@ namespace TrinityCinema.Views.Admin
             {
                 this.UserID = "admin";
                 this.Role = "Manager";
+
+                authService.Log("admin", "Login", "Admin logged in via default credentials");
+
                 this.DialogResult = DialogResult.OK;
                 return;
             }
@@ -89,6 +94,7 @@ namespace TrinityCinema.Views.Admin
 
             if (userStatus == null)
             {
+                authService.Log(username, "Failed Login", "Attempted login for non-existing user");
                 HandleFailedAttempt();
                 return;
             }
@@ -96,6 +102,7 @@ namespace TrinityCinema.Views.Admin
             if (userStatus.Value.IsLocked)
             {
                 XtraMessageBox.Show("Your account is locked.", "Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                authService.Log(username, "Failed Login", "Login attempt on locked account");
                 return;
             }
 
@@ -107,14 +114,19 @@ namespace TrinityCinema.Views.Admin
 
                 this.UserID = loginResult.UserID;
                 this.Role = loginResult.Role;
+
+                authService.Log(loginResult.UserID, "Login", $"{loginResult.UserID} successfully logged in");
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
+                authService.Log(username, "Failed Login", "Incorrect password");
+
                 HandleFailedAttempt(new User
                 {
                     Username = username,
                     FailedAttempts = userStatus.Value.FailedAttempts
+
                 });
             }
         }

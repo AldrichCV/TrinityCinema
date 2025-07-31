@@ -40,7 +40,6 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.teDuration = new DevExpress.XtraEditors.TimeEdit();
             this.leGenre = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.btnNewGenre = new DevExpress.XtraEditors.SimpleButton();
             this.leRating = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.Title = new DevExpress.XtraLayout.LayoutControlItem();
@@ -49,7 +48,6 @@
             this.Genre = new DevExpress.XtraLayout.LayoutControlItem();
             this.Duration = new DevExpress.XtraLayout.LayoutControlItem();
             this.Status = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Rating = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -72,7 +70,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Genre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Duration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Status)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rating)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -105,7 +102,6 @@
             this.layoutControl1.Controls.Add(this.groupControl2);
             this.layoutControl1.Controls.Add(this.teDuration);
             this.layoutControl1.Controls.Add(this.leGenre);
-            this.layoutControl1.Controls.Add(this.btnNewGenre);
             this.layoutControl1.Controls.Add(this.leRating);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(30, 30);
@@ -129,7 +125,7 @@
             // 
             // teTitle
             // 
-            this.teTitle.Location = new System.Drawing.Point(10, 32);
+            this.teTitle.Location = new System.Drawing.Point(10, 36);
             this.teTitle.Name = "teTitle";
             this.teTitle.Size = new System.Drawing.Size(631, 34);
             this.teTitle.StyleController = this.layoutControl1;
@@ -137,9 +133,9 @@
             // 
             // meDescription
             // 
-            this.meDescription.Location = new System.Drawing.Point(82, 242);
+            this.meDescription.Location = new System.Drawing.Point(95, 242);
             this.meDescription.Name = "meDescription";
-            this.meDescription.Size = new System.Drawing.Size(566, 345);
+            this.meDescription.Size = new System.Drawing.Size(553, 345);
             this.meDescription.StyleController = this.layoutControl1;
             this.meDescription.TabIndex = 4;
             // 
@@ -165,7 +161,7 @@
             // beStatus
             // 
             this.beStatus.EditValue = null;
-            this.beStatus.Location = new System.Drawing.Point(266, 622);
+            this.beStatus.Location = new System.Drawing.Point(266, 626);
             this.beStatus.Name = "beStatus";
             this.beStatus.Properties.Appearance.ForeColor = System.Drawing.Color.White;
             this.beStatus.Properties.Appearance.Options.UseForeColor = true;
@@ -189,7 +185,7 @@
             // teDuration
             // 
             this.teDuration.EditValue = null;
-            this.teDuration.Location = new System.Drawing.Point(10, 622);
+            this.teDuration.Location = new System.Drawing.Point(10, 626);
             this.teDuration.Name = "teDuration";
             this.teDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -204,27 +200,17 @@
             // leGenre
             // 
             this.leGenre.EditValue = "";
-            this.leGenre.Location = new System.Drawing.Point(10, 118);
+            this.leGenre.Location = new System.Drawing.Point(10, 122);
             this.leGenre.Name = "leGenre";
             this.leGenre.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.leGenre.Size = new System.Drawing.Size(527, 34);
+            this.leGenre.Size = new System.Drawing.Size(631, 34);
             this.leGenre.StyleController = this.layoutControl1;
             this.leGenre.TabIndex = 5;
             // 
-            // btnNewGenre
-            // 
-            this.btnNewGenre.Location = new System.Drawing.Point(550, 116);
-            this.btnNewGenre.Name = "btnNewGenre";
-            this.btnNewGenre.Size = new System.Drawing.Size(98, 36);
-            this.btnNewGenre.StyleController = this.layoutControl1;
-            this.btnNewGenre.TabIndex = 10;
-            this.btnNewGenre.Text = "NEW";
-            this.btnNewGenre.Click += new System.EventHandler(this.btnNewGenre_Click);
-            // 
             // leRating
             // 
-            this.leRating.Location = new System.Drawing.Point(10, 194);
+            this.leRating.Location = new System.Drawing.Point(10, 198);
             this.leRating.Name = "leRating";
             this.leRating.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -236,7 +222,6 @@
             this.leRating.Size = new System.Drawing.Size(631, 34);
             this.leRating.StyleController = this.layoutControl1;
             this.leRating.TabIndex = 11;
-            this.leRating.EditValueChanged += new System.EventHandler(this.leRating_EditValueChanged);
             // 
             // Root
             // 
@@ -249,7 +234,6 @@
             this.Genre,
             this.Duration,
             this.Status,
-            this.layoutControlItem2,
             this.layoutControlItem4,
             this.Rating,
             this.layoutControlItem1});
@@ -259,7 +243,9 @@
             // 
             // Title
             // 
+            this.Title.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Title.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Title.AppearanceItemCaption.Options.UseFont = true;
             this.Title.AppearanceItemCaption.Options.UseForeColor = true;
             this.Title.Control = this.teTitle;
             this.Title.Location = new System.Drawing.Point(0, 0);
@@ -269,11 +255,13 @@
             this.Title.Size = new System.Drawing.Size(651, 86);
             this.Title.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Title.TextLocation = DevExpress.Utils.Locations.Top;
-            this.Title.TextSize = new System.Drawing.Size(48, 16);
+            this.Title.TextSize = new System.Drawing.Size(58, 20);
             // 
             // Description
             // 
+            this.Description.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Description.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Description.AppearanceItemCaption.Options.UseFont = true;
             this.Description.AppearanceItemCaption.Options.UseForeColor = true;
             this.Description.AppearanceItemCaption.Options.UseTextOptions = true;
             this.Description.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -291,7 +279,7 @@
             this.Description.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Description.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.Description.TextLocation = DevExpress.Utils.Locations.Left;
-            this.Description.TextSize = new System.Drawing.Size(63, 16);
+            this.Description.TextSize = new System.Drawing.Size(76, 20);
             this.Description.TextToControlDistance = 16;
             // 
             // peImage
@@ -310,22 +298,25 @@
             // 
             // Genre
             // 
+            this.Genre.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Genre.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Genre.AppearanceItemCaption.Options.UseFont = true;
             this.Genre.AppearanceItemCaption.Options.UseForeColor = true;
             this.Genre.Control = this.leGenre;
             this.Genre.Location = new System.Drawing.Point(0, 86);
-            this.Genre.MaxSize = new System.Drawing.Size(547, 76);
-            this.Genre.MinSize = new System.Drawing.Size(547, 76);
+            this.Genre.MinSize = new System.Drawing.Size(92, 76);
             this.Genre.Name = "Genre";
             this.Genre.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.Genre.Size = new System.Drawing.Size(547, 76);
+            this.Genre.Size = new System.Drawing.Size(651, 76);
             this.Genre.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Genre.TextLocation = DevExpress.Utils.Locations.Top;
-            this.Genre.TextSize = new System.Drawing.Size(48, 16);
+            this.Genre.TextSize = new System.Drawing.Size(58, 20);
             // 
             // Duration
             // 
+            this.Duration.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Duration.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Duration.AppearanceItemCaption.Options.UseFont = true;
             this.Duration.AppearanceItemCaption.Options.UseForeColor = true;
             this.Duration.Control = this.teDuration;
             this.Duration.Location = new System.Drawing.Point(0, 590);
@@ -335,11 +326,13 @@
             this.Duration.Size = new System.Drawing.Size(256, 78);
             this.Duration.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Duration.TextLocation = DevExpress.Utils.Locations.Top;
-            this.Duration.TextSize = new System.Drawing.Size(48, 16);
+            this.Duration.TextSize = new System.Drawing.Size(58, 20);
             // 
             // Status
             // 
+            this.Status.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Status.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Status.AppearanceItemCaption.Options.UseFont = true;
             this.Status.AppearanceItemCaption.Options.UseForeColor = true;
             this.Status.Control = this.beStatus;
             this.Status.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -352,20 +345,7 @@
             this.Status.Size = new System.Drawing.Size(400, 78);
             this.Status.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Status.TextLocation = DevExpress.Utils.Locations.Top;
-            this.Status.TextSize = new System.Drawing.Size(48, 16);
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.btnNewGenre;
-            this.layoutControlItem2.Location = new System.Drawing.Point(547, 86);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(104, 76);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(104, 76);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 30, 10);
-            this.layoutControlItem2.Size = new System.Drawing.Size(104, 76);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
+            this.Status.TextSize = new System.Drawing.Size(58, 20);
             // 
             // layoutControlItem4
             // 
@@ -378,7 +358,9 @@
             // 
             // Rating
             // 
+            this.Rating.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Rating.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.Rating.AppearanceItemCaption.Options.UseFont = true;
             this.Rating.AppearanceItemCaption.Options.UseForeColor = true;
             this.Rating.Control = this.leRating;
             this.Rating.Location = new System.Drawing.Point(0, 162);
@@ -389,7 +371,7 @@
             this.Rating.Size = new System.Drawing.Size(651, 77);
             this.Rating.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.Rating.TextLocation = DevExpress.Utils.Locations.Top;
-            this.Rating.TextSize = new System.Drawing.Size(48, 16);
+            this.Rating.TextSize = new System.Drawing.Size(58, 20);
             // 
             // layoutControlItem1
             // 
@@ -432,7 +414,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Genre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Duration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Status)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rating)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -460,8 +441,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.SimpleButton btnSubmit;
         private DevExpress.XtraEditors.TimeEdit teDuration;
-        private DevExpress.XtraEditors.SimpleButton btnNewGenre;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         public DevExpress.XtraEditors.CheckedComboBoxEdit leGenre;
         private DevExpress.XtraLayout.LayoutControlItem Rating;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

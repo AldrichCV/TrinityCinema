@@ -156,6 +156,12 @@
     <Compile Include="Reports\WeeklyTicketReport.Designer.cs">
       <DependentUpon>WeeklyTicketReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\XtraTicket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XtraTicket.Designer.cs">
+      <DependentUpon>XtraTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdminHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,41 +312,29 @@
     <Compile Include="Views\SeatsControl.Designer.cs">
       <DependentUpon>SeatsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Staff\BuyTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Staff\BuyTicket.Designer.cs">
-      <DependentUpon>BuyTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Staff\ChooseSeatLayout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Staff\ChooseSeatLayout.Designer.cs">
-      <DependentUpon>ChooseSeatLayout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Staff\DailyPicker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Staff\DailyPicker.Designer.cs">
-      <DependentUpon>DailyPicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Staff\MonthYearPicker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Staff\MonthYearPicker.Designer.cs">
-      <DependentUpon>MonthYearPicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Staff\ReportsForm.cs">
+    <Compile Include="Views\Staff\MyTransactions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Staff\ReportsForm.Designer.cs">
-      <DependentUpon>ReportsForm.cs</DependentUpon>
+    <Compile Include="Views\Staff\MyTransactions.Designer.cs">
+      <DependentUpon>MyTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\SeatLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\SeatLayout.Designer.cs">
+      <DependentUpon>SeatLayout.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Staff\ShowtimeMovies.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Staff\ShowtimeMovies.Designer.cs">
       <DependentUpon>ShowtimeMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffHome.Designer.cs">
+      <DependentUpon>StaffHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Staff\StaffMainForm.cs">
       <SubType>Form</SubType>
@@ -386,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\WeeklyTicketReport.resx">
       <DependentUpon>WeeklyTicketReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XtraTicket.resx">
+      <DependentUpon>XtraTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AdminHome.resx">
       <DependentUpon>AdminHome.cs</DependentUpon>
@@ -462,23 +459,17 @@
     <EmbeddedResource Include="Views\SeatsControl.resx">
       <DependentUpon>SeatsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Staff\BuyTicket.resx">
-      <DependentUpon>BuyTicket.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Staff\MyTransactions.resx">
+      <DependentUpon>MyTransactions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Staff\ChooseSeatLayout.resx">
-      <DependentUpon>ChooseSeatLayout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Staff\DailyPicker.resx">
-      <DependentUpon>DailyPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Staff\MonthYearPicker.resx">
-      <DependentUpon>MonthYearPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Staff\ReportsForm.resx">
-      <DependentUpon>ReportsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Staff\SeatLayout.resx">
+      <DependentUpon>SeatLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\ShowtimeMovies.resx">
       <DependentUpon>ShowtimeMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\StaffHome.resx">
+      <DependentUpon>StaffHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Staff\StaffMainForm.resx">
       <DependentUpon>StaffMainForm.cs</DependentUpon>

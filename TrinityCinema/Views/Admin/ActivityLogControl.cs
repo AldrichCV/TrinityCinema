@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,13 +21,34 @@ namespace TrinityCinema.Views.Admin
         {
             InitializeComponent();
             this.adminMainForm = adminMainForm;
-            AllMethods.GridCustomization(gcLogs, gvActivities, GetMovies());
+
+            // Start async initialization without blocking the UI thread
+            _ = InitializeAsync();
         }
 
-        public List<ActivityLog> GetMovies()
+        private async Task InitializeAsync()
+        {
+            var logs = await GetLogsAsync();
+            AllMethods.GridCustomization(gcLogs, gvActivities, logs);
+        }
+
+        public async Task<List<ActivityLog>> GetLogsAsync()
         {
             string query = GlobalSettings.getActivityLog;
-            return allMethods.GetRecords<ActivityLog>(query);
+            return await Task.Run(() => allMethods.GetRecords<ActivityLog>(query));
+        }
+
+        public async void RefreshList()
+        {
+            try
+            {
+                var logs = await GetLogsAsync();
+                AllMethods.GridCustomization(gcLogs, gvActivities, logs);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Failed to refresh user list.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
     }

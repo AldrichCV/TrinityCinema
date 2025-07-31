@@ -68,6 +68,8 @@
             this.gcStatusDisplay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcAction = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemActionButtons = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.Duration = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Endtime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribtnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ribtnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
@@ -77,11 +79,11 @@
             this.headerLayoutControl = new DevExpress.XtraLayout.LayoutControl();
             this.teShowFilter = new DevExpress.XtraEditors.DateEdit();
             this.btnAllRecords = new DevExpress.XtraEditors.SimpleButton();
+            this.btnFilterToday = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.Search = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnFilterToday = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcShowtime)).BeginInit();
@@ -123,7 +125,7 @@
             this.repositoryItemActionButtons,
             this.ribtnEdit,
             this.ribtnDelete});
-            this.gcShowtime.Size = new System.Drawing.Size(1151, 440);
+            this.gcShowtime.Size = new System.Drawing.Size(1151, 494);
             this.gcShowtime.TabIndex = 0;
             this.gcShowtime.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvShowtime});
@@ -143,7 +145,9 @@
             this.gcPrice,
             this.gcStatus,
             this.gcStatusDisplay,
-            this.gcAction});
+            this.gcAction,
+            this.Duration,
+            this.Endtime});
             this.gvShowtime.GridControl = this.gcShowtime;
             this.gvShowtime.Name = "gvShowtime";
             this.gvShowtime.OptionsView.ShowGroupPanel = false;
@@ -205,7 +209,7 @@
             this.gcPrice.MinWidth = 25;
             this.gcPrice.Name = "gcPrice";
             this.gcPrice.Visible = true;
-            this.gcPrice.VisibleIndex = 5;
+            this.gcPrice.VisibleIndex = 7;
             this.gcPrice.Width = 94;
             // 
             // gcStatus
@@ -223,7 +227,7 @@
             this.gcStatusDisplay.MinWidth = 25;
             this.gcStatusDisplay.Name = "gcStatusDisplay";
             this.gcStatusDisplay.Visible = true;
-            this.gcStatusDisplay.VisibleIndex = 6;
+            this.gcStatusDisplay.VisibleIndex = 8;
             this.gcStatusDisplay.Width = 94;
             // 
             // gcAction
@@ -237,7 +241,7 @@
             this.gcAction.Name = "gcAction";
             this.gcAction.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gcAction.Visible = true;
-            this.gcAction.VisibleIndex = 7;
+            this.gcAction.VisibleIndex = 9;
             this.gcAction.Width = 94;
             // 
             // repositoryItemActionButtons
@@ -253,6 +257,26 @@
             this.repositoryItemActionButtons.Name = "repositoryItemActionButtons";
             this.repositoryItemActionButtons.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemActionButtons.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemActionButtons_ButtonClick);
+            // 
+            // Duration
+            // 
+            this.Duration.Caption = "Duration";
+            this.Duration.FieldName = "Duration";
+            this.Duration.MinWidth = 25;
+            this.Duration.Name = "Duration";
+            this.Duration.Visible = true;
+            this.Duration.VisibleIndex = 5;
+            this.Duration.Width = 94;
+            // 
+            // Endtime
+            // 
+            this.Endtime.Caption = "End";
+            this.Endtime.FieldName = "EndTime";
+            this.Endtime.MinWidth = 25;
+            this.Endtime.Name = "Endtime";
+            this.Endtime.Visible = true;
+            this.Endtime.VisibleIndex = 6;
+            this.Endtime.Width = 94;
             // 
             // ribtnEdit
             // 
@@ -280,7 +304,7 @@
             // 
             this.actionTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Brown;
             this.actionTile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.actionTile.BackColor = System.Drawing.Color.Brown;
+            this.actionTile.BackColor = System.Drawing.Color.Maroon;
             this.actionTile.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.OutAnimation;
             this.actionTile.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.actionTile.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -288,8 +312,8 @@
             this.actionTile.Groups.Add(this.tileBarGroup2);
             this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
-            this.actionTile.ItemSize = 80;
-            this.actionTile.Location = new System.Drawing.Point(0, 516);
+            this.actionTile.ItemSize = 50;
+            this.actionTile.Location = new System.Drawing.Point(0, 570);
             this.actionTile.LookAndFeel.SkinName = "WXI";
             this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
             this.actionTile.Margin = new System.Windows.Forms.Padding(0);
@@ -299,7 +323,7 @@
             this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
             this.actionTile.SelectionBorderWidth = 0;
             this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(1151, 138);
+            this.actionTile.Size = new System.Drawing.Size(1151, 84);
             this.actionTile.TabIndex = 7;
             this.actionTile.Text = "tileBar1";
             this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -315,15 +339,14 @@
             this.ShowtimeTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
             this.ShowtimeTile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.ShowtimeTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside;
-            tileItemElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("resource.SvgImage")));
-            tileItemElement1.StretchHorizontal = true;
-            tileItemElement1.StretchVertical = true;
-            tileItemElement1.Text = "";
+            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileItemElement1.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.CommonPalette;
+            tileItemElement1.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
+            tileItemElement1.Text = "Add Showtime";
             this.ShowtimeTile.Elements.Add(tileItemElement1);
             this.ShowtimeTile.Id = 10;
-            this.ShowtimeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium;
+            this.ShowtimeTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
             this.ShowtimeTile.Name = "ShowtimeTile";
             this.ShowtimeTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.ShowtimeTile_ItemClick);
             // 
@@ -372,8 +395,8 @@
             this.teShowFilter.Properties.EditFormat.FormatString = "";
             this.teShowFilter.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.teShowFilter.Properties.MaskSettings.Set("mask", "d");
-            this.teShowFilter.Properties.NullText = "SEARCH";
-            this.teShowFilter.Properties.NullValuePrompt = "SEARCH";
+            this.teShowFilter.Properties.NullText = "Filter By";
+            this.teShowFilter.Properties.NullValuePrompt = "Filter By";
             this.teShowFilter.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)(((DevExpress.XtraEditors.ShowNullValuePromptOptions.EmptyValue | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused) 
             | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
             this.teShowFilter.Properties.UseMaskAsDisplayFormat = true;
@@ -391,6 +414,16 @@
             this.btnAllRecords.TabIndex = 5;
             this.btnAllRecords.Text = "All";
             this.btnAllRecords.Click += new System.EventHandler(this.btnAllRecords_Click);
+            // 
+            // btnFilterToday
+            // 
+            this.btnFilterToday.Location = new System.Drawing.Point(404, 16);
+            this.btnFilterToday.Name = "btnFilterToday";
+            this.btnFilterToday.Size = new System.Drawing.Size(202, 44);
+            this.btnFilterToday.StyleController = this.headerLayoutControl;
+            this.btnFilterToday.TabIndex = 6;
+            this.btnFilterToday.Text = "Today";
+            this.btnFilterToday.Click += new System.EventHandler(this.btnFilterToday_Click);
             // 
             // Root
             // 
@@ -437,16 +470,6 @@
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // btnFilterToday
-            // 
-            this.btnFilterToday.Location = new System.Drawing.Point(404, 16);
-            this.btnFilterToday.Name = "btnFilterToday";
-            this.btnFilterToday.Size = new System.Drawing.Size(202, 44);
-            this.btnFilterToday.StyleController = this.headerLayoutControl;
-            this.btnFilterToday.TabIndex = 6;
-            this.btnFilterToday.Text = "Today";
-            this.btnFilterToday.Click += new System.EventHandler(this.btnFilterToday_Click);
             // 
             // layoutControlItem2
             // 
@@ -519,5 +542,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.SimpleButton btnFilterToday;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraGrid.Columns.GridColumn Duration;
+        private DevExpress.XtraGrid.Columns.GridColumn Endtime;
     }
 }

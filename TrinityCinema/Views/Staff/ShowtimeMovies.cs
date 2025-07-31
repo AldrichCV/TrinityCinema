@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,28 +14,30 @@ using TrinityCinema.Views.Admin;
 
 namespace TrinityCinema.Views.Staff
 {
-    public partial class ShowtimeMovies : DevExpress.XtraEditors.XtraUserControl
+    public partial class ShowtimeMovies : DevExpress.XtraEditors.XtraForm
     {
-        AllMethods a = new AllMethods();
+        AllMethods allMethods = new AllMethods();
         private StaffMainForm staffMainForm;
+        private string loggedInUser;
 
-        public ShowtimeMovies(StaffMainForm staffMainForm)
+        public ShowtimeMovies(StaffMainForm staffMainForm, string loggedInUser)
         {
             InitializeComponent();
             this.staffMainForm = staffMainForm;
-            AllMethods.GridCustomization(gcShowMovies, tvShowMovies, GetMovies());
+            this.loggedInUser = loggedInUser;
+            AllMethods.GridCustomization(gcShowMovies, tvShowMovies, GetShowtimeToday());
         }
-
-        public List<Movie> GetMovies()
+        public List<Showtime> GetShowtimeToday()
         {
-            string query = GlobalSettings.getMovieWithTheater;
-            return a.GetRecords<Movie>(query);
+            string query = GlobalSettings.getShowtime + @"
+            WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
+            return allMethods.GetRecords<Showtime>(query, null);
         }
-
         private void tvShowMovies_ItemClick(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs e)
         {
-            int theaterID = Convert.ToInt32(tvShowMovies.GetRowCellValue(e.Item.RowHandle, "TheaterID"));
-            ChooseSeatLayout chooseSeatLayout = new ChooseSeatLayout(theaterID);
+            int showtimeId = Convert.ToInt32(tvShowMovies.GetRowCellValue(e.Item.RowHandle, "ShowtimeID"));
+            string hallName = tvShowMovies.GetRowCellValue(e.Item.RowHandle, "TheaterName").ToString();
+            SeatLayout chooseSeatLayout = new SeatLayout(loggedInUser,showtimeId,hallName);
             chooseSeatLayout.ShowDialog();
         }
     }

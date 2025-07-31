@@ -17,6 +17,7 @@ namespace TrinityCinema.Views.Admin
         AllMethods allMethods = new AllMethods();
         private AdminMainForm adminMainForm;
         private string loggedInUser;
+
         public HallControl(AdminMainForm adminMainForm, string loggedInUser)
         {
             InitializeComponent();

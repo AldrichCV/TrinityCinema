@@ -485,6 +485,37 @@ namespace TrinityCinema.Models
 
             return status;
         }
+        public static void RefreshManagerHome<T>(
+    Func<AdminMainForm, T> createNewControl,
+    Action<T> refreshIfExists = null
+) where T : Control
+        {
+            AdminMainForm adminForm = Application.OpenForms.OfType<AdminMainForm>().FirstOrDefault();
+            if (adminForm == null)
+            {
+                MessageBox.Show("ManagerHome not found.");
+                return;
+            }
+
+            T oldControl = adminForm.gcHome.Controls.OfType<T>().FirstOrDefault();
+            if (oldControl != null)
+            {
+                if (refreshIfExists != null)
+                {
+                    refreshIfExists(oldControl);
+                    oldControl.BringToFront();
+                    return;
+                }
+
+                adminForm.gcHome.Controls.Remove(oldControl);
+                oldControl.Dispose();
+            }
+
+            T newControl = createNewControl(adminForm);
+            newControl.Dock = DockStyle.Fill;
+            adminForm.gcHome.Controls.Add(newControl);
+            newControl.BringToFront();
+        }
 
     }
 }

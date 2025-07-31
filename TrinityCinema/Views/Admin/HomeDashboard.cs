@@ -33,6 +33,7 @@ namespace TrinityCinema.Views.Admin
             labelControl1.Text = $"Welcome back, {loggedInUser}";
         }
 
+        #region Initialization
         public async Task InitializeDashboardAsync()
         {
             await LoadDashboardAsync();
@@ -63,8 +64,9 @@ namespace TrinityCinema.Views.Admin
             };
             dashboardRefreshTimer.Start();
         }
+        #endregion
 
-
+        #region SummaryTiles
         private void UpdateUserTileElements(RoleCounts counts)
         {
             userTile.Elements.ElementAt(1).Text = $"{counts.ManagerCount} Managers";
@@ -72,7 +74,7 @@ namespace TrinityCinema.Views.Admin
 
             if (counts.UserStatusCount == 0)
             {
-                userTile.Elements.ElementAt(5).Text = "✔ All users active";
+                userTile.Elements.ElementAt(3).Text = "✔ All users active";
             }
             else
             {
@@ -106,8 +108,6 @@ namespace TrinityCinema.Views.Admin
 
             }
         }
-
-
 
         private async Task<SeatCounts> GetSeatCountsAsync()
         {
@@ -147,10 +147,6 @@ namespace TrinityCinema.Views.Admin
             }
         }
 
-
-
-
-
         private async Task<RoleCounts> GetUserRoleCountsAsync()
         {
             using (var conn = new SqlConnection(GlobalSettings.connectionString))
@@ -172,5 +168,6 @@ namespace TrinityCinema.Views.Admin
                 WHERE CAST(ShowDate AS DATE) = CAST(GETDATE() AS DATE)";
             return await Task.Run(() => allMethods.GetRecords<Showtime>(query, null));
         }
+        #endregion
     }
 }

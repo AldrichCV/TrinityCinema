@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrinityCinema.Models;
 using TrinityCinema.Views.Admin;
+using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace TrinityCinema.Views
 {
@@ -262,6 +263,8 @@ namespace TrinityCinema.Views
                 UpdateSeatCounts();
             }
         }
+
+        
 
 
         #region IndexChangedEvents and UpdateSeatCounts

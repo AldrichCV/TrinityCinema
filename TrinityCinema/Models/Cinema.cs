@@ -96,12 +96,16 @@ namespace TrinityCinema.Models
         public int ShowtimeID { get; set; }
         public string MovieID { get; set; }
         public string Title { get; set; }
+        public string RatingCode { get; set; }
         public byte[] MoviePoster { get; set; }
+        public string GenreName { get; set; }
         public int TheaterID { get; set; }
         public string TheaterName { get; set; }
         public decimal Price { get; set; }
         public DateTime ShowDate { get; set; }
         public TimeSpan StartTime { get; set; }
+        public TimeSpan Duration { get; set; }
+        public TimeSpan EndTime { get; set; }
         public int Status { get; set; }
         public int StatusID { get; set; }
         public string StatusName { get; set; }

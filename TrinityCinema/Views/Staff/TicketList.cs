@@ -27,8 +27,8 @@ namespace TrinityCinema.Views.Staff
 
         private void btnBuyTicket_Click(object sender, EventArgs e)
         {
-            BuyTicket buyTicket = new BuyTicket(this);
-            buyTicket.Show(); // Opens as a separate window
+            //BuyTicket buyTicket = new BuyTicket(this);
+            //buyTicket.Show(); // Opens as a separate window
         }
     }
 }

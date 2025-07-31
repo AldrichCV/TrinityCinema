@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TrinityCinema.Models;
+using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace TrinityCinema.Views.Admin
 {
@@ -176,6 +177,18 @@ namespace TrinityCinema.Views.Admin
         private void btnFilterToday_Click(object sender, EventArgs e)
         {
             AllMethods.GridCustomization(gcShowtime, gvShowtime, GetShowtimeToday());
+        }
+
+        public void RefreshList()
+        {
+            try
+            {
+                AllMethods.GridCustomization(gcShowtime, gvShowtime, GetShowtimeToday());
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Failed to refresh user list.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
