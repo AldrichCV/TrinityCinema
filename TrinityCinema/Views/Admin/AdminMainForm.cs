@@ -25,6 +25,7 @@ namespace TrinityCinema.Views.Admin
         private SeatsControl cachedHallControl;
         private ShowtimeControl cachedShowtimeControl;
         private ActivityLogControl cachedActivityControl;
+        private ReportsControl reportsControl;
 
         AllMethods allMethods = new AllMethods();
         private string loggedInUser;
@@ -168,6 +169,18 @@ namespace TrinityCinema.Views.Admin
             gcHome.Controls.Add(dashboard);
             dashboard.Dock = DockStyle.Fill;
             dashboard.Show();
+        }
+
+        private void reportsTile_ItemClick(object sender, TileItemEventArgs e)
+        {
+            gcHome.Controls.Clear();
+            if (reportsControl == null)
+            {
+                reportsControl = new ReportsControl(this, loggedInUser);
+                reportsControl.Dock = DockStyle.Fill;
+            }
+            gcHome.Controls.Add(reportsControl);
+            reportsControl.Show();
         }
     }
 }

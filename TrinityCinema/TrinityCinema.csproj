@@ -258,6 +258,12 @@
     <Compile Include="Views\Admin\PasswordReset.Designer.cs">
       <DependentUpon>PasswordReset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\ReportsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ReportsControl.Designer.cs">
+      <DependentUpon>ReportsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\SeatManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -437,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\PasswordReset.resx">
       <DependentUpon>PasswordReset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\ReportsControl.resx">
+      <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\SeatManagement.resx">
       <DependentUpon>SeatManagement.cs</DependentUpon>

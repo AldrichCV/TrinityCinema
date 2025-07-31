@@ -27,6 +27,7 @@ namespace TrinityCinema
             {
                 GlobalSettings.connectionString = input;
                 MessageBox.Show("Connection string updated successfully.");
+                this.Close();
             }
             else
             {

@@ -46,7 +46,7 @@
             this.showtimeTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logsTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.tileBarGroup3 = new DevExpress.XtraBars.Navigation.TileBarGroup();
-            this.tileBarItem1 = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.reportsTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.logoutTile = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.gcHome = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcHome)).BeginInit();
@@ -184,24 +184,25 @@
             // 
             // tileBarGroup3
             // 
-            this.tileBarGroup3.Items.Add(this.tileBarItem1);
+            this.tileBarGroup3.Items.Add(this.reportsTile);
             this.tileBarGroup3.Items.Add(this.logoutTile);
             this.tileBarGroup3.Name = "tileBarGroup3";
             // 
-            // tileBarItem1
+            // reportsTile
             // 
-            this.tileBarItem1.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
-            this.tileBarItem1.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
-            this.tileBarItem1.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.tileBarItem1.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileBarItem1.AppearanceItem.Normal.Options.UseBorderColor = true;
-            this.tileBarItem1.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileBarItem1.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.reportsTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Maroon;
+            this.reportsTile.AppearanceItem.Normal.BorderColor = System.Drawing.Color.Maroon;
+            this.reportsTile.AppearanceItem.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.reportsTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.reportsTile.AppearanceItem.Normal.Options.UseBorderColor = true;
+            this.reportsTile.AppearanceItem.Normal.Options.UseFont = true;
+            this.reportsTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement7.Text = "Reports";
-            this.tileBarItem1.Elements.Add(tileItemElement7);
-            this.tileBarItem1.Id = 11;
-            this.tileBarItem1.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.tileBarItem1.Name = "tileBarItem1";
+            this.reportsTile.Elements.Add(tileItemElement7);
+            this.reportsTile.Id = 11;
+            this.reportsTile.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.reportsTile.Name = "reportsTile";
+            this.reportsTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.reportsTile_ItemClick);
             // 
             // logoutTile
             // 
@@ -265,7 +266,7 @@
         public DevExpress.XtraEditors.GroupControl gcHome;
         private DevExpress.XtraBars.Navigation.TileBarItem logsTile;
         private DevExpress.XtraBars.Navigation.TileBarGroup tileBarGroup3;
-        private DevExpress.XtraBars.Navigation.TileBarItem tileBarItem1;
+        private DevExpress.XtraBars.Navigation.TileBarItem reportsTile;
         private DevExpress.XtraBars.Navigation.TileBarItem logoutTile;
         private DevExpress.XtraBars.Navigation.TileBarItem homeTile;
     }
