@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
             this.tileControl1 = new DevExpress.XtraEditors.TileControl();
             this.tileGroup2 = new DevExpress.XtraEditors.TileGroup();
-            this.allRecordsTile = new DevExpress.XtraEditors.TileItem();
             this.dailyTile = new DevExpress.XtraEditors.TileItem();
             this.weeklyReport = new DevExpress.XtraEditors.TileItem();
+            this.tileGroup1 = new DevExpress.XtraEditors.TileGroup();
+            this.allRecordsTile = new DevExpress.XtraEditors.TileItem();
+            this.tileGroup3 = new DevExpress.XtraEditors.TileGroup();
             this.monthlyTile = new DevExpress.XtraEditors.TileItem();
             this.annualTile = new DevExpress.XtraEditors.TileItem();
-            this.tileGroup1 = new DevExpress.XtraEditors.TileGroup();
-            this.tileGroup3 = new DevExpress.XtraEditors.TileGroup();
             this.SuspendLayout();
             // 
             // tileControl1
@@ -64,71 +64,72 @@
             this.tileGroup2.Items.Add(this.weeklyReport);
             this.tileGroup2.Name = "tileGroup2";
             // 
-            // allRecordsTile
-            // 
-            tileItemElement13.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tileItemElement13.Appearance.Normal.Options.UseFont = true;
-            tileItemElement13.Text = "All Records";
-            tileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.allRecordsTile.Elements.Add(tileItemElement13);
-            this.allRecordsTile.Id = 0;
-            this.allRecordsTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
-            this.allRecordsTile.Name = "allRecordsTile";
-            // 
             // dailyTile
             // 
-            tileItemElement11.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tileItemElement11.Appearance.Normal.Options.UseFont = true;
-            tileItemElement11.Text = "Daily Report";
-            tileItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.dailyTile.Elements.Add(tileItemElement11);
+            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileItemElement1.Appearance.Normal.Options.UseFont = true;
+            tileItemElement1.Text = "Daily Report";
+            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.dailyTile.Elements.Add(tileItemElement1);
             this.dailyTile.Id = 1;
             this.dailyTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.dailyTile.Name = "dailyTile";
             // 
             // weeklyReport
             // 
-            tileItemElement12.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tileItemElement12.Appearance.Normal.Options.UseFont = true;
-            tileItemElement12.Text = "Weekly Report";
-            tileItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.weeklyReport.Elements.Add(tileItemElement12);
+            tileItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileItemElement2.Appearance.Normal.Options.UseFont = true;
+            tileItemElement2.Text = "Weekly Report";
+            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.weeklyReport.Elements.Add(tileItemElement2);
             this.weeklyReport.Id = 2;
             this.weeklyReport.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.weeklyReport.Name = "weeklyReport";
-            // 
-            // monthlyTile
-            // 
-            tileItemElement14.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tileItemElement14.Appearance.Normal.Options.UseFont = true;
-            tileItemElement14.Text = "Monthly Report";
-            tileItemElement14.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.monthlyTile.Elements.Add(tileItemElement14);
-            this.monthlyTile.Id = 3;
-            this.monthlyTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
-            this.monthlyTile.Name = "monthlyTile";
-            // 
-            // annualTile
-            // 
-            tileItemElement15.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tileItemElement15.Appearance.Normal.Options.UseFont = true;
-            tileItemElement15.Text = "Annual Report";
-            tileItemElement15.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.annualTile.Elements.Add(tileItemElement15);
-            this.annualTile.Id = 4;
-            this.annualTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
-            this.annualTile.Name = "annualTile";
             // 
             // tileGroup1
             // 
             this.tileGroup1.Items.Add(this.allRecordsTile);
             this.tileGroup1.Name = "tileGroup1";
             // 
+            // allRecordsTile
+            // 
+            tileItemElement3.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileItemElement3.Appearance.Normal.Options.UseFont = true;
+            tileItemElement3.Text = "All Records";
+            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.allRecordsTile.Elements.Add(tileItemElement3);
+            this.allRecordsTile.Id = 0;
+            this.allRecordsTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            this.allRecordsTile.Name = "allRecordsTile";
+            this.allRecordsTile.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.allRecordsTile_ItemClick);
+            // 
             // tileGroup3
             // 
             this.tileGroup3.Items.Add(this.monthlyTile);
             this.tileGroup3.Items.Add(this.annualTile);
             this.tileGroup3.Name = "tileGroup3";
+            // 
+            // monthlyTile
+            // 
+            tileItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileItemElement4.Appearance.Normal.Options.UseFont = true;
+            tileItemElement4.Text = "Monthly Report";
+            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.monthlyTile.Elements.Add(tileItemElement4);
+            this.monthlyTile.Id = 3;
+            this.monthlyTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            this.monthlyTile.Name = "monthlyTile";
+            // 
+            // annualTile
+            // 
+            tileItemElement5.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tileItemElement5.Appearance.Normal.Options.UseFont = true;
+            tileItemElement5.Text = "Annual Report";
+            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.annualTile.Elements.Add(tileItemElement5);
+            this.annualTile.Id = 4;
+            this.annualTile.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            this.annualTile.Name = "annualTile";
             // 
             // ReportsControl
             // 

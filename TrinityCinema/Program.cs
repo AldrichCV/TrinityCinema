@@ -1,10 +1,12 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -13,7 +15,8 @@ using TrinityCinema.Models;
 using TrinityCinema.Views;
 using TrinityCinema.Views.Admin;
 using TrinityCinema.Views.Staff;
-using System.Media;
+
+
 
 namespace TrinityCinema
 {

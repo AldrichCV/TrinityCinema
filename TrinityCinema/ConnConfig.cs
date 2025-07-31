@@ -28,6 +28,10 @@ namespace TrinityCinema
                 GlobalSettings.connectionString = input;
                 MessageBox.Show("Connection string updated successfully.");
                 this.Close();
+                // Example: called when user hits "Apply" or "Connect"
+                Properties.Settings.Default.ConnConfig = teConn.Text.Trim(); // or connectionString
+                Properties.Settings.Default.Save(); // Saves to user settings file
+
             }
             else
             {

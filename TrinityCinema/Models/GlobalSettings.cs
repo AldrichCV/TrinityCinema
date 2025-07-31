@@ -11,7 +11,8 @@ namespace TrinityCinema.Models
         //public static string connectionString = @"Data Source=LAB1-PC12;Initial Catalog=CinemaDB;User=sa;Password=123456";
         //public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDB;Integrated Security=True";
         //public static string connectionString = @"Data Source=AAA\SQLEXPRESS;Initial Catalog=CinemaDB;Integrated Security=True";
-        public static string connectionString = @"";
+        public static string connectionString = Properties.Settings.Default.ConnConfig;
+
         #region AccountsSQL
 
         #region Select Queries
