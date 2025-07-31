@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             this.gcTransactions = new DevExpress.XtraGrid.GridControl();
             this.gvTraction = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
-            this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
-            this.PrintTransaction = new DevExpress.XtraBars.Navigation.TileBarItem();
             this.TransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TransactionDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CreatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TractionDetails = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Amount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.actionTile = new DevExpress.XtraBars.Navigation.TileBar();
+            this.tileBarGroup2 = new DevExpress.XtraBars.Navigation.TileBarGroup();
+            this.PrintTransaction = new DevExpress.XtraBars.Navigation.TileBarItem();
+            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gcTransactions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTraction)).BeginInit();
             this.SuspendLayout();
@@ -65,57 +66,6 @@
             this.gvTraction.GridControl = this.gcTransactions;
             this.gvTraction.Name = "gvTraction";
             this.gvTraction.OptionsView.ShowGroupPanel = false;
-            // 
-            // actionTile
-            // 
-            this.actionTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Brown;
-            this.actionTile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.actionTile.BackColor = System.Drawing.Color.Maroon;
-            this.actionTile.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.OutAnimation;
-            this.actionTile.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.actionTile.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.actionTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            this.actionTile.Groups.Add(this.tileBarGroup2);
-            this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
-            this.actionTile.ItemSize = 50;
-            this.actionTile.Location = new System.Drawing.Point(0, 628);
-            this.actionTile.LookAndFeel.SkinName = "WXI";
-            this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.actionTile.Margin = new System.Windows.Forms.Padding(0);
-            this.actionTile.MaxId = 11;
-            this.actionTile.Name = "actionTile";
-            this.actionTile.Padding = new System.Windows.Forms.Padding(0);
-            this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
-            this.actionTile.SelectionBorderWidth = 0;
-            this.actionTile.ShowItemShadow = true;
-            this.actionTile.Size = new System.Drawing.Size(1205, 84);
-            this.actionTile.TabIndex = 8;
-            this.actionTile.Text = "tileBar1";
-            this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.actionTile.WideTileWidth = 200;
-            // 
-            // tileBarGroup2
-            // 
-            this.tileBarGroup2.Items.Add(this.PrintTransaction);
-            this.tileBarGroup2.Name = "tileBarGroup2";
-            // 
-            // PrintTransaction
-            // 
-            this.PrintTransaction.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
-            this.PrintTransaction.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.PrintTransaction.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            tileItemElement1.Appearance.Normal.Options.UseFont = true;
-            tileItemElement1.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.CommonPalette;
-            tileItemElement1.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
-            tileItemElement1.Text = "PRINT";
-            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.PrintTransaction.Elements.Add(tileItemElement1);
-            this.PrintTransaction.Id = 10;
-            this.PrintTransaction.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
-            this.PrintTransaction.Name = "PrintTransaction";
-            this.PrintTransaction.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.PrintTransaction_ItemClick);
             // 
             // TransactionId
             // 
@@ -167,10 +117,72 @@
             this.Amount.VisibleIndex = 4;
             this.Amount.Width = 94;
             // 
+            // actionTile
+            // 
+            this.actionTile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Brown;
+            this.actionTile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.actionTile.BackColor = System.Drawing.Color.Maroon;
+            this.actionTile.ContextButtonOptions.AnimationType = DevExpress.Utils.ContextAnimationType.OutAnimation;
+            this.actionTile.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.actionTile.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.actionTile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.actionTile.Groups.Add(this.tileBarGroup2);
+            this.actionTile.HorizontalContentAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.actionTile.ItemPadding = new System.Windows.Forms.Padding(10);
+            this.actionTile.ItemSize = 50;
+            this.actionTile.Location = new System.Drawing.Point(0, 628);
+            this.actionTile.LookAndFeel.SkinName = "WXI";
+            this.actionTile.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.actionTile.Margin = new System.Windows.Forms.Padding(0);
+            this.actionTile.MaxId = 11;
+            this.actionTile.Name = "actionTile";
+            this.actionTile.Padding = new System.Windows.Forms.Padding(0);
+            this.actionTile.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons;
+            this.actionTile.SelectionBorderWidth = 0;
+            this.actionTile.ShowItemShadow = true;
+            this.actionTile.Size = new System.Drawing.Size(1205, 84);
+            this.actionTile.TabIndex = 8;
+            this.actionTile.Text = "tileBar1";
+            this.actionTile.VerticalContentAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.actionTile.WideTileWidth = 200;
+            // 
+            // tileBarGroup2
+            // 
+            this.tileBarGroup2.Items.Add(this.PrintTransaction);
+            this.tileBarGroup2.Name = "tileBarGroup2";
+            // 
+            // PrintTransaction
+            // 
+            this.PrintTransaction.AppearanceItem.Normal.BackColor = System.Drawing.Color.SandyBrown;
+            this.PrintTransaction.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.PrintTransaction.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI", 12F);
+            tileItemElement2.Appearance.Normal.Options.UseFont = true;
+            tileItemElement2.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.CommonPalette;
+            tileItemElement2.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
+            tileItemElement2.Text = "PRINT";
+            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.PrintTransaction.Elements.Add(tileItemElement2);
+            this.PrintTransaction.Id = 10;
+            this.PrintTransaction.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide;
+            this.PrintTransaction.Name = "PrintTransaction";
+            this.PrintTransaction.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.PrintTransaction_ItemClick);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBack.Location = new System.Drawing.Point(20, 652);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(63, 39);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "Exit";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // MyTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gcTransactions);
             this.Controls.Add(this.actionTile);
             this.Name = "MyTransactions";
@@ -193,5 +205,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn CreatedBy;
         private DevExpress.XtraGrid.Columns.GridColumn TractionDetails;
         private DevExpress.XtraGrid.Columns.GridColumn Amount;
+        private DevExpress.XtraEditors.SimpleButton btnBack;
     }
 }

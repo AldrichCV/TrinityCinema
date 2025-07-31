@@ -56,6 +56,17 @@ namespace TrinityCinema.Views.Staff
         {
 
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            staffMainForm.gcHome.Controls.Clear();
+
+            // Create and add StaffHome control
+            var staffHome = new StaffHome(staffMainForm, loggedInUser); // make sure you have this UserControl
+            staffHome.Dock = DockStyle.Fill;
+            staffMainForm.gcHome.Controls.Add(staffHome);
+            staffHome.BringToFront();
+        }
     }
 }
     
